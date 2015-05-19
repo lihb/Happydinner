@@ -145,9 +145,7 @@ public class CoverFlowActivity extends ActionBarActivity {
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
                     //todo 跳转到自主下单activity
-                    Toast.makeText(CoverFlowActivity.this,
-                            "开发中，尽请期待。。",
-                            Toast.LENGTH_SHORT).show();
+                    CommonUtils.toastText(CoverFlowActivity.this, "开发中。。");
                     break;
                 default:
                     break;
