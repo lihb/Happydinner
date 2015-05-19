@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,9 +17,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.*;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.GameEntity;
+import com.happydinner.entitiy.Menu;
+import com.happydinner.entitiy.Order;
 import com.happydinner.ui.CoverFlowAdapter;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
+import com.happydinner.util.CommonUtils;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 import java.util.*;
@@ -52,6 +53,8 @@ public class CoverFlowActivity extends ActionBarActivity {
 
     private View mExpandedView;
 
+    private Order mOrder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class CoverFlowActivity extends ActionBarActivity {
         //去掉Activity上面的状态栏
 //        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_coverflow);
+        mOrder = new Order();
 
         mData.add(new GameEntity(R.drawable.menu, R.string.title1));
         mData.add(new GameEntity(R.drawable.image_2, R.string.title2));
@@ -203,27 +207,26 @@ public class CoverFlowActivity extends ActionBarActivity {
                     com.happydinner.entitiy.Menu menu = (com.happydinner.entitiy.Menu) itemData;
                     Toast.makeText(CoverFlowActivity.this, "你点击了："+ menu.getName(),
                             Toast.LENGTH_SHORT).show();
-
-
                 }
 
                 @Override
                 public void onAddMenuClicked(Object itemData) {
-                    /*com.happydinner.entitiy.Menu menu = (com.happydinner.entitiy.Menu) itemData;
-                    menu.count++;*/
                     mListAdapter.notifyDataSetChanged();
 
                 }
 
                 @Override
                 public void onSubMenuClicked(Object itemData) {
-                    /*com.happydinner.entitiy.Menu menu = (com.happydinner.entitiy.Menu) itemData;
-                    menu.count--;
-                    int count = menu.count;
-                    if (count <= 0) {
-                        menu.count = 0;
-                    }*/
                     mListAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onAddToOrderClicked(Object itemData) {
+                    Menu menu = (Menu) itemData;
+                    mOrder.addMenu(menu);
+                    CommonUtils.toastText(CoverFlowActivity.this, "总价:" + mOrder.getTotalPrice());
+                    mListAdapter.notifyDataSetChanged();
+
                 }
             });
             mListAdapter = new SimpleListWorkerAdapter(mListWorker);
@@ -237,7 +240,7 @@ public class CoverFlowActivity extends ActionBarActivity {
     }
 
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_coverflow_activity, menu);
@@ -257,8 +260,13 @@ public class CoverFlowActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
+    /**
+     * 扩大显示展示菜品区域
+     *
+     * @param mainView
+     */
     private void zoomViewFromMain(final View mainView) {
         // If there's an animation in progress, cancel it immediately and proceed with this one.
         if (mCurrentAnimator != null) {

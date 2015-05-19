@@ -6,8 +6,14 @@ package com.happydinner.base;
  *
  */
 public class Constant {
-    /**
-     * 客户端类型
+
+	/**
+	 * appSecret
+	 */
+	public static final String TYY_APP_SECRET = "rx8C3Zgh";
+
+	/**
+	 * 客户端类型
      */
 	public final static String CLIENT_TYPE = "TELEANDROID";
 	/**网络类型--所有网络*/

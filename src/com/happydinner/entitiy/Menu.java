@@ -22,7 +22,7 @@ public class Menu {
     private String info;
 
     // 菜品优惠信息
-    private float discount;
+    private float discount = 1;
 
     // 菜品是否被厨房处理,未上菜和已上菜
     private boolean cooked;

@@ -34,7 +34,7 @@
                 android:layout_toRightOf="@id/menu_name_iv1"
                 android:textColor="@color/menu_title"
                 android:textSize="25dp"
-                android:text="天妇罗"
+                tools:text="天妇罗"
                 />
         <TextView
                 android:id="@+id/menu_materias_tv1"
@@ -45,7 +45,7 @@
                 android:layout_toRightOf="@id/menu_name_iv1"
                 android:layout_below="@id/menu_name_tv1"
                 android:textColor="@color/white"
-                android:text="原料：虾、猪肉"
+                tools:text="原料：虾、猪肉"
                 />
         <TextView
                 android:id="@+id/menu_price_tv1"
@@ -56,8 +56,20 @@
                 android:layout_toRightOf="@id/menu_name_iv1"
                 android:layout_below="@id/menu_materias_tv1"
                 android:textColor="@color/white"
-                android:text="售价：15"
+                tools:text="售价：15"
                 />
+            <TextView
+                    android:id="@+id/menu_add_to_order_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/menu_name_iv1"
+                    android:layout_below="@id/menu_price_tv1"
+                    android:textColor="@color/blue"
+                    android:background="@drawable/icon_button"
+                    android:text="加入订单"
+                    />
             <!--<LinearLayout
                     android:id="@+id/menu_count_ll1"
                     android:layout_below="@id/menu_price_tv1"
@@ -136,7 +148,7 @@
                 android:layout_toRightOf="@id/menu_name_iv2"
                 android:textColor="@color/menu_title"
                 android:textSize="25dp"
-                android:text="金牌卤肉"
+                tools:text="金牌卤肉"
                 />
         <TextView
                 android:id="@+id/menu_materias_tv2"
@@ -147,7 +159,7 @@
                 android:layout_toRightOf="@id/menu_name_iv2"
                 android:layout_below="@id/menu_name_tv2"
                 android:textColor="@color/white"
-                android:text="原料：虾、猪肉"
+                tools:text="原料：虾、猪肉"
                 />
         <TextView
                 android:id="@+id/menu_price_tv2"
@@ -160,6 +172,18 @@
                 android:textColor="@color/white"
                 tools:text="售价：¥39"
                 />
+            <TextView
+                    android:id="@+id/menu_add_to_order_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/menu_name_iv2"
+                    android:layout_below="@id/menu_price_tv2"
+                    android:textColor="@color/blue"
+                    android:background="@drawable/icon_button"
+                    android:text="加入订单"
+                    />
             <!--<LinearLayout
                     android:id="@+id/menu_count_ll2"
                     android:layout_below="@id/menu_price_tv2"

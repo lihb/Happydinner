@@ -99,6 +99,8 @@ public class MenuListWorker extends AbstractListWorker {
          * 减菜
          */
         void onSubMenuClicked(Object itemData);
+
+        void onAddToOrderClicked(Object itemData);
     }
 
     public enum DataType {
@@ -186,6 +188,16 @@ public class MenuListWorker extends AbstractListWorker {
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuMateriasTxt(i).setText("原料：" + menu.getInfo());
                 menuViewHolder.getMenuPriceTxt(i).setText("售价：¥" + menu.getPrice());
+                menuViewHolder.getMenuPAddToOrderTxt(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnListWorkerListener != null) {
+                            menu.count++;
+                            mOnListWorkerListener.onAddToOrderClicked(menu);
+                        }
+                    }
+                });
+
                 /*menuViewHolder.getMenuConfirmTxt(i).setText(menu.count + "");
                 *//*menuViewHolder.getRlLocMenu(i).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -245,6 +257,8 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuMateriasTv1;
             @InjectView(R.id.menu_price_tv1)
             TextView menuPriceTv1;
+            @InjectView(R.id.menu_add_to_order_tv1)
+            TextView menuAddToOrderTv1;
             /*@InjectView(R.id.menu_count_tv1)
             TextView menuCountTv1;
             @InjectView(R.id.menu_count_sub_tv1)
@@ -257,6 +271,8 @@ public class MenuListWorker extends AbstractListWorker {
             LinearLayout menuCountLl1;*/
             @InjectView(R.id.loc_menu_rl1)
             RelativeLayout locMenuRl1;
+
+
             @InjectView(R.id.menu_name_iv2)
             ImageView menuNameIv2;
             @InjectView(R.id.menu_name_tv2)
@@ -265,6 +281,8 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuMateriasTv2;
             @InjectView(R.id.menu_price_tv2)
             TextView menuPriceTv2;
+            @InjectView(R.id.menu_add_to_order_tv2)
+            TextView menuAddToOrderTv2;
             /*@InjectView(R.id.menu_count_tv2)
             TextView menuCountTv2;
             @InjectView(R.id.menu_count_sub_tv2)
@@ -331,6 +349,17 @@ public class MenuListWorker extends AbstractListWorker {
                         return menuPriceTv1;
                     case 1:
                         return menuPriceTv2;
+                }
+                return null;
+
+            }
+
+            TextView getMenuPAddToOrderTxt(int i) {
+                switch (i) {
+                    case 0:
+                        return menuAddToOrderTv1;
+                    case 1:
+                        return menuAddToOrderTv2;
                 }
                 return  null;
 
