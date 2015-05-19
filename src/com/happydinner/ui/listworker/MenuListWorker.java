@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
@@ -187,8 +186,8 @@ public class MenuListWorker extends AbstractListWorker {
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuMateriasTxt(i).setText("原料：" + menu.getInfo());
                 menuViewHolder.getMenuPriceTxt(i).setText("售价：¥" + menu.getPrice());
-                menuViewHolder.getMenuConfirmTxt(i).setText(menu.count + "");
-                /*menuViewHolder.getRlLocMenu(i).setOnClickListener(new View.OnClickListener() {
+                /*menuViewHolder.getMenuConfirmTxt(i).setText(menu.count + "");
+                *//*menuViewHolder.getRlLocMenu(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
@@ -196,7 +195,7 @@ public class MenuListWorker extends AbstractListWorker {
                         }
 
                     }
-                });*/
+                });*//*
                 menuViewHolder.getMenuAddTxt(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -218,7 +217,7 @@ public class MenuListWorker extends AbstractListWorker {
                             mListener.onSubMenuClicked(menu);
                         }
                     }
-                });
+                });*/
 
             }
 
@@ -246,7 +245,7 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuMateriasTv1;
             @InjectView(R.id.menu_price_tv1)
             TextView menuPriceTv1;
-            @InjectView(R.id.menu_count_tv1)
+            /*@InjectView(R.id.menu_count_tv1)
             TextView menuCountTv1;
             @InjectView(R.id.menu_count_sub_tv1)
             TextView menuCountSubTv1;
@@ -255,7 +254,7 @@ public class MenuListWorker extends AbstractListWorker {
             @InjectView(R.id.menu_count_add_tv1)
             TextView menuCountAddTv1;
             @InjectView(R.id.menu_count_ll1)
-            LinearLayout menuCountLl1;
+            LinearLayout menuCountLl1;*/
             @InjectView(R.id.loc_menu_rl1)
             RelativeLayout locMenuRl1;
             @InjectView(R.id.menu_name_iv2)
@@ -266,7 +265,7 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuMateriasTv2;
             @InjectView(R.id.menu_price_tv2)
             TextView menuPriceTv2;
-            @InjectView(R.id.menu_count_tv2)
+            /*@InjectView(R.id.menu_count_tv2)
             TextView menuCountTv2;
             @InjectView(R.id.menu_count_sub_tv2)
             TextView menuCountSubTv2;
@@ -275,7 +274,7 @@ public class MenuListWorker extends AbstractListWorker {
             @InjectView(R.id.menu_count_add_tv2)
             TextView menuCountAddTv2;
             @InjectView(R.id.menu_count_ll2)
-            LinearLayout menuCountLl2;
+            LinearLayout menuCountLl2;*/
             @InjectView(R.id.loc_menu_rl2)
             RelativeLayout locMenuRl2;
 
@@ -337,7 +336,7 @@ public class MenuListWorker extends AbstractListWorker {
 
             }
 
-            TextView getMenuAddTxt(int i) {
+            /*TextView getMenuAddTxt(int i) {
                 switch (i) {
                     case 0:
                         return menuCountAddTv1;
@@ -368,7 +367,7 @@ public class MenuListWorker extends AbstractListWorker {
                 }
                 return  null;
 
-            }
+            }*/
         }
     }
 }

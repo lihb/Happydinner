@@ -58,57 +58,57 @@
                 android:textColor="@color/white"
                 android:text="售价：15"
                 />
-        <LinearLayout
-                android:id="@+id/menu_count_ll1"
-                android:layout_below="@id/menu_price_tv1"
-                android:layout_toRightOf="@id/menu_name_iv1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-            <TextView
-                    android:id="@+id/menu_count_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
+            <!--<LinearLayout
+                    android:id="@+id/menu_count_ll1"
+                    android:layout_below="@id/menu_price_tv1"
                     android:layout_toRightOf="@id/menu_name_iv1"
-                    android:layout_below="@id/menu_materias_tv1"
-                    android:textColor="@color/white"
-                    android:text="数量："/>
-            <TextView
-                    android:id="@+id/menu_count_sub_tv1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text=" － "
-                    />
-            <TextView
-                    android:id="@+id/menu_count_confirm_tv1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text="  1 "
-                    />
-            <TextView
-                    android:id="@+id/menu_count_add_tv1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text=" ＋ "
-                    />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+                <TextView
+                        android:id="@+id/menu_count_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:layout_toRightOf="@id/menu_name_iv1"
+                        android:layout_below="@id/menu_materias_tv1"
+                        android:textColor="@color/white"
+                        android:text="数量："/>
+                <TextView
+                        android:id="@+id/menu_count_sub_tv1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text=" － "
+                        />
+                <TextView
+                        android:id="@+id/menu_count_confirm_tv1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="13dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text="  1 "
+                        />
+                <TextView
+                        android:id="@+id/menu_count_add_tv1"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text=" ＋ "
+                        />
 
-        </LinearLayout>
+            </LinearLayout>-->
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/loc_menu_rl2"
@@ -160,57 +160,57 @@
                 android:textColor="@color/white"
                 tools:text="售价：¥39"
                 />
-        <LinearLayout
-                android:id="@+id/menu_count_ll2"
-                android:layout_below="@id/menu_price_tv2"
-                android:layout_toRightOf="@id/menu_name_iv2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                >
-            <TextView
-                    android:id="@+id/menu_count_tv2"
-                    android:layout_width="wrap_content"
+            <!--<LinearLayout
+                    android:id="@+id/menu_count_ll2"
+                    android:layout_below="@id/menu_price_tv2"
+                    android:layout_toRightOf="@id/menu_name_iv2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_toRightOf="@id/menu_name_iv1"
-                    android:layout_below="@id/menu_materias_tv1"
-                    android:textColor="@color/white"
-                    android:text="数量："/>
-            <TextView
-                    android:id="@+id/menu_count_sub_tv2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text=" － "
-                    />
-            <TextView
-                    android:id="@+id/menu_count_confirm_tv2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text="  6 "
-                    />
-            <TextView
-                    android:id="@+id/menu_count_add_tv2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="center"
-                    android:textSize="15dp"
-                    android:background="@drawable/icon_button"
-                    android:textColor="@color/blue_light"
-                    android:text=" ＋ "
-                    />
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+                <TextView
+                        android:id="@+id/menu_count_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:layout_toRightOf="@id/menu_name_iv1"
+                        android:layout_below="@id/menu_materias_tv1"
+                        android:textColor="@color/white"
+                        android:text="数量："/>
+                <TextView
+                        android:id="@+id/menu_count_sub_tv2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text=" － "
+                        />
+                <TextView
+                        android:id="@+id/menu_count_confirm_tv2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="13dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text="  6 "
+                        />
+                <TextView
+                        android:id="@+id/menu_count_add_tv2"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:background="@drawable/icon_button"
+                        android:textColor="@color/blue_light"
+                        android:text=" ＋ "
+                        />
 
-        </LinearLayout>
+            </LinearLayout>-->
 
 
     </RelativeLayout>

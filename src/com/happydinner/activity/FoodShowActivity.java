@@ -25,6 +25,9 @@ public class FoodShowActivity extends BaseActivity {
         ButterKnife.inject(this);
         initView();
         initData();
+        // git测试
+
+
     }
 
     private void initView() {
