@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="cover_width">200dp</dimen>
+    <dimen name="cover_height">160dp</dimen>
+
+    <!-- 头部 -->
+    <dimen name="head_height">47dp</dimen>
+
+    <!-- 头部左边边距-->
+    <dimen name="header_left_margin">12dip</dimen>
+    <!-- 头部右边边距-->
+    <dimen name="header_right_margin">12dip</dimen>
+</resources>

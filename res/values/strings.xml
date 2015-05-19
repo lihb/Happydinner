@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">HappyDinner</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title1">菜品展示</string>
+    <string name="title2">A Lin</string>
+    <string name="title3">Avril</string>
+    <string name="title4">Boy</string>
+    <string name="title5">Deng Zi Qi</string>
+    <string name="title6">Peace of World</string>
+
+</resources>

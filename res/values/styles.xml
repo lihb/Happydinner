@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- 头部样式-->
+    <style name="header">
+        <item name="android:layout_height">@dimen/head_height</item>
+        <item name="android:background">@drawable/header_bg</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+
+    <!-- 头部文字标题的样式_大-->
+    <style name="header_title_text_large">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <!-- 头部文字标题的样式_正常-->
+    <style name="header_title_text_normal">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+</resources>
