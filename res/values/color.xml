@@ -194,5 +194,11 @@
     <!-- 左侧滑退出登录按钮 -->
     <color name="menu_logout_normal">#ebf4fc</color>
     <color name="menu_logout_pressed">#eef3f7</color>
-    
+
+    <!-- 订单页面 -->
+    <color name="left_backgroud">#362121</color>
+    <color name="right_background">#0c0c0c</color>
+    <color name="left_prompt_text">#ff5959</color>
+    <color name="left_button_background">#ff9600</color>
+
 </resources>

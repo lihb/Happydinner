@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        >
+    <include android:id="@+id/order_head"
+             layout="@layout/container_head"
+            />
+    <LinearLayout
+            android:id="@+id/order_content_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+        <RelativeLayout
+                android:id="@+id/order_content_left_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="12dp"
+                android:background="@color/left_backgroud"
+                >
+            <TextView
+                    android:id="@+id/order_menu_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/left_prompt_text"
+                    android:textSize="16sp"
+                    android:text="订单内容："
+                    />
+            <TextView
+                    android:id="@+id/order_count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/left_prompt_text"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="16sp"
+                    android:text="结算"/>
+
+
+            <TextView
+                    android:id="@+id/order_price_tv"
+                    android:layout_above="@id/order_count_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:text="¥ 45.89元"/>
+            <TextView
+                    android:id="@+id/order_price_submit_tv"
+                    android:layout_above="@id/order_price_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/left_prompt_text"
+                    android:textSize="16sp"
+                    android:text="合计金额："/>
+            <ListView
+                    android:id="@+id/order_left_lv"
+                    android:layout_below="@id/order_menu_tv"
+                    android:layout_above="@id/order_price_submit_tv"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:cacheColorHint="#00000000"
+                    android:divider="@null"
+                    android:listSelector="@android:color/transparent"
+                    >
+            </ListView>
+
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/order_content_right_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="@color/right_background"
+                >
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
