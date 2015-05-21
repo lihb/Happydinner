@@ -22,7 +22,7 @@ public class Order implements Parcelable {
 
     private String orderId;
 
-    private List<Menu> menuList;
+    private ArrayList<Menu> menuList;
 
     private OrderStatus  status;
 
@@ -84,7 +84,7 @@ public class Order implements Parcelable {
         this.status = status;
     }
 
-    public void setMenuList(List<Menu> menuList) {
+    public void setMenuList(ArrayList<Menu> menuList) {
         this.menuList = menuList;
     }
 
@@ -150,13 +150,13 @@ public class Order implements Parcelable {
         dest.writeValue(status);
     }
 
-    public static final Parcelable.Creator<Order> ORDER_CREATOR = new Creator<Order>() {
+    public static final Parcelable.Creator<Order> CREATOR = new Creator<Order>() {
         @Override
         public Order createFromParcel(Parcel source) {
             Order order = new Order();
             order.setOrderTime(source.readString());
             order.setDeskId(source.readString());
-            order.setMenuList(source.readArrayList(null));
+            order.setMenuList(source.readArrayList(Menu.class.getClassLoader()));
             order.setTotalPrice(source.readFloat());
             order.setStatus((OrderStatus) source.readValue(null));
 

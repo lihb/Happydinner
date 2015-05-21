@@ -150,7 +150,7 @@ public class Menu implements Parcelable {
         dest.writeInt(count);
     }
 
-    public static final Parcelable.Creator<Menu> MENU_CREATOR = new Creator<Menu>() {
+    public static final Parcelable.Creator<Menu> CREATOR = new Creator<Menu>() {
         @Override
         public Menu createFromParcel(Parcel source) {
             Menu menu = new Menu(source.readString());
