@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * 订单类
@@ -16,7 +15,7 @@ public class Order implements Parcelable {
 
 
     // 4种状态，未提交， 已提交，未付款，已付款
-    enum  OrderStatus {
+    public enum OrderStatus {
         NOTSUBMIT, SUBMITED, NOTPAY, PAYED
     }
 
@@ -35,9 +34,13 @@ public class Order implements Parcelable {
     private String deskId;
 
     public Order() {
-        this.orderId = UUID.randomUUID().toString();
+       /* this.orderId = UUID.randomUUID().toString();
         this.menuList = new ArrayList<Menu>();
-        this.status = OrderStatus.NOTSUBMIT;
+        this.status = OrderStatus.NOTSUBMIT;*/
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     /**
@@ -143,6 +146,7 @@ public class Order implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(orderId);
         dest.writeString(orderTime);
         dest.writeString(deskId);
         dest.writeList(menuList);
@@ -154,13 +158,14 @@ public class Order implements Parcelable {
         @Override
         public Order createFromParcel(Parcel source) {
             Order order = new Order();
+            order.setOrderId(source.readString());
             order.setOrderTime(source.readString());
             order.setDeskId(source.readString());
             order.setMenuList(source.readArrayList(Menu.class.getClassLoader()));
             order.setTotalPrice(source.readFloat());
             order.setStatus((OrderStatus) source.readValue(null));
 
-            return null;
+            return order;
         }
 
         @Override

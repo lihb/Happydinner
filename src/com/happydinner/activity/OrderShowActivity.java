@@ -54,6 +54,7 @@ public class OrderShowActivity extends BaseActivity {
         setContentView(R.layout.activity_order);
         ButterKnife.inject(this);
         Intent intent = getIntent();
+        String testStr = intent.getStringExtra("test");
         mOrder = intent.getParcelableExtra("orderData");
         fragmentManager = getFragmentManager();
         initFragment();

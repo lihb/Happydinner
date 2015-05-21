@@ -66,6 +66,9 @@ public class CoverFlowActivity extends ActionBarActivity {
 //        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_coverflow);
         mOrder = new Order();
+        mOrder.setOrderId(UUID.randomUUID().toString());
+        mOrder.setMenuList(new ArrayList<Menu>());
+        mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
 
         mData.add(new GameEntity(R.drawable.menu, R.string.title1));
         mData.add(new GameEntity(R.drawable.image_2, R.string.title2));
@@ -151,6 +154,7 @@ public class CoverFlowActivity extends ActionBarActivity {
                     Intent intent = new Intent(CoverFlowActivity.this, OrderShowActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("orderData", mOrder);
+                    intent.putExtra("test", "lihb");
                     intent.putExtras(bundle);
                     startActivity(intent);
                     break;

@@ -45,6 +45,11 @@ public class OrderRightFragment extends Fragment {
         View rightView = inflater.inflate(R.layout.order_right_fragment, container, false);
 
         ButterKnife.inject(this, rightView);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mOrder = bundle.getParcelable("order");
+            initData();
+        }
         return rightView;
     }
 

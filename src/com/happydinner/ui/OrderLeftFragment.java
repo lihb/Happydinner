@@ -45,11 +45,7 @@ public class OrderLeftFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
-            initData();
-        }
+
     }
 
     @Nullable
@@ -58,7 +54,11 @@ public class OrderLeftFragment extends Fragment {
         View leftView = inflater.inflate(R.layout.order_left_fragment, container, false);
 
         ButterKnife.inject(this, leftView);
-
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mOrder = bundle.getParcelable("order");
+            initData();
+        }
         return leftView;
     }
 
