@@ -1,8 +1,9 @@
 package com.happydinner.entitiy;
 
-import java.text.SimpleDateFormat;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,7 +11,9 @@ import java.util.UUID;
  * 订单类
  * Created by lihb on 15/5/13.
  */
-public class Order {
+public class Order implements Parcelable {
+
+
 
     // 4种状态，未提交， 已提交，未付款，已付款
     enum  OrderStatus {
@@ -26,12 +29,10 @@ public class Order {
     private float totalPrice;
 
     // 订单提交时间
-    private Date orderTime;
-
-
+    private String orderTime;
 
     // 订单桌号或者房间号码
-    private String DeskId;
+    private String deskId;
 
     public Order() {
         this.orderId = UUID.randomUUID().toString();
@@ -83,27 +84,45 @@ public class Order {
         this.status = status;
     }
 
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
 
     public String getDeskId() {
-        return DeskId;
+        return deskId;
     }
 
     public void setDeskId(String deskId) {
-        DeskId = deskId;
+        this.deskId = deskId;
     }
 
     public OrderStatus getStatus() {
         return status;
     }
 
-    public void setOrderTime(Date orderTime) {
+    public void setOrderTime(String orderTime) {
         this.orderTime = orderTime;
     }
 
     public String getOrderTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(orderTime);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return orderTime;
     }
+
+    /**
+     * 返回菜品信息
+     *
+     * @return menuList
+     */
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
 
     @Override
     public String toString() {
@@ -113,6 +132,40 @@ public class Order {
                 ", status=" + status +
                 ", totalPrice=" + totalPrice +
                 ", orderTime=" + orderTime +
+                ", deskId=" + deskId +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(orderTime);
+        dest.writeString(deskId);
+        dest.writeList(menuList);
+        dest.writeFloat(totalPrice);
+        dest.writeValue(status);
+    }
+
+    public static final Parcelable.Creator<Order> ORDER_CREATOR = new Creator<Order>() {
+        @Override
+        public Order createFromParcel(Parcel source) {
+            Order order = new Order();
+            order.setOrderTime(source.readString());
+            order.setDeskId(source.readString());
+            order.setMenuList(source.readArrayList(null));
+            order.setTotalPrice(source.readFloat());
+            order.setStatus((OrderStatus) source.readValue(null));
+
+            return null;
+        }
+
+        @Override
+        public Order[] newArray(int size) {
+            return new Order[size];
+        }
+    };
 }
