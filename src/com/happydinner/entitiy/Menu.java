@@ -40,6 +40,36 @@ public class Menu implements Parcelable {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Menu menu = (Menu) o;
+
+       /* if (Float.compare(menu.discount, discount) != 0) return false;
+        if (Float.compare(menu.price, price) != 0) return false;
+        if (type != menu.type) return false;
+        if (!imgUrl.equals(menu.imgUrl)) return false;
+        if (!info.equals(menu.info)) return false;
+        if (!videoUrl.equals(menu.videoUrl)) return false;*/
+        if (!name.equals(menu.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+      /*  result = 31 * result + imgUrl.hashCode();
+        result = 31 * result + videoUrl.hashCode();
+        result = 31 * result + (price != +0.0f ? Float.floatToIntBits(price) : 0);
+        result = 31 * result + info.hashCode();
+        result = 31 * result + (discount != +0.0f ? Float.floatToIntBits(discount) : 0);
+        result = 31 * result + type;*/
+        return result;
+    }
+
     public Menu(String name, String imgUrl, String videoUrl, float price, String info, float discount, int cooked, int type) {
         this.name = name;
         this.imgUrl = imgUrl;

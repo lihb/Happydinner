@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * 订单类
@@ -48,9 +49,15 @@ public class Order implements Parcelable {
      * @param menu
      */
     public void addMenu(Menu menu) {
-        menuList.add(menu);
+        if (menuList.contains(menu)) {
+            int index = menuList.indexOf(menu);
+            Menu menu1 = menuList.get(index);
+            menu1.count++;
+        }else {
+            menuList.add(menu);
+            menu.count++;
+        }
         totalPrice += menu.getActualPrice();
-        menu.count++;
     }
 
     /**
@@ -58,9 +65,15 @@ public class Order implements Parcelable {
      * @param menu
      */
     public void delMenu(Menu menu) {
-        menuList.remove(menu);
+        if (menuList.contains(menu)) {
+            int index = menuList.indexOf(menu);
+            Menu menu1 = menuList.get(index);
+            menu1.count--;
+            if (menu1.count == 0) {
+                menuList.remove(menu1);
+            }
+        }
         totalPrice -= menu.getActualPrice();
-        menu.count--;
     }
 
     /**
@@ -173,4 +186,19 @@ public class Order implements Parcelable {
             return new Order[size];
         }
     };
+
+    public static void main(String[] args) {
+        ArrayList<Menu> dataList = new ArrayList<Menu>();
+        Order order = new Order();
+        order.setOrderId(UUID.randomUUID().toString());
+        order.setMenuList(dataList);
+        order.setStatus(OrderStatus.NOTSUBMIT);
+
+        com.happydinner.entitiy.Menu lurouMenu = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.5f, "好吃看的见－lurou", 1, 0, 1);
+        com.happydinner.entitiy.Menu lurouMenu2 = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.5f, "好吃看的见－lurou", 1, 0, 1);
+        order.addMenu(lurouMenu);
+        order.addMenu(lurouMenu2);
+        order.delMenu(lurouMenu);
+        order.delMenu(lurouMenu2);
+    }
 }
