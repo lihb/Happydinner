@@ -45,6 +45,7 @@ public class OrderLeftFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAdapter = new OrderLeftFragAdapter(getActivity());
 
     }
 
@@ -52,20 +53,11 @@ public class OrderLeftFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View leftView = inflater.inflate(R.layout.order_left_fragment, container, false);
-
         ButterKnife.inject(this, leftView);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
-            initData();
-        }
         return leftView;
     }
 
-    private void initData() {
-
-        orderMenuList = mOrder.getMenuList();
-        mAdapter = new OrderLeftFragAdapter(getActivity());
+    private void setAdapter() {
         orderLeftLv.setAdapter(mAdapter);
         mAdapter.setData(orderMenuList);
         orderLeftLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,6 +68,7 @@ public class OrderLeftFragment extends Fragment {
         });
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -85,6 +78,12 @@ public class OrderLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mOrder = bundle.getParcelable("order");
+            orderMenuList = mOrder.getMenuList();
+            setAdapter();
+        }
 
     }
 

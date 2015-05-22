@@ -52,10 +52,10 @@ public class OrderLeftFragAdapter extends BaseAdapter {
             rowView = inflater.inflate(R.layout.order_left_item, null);
 
             ViewHolder viewHolder = new ViewHolder(rowView);
-            viewHolder.orderMenuNameTv = (TextView) rowView.findViewById(R.id.order_menu_name_tv);
+           /* viewHolder.orderMenuNameTv = (TextView) rowView.findViewById(R.id.order_menu_name_tv);
             viewHolder.orderMenuPriceTv = (TextView) rowView.findViewById(R.id.order_menu_price_tv);
             viewHolder.orderMenuCountTv = (TextView) rowView
-                    .findViewById(R.id.order_menu_count_tv);
+                    .findViewById(R.id.order_menu_count_tv);*/
             rowView.setTag(viewHolder);
         }
 

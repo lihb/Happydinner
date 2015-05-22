@@ -26,17 +26,15 @@ public class OrderRightFragment extends Fragment {
     ListView orderRightLv;
 
     private Order mOrder;
+
     private List<Menu> orderMenuList;
+
     private OrderRightFragAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
-            initData();
-        }
+        mAdapter = new OrderRightFragAdapter(getActivity());
     }
 
     @Nullable
@@ -45,39 +43,35 @@ public class OrderRightFragment extends Fragment {
         View rightView = inflater.inflate(R.layout.order_right_fragment, container, false);
 
         ButterKnife.inject(this, rightView);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
-            initData();
-        }
         return rightView;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-//        initData();
-    }
+    private void setAdapter() {
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-//        initData();
-    }
-
-    private void initData() {
-//        Bundle bundle = getArguments();
-//        mOrder = bundle.getParcelable("order");
-        orderMenuList = mOrder.getMenuList();
-        mAdapter = new OrderRightFragAdapter(getActivity());
         orderRightLv.setAdapter(mAdapter);
         mAdapter.setData(orderMenuList);
-        orderRightLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        orderRightLv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             }
         });
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            mOrder = bundle.getParcelable("order");
+            orderMenuList = mOrder.getMenuList();
+            setAdapter();
+        }
     }
 
     @Override
