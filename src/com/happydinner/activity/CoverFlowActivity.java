@@ -148,7 +148,6 @@ public class CoverFlowActivity extends ActionBarActivity {
                     break;
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
-                    //todo 跳转到自主下单activity
                     CommonUtils.toastText(CoverFlowActivity.this, "开发中。。");
 //                    OrderShowActivity.actionStart(CoverFlowActivity.this, mOrder);
                     Intent intent = new Intent(CoverFlowActivity.this, OrderShowActivity.class);

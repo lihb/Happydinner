@@ -5,12 +5,14 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import butterknife.ButterKnife;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.OrderLeftFragment;
 import com.happydinner.ui.OrderRightFragment;
+import com.happydinner.ui.widget.HeadView;
 
 import java.util.List;
 
@@ -28,8 +30,6 @@ public class OrderShowActivity extends BaseActivity {
      * 左侧结算fragment
      */
     private OrderLeftFragment mOrderLeftFragment;
-
-
     /**
      * 右侧展示菜品fragment
      */
@@ -40,6 +40,8 @@ public class OrderShowActivity extends BaseActivity {
     private Order mOrder;
 
     private List<Menu> orderMenuList;
+
+    private HeadView headView;
 
 
     public static void actionStart(Context context, Order order) {
@@ -53,11 +55,30 @@ public class OrderShowActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         ButterKnife.inject(this);
+        headView = new HeadView(this);
         Intent intent = getIntent();
         mOrder = intent.getParcelableExtra("orderData");
         fragmentManager = getFragmentManager();
         initFragment();
+
+        headView.h_left_tv.setText("返回");
+        headView.h_title.setText("自助下单");
+        headView.h_left_rlyt.setOnClickListener(mOnClickListener);
     }
+
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.head_left:
+                case R.id.head_left_rlyt:
+                    OrderShowActivity.this.finish();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 
     private void initFragment() {
 
