@@ -26,15 +26,36 @@ public class OrderRightFragment extends Fragment {
     ListView orderRightLv;
 
     private Order mOrder;
-
     private List<Menu> orderMenuList;
-
     private OrderRightFragAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new OrderRightFragAdapter(getActivity());
+        mAdapter = new OrderRightFragAdapter(getActivity(), new OrderRightFragAdapter.OnOrderRightFragListener() {
+            @Override
+            public void onItemClicked(Object itemData, int index) {
+
+            }
+
+            @Override
+            public void onAddMenuClicked(Object itemData) {
+                Menu menu = (Menu) itemData;
+                mOrder.addMenu(menu);
+                if (mAdapter != null) {
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onSubMenuClicked(Object itemData) {
+                Menu menu = (Menu) itemData;
+                mOrder.delMenu(menu);
+                if (mAdapter != null) {
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Nullable
@@ -47,7 +68,6 @@ public class OrderRightFragment extends Fragment {
     }
 
     private void setAdapter() {
-
         orderRightLv.setAdapter(mAdapter);
         mAdapter.setData(orderMenuList);
         orderRightLv.setOnItemClickListener(new AdapterView.OnItemClickListener(){

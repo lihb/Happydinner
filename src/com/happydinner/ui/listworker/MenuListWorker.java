@@ -192,7 +192,6 @@ public class MenuListWorker extends AbstractListWorker {
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
-                            menu.count++;
                             mOnListWorkerListener.onAddToOrderClicked(menu);
                         }
                     }

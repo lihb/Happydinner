@@ -90,6 +90,15 @@ public class OrderShowActivity extends BaseActivity {
             orderMenuList = mOrder.getMenuList();
         }
 
+        String rightTag = createFragmentTag(R.id.order_right_frg);
+        mOrderRightFragment = (OrderRightFragment) fragmentManager.findFragmentByTag(rightTag);
+        if (mOrderRightFragment == null) {
+            rightneedAdd = true;
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("order", mOrder);
+            mOrderRightFragment = new OrderRightFragment();
+            mOrderRightFragment.setArguments(bundle);
+        }
 
         String leftTag = createFragmentTag(R.id.order_left_frg);
         mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentByTag(leftTag);
@@ -101,23 +110,15 @@ public class OrderShowActivity extends BaseActivity {
             mOrderLeftFragment.setArguments(bundle);
         }
 
-        String rightTag = createFragmentTag(R.id.order_right_frg);
-        mOrderRightFragment = (OrderRightFragment) fragmentManager.findFragmentByTag(rightTag);
-        if (mOrderRightFragment == null) {
-            rightneedAdd = true;
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("order", mOrder);
-            mOrderRightFragment = new OrderRightFragment();
-            mOrderRightFragment.setArguments(bundle);
+        if (rightneedAdd) {
+            fragmentTransaction.add(R.id.order_right_frg, mOrderRightFragment, rightTag);
         }
         if (leftneedAdd) {
-            fragmentTransaction.add(R.id.order_left_frg, mOrderLeftFragment);
+            fragmentTransaction.add(R.id.order_left_frg, mOrderLeftFragment, leftTag);
         }
-        if (rightneedAdd) {
-            fragmentTransaction.add(R.id.order_right_frg, mOrderRightFragment);
+        if (rightneedAdd || leftneedAdd) {
+            fragmentTransaction.commit();
         }
-
-        fragmentTransaction.commit();
 
 
 

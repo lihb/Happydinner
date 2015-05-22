@@ -18,8 +18,11 @@ public class OrderRightFragAdapter extends BaseAdapter {
     private List<Menu> mData = new ArrayList<Menu>(0);
     private Context mContext;
 
-    public OrderRightFragAdapter(Context context) {
+    private OnOrderRightFragListener mOnOrderRightFragListener;
+
+    public OrderRightFragAdapter(Context context, OnOrderRightFragListener onOrderRightFragListener) {
         mContext = context;
+        mOnOrderRightFragListener = onOrderRightFragListener;
     }
 
     public void setData(List<Menu> data) {
@@ -59,14 +62,22 @@ public class OrderRightFragAdapter extends BaseAdapter {
         }
 
         ViewHolder holder = (ViewHolder) rowView.getTag();
+        final Menu menu = mData.get(position);
 
-        holder.orderMenuNameTv.setText(mData.get(position).getName());
+        holder.orderMenuNameTv.setText(menu.getName());
         //todo 设置菜品图片
-        holder.orderMenuMateriasTv.setText(mData.get(position).getInfo());
-        holder.orderMenuPriceTv1.setText("" + mData.get(position).getPrice());
+        holder.orderMenuMateriasTv.setText(menu.getInfo());
+        holder.orderMenuPriceTv1.setText("" + menu.getPrice());
         holder.menuCountSubTv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              /*  menu.count--;
+                if (menu.count <= 0) {
+                    menu.count = 0;
+                }*/
+                if (mOnOrderRightFragListener != null) {
+                    mOnOrderRightFragListener.onSubMenuClicked(menu);
+                }
 
             }
         });
@@ -74,12 +85,34 @@ public class OrderRightFragAdapter extends BaseAdapter {
         holder.menuCountAddTv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//                menu.count++;
+                if (mOnOrderRightFragListener != null) {
+                    mOnOrderRightFragListener.onAddMenuClicked(menu);
+                }
             }
         });
 
 
         return rowView;
+    }
+
+
+    public static interface OnOrderRightFragListener {
+        /**
+         * 当条目选中状态改变时调用
+         */
+        void onItemClicked(Object itemData, int index);
+
+        /**
+         * 加菜
+         */
+        void onAddMenuClicked(Object itemData);
+
+        /**
+         * 减菜
+         */
+        void onSubMenuClicked(Object itemData);
+
     }
 
 

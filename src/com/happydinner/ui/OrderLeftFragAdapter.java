@@ -88,4 +88,5 @@ public class OrderLeftFragAdapter extends BaseAdapter {
             ButterKnife.inject(this, view);
         }
     }
+
 }

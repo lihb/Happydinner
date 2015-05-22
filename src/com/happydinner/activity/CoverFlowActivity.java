@@ -164,7 +164,7 @@ public class CoverFlowActivity extends ActionBarActivity {
     };
 
     private void initData() {
-        final com.happydinner.entitiy.Menu meatMenu = new com.happydinner.entitiy.Menu("红烧肉", null, null, 15.6f, "好吃看的见－meat", 1, 0, 1);
+        com.happydinner.entitiy.Menu meatMenu = new com.happydinner.entitiy.Menu("红烧肉", null, null, 15.6f, "好吃看的见－meat", 1, 0, 1);
         com.happydinner.entitiy.Menu lurouMenu = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.5f, "好吃看的见－lurou", 1, 0, 1);
         com.happydinner.entitiy.Menu luosiMenu = new com.happydinner.entitiy.Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
         com.happydinner.entitiy.Menu fishMenu = new com.happydinner.entitiy.Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
@@ -246,29 +246,6 @@ public class CoverFlowActivity extends ActionBarActivity {
             mListAdapter.notifyDataSetChanged();
         }
     }
-
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_coverflow_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     /**
      * 扩大显示展示菜品区域
