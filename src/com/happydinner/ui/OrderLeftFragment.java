@@ -7,15 +7,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.activity.R;
+import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
+import com.happydinner.ui.listworker.OrderLeftListWorker;
 
 import java.util.List;
 
@@ -39,33 +40,25 @@ public class OrderLeftFragment extends Fragment {
 
     private Order mOrder;
     private List<Menu> orderMenuList;
-    private OrderLeftFragAdapter mAdapter;
+
+    private OrderLeftListWorker mListWorker;
+    private SimpleListWorkerAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter = new OrderLeftFragAdapter(getActivity());
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
         View leftView = inflater.inflate(R.layout.order_left_fragment, container, false);
 
         ButterKnife.inject(this, leftView);
         return leftView;
     }
 
-    private void setAdapter() {
-        orderLeftLv.setAdapter(mAdapter);
-        mAdapter.setData(orderMenuList);
-        orderLeftLv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -79,7 +72,20 @@ public class OrderLeftFragment extends Fragment {
         if (bundle != null) {
             mOrder = bundle.getParcelable("order");
             orderMenuList = mOrder.getMenuList();
-            setAdapter();
+            if (mListWorker == null) {
+                mListWorker = new OrderLeftListWorker(getActivity(), orderMenuList, new OrderLeftListWorker.OnListWorkerListener() {
+                    @Override
+                    public void onItemClick(int index) {
+
+                    }
+                });
+                mAdapter = new SimpleListWorkerAdapter(mListWorker);
+                orderLeftLv.setAdapter(mAdapter);
+                orderLeftLv.setOnItemClickListener(mListWorker);
+            } else {
+                mListWorker.setData(orderMenuList);
+                mAdapter.notifyDataSetChanged();
+            }
         }
     }
 

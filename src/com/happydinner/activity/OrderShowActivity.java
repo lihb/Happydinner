@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import butterknife.ButterKnife;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -54,7 +53,6 @@ public class OrderShowActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
-        ButterKnife.inject(this);
         headView = new HeadView(this);
         Intent intent = getIntent();
         mOrder = intent.getParcelableExtra("orderData");
