@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2015/5/20
  */
 
-public class OrderShowActivity extends BaseActivity {
+public class OrderShowActivity extends BaseActivity implements OrderRightFragment.RefreshLeftFragListener {
 
     /**
      * 左侧结算fragment
@@ -123,5 +123,11 @@ public class OrderShowActivity extends BaseActivity {
     }
     private String createFragmentTag(int id) {
         return this.getClass().getSimpleName() + id;
+    }
+
+    @Override
+    public void changeDataToLeft(Order order) {
+        mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentById(R.id.order_left_frg);
+        mOrderLeftFragment.refresh(order);
     }
 }

@@ -17,6 +17,7 @@ import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.OrderLeftListWorker;
+import com.happydinner.util.CommonUtils;
 
 import java.util.List;
 
@@ -86,12 +87,30 @@ public class OrderLeftFragment extends Fragment {
                 mListWorker.setData(orderMenuList);
                 mAdapter.notifyDataSetChanged();
             }
+            orderPriceTv.setText("¥" + mOrder.getTotalPrice() + "元");
         }
+        orderCountTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommonUtils.toastText(getActivity(), "结算按钮被点击。。");
+            }
+        });
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+
+    public void refresh(Order order) {
+        orderMenuList = order.getMenuList();
+        if (mListWorker != null) {
+            mListWorker.setData(orderMenuList);
+            mAdapter.notifyDataSetChanged();
+        }
+        orderPriceTv.setText("¥" + mOrder.getTotalPrice() + "元");
+
     }
 }

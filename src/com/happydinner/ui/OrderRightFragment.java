@@ -33,6 +33,8 @@ public class OrderRightFragment extends Fragment {
     private Order mOrder;
     private List<Menu> orderMenuList;
 
+    private RefreshLeftFragListener mRefreshLeftFragListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,11 @@ public class OrderRightFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        try {
+            mRefreshLeftFragListener = (RefreshLeftFragListener) activity;
+        } catch (Exception e) {
+            throw new ClassCastException(activity.toString() + "must implement RefreshLeftFragListener");
+        }
     }
 
     @Override
@@ -71,6 +78,7 @@ public class OrderRightFragment extends Fragment {
                     public void onAddMenuClicked(Object itemData) {
                         Menu menu = (Menu) itemData;
                         mOrder.addMenu(menu);
+                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
                         mListAdapter.notifyDataSetChanged();
 
                     }
@@ -79,6 +87,7 @@ public class OrderRightFragment extends Fragment {
                     public void onSubMenuClicked(Object itemData) {
                         Menu menu = (Menu) itemData;
                         mOrder.delMenu(menu);
+                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
                         mListAdapter.notifyDataSetChanged();
                     }
                 });
@@ -88,6 +97,7 @@ public class OrderRightFragment extends Fragment {
                 orderRightLv.setOnItemClickListener(mListWorker);
             } else {
                 mListWorker.setData(orderMenuList);
+//                mRefreshLeftFragListener.changeDataToLeft(mOrder);
                 mListAdapter.notifyDataSetChanged();
             }
         }
@@ -97,5 +107,12 @@ public class OrderRightFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+
+    /**
+     * 回调接口，传递数据到activity，用来刷新左边的fragment
+     */
+    public interface RefreshLeftFragListener {
+        void changeDataToLeft(Order order);
     }
 }
