@@ -10,7 +10,9 @@ import butterknife.InjectView;
 import com.happydinner.activity.R;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
+import com.happydinner.util.CommonUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -98,7 +100,9 @@ public class OrderLeftListWorker extends AbstractListWorker {
             ViewHolder holder = (ViewHolder) convertView.getTag();
             holder.orderMenuNameTv.setText(menu.getName());
             holder.orderMenuCountTv.setText("X " + menu.getCount());
-            holder.orderMenuPriceTv.setText("" + menu.getPrice() * menu.getCount());
+            float temp = CommonUtils.round(menu.getPrice() * menu.getCount(), 2, BigDecimal.ROUND_HALF_UP);
+            String totalPrice = String.valueOf(temp);
+            holder.orderMenuPriceTv.setText("" + totalPrice);
         }
 
         @Override

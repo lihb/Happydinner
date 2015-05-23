@@ -4,7 +4,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingLeft="10dp"
-                android:paddingRight="12dp"
+                android:paddingRight="1dp"
                 android:background="@color/left_backgroud"
         >
         <TextView
@@ -36,8 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                android:paddingRight="12dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:text="¥ 45.89元"/>
         <TextView
                 android:id="@+id/order_price_submit_tv"

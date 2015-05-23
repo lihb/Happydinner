@@ -148,12 +148,9 @@ public class CoverFlowActivity extends ActionBarActivity {
                     break;
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
-                    CommonUtils.toastText(CoverFlowActivity.this, "开发中。。");
-//                    OrderShowActivity.actionStart(CoverFlowActivity.this, mOrder);
                     Intent intent = new Intent(CoverFlowActivity.this, OrderShowActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("orderData", mOrder);
-                    intent.putExtra("test", "lihb");
                     intent.putExtras(bundle);
                     startActivity(intent);
                     break;
@@ -164,8 +161,8 @@ public class CoverFlowActivity extends ActionBarActivity {
     };
 
     private void initData() {
-        com.happydinner.entitiy.Menu meatMenu = new com.happydinner.entitiy.Menu("红烧肉", null, null, 15.6f, "好吃看的见－meat", 1, 0, 1);
-        com.happydinner.entitiy.Menu lurouMenu = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.5f, "好吃看的见－lurou", 1, 0, 1);
+        com.happydinner.entitiy.Menu meatMenu = new com.happydinner.entitiy.Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1);
+        com.happydinner.entitiy.Menu lurouMenu = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1);
         com.happydinner.entitiy.Menu luosiMenu = new com.happydinner.entitiy.Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
         com.happydinner.entitiy.Menu fishMenu = new com.happydinner.entitiy.Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
         com.happydinner.entitiy.Menu chickMenu = new com.happydinner.entitiy.Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2);

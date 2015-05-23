@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.OrderLeftListWorker;
 import com.happydinner.util.CommonUtils;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -87,7 +91,12 @@ public class OrderLeftFragment extends Fragment {
                 mListWorker.setData(orderMenuList);
                 mAdapter.notifyDataSetChanged();
             }
-            orderPriceTv.setText("¥" + mOrder.getTotalPrice() + "元");
+            float temp = CommonUtils.round(mOrder.getTotalPrice(), 2, BigDecimal.ROUND_HALF_UP);
+            String totalPrice = String.valueOf(temp);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append("¥").append(totalPrice).append("元");
+            spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            orderPriceTv.setText(spannableStringBuilder);
         }
         orderCountTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,7 +119,12 @@ public class OrderLeftFragment extends Fragment {
             mListWorker.setData(orderMenuList);
             mAdapter.notifyDataSetChanged();
         }
-        orderPriceTv.setText("¥" + mOrder.getTotalPrice() + "元");
+        float temp = CommonUtils.round(mOrder.getTotalPrice(), 2, BigDecimal.ROUND_HALF_UP);
+        String totalPrice = String.valueOf(temp);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append("¥").append(totalPrice).append("元");
+        spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        orderPriceTv.setText(spannableStringBuilder);
 
     }
 }
