@@ -5,8 +5,10 @@ import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
-import android.content.*;
-import android.content.DialogInterface.OnCancelListener;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,25 +18,23 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
 import android.os.storage.StorageManager;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
-import com.happydinner.base.ApplicationEx;
-import com.happydinner.base.BaseActivity;
 import com.happydinner.base.Constant;
-import com.happydinner.base.MyAppContext;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.text.Collator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1154,6 +1154,23 @@ public class CommonUtils {
         } else {
             return true;
         }
+    }
+
+    /**
+     * 设置浮点数的显示方式
+     *
+     * @param value float数据
+     * @param scale 精度位数（保留的小数位数）
+     * @param mode  精度取值方式
+     * @return 精度计算后的数据
+     */
+    public static float round(float value, int scale, int mode) {
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(scale, mode);
+        float f = bd.floatValue();
+        bd = null;
+        return f;
+
     }
 
 }
