@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/menu_activity"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/background"
@@ -10,11 +10,58 @@
             layout="@layout/container_head"/>
     <ListView
             android:id="@+id/menu_listview"
-            android:layout_width="fill_parent"
+            android:layout_below="@id/top_layout"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background"
             android:cacheColorHint="#00000000"
+            android:divider="@null"
             android:listSelector="@android:color/transparent"
             >
     </ListView>
 
-</LinearLayout>
+    <RelativeLayout
+            android:id="@+id/menu_desc_rl"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:visibility="gone"
+            android:background="@color/background"
+            >
+        <TextView
+                android:id="@+id/menu_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:text="卤肉"
+                />
+        <ImageView
+                android:id="@+id/menu_image_iv"
+                android:layout_below="@id/menu_title_tv"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/image_2"
+                />
+
+        <TextView
+                android:id="@+id/menu_desc_tv"
+                android:layout_below="@id/menu_title_tv"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/menu_image_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textColor="#ffffff"
+                android:textSize="16dp"
+                android:text="本菜很好吃"
+                />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

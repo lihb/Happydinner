@@ -1,12 +1,7 @@
 package com.happydinner.activity;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Intent;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,19 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.*;
-import com.happydinner.common.list.SimpleListWorkerAdapter;
+import android.widget.AdapterView;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import com.happydinner.entitiy.GameEntity;
-import com.happydinner.entitiy.Menu;
-import com.happydinner.entitiy.Order;
 import com.happydinner.ui.CoverFlowAdapter;
-import com.happydinner.ui.listworker.MenuListWorker;
-import com.happydinner.ui.widget.HeadView;
-import com.happydinner.util.CommonUtils;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
-import java.util.*;
+import java.util.ArrayList;
 
 
 public class CoverFlowActivity extends ActionBarActivity {
@@ -41,21 +32,6 @@ public class CoverFlowActivity extends ActionBarActivity {
      */
     private Animator mCurrentAnimator;
 
-    ListView mMenuListview;
-
-    private MenuListWorker mListWorker;
-
-
-    private SortedMap sortedMap = new TreeMap<Integer, List<com.happydinner.entitiy.Menu>>();
-
-    private SimpleListWorkerAdapter mListAdapter;
-
-    private HeadView headView;
-
-    private View mExpandedView;
-
-    private Order mOrder;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +41,6 @@ public class CoverFlowActivity extends ActionBarActivity {
         //去掉Activity上面的状态栏
 //        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_coverflow);
-        mOrder = new Order();
-        mOrder.setOrderId(UUID.randomUUID().toString());
-        mOrder.setMenuList(new ArrayList<Menu>());
-        mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
 
         mData.add(new GameEntity(R.drawable.menu, R.string.title1));
         mData.add(new GameEntity(R.drawable.image_2, R.string.title2));
@@ -99,13 +71,10 @@ public class CoverFlowActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("position===" , position+"");
                 int index = position % mAdapter.getCount();
-                /*Toast.makeText(CoverFlowActivity.this,
-                        getResources().getString(mData.get(index).titleResId) +", index = " + index,
-                        Toast.LENGTH_SHORT).show();*/
                 if (index == 0) {
-                    /*Intent intent = new Intent(CoverFlowActivity.this, FoodShowActivity.class);
-                    startActivity(intent);*/
-                    zoomViewFromMain(view);
+                    Intent intent = new Intent(CoverFlowActivity.this, FoodShowActivity.class);
+                    startActivity(intent);
+//                    zoomViewFromMain(view);
                 }
 
             }
@@ -126,7 +95,7 @@ public class CoverFlowActivity extends ActionBarActivity {
 
     }
 
-    private void initView() {
+    /*private void initView() {
         headView = new HeadView(this);
         headView.h_left_tv.setText("返回");
         headView.h_title.setText("");
@@ -136,9 +105,9 @@ public class CoverFlowActivity extends ActionBarActivity {
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
         headView.h_right_tv.setOnClickListener(mOnClickListener);
 
-    }
+    }*/
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    /*private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
@@ -158,9 +127,9 @@ public class CoverFlowActivity extends ActionBarActivity {
                     break;
             }
         }
-    };
+    };*/
 
-    private void initData() {
+    /*private void initData() {
         com.happydinner.entitiy.Menu meatMenu = new com.happydinner.entitiy.Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1);
         com.happydinner.entitiy.Menu lurouMenu = new com.happydinner.entitiy.Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1);
         com.happydinner.entitiy.Menu luosiMenu = new com.happydinner.entitiy.Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
@@ -175,9 +144,9 @@ public class CoverFlowActivity extends ActionBarActivity {
         menuList.add(chickMenu);
         menuList.add(duckMenu);
 
-        /**
+        *//**
          * 比较器：给menu按照type排序用
-         */
+     *//*
         Comparator<com.happydinner.entitiy.Menu> comparator = new Comparator<com.happydinner.entitiy.Menu>() {
             @Override
             public int compare(com.happydinner.entitiy.Menu lhs, com.happydinner.entitiy.Menu rhs) {
@@ -242,14 +211,14 @@ public class CoverFlowActivity extends ActionBarActivity {
             mListWorker.setData(sortedMap);
             mListAdapter.notifyDataSetChanged();
         }
-    }
+    }*/
 
     /**
      * 扩大显示展示菜品区域
      *
      * @param mainView
      */
-    private void zoomViewFromMain(final View mainView) {
+   /* private void zoomViewFromMain(final View mainView) {
         // If there's an animation in progress, cancel it immediately and proceed with this one.
         if (mCurrentAnimator != null) {
             mCurrentAnimator.cancel();
@@ -375,5 +344,5 @@ public class CoverFlowActivity extends ActionBarActivity {
                 mCurrentAnimator = set;
             }
         });
-    }
+    }*/
 }

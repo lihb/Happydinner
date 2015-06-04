@@ -100,7 +100,17 @@ public class MenuListWorker extends AbstractListWorker {
          */
         void onSubMenuClicked(Object itemData);
 
+        /**
+         * 添加到订单
+         *
+         * @param itemData
+         */
         void onAddToOrderClicked(Object itemData);
+
+        /**
+         * 查看详情
+         */
+        void onGotoLookDesc(View view, Object itemData);
     }
 
     public enum DataType {
@@ -188,11 +198,19 @@ public class MenuListWorker extends AbstractListWorker {
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuMateriasTxt(i).setText("原料：" + menu.getInfo());
                 menuViewHolder.getMenuPriceTxt(i).setText("售价：¥" + menu.getPrice());
-                menuViewHolder.getMenuPAddToOrderTxt(i).setOnClickListener(new View.OnClickListener() {
+                menuViewHolder.getMenuToOrderTxt(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
                             mOnListWorkerListener.onAddToOrderClicked(menu);
+                        }
+                    }
+                });
+                menuViewHolder.getMenuToDescTxt(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onGotoLookDesc(v, menu);
                         }
                     }
                 });
@@ -270,6 +288,12 @@ public class MenuListWorker extends AbstractListWorker {
             LinearLayout menuCountLl1;*/
             @InjectView(R.id.loc_menu_rl1)
             RelativeLayout locMenuRl1;
+
+            @InjectView(R.id.menu_goto_desc_tv1)
+            TextView menuGoToDescTv1;
+
+            @InjectView(R.id.menu_goto_desc_tv2)
+            TextView menuGoToDescTv2;
 
 
             @InjectView(R.id.menu_name_iv2)
@@ -353,7 +377,7 @@ public class MenuListWorker extends AbstractListWorker {
 
             }
 
-            TextView getMenuPAddToOrderTxt(int i) {
+            TextView getMenuToOrderTxt(int i) {
                 switch (i) {
                     case 0:
                         return menuAddToOrderTv1;
@@ -361,6 +385,17 @@ public class MenuListWorker extends AbstractListWorker {
                         return menuAddToOrderTv2;
                 }
                 return  null;
+
+            }
+
+            TextView getMenuToDescTxt(int i) {
+                switch (i) {
+                    case 0:
+                        return menuGoToDescTv1;
+                    case 1:
+                        return menuGoToDescTv2;
+                }
+                return null;
 
             }
 

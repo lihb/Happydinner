@@ -70,6 +70,18 @@
                     android:background="@drawable/icon_button"
                     android:text="加入订单"
                     />
+            <TextView
+                    android:id="@+id/menu_goto_desc_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/menu_add_to_order_tv1"
+                    android:layout_below="@id/menu_price_tv1"
+                    android:textColor="@color/blue"
+                    android:background="@drawable/icon_button"
+                    android:text="详情"
+                    />
             <!--<LinearLayout
                     android:id="@+id/menu_count_ll1"
                     android:layout_below="@id/menu_price_tv1"
@@ -183,6 +195,18 @@
                     android:textColor="@color/blue"
                     android:background="@drawable/icon_button"
                     android:text="加入订单"
+                    />
+            <TextView
+                    android:id="@+id/menu_goto_desc_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/menu_add_to_order_tv2"
+                    android:layout_below="@id/menu_price_tv2"
+                    android:textColor="@color/blue"
+                    android:background="@drawable/icon_button"
+                    android:text="详情"
                     />
             <!--<LinearLayout
                     android:id="@+id/menu_count_ll2"
