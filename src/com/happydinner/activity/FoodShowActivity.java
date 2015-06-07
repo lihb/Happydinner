@@ -167,7 +167,7 @@ public class FoodShowActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
-                case R.id.head_left_rlyt:
+                case R.id.head_left_rlyt: //如果详情页面打开，则按返回按钮是关闭详情页面
                     if (mExpandedView != null) {
                         mExpandedView.setVisibility(View.GONE);
                         mExpandedView = null;
@@ -190,16 +190,25 @@ public class FoodShowActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 返回按钮的功能，如果详情页面打开，则按返回键是关闭详情页面
+     */
     @Override
     public void onBackPressed() {
         if (mExpandedView != null) {
             mExpandedView.setVisibility(View.GONE);
+            mExpandedView = null;
         } else {
             super.onBackPressed();
         }
 
     }
 
+    /**
+     * 详情菜单页面
+     *
+     * @param menu 哪个菜品的详情
+     */
     private void zoomViewFromMain(final Menu menu) {
 
         // Load the high-resolution "zoomed-in" image.
