@@ -42,10 +42,10 @@ public class CoverFlowActivity extends ActionBarActivity {
 //        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
         setContentView(R.layout.activity_coverflow);
 
-        mData.add(new GameEntity(R.drawable.menu, R.string.title1));
         mData.add(new GameEntity(R.drawable.image_2, R.string.title2));
         mData.add(new GameEntity(R.drawable.image_3, R.string.title3));
         mData.add(new GameEntity(R.drawable.image_4, R.string.title4));
+        mData.add(new GameEntity(R.drawable.menu, R.string.title1));
 
         mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
@@ -71,7 +71,7 @@ public class CoverFlowActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("position===" , position+"");
                 int index = position % mAdapter.getCount();
-                if (index == 0) {
+                if (index == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, FoodShowActivity.class);
                     startActivity(intent);
 //                    zoomViewFromMain(view);
