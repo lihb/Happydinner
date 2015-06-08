@@ -22,16 +22,33 @@ import java.util.*;
 public class FoodShowActivity extends BaseActivity {
     @InjectView(R.id.menu_listview)
     ListView mMenuListview;
+
     @InjectView(R.id.menu_title_tv)
     TextView menuTitleTv;
+
     @InjectView(R.id.menu_image_iv)
     ImageView menuImageIv;
+
     @InjectView(R.id.menu_desc_tv)
     TextView menuDescTv;
+
     @InjectView(R.id.menu_add_to_order_tv_desc)
     TextView menuAddToOrderTvDesc;
+
     @InjectView(R.id.menu_desc_rl)
     RelativeLayout menuDescRl;
+
+    @InjectView(R.id.desc_menu_count_sub_tv)
+    TextView descMenuCountSubTv;
+
+    @InjectView(R.id.desc_menu_count_confirm_tv)
+    TextView descMenuCountConfirmTv;
+
+    @InjectView(R.id.desc_menu_count_add_tv)
+    TextView descMenuCountAddTv;
+
+    @InjectView(R.id.desc_menu_count_ll)
+    LinearLayout descMenuCountLl;
 
     private MenuListWorker mListWorker;
 
@@ -40,6 +57,7 @@ public class FoodShowActivity extends BaseActivity {
     private SimpleListWorkerAdapter mListAdapter;
 
     private HeadView headView;
+
     private Order mOrder;
 
     private View mExpandedView;
@@ -76,7 +94,7 @@ public class FoodShowActivity extends BaseActivity {
         Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
         Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
         Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2);
-        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 0.8f, 0, 3);
+        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, 3);
         List<Menu> menuList = new ArrayList<Menu>();
         menuList.add(meatMenu);
         menuList.add(lurouMenu);
@@ -88,7 +106,7 @@ public class FoodShowActivity extends BaseActivity {
         /**
          * 比较器：给menu按照type排序用
          */
-        Comparator<Menu> comparator = new Comparator<Menu>() {
+        Comparator<Menu> comparator = new Comparator<Menu>(){
             @Override
             public int compare(Menu lhs, Menu rhs) {
 
@@ -116,41 +134,7 @@ public class FoodShowActivity extends BaseActivity {
         sortedMap.put(oldKey, tmpList); // 处理最后一组数据
 
         if (mListWorker == null) {
-            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorker.OnListWorkerListener() {
-                @Override
-                public void onItemClicked(Object itemData, int index) {
-                    Menu menu = (Menu) itemData;
-                    Toast.makeText(FoodShowActivity.this, "你点击了：" + menu.getName(),
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onAddMenuClicked(Object itemData) {
-                    mListAdapter.notifyDataSetChanged();
-
-                }
-
-                @Override
-                public void onSubMenuClicked(Object itemData) {
-                    mListAdapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onAddToOrderClicked(Object itemData) {
-                    Menu menu = (Menu) itemData;
-                    mOrder.addMenu(menu);
-                    CommonUtils.toastText(FoodShowActivity.this, "总价:" + mOrder.getTotalPrice());
-                    mListAdapter.notifyDataSetChanged();
-
-                }
-
-                @Override
-                public void onGotoLookDesc(View view, Object itemData) {
-                    Menu menu = (Menu) itemData;
-                    zoomViewFromMain(menu);
-
-                }
-            });
+            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap,new MenuListWorkerCallBack());
             mListAdapter = new SimpleListWorkerAdapter(mListWorker);
             mMenuListview.setAdapter(mListAdapter);
             // ListView的 ItemClick 由 ListWorker 转发
@@ -161,13 +145,12 @@ public class FoodShowActivity extends BaseActivity {
         }
     }
 
-
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
-                case R.id.head_left_rlyt: //如果详情页面打开，则按返回按钮是关闭详情页面
+                case R.id.head_left_rlyt: // 如果详情页面打开，则按返回按钮是关闭详情页面
                     if (mExpandedView != null) {
                         mExpandedView.setVisibility(View.GONE);
                         mExpandedView = null;
@@ -211,30 +194,94 @@ public class FoodShowActivity extends BaseActivity {
      */
     private void zoomViewFromMain(final Menu menu) {
 
+
         // Load the high-resolution "zoomed-in" image.
         mExpandedView = findViewById(R.id.menu_desc_rl);
         menuTitleTv.setText(menu.getName());
         menuImageIv.setImageResource(R.drawable.image_2);
-        menuDescTv.setText(menu.getInfo());
-        menuAddToOrderTvDesc.setOnClickListener(new View.OnClickListener() {
+        descMenuCountConfirmTv.setText("" +(menu.count));
+        menuDescTv.setText("菜品简介:" + menu.getInfo());
+       /* menuAddToOrderTvDesc.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mOrder.addMenu(menu);
                 CommonUtils.toastText(FoodShowActivity.this, "总价:" + mOrder.getTotalPrice());
             }
+        });*/
+        descMenuCountAddTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOrder.addMenu(menu);
+                descMenuCountConfirmTv.setText("" +(menu.count));
+            }
         });
 
-//        thumbView.setAlpha(0f); //不透明消失
-        //显示详情菜单，右侧确认按钮隐藏，只显示返回按钮
+        descMenuCountSubTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOrder.delMenu(menu);
+                int count = menu.count;
+                if (count <= 0) {
+                    descMenuCountConfirmTv.setText("" + 0);
+                }else {
+                    descMenuCountConfirmTv.setText("" + count);
+                }
+            }
+        });
+
+
+
+        // thumbView.setAlpha(0f); //不透明消失
+        // 显示详情菜单，右侧确认按钮隐藏，只显示返回按钮
         mExpandedView.setVisibility(View.VISIBLE);
         headView.h_right_tv.setVisibility(View.GONE);
-
 
         // Set the pivot point for SCALE_X and SCALE_Y transformations to the top-left corner of
         // the zoomed-in view (the default is the center of the view).
         mExpandedView.setPivotX(0f);
         mExpandedView.setPivotY(0f);
 
+    }
+
+    /**
+     * MenuListWorker回调类
+     */
+    class MenuListWorkerCallBack implements MenuListWorker.OnListWorkerListener{
+
+        @Override
+        public void onItemClicked(Object itemData, int index) {
+            Menu menu = (Menu) itemData;
+            Toast.makeText(FoodShowActivity.this, "你点击了：" + menu.getName(),
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onAddMenuClicked(Object itemData) {
+            mListAdapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        public void onSubMenuClicked(Object itemData) {
+            mListAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void onAddToOrderClicked(Object itemData) {
+            Menu menu = (Menu) itemData;
+            mOrder.addMenu(menu);
+            CommonUtils.toastText(FoodShowActivity.this,
+                    "总价:" + mOrder.getTotalPrice());
+            mListAdapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        public void onGotoLookDesc(View view, Object itemData) {
+            Menu menu = (Menu) itemData;
+            zoomViewFromMain(menu);
+
+        }
     }
 
 

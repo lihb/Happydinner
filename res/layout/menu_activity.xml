@@ -30,9 +30,6 @@
             android:visibility="gone"
             android:background="@color/background"
             >
-        <!-- <include
-                 android:id="@+id/desc_top_layout"
-                 layout="@layout/container_head"/>-->
         <TextView
                 android:id="@+id/menu_title_tv"
                 android:layout_width="match_parent"
@@ -61,7 +58,7 @@
                 android:layout_marginLeft="20dp"
                 android:textColor="#ffffff"
                 android:textSize="16dp"
-                android:text="本菜很好吃"
+                android:text="简介：本菜很好吃"
                 />
         <TextView
                 android:id="@+id/menu_add_to_order_tv_desc"
@@ -69,13 +66,52 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/menu_desc_tv"
                 android:layout_toRightOf="@id/menu_image_iv"
-                android:paddingLeft="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="@color/blue"
-                android:background="@drawable/icon_button"
-                android:text="加入订单"
+                android:textColor="@color/white"
+                android:text="加入订单："
                 />
+        <LinearLayout
+                android:id="@+id/desc_menu_count_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/menu_add_to_order_tv_desc"
+                android:layout_toRightOf="@id/menu_image_iv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                >
+            <TextView
+                    android:id="@+id/desc_menu_count_sub_tv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:background="@drawable/icon_button"
+                    android:textColor="@color/blue_light"
+                    android:text=" － "
+                    />
+            <TextView
+                    android:id="@+id/desc_menu_count_confirm_tv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:textColor="@color/blue_light"
+                    android:text="  0 "
+                    />
+            <TextView
+                    android:id="@+id/desc_menu_count_add_tv"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:textSize="15dp"
+                    android:background="@drawable/icon_button"
+                    android:textColor="@color/blue_light"
+                    android:text=" ＋ "
+                    />
+
+        </LinearLayout>
 
     </RelativeLayout>
 
