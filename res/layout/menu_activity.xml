@@ -26,10 +26,13 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:layout_below="@id/top_layout"
             android:visibility="gone"
             android:background="@color/background"
             >
+        <!-- <include
+                 android:id="@+id/desc_top_layout"
+                 layout="@layout/container_head"/>-->
         <TextView
                 android:id="@+id/menu_title_tv"
                 android:layout_width="match_parent"
@@ -59,6 +62,19 @@
                 android:textColor="#ffffff"
                 android:textSize="16dp"
                 android:text="本菜很好吃"
+                />
+        <TextView
+                android:id="@+id/menu_add_to_order_tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/menu_desc_tv"
+                android:layout_toRightOf="@id/menu_image_iv"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/blue"
+                android:background="@drawable/icon_button"
+                android:text="加入订单"
                 />
 
     </RelativeLayout>
