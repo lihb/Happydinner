@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -51,6 +53,10 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //去除title
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //去掉Activity上面的状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         headView = new HeadView(this);

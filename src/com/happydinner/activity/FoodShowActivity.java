@@ -3,6 +3,8 @@ package com.happydinner.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -64,6 +66,10 @@ public class FoodShowActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //去除title
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //去掉Activity上面的状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
         ButterKnife.inject(this);
