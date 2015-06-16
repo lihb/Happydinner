@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.TextView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import com.happydinner.activity.R;
 
 /**
@@ -17,7 +19,10 @@ import com.happydinner.activity.R;
  * @date 2015/6/16
  */
 
-public class PayRightFragment extends Fragment{
+public class PayRightUnionPayFragment extends Fragment {
+
+    @InjectView(R.id.pay_price_tv)
+    TextView payPriceTv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +33,14 @@ public class PayRightFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.pay_right_fragment, null);
+        View view = inflater.inflate(R.layout.pay_right_unionpay_fragment, null);
+        ButterKnife.inject(this, view);
+        Bundle bundle = getArguments();
+        float price = bundle.getFloat("price");
+        payPriceTv.setText("金额：" + price + "元");
         return view;
     }
+
 
     @Override
     public void onPause() {

@@ -26,6 +26,8 @@
                   android:screenOrientation="landscape"/>
         <activity android:name="com.happydinner.activity.OrderShowActivity"
                   android:screenOrientation="landscape"/>
+        <activity android:name="com.happydinner.activity.PayActivity"
+                  android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

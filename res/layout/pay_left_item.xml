@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingLeft="12dp"
+              android:paddingRight="12dp"
+              android:background="@color/background"
+        >
+    <ImageView
+            android:id="@+id/pay_icon_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:duplicateParentState="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_wechat_selector"
+            />
+    <TextView
+            android:id="@+id/pay_desc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:textSize="30dp"
+            android:duplicateParentState="true"
+            android:textColor="@color/pay_text_selector"
+            android:layout_gravity="center_vertical"
+            android:text="微信"
+            />
+
+
+</LinearLayout>

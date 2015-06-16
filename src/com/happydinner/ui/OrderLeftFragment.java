@@ -2,6 +2,7 @@ package com.happydinner.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.SpannableStringBuilder;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.happydinner.activity.PayActivity;
 import com.happydinner.activity.R;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
@@ -101,6 +103,9 @@ public class OrderLeftFragment extends Fragment {
         orderCountTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PayActivity.class);
+                intent.putExtra("totalPrice", mOrder.getTotalPrice());
+                startActivity(intent);
                 CommonUtils.toastText(getActivity(), "结算按钮被点击。。");
             }
         });
