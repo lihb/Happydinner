@@ -122,7 +122,7 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
 
     }
     private String createFragmentTag(int id) {
-        return this.getClass().getSimpleName() + id;
+        return this.getClass().getSimpleName() + "_" + id;
     }
 
     @Override
