@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <include android:id="@+id/order_head"
+    <include android:id="@+id/pay_head"
              layout="@layout/container_head"
             />
     <LinearLayout
@@ -13,20 +13,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-        <fragment
-                android:id="@+id/order_left_frg"
-                android:name="com.happydinner.ui.OrderLeftFragment"
+        <LinearLayout
+                android:id="@+id/pay_left_frag"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                tools:layout="@layout/order_left_fragment"/>
-        <fragment
-                android:id="@+id/order_right_frg"
-                android:name="com.happydinner.ui.OrderRightFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                tools:layout="@layout/order_right_fragment"/>
+                >
+
+        </LinearLayout>
+        <LinearLayout
+                android:id="@+id/pay_right_frag"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="3"
+                >
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
