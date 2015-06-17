@@ -72,8 +72,8 @@ public class Order implements Parcelable {
             if (menu1.count == 0) {
                 menuList.remove(menu1);
             }
+            totalPrice -= menu.getActualPrice();
         }
-        totalPrice -= menu.getActualPrice();
     }
 
     /**
