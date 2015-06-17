@@ -13,10 +13,11 @@
             >
         <TextView
                 android:id="@+id/pay_choice_tv"
+                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="银联支付"
-                android:textSize="30dp"
+                android:textSize="@dimen/pay_title_text_size"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/white"
                 />
@@ -27,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="金额：50元"
-                android:textSize="20dp"
+                android:textSize="@dimen/pay_text_size"
                 android:paddingRight="12dp"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/white"
@@ -45,6 +46,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             >
@@ -67,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_marginTop="10dp"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/pay_text_size"
                     android:text="1.使用银联"
                     />
         </LinearLayout>
@@ -90,9 +93,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/pay_text_size"
                     android:layout_marginTop="10dp"
-                    android:text="2.扫描该二维码，成功后按照提示输入密码"
+                    android:text="2.扫描该二维码，成功后\n按照提示输入密码"
                     />
 
         </LinearLayout>
