@@ -1,6 +1,5 @@
 package com.happydinner.activity;
 
-import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.GameEntity;
 import com.happydinner.ui.CoverFlowAdapter;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
@@ -29,10 +29,6 @@ public class CoverFlowActivity extends ActionBarActivity {
     private ArrayList<GameEntity> mData = new ArrayList<GameEntity>(0);
     private TextSwitcher mTitle;
 
-    /**
-     * Hold a reference to the current animator, so that it can be canceled mid-way.
-     */
-    private Animator mCurrentAnimator;
 
 
     @Override
@@ -94,5 +90,12 @@ public class CoverFlowActivity extends ActionBarActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 销毁首页时，清除全局变量
+        ((ApplicationEx) getApplication()).clearInternalActivityParam();
     }
 }

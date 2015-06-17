@@ -2,7 +2,6 @@ package com.happydinner.base;
 
 import android.app.Application;
 import android.os.Handler;
-import com.happydinner.entitiy.Order;
 
 import java.util.HashMap;
 import java.util.concurrent.Executor;
@@ -35,10 +34,28 @@ public class ApplicationEx extends Application {
         super.onTerminate();
     }
 
+    /**
+     * 设置添加全局变量
+     *
+     * @param key
+     * @param object
+     */
     public void setInternalActivityParam(String key, Object object) {
         mActivityParamsMap.put(key, object);
     }
 
+    /**
+     * 清除全局变量
+     */
+    public void clearInternalActivityParam() {
+        mActivityParamsMap.clear();
+    }
+
+    /**
+     * 获取全局变量
+     * @param key
+     * @return
+     */
     public Object receiveInternalActivityParam(String key) {
         return mActivityParamsMap.get(key);
     }
@@ -111,16 +128,5 @@ public class ApplicationEx extends Application {
      */
     private static Handler mUserActionHanler = null;
 
-    /**
-     * 全局变量--菜单
-     */
-    private Order order;
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setmOrder(Order order) {
-        this.order = order;
-    }
 }
