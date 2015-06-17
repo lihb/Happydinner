@@ -3,8 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="cover_width">400dp</dimen>
-    <dimen name="cover_height">320dp</dimen>
+    <dimen name="cover_width">200dp</dimen>
+    <dimen name="cover_height">160dp</dimen>
 
     <!-- 头部 -->
     <dimen name="head_height">47dp</dimen>
