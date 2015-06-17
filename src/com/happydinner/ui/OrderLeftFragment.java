@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.activity.PayActivity;
 import com.happydinner.activity.R;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -34,21 +35,28 @@ public class OrderLeftFragment extends Fragment {
 
     @InjectView(R.id.order_menu_tv)
     TextView orderMenuTv;
+
     @InjectView(R.id.order_count_tv)
-    TextView orderCountTv;  //结算按钮
+    TextView orderCountTv; // 结算按钮
+
     @InjectView(R.id.order_price_tv)
     TextView orderPriceTv; // 价格
+
     @InjectView(R.id.order_price_submit_tv)
     TextView orderPriceSubmitTv;
+
     @InjectView(R.id.order_left_lv)
     ListView orderLeftLv;
+
     @InjectView(R.id.order_content_left_rl)
     RelativeLayout orderContentLeftRl;
 
     private Order mOrder;
+
     private List<Menu> orderMenuList;
 
     private OrderLeftListWorker mListWorker;
+
     private SimpleListWorkerAdapter mAdapter;
 
     @Override
@@ -66,7 +74,6 @@ public class OrderLeftFragment extends Fragment {
         return leftView;
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -75,17 +82,18 @@ public class OrderLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
+        mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
+        if (mOrder != null) {
             orderMenuList = mOrder.getMenuList();
             if (mListWorker == null) {
-                mListWorker = new OrderLeftListWorker(getActivity(), orderMenuList, new OrderLeftListWorker.OnListWorkerListener() {
-                    @Override
-                    public void onItemClick(int index) {
+                mListWorker =
+                        new OrderLeftListWorker(getActivity(), orderMenuList,
+                                new OrderLeftListWorker.OnListWorkerListener(){
+                                    @Override
+                                    public void onItemClick(int index) {
 
-                    }
-                });
+                                    }
+                                });
                 mAdapter = new SimpleListWorkerAdapter(mListWorker);
                 orderLeftLv.setAdapter(mAdapter);
                 orderLeftLv.setOnItemClickListener(mListWorker);
@@ -97,19 +105,19 @@ public class OrderLeftFragment extends Fragment {
             String totalPrice = String.valueOf(temp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append("¥").append(totalPrice).append("元");
-            spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             orderPriceTv.setText(spannableStringBuilder);
-        }
-        orderCountTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PayActivity.class);
-                intent.putExtra("totalPrice", mOrder.getTotalPrice());
-                startActivity(intent);
-                CommonUtils.toastText(getActivity(), "结算按钮被点击。。");
-            }
-        });
 
+            orderCountTv.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), PayActivity.class);
+                    intent.putExtra("totalPrice", mOrder.getTotalPrice());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -128,7 +136,8 @@ public class OrderLeftFragment extends Fragment {
         String totalPrice = String.valueOf(temp);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append("¥").append(totalPrice).append("元");
-        spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         orderPriceTv.setText(spannableStringBuilder);
 
     }

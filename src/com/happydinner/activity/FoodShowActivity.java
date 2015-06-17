@@ -8,6 +8,7 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
@@ -16,6 +17,7 @@ import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -73,10 +75,14 @@ public class FoodShowActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
         ButterKnife.inject(this);
-        mOrder = new Order();
-        mOrder.setOrderId(UUID.randomUUID().toString());
-        mOrder.setMenuList(new ArrayList<Menu>());
-        mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
+        mOrder = (Order)((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
+        if (mOrder == null) {
+            mOrder = new Order();
+            mOrder.setOrderId(UUID.randomUUID().toString());
+            mOrder.setMenuList(new ArrayList<Menu>());
+            mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
+            ((ApplicationEx) getApplication()).setInternalActivityParam("order", mOrder);
+        }
         initView();
         initData();
 
@@ -168,9 +174,9 @@ public class FoodShowActivity extends BaseActivity {
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
                     Intent intent = new Intent(FoodShowActivity.this, OrderShowActivity.class);
-                    Bundle bundle = new Bundle();
+                  /*  Bundle bundle = new Bundle();
                     bundle.putParcelable("orderData", mOrder);
-                    intent.putExtras(bundle);
+                    intent.putExtras(bundle);*/
                     startActivity(intent);
                     break;
                 default:
@@ -207,13 +213,6 @@ public class FoodShowActivity extends BaseActivity {
         menuImageIv.setImageResource(R.drawable.image_2);
         descMenuCountConfirmTv.setText("" +(menu.count));
         menuDescTv.setText("菜品简介:" + menu.getInfo());
-       /* menuAddToOrderTvDesc.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                mOrder.addMenu(menu);
-                CommonUtils.toastText(FoodShowActivity.this, "总价:" + mOrder.getTotalPrice());
-            }
-        });*/
         descMenuCountAddTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -288,6 +287,30 @@ public class FoodShowActivity extends BaseActivity {
             zoomViewFromMain(menu);
 
         }
+    }
+
+    /**
+     * //执行序列化和反序列化  进行深度拷贝
+     * @param src
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    public Order deepCopy(Order src){
+        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+        ObjectOutputStream out = null;
+        ObjectInputStream in = null;
+        Order dest = null;
+        try{
+            out  = new ObjectOutputStream(byteOut);
+            out.writeObject(src);
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+            in =new ObjectInputStream(byteIn);
+            dest = (Order)in.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return dest;
     }
 
 

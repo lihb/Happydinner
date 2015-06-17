@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -45,12 +46,6 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
     private HeadView headView;
 
 
-    public static void actionStart(Context context, Order order) {
-        Intent intent = new Intent(context, OrderShowActivity.class);
-        intent.putExtra("orderData", order);
-        context.startActivity(intent);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //去除title
@@ -60,8 +55,8 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         headView = new HeadView(this);
-        Intent intent = getIntent();
-        mOrder = intent.getParcelableExtra("orderData");
+        Order tempOrder = (Order)((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
+        mOrder = tempOrder;
         fragmentManager = getFragmentManager();
         initFragment();
 
@@ -98,20 +93,20 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         mOrderRightFragment = (OrderRightFragment) fragmentManager.findFragmentByTag(rightTag);
         if (mOrderRightFragment == null) {
             rightneedAdd = true;
-            Bundle bundle = new Bundle();
+           /* Bundle bundle = new Bundle();
             bundle.putParcelable("order", mOrder);
+            mOrderRightFragment.setArguments(bundle);*/
             mOrderRightFragment = new OrderRightFragment();
-            mOrderRightFragment.setArguments(bundle);
         }
 
         String leftTag = createFragmentTag(R.id.order_left_frg);
         mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentByTag(leftTag);
         if (mOrderLeftFragment == null) {
             leftneedAdd = true;
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putParcelable("order", mOrder);
+            mOrderLeftFragment.setArguments(bundle);*/
             mOrderLeftFragment = new OrderLeftFragment();
-            mOrderLeftFragment.setArguments(bundle);
         }
 
         if (rightneedAdd) {

@@ -11,6 +11,7 @@ import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.activity.R;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -27,10 +28,11 @@ public class OrderRightFragment extends Fragment {
     ListView orderRightLv;
 
     private OrderRightListWorker mListWorker;
+
     private SimpleListWorkerAdapter mListAdapter;
 
-
     private Order mOrder;
+
     private List<Menu> orderMenuList;
 
     private RefreshLeftFragListener mRefreshLeftFragListener;
@@ -49,7 +51,6 @@ public class OrderRightFragment extends Fragment {
         return rightView;
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -63,44 +64,47 @@ public class OrderRightFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Bundle bundle = this.getArguments();
-        if (bundle != null) {
-            mOrder = bundle.getParcelable("order");
+        // mOrder = bundle.getParcelable("order");
+        mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
+        if (mOrder !=null) {
             orderMenuList = mOrder.getMenuList();
             if (mListWorker == null) {
-                mListWorker = new OrderRightListWorker(getActivity(), orderMenuList, new OrderRightListWorker.OnListWorkerListener() {
-                    @Override
-                    public void onItemClick(int index) {
+                mListWorker =
+                        new OrderRightListWorker(getActivity(), orderMenuList,
+                                new OrderRightListWorker.OnListWorkerListener(){
+                                    @Override
+                                    public void onItemClick(int index) {
 
-                    }
+                                    }
 
-                    @Override
-                    public void onAddMenuClicked(Object itemData) {
-                        Menu menu = (Menu) itemData;
-                        mOrder.addMenu(menu);
-                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                        mListAdapter.notifyDataSetChanged();
+                                    @Override
+                                    public void onAddMenuClicked(Object itemData) {
+                                        Menu menu = (Menu) itemData;
+                                        mOrder.addMenu(menu);
+                                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
+                                        mListAdapter.notifyDataSetChanged();
 
-                    }
+                                    }
 
-                    @Override
-                    public void onSubMenuClicked(Object itemData) {
-                        Menu menu = (Menu) itemData;
-                        mOrder.delMenu(menu);
-                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                        mListAdapter.notifyDataSetChanged();
-                    }
-                });
+                                    @Override
+                                    public void onSubMenuClicked(Object itemData) {
+                                        Menu menu = (Menu) itemData;
+                                        mOrder.delMenu(menu);
+                                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
+                                        mListAdapter.notifyDataSetChanged();
+                                    }
+                                });
                 mListAdapter = new SimpleListWorkerAdapter(mListWorker);
                 orderRightLv.setAdapter(mListAdapter);
                 // ListView的 ItemClick 由 ListWorker 转发
                 orderRightLv.setOnItemClickListener(mListWorker);
             } else {
                 mListWorker.setData(orderMenuList);
-//                mRefreshLeftFragListener.changeDataToLeft(mOrder);
+                // mRefreshLeftFragListener.changeDataToLeft(mOrder);
                 mListAdapter.notifyDataSetChanged();
             }
         }
+
     }
 
     @Override

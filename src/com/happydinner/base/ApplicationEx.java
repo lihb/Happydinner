@@ -2,6 +2,7 @@ package com.happydinner.base;
 
 import android.app.Application;
 import android.os.Handler;
+import com.happydinner.entitiy.Order;
 
 import java.util.HashMap;
 import java.util.concurrent.Executor;
@@ -21,9 +22,6 @@ public class ApplicationEx extends Application {
 
         app = this;
 
-
-
-
     }
 
 
@@ -42,7 +40,7 @@ public class ApplicationEx extends Application {
     }
 
     public Object receiveInternalActivityParam(String key) {
-        return mActivityParamsMap.remove(key);
+        return mActivityParamsMap.get(key);
     }
 
     public Executor getMainExecutor() {
@@ -113,4 +111,16 @@ public class ApplicationEx extends Application {
      */
     private static Handler mUserActionHanler = null;
 
+    /**
+     * 全局变量--菜单
+     */
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setmOrder(Order order) {
+        this.order = order;
+    }
 }

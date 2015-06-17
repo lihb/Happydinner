@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * 菜品类
  * Created by lihb on 15/5/13.
  */
-public class Menu implements Parcelable {
+public class Menu implements Parcelable, Cloneable{
 
     // 菜品名称
     private String name;
@@ -38,6 +38,22 @@ public class Menu implements Parcelable {
 
     public Menu(String name) {
         this.name = name;
+    }
+
+    /**
+     * 增加clone方法，使其深复制
+     * @return
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    protected Menu clone() {
+        Menu object = null;
+        try {
+            object = (Menu)super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 
     @Override
