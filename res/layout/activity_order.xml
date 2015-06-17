@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -13,20 +12,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-        <fragment
+        <LinearLayout
                 android:id="@+id/order_left_frg"
-                android:name="com.happydinner.ui.OrderLeftFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_weight="3"
-                tools:layout="@layout/order_left_fragment"/>
-        <fragment
+                >
+        </LinearLayout>
+        <LinearLayout
                 android:id="@+id/order_right_frg"
-                android:name="com.happydinner.ui.OrderRightFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_weight="1"
-                tools:layout="@layout/order_right_fragment"/>
+                >
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

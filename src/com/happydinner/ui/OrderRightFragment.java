@@ -66,7 +66,7 @@ public class OrderRightFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         // mOrder = bundle.getParcelable("order");
         mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
-        if (mOrder !=null) {
+        if (mOrder != null) {
             orderMenuList = mOrder.getMenuList();
             if (mListWorker == null) {
                 mListWorker =
@@ -100,7 +100,6 @@ public class OrderRightFragment extends Fragment {
                 orderRightLv.setOnItemClickListener(mListWorker);
             } else {
                 mListWorker.setData(orderMenuList);
-                // mRefreshLeftFragListener.changeDataToLeft(mOrder);
                 mListAdapter.notifyDataSetChanged();
             }
         }

@@ -2,21 +2,15 @@ package com.happydinner.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.BaseActivity;
-import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.OrderLeftFragment;
 import com.happydinner.ui.OrderRightFragment;
 import com.happydinner.ui.widget.HeadView;
-
-import java.util.List;
 
 /**
  * 类说明：
@@ -39,10 +33,6 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
 
     private FragmentManager fragmentManager;
 
-    private Order mOrder;
-
-    private List<Menu> orderMenuList;
-
     private HeadView headView;
 
 
@@ -55,8 +45,6 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         headView = new HeadView(this);
-        Order tempOrder = (Order)((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
-        mOrder = tempOrder;
         fragmentManager = getFragmentManager();
         initFragment();
 
@@ -85,17 +73,10 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         boolean leftneedAdd = false;
         boolean rightneedAdd = false;
 
-        if (mOrder != null) {
-            orderMenuList = mOrder.getMenuList();
-        }
-
         String rightTag = createFragmentTag(R.id.order_right_frg);
         mOrderRightFragment = (OrderRightFragment) fragmentManager.findFragmentByTag(rightTag);
         if (mOrderRightFragment == null) {
             rightneedAdd = true;
-           /* Bundle bundle = new Bundle();
-            bundle.putParcelable("order", mOrder);
-            mOrderRightFragment.setArguments(bundle);*/
             mOrderRightFragment = new OrderRightFragment();
         }
 
@@ -103,17 +84,14 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentByTag(leftTag);
         if (mOrderLeftFragment == null) {
             leftneedAdd = true;
-            /*Bundle bundle = new Bundle();
-            bundle.putParcelable("order", mOrder);
-            mOrderLeftFragment.setArguments(bundle);*/
             mOrderLeftFragment = new OrderLeftFragment();
         }
 
         if (rightneedAdd) {
-            fragmentTransaction.add(R.id.order_right_frg, mOrderRightFragment, rightTag);
+            fragmentTransaction.replace(R.id.order_right_frg, mOrderRightFragment, rightTag);
         }
         if (leftneedAdd) {
-            fragmentTransaction.add(R.id.order_left_frg, mOrderLeftFragment, leftTag);
+            fragmentTransaction.replace(R.id.order_left_frg, mOrderLeftFragment, leftTag);
         }
         if (rightneedAdd || leftneedAdd) {
             fragmentTransaction.commit();
