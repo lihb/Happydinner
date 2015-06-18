@@ -96,7 +96,6 @@ public class PayActivity extends BaseActivity {
             bundle.putFloat("price", price);
             payRightZhiFuBaoFragment.setArguments(bundle);
             mTransaction.replace(R.id.pay_right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
-            mTransaction.addToBackStack(null);
         }
         mTransaction.commit();
 
