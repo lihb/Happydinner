@@ -1,5 +1,9 @@
 package com.happydinner.ui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -14,11 +18,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.happydinner.activity.R;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import com.happydinner.activity.R;
 
 /**
  * 类说明：
@@ -89,18 +90,15 @@ public class PayLeftFragment extends Fragment {
                 payRightZhiFuBaoFragment = new PayRightZhiFuBaoFragment();
                 payRightZhiFuBaoFragment.setArguments(bundle);
                 mTransaction.replace(R.id.pay_right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
-                mTransaction.addToBackStack(null);
             } else if (id == WECHAT) {
                 payRightWeChatFragment = new PayRightWeChatFragment();
                 payRightWeChatFragment.setArguments(bundle);
                 mTransaction.replace(R.id.pay_right_frag, payRightWeChatFragment, "pay_right_wechat_frag");
-                mTransaction.addToBackStack(null);
 
             } else if (id == UNIONPAY) {
                 payRightUnionPayFragment = new PayRightUnionPayFragment();
                 payRightUnionPayFragment.setArguments(bundle);
                 mTransaction.replace(R.id.pay_right_frag, payRightUnionPayFragment, "pay_right_unionpay_frag");
-                mTransaction.addToBackStack(null);
             }
             mTransaction.commit();
 
