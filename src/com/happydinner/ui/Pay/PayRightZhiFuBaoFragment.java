@@ -1,4 +1,4 @@
-package com.happydinner.ui;
+package com.happydinner.ui.Pay;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.activity.R;
 
 /**

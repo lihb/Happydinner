@@ -1,4 +1,4 @@
-package com.happydinner.ui;
+package com.happydinner.ui.Pay;
 
 import java.util.ArrayList;
 import java.util.HashMap;

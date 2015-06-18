@@ -1,4 +1,7 @@
-package com.happydinner.ui;
+package com.happydinner.ui.Order;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.activity.PayActivity;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
@@ -24,9 +28,6 @@ import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.OrderLeftListWorker;
 import com.happydinner.util.CommonUtils;
-
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * Created by lihb on 15/5/21.
@@ -87,13 +88,13 @@ public class OrderLeftFragment extends Fragment {
             orderMenuList = mOrder.getMenuList();
             if (mListWorker == null) {
                 mListWorker =
-                        new OrderLeftListWorker(getActivity(), orderMenuList,
-                                new OrderLeftListWorker.OnListWorkerListener(){
-                                    @Override
-                                    public void onItemClick(int index) {
+                                new OrderLeftListWorker(getActivity(), orderMenuList,
+                                                new OrderLeftListWorker.OnListWorkerListener(){
+                                                    @Override
+                                                    public void onItemClick(int index) {
 
-                                    }
-                                });
+                                                    }
+                                                });
                 mAdapter = new SimpleListWorkerAdapter(mListWorker);
                 orderLeftLv.setAdapter(mAdapter);
                 orderLeftLv.setOnItemClickListener(mListWorker);
@@ -106,7 +107,7 @@ public class OrderLeftFragment extends Fragment {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append("¥").append(totalPrice).append("元");
             spannableStringBuilder.setSpan(new AbsoluteSizeSpan(30, true), 1, spannableStringBuilder.length() - 1,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             orderPriceTv.setText(spannableStringBuilder);
 
             orderCountTv.setOnClickListener(new View.OnClickListener(){

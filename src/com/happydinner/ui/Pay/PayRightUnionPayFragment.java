@@ -1,4 +1,4 @@
-package com.happydinner.ui;
+package com.happydinner.ui.Pay;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.activity.R;
 
 /**
@@ -20,7 +21,7 @@ import com.happydinner.activity.R;
  * @date 2015/6/16
  */
 
-public class PayRightWeChatFragment extends Fragment {
+public class PayRightUnionPayFragment extends Fragment {
 
     @InjectView(R.id.pay_price_tv)
     TextView payPriceTv;
@@ -54,11 +55,12 @@ public class PayRightWeChatFragment extends Fragment {
         Bundle bundle = getArguments();
         float price = bundle.getFloat("price");
         payPriceTv.setText("金额：" + price + "元");
-        payChoiceTv.setText("微信支付");
-        payInfoStep1Tv.setText("1.打开手机微信应用\n点击扫一扫功能");
-        payInfoStep2Tv.setText("2.扫描该二维码，成功后\n按照提示输入密码");
+        payChoiceTv.setText("银联支付");
+        payInfoStep1Tv.setText("1.使用银联");
+        payInfoStep2Tv.setText("2.按照提示操作");
         return view;
     }
+
 
     @Override
     public void onPause() {

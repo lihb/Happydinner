@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
 import com.happydinner.base.BaseActivity;
-import com.happydinner.ui.PayLeftFragment;
-import com.happydinner.ui.PayRightUnionPayFragment;
-import com.happydinner.ui.PayRightWeChatFragment;
-import com.happydinner.ui.PayRightZhiFuBaoFragment;
+import com.happydinner.ui.Pay.PayLeftFragment;
+import com.happydinner.ui.Pay.PayRightUnionPayFragment;
+import com.happydinner.ui.Pay.PayRightWeChatFragment;
+import com.happydinner.ui.Pay.PayRightZhiFuBaoFragment;
 import com.happydinner.ui.widget.HeadView;
 
 /**
@@ -27,17 +28,22 @@ public class PayActivity extends BaseActivity {
     private HeadView headView;
 
     private FragmentManager mFragmentManager;
+
     private FragmentTransaction mTransaction;
+
     private PayRightUnionPayFragment payRightUnionPayFragment;
+
     private PayRightZhiFuBaoFragment payRightZhiFuBaoFragment;
+
     private PayRightWeChatFragment payRightWeChatFragment;
+
     private PayLeftFragment payLeftFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //去除title
+        // 去除title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //去掉Activity上面的状态栏
+        // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
@@ -55,11 +61,11 @@ public class PayActivity extends BaseActivity {
         headView.h_right_tv.setText("");
         headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
-//        headView.h_right_tv.setOnClickListener(mOnClickListener);
+        // headView.h_right_tv.setOnClickListener(mOnClickListener);
 
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             switch (v.getId()) {

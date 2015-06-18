@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
 import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Order;
-import com.happydinner.ui.OrderLeftFragment;
-import com.happydinner.ui.OrderRightFragment;
+import com.happydinner.ui.Order.OrderLeftFragment;
+import com.happydinner.ui.Order.OrderRightFragment;
 import com.happydinner.ui.widget.HeadView;
 
 /**
@@ -26,6 +27,7 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
      * 左侧结算fragment
      */
     private OrderLeftFragment mOrderLeftFragment;
+
     /**
      * 右侧展示菜品fragment
      */
@@ -35,12 +37,11 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
 
     private HeadView headView;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //去除title
+        // 去除title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //去掉Activity上面的状态栏
+        // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
@@ -53,10 +54,10 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.head_left:
                 case R.id.head_left_rlyt:
                     OrderShowActivity.this.finish();
@@ -97,9 +98,8 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
             fragmentTransaction.commit();
         }
 
-
-
     }
+
     private String createFragmentTag(int id) {
         return this.getClass().getSimpleName() + "_" + id;
     }
