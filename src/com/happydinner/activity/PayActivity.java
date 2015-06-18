@@ -10,8 +10,6 @@ import android.view.WindowManager;
 
 import com.happydinner.base.BaseActivity;
 import com.happydinner.ui.Pay.PayLeftFragment;
-import com.happydinner.ui.Pay.PayRightUnionPayFragment;
-import com.happydinner.ui.Pay.PayRightWeChatFragment;
 import com.happydinner.ui.Pay.PayRightZhiFuBaoFragment;
 import com.happydinner.ui.widget.HeadView;
 
@@ -31,11 +29,7 @@ public class PayActivity extends BaseActivity {
 
     private FragmentTransaction mTransaction;
 
-    private PayRightUnionPayFragment payRightUnionPayFragment;
-
     private PayRightZhiFuBaoFragment payRightZhiFuBaoFragment;
-
-    private PayRightWeChatFragment payRightWeChatFragment;
 
     private PayLeftFragment payLeftFragment;
 
@@ -88,7 +82,7 @@ public class PayActivity extends BaseActivity {
             mTransaction.replace(R.id.pay_left_frag, payLeftFragment, "pay_left_frag");
         }
 
-        if (payRightUnionPayFragment == null) {
+        if (payRightZhiFuBaoFragment == null) {
             payRightZhiFuBaoFragment = new PayRightZhiFuBaoFragment();
             Intent intent = getIntent();
             float price = intent.getFloatExtra("totalPrice", 0f);

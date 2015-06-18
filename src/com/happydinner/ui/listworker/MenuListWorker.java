@@ -1,5 +1,8 @@
 package com.happydinner.ui.listworker;
 
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.activity.R;
 import com.happydinner.base.MyAppContext;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 /**
  * Created by lihb on 15/5/17.
@@ -215,41 +216,7 @@ public class MenuListWorker extends AbstractListWorker {
                     }
                 });
 
-                /*menuViewHolder.getMenuConfirmTxt(i).setText(menu.count + "");
-                *//*menuViewHolder.getRlLocMenu(i).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (mOnListWorkerListener != null) {
-                            mOnListWorkerListener.onItemClicked(menu, positon);
-                        }
-
-                    }
-                });*//*
-                menuViewHolder.getMenuAddTxt(i).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        menu.count++;
-                        if (mListener != null) {
-                            mListener.onAddMenuClicked(menu);
-                        }
-
-                    }
-                });
-                menuViewHolder.getMenuSubTxt(i).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        menu.count--;
-                        if (menu.count <= 0) {
-                            menu.count = 0;
-                        }
-                        if (mListener != null) {
-                            mListener.onSubMenuClicked(menu);
-                        }
-                    }
-                });*/
-
             }
-
 
         }
 
@@ -276,16 +243,7 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuPriceTv1;
             @InjectView(R.id.menu_add_to_order_tv1)
             TextView menuAddToOrderTv1;
-            /*@InjectView(R.id.menu_count_tv1)
-            TextView menuCountTv1;
-            @InjectView(R.id.menu_count_sub_tv1)
-            TextView menuCountSubTv1;
-            @InjectView(R.id.menu_count_confirm_tv1)
-            TextView menuCountConfirmTv1;
-            @InjectView(R.id.menu_count_add_tv1)
-            TextView menuCountAddTv1;
-            @InjectView(R.id.menu_count_ll1)
-            LinearLayout menuCountLl1;*/
+
             @InjectView(R.id.loc_menu_rl1)
             RelativeLayout locMenuRl1;
 
@@ -294,7 +252,6 @@ public class MenuListWorker extends AbstractListWorker {
 
             @InjectView(R.id.menu_goto_desc_tv2)
             TextView menuGoToDescTv2;
-
 
             @InjectView(R.id.menu_name_iv2)
             ImageView menuNameIv2;
@@ -306,16 +263,7 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuPriceTv2;
             @InjectView(R.id.menu_add_to_order_tv2)
             TextView menuAddToOrderTv2;
-            /*@InjectView(R.id.menu_count_tv2)
-            TextView menuCountTv2;
-            @InjectView(R.id.menu_count_sub_tv2)
-            TextView menuCountSubTv2;
-            @InjectView(R.id.menu_count_confirm_tv2)
-            TextView menuCountConfirmTv2;
-            @InjectView(R.id.menu_count_add_tv2)
-            TextView menuCountAddTv2;
-            @InjectView(R.id.menu_count_ll2)
-            LinearLayout menuCountLl2;*/
+
             @InjectView(R.id.loc_menu_rl2)
             RelativeLayout locMenuRl2;
 

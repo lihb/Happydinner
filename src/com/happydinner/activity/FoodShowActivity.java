@@ -1,5 +1,8 @@
 package com.happydinner.activity;
 
+import java.io.*;
+import java.util.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
@@ -16,9 +20,6 @@ import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
-
-import java.io.*;
-import java.util.*;
 
 /**
  * Created by lihb on 15/5/16.
@@ -68,14 +69,14 @@ public class FoodShowActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //去除title
+        // 去除title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //去掉Activity上面的状态栏
+        // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
         ButterKnife.inject(this);
-        mOrder = (Order)((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
+        mOrder = (Order) ((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
         if (mOrder == null) {
             mOrder = new Order();
             mOrder.setOrderId(UUID.randomUUID().toString());
@@ -146,7 +147,7 @@ public class FoodShowActivity extends BaseActivity {
         sortedMap.put(oldKey, tmpList); // 处理最后一组数据
 
         if (mListWorker == null) {
-            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap,new MenuListWorkerCallBack());
+            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());
             mListAdapter = new SimpleListWorkerAdapter(mListWorker);
             mMenuListview.setAdapter(mListAdapter);
             // ListView的 ItemClick 由 ListWorker 转发
@@ -174,9 +175,6 @@ public class FoodShowActivity extends BaseActivity {
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
                     Intent intent = new Intent(FoodShowActivity.this, OrderShowActivity.class);
-                  /*  Bundle bundle = new Bundle();
-                    bundle.putParcelable("orderData", mOrder);
-                    intent.putExtras(bundle);*/
                     startActivity(intent);
                     break;
                 default:
@@ -206,35 +204,32 @@ public class FoodShowActivity extends BaseActivity {
      */
     private void zoomViewFromMain(final Menu menu) {
 
-
         // Load the high-resolution "zoomed-in" image.
         mExpandedView = findViewById(R.id.menu_desc_rl);
         menuTitleTv.setText(menu.getName());
         menuImageIv.setImageResource(R.drawable.image_2);
-        descMenuCountConfirmTv.setText("" +(menu.count));
+        descMenuCountConfirmTv.setText("" + (menu.count));
         menuDescTv.setText("菜品简介:" + menu.getInfo());
-        descMenuCountAddTv.setOnClickListener(new View.OnClickListener() {
+        descMenuCountAddTv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mOrder.addMenu(menu);
-                descMenuCountConfirmTv.setText("" +(menu.count));
+                descMenuCountConfirmTv.setText("" + (menu.count));
             }
         });
 
-        descMenuCountSubTv.setOnClickListener(new View.OnClickListener() {
+        descMenuCountSubTv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mOrder.delMenu(menu);
                 int count = menu.count;
                 if (count <= 0) {
                     descMenuCountConfirmTv.setText("" + 0);
-                }else {
+                } else {
                     descMenuCountConfirmTv.setText("" + count);
                 }
             }
         });
-
-
 
         // thumbView.setAlpha(0f); //不透明消失
         // 显示详情菜单，右侧确认按钮隐藏，只显示返回按钮
@@ -251,13 +246,12 @@ public class FoodShowActivity extends BaseActivity {
     /**
      * MenuListWorker回调类
      */
-    class MenuListWorkerCallBack implements MenuListWorker.OnListWorkerListener{
+    class MenuListWorkerCallBack implements MenuListWorker.OnListWorkerListener {
 
         @Override
         public void onItemClicked(Object itemData, int index) {
             Menu menu = (Menu) itemData;
-            Toast.makeText(FoodShowActivity.this, "你点击了：" + menu.getName(),
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(FoodShowActivity.this, "你点击了：" + menu.getName(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -275,8 +269,7 @@ public class FoodShowActivity extends BaseActivity {
         public void onAddToOrderClicked(Object itemData) {
             Menu menu = (Menu) itemData;
             mOrder.addMenu(menu);
-            CommonUtils.toastText(FoodShowActivity.this,
-                    "总价:" + mOrder.getTotalPrice());
+            CommonUtils.toastText(FoodShowActivity.this, "总价:" + mOrder.getTotalPrice());
             mListAdapter.notifyDataSetChanged();
 
         }
@@ -290,28 +283,28 @@ public class FoodShowActivity extends BaseActivity {
     }
 
     /**
-     * //执行序列化和反序列化  进行深度拷贝
+     * //执行序列化和反序列化 进行深度拷贝
+     * 
      * @param src
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Order deepCopy(Order src){
+    public Order deepCopy(Order src) {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
         ObjectInputStream in = null;
         Order dest = null;
-        try{
-            out  = new ObjectOutputStream(byteOut);
+        try {
+            out = new ObjectOutputStream(byteOut);
             out.writeObject(src);
             ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
-            in =new ObjectInputStream(byteIn);
-            dest = (Order)in.readObject();
-        }catch (Exception e){
+            in = new ObjectInputStream(byteIn);
+            dest = (Order) in.readObject();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dest;
     }
-
 
 }
