@@ -1,13 +1,12 @@
 package com.happydinner.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
-import com.happydinner.base.BaseActivity;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.Order.OrderLeftFragment;
 import com.happydinner.ui.Order.OrderRightFragment;
@@ -21,7 +20,7 @@ import com.happydinner.ui.widget.HeadView;
  * @date 2015/5/20
  */
 
-public class OrderShowActivity extends BaseActivity implements OrderRightFragment.RefreshLeftFragListener {
+public class OrderShowActivity extends FragmentActivity implements OrderRightFragment.RefreshLeftFragListener {
 
     /**
      * 左侧结算fragment
@@ -46,7 +45,7 @@ public class OrderShowActivity extends BaseActivity implements OrderRightFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         headView = new HeadView(this);
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         initFragment();
 
         headView.h_left_tv.setText("返回");

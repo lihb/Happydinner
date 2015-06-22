@@ -1,13 +1,10 @@
 package com.happydinner.ui.Order;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -19,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 import com.happydinner.activity.PayActivity;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
@@ -28,6 +24,9 @@ import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.OrderLeftListWorker;
 import com.happydinner.util.CommonUtils;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by lihb on 15/5/21.
