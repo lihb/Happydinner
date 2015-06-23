@@ -1,8 +1,5 @@
 package com.happydinner.activity;
 
-import java.io.*;
-import java.util.*;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +8,6 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
@@ -20,6 +16,9 @@ import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
+
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by lihb on 15/5/16.
@@ -54,6 +53,8 @@ public class FoodShowActivity extends BaseActivity {
 
     @InjectView(R.id.desc_menu_count_ll)
     LinearLayout descMenuCountLl;
+    @InjectView(R.id.video_info_tv)
+    TextView videoInfoTv;
 
     private MenuListWorker mListWorker;
 
@@ -228,6 +229,18 @@ public class FoodShowActivity extends BaseActivity {
                 } else {
                     descMenuCountConfirmTv.setText("" + count);
                 }
+            }
+        });
+
+        videoInfoTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FoodShowActivity.this, VideoPlayer2Activity.class);
+                intent.putExtra("fileName", menu.getName());
+                menu.setVideoUrl("http://download.cloud.189.cn/v5/downloadFile.action?downloadRequest=1_266BEB5F2F53474145C6EBE33E9A75D592251F2581CFE66ED934BC80674F070BA6790DA91C37DD2867779B6A435B6E040ED7928D6EFEB456A463C8E6238E8DA431473E7443FCC8025B64223A6700BF64EDD9FFDFEEA7447A59FC024F4CE7979319CFCCF6F79641E0E10945F7D23B60F7557901BF94E0BF88DFACD44EF40A4A4D0E77B882");
+                intent.putExtra("videoUrl", menu.getVideoUrl());
+                startActivity(intent);
+
             }
         });
 
