@@ -147,6 +147,8 @@ public class FoodShowActivity extends BaseActivity {
         }
         sortedMap.put(oldKey, tmpList); // 处理最后一组数据
 
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMap);
+
         if (mListWorker == null) {
             mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());
             mListAdapter = new SimpleListWorkerAdapter(mListWorker);
