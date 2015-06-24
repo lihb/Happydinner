@@ -1,5 +1,8 @@
 package com.happydinner.ui.Order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,15 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
-import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
-import com.happydinner.ui.listworker.OrderRightListWorker;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.happydinner.ui.OrderRightFragAdapter;
 
 /**
  * Created by lihb on 15/5/21.
@@ -31,19 +31,17 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
 
     static ListView orderRightLv;
 
-    private static OrderRightListWorker mListWorker;
-
-    private static SimpleListWorkerAdapter mListAdapter;
-
     private static Order mOrder;
 
     private static List<Menu> orderMenuList;
 
     private static RefreshLeftFragListener mRefreshLeftFragListener;
 
+    private static OrderRightFragAdapter mAdapter;
+
     private ViewPager viewPager;
 
-    private StatePagerAdapter statePagerAdapter;
+    private static StatePagerAdapter statePagerAdapter;
 
     private PagerTabStrip pagerTabStrip;
 
@@ -70,7 +68,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         pagerTabStrip.setDrawFullUnderline(false);
         pagerTabStrip.setBackgroundColor(getResources().getColor(R.color.win_bar_bg));
         pagerTabStrip.setTextSpacing(50);
-        statePagerAdapter = new StatePagerAdapter(getFragmentManager());
+        statePagerAdapter = new StatePagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(statePagerAdapter);
 
 //        ButterKnife.inject(this, rightView);
@@ -87,56 +85,6 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         }
     }
 
-    /*@Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        // mOrder = bundle.getParcelable("order");
-        mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
-        if (mOrder != null) {
-            orderMenuList = mOrder.getMenuList();
-            if (mListWorker == null) {
-                mListWorker =
-                        new OrderRightListWorker(getActivity(), orderMenuList,
-                                new OrderRightListWorker.OnListWorkerListener(){
-                                    @Override
-                                    public void onItemClick(int index) {
-
-                                    }
-
-                                    @Override
-                                    public void onAddMenuClicked(Object itemData) {
-                                        Menu menu = (Menu) itemData;
-                                        mOrder.addMenu(menu);
-                                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                                        mListAdapter.notifyDataSetChanged();
-
-                                    }
-
-                                    @Override
-                                    public void onSubMenuClicked(Object itemData) {
-                                        Menu menu = (Menu) itemData;
-                                        mOrder.delMenu(menu);
-                                        mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                                        mListAdapter.notifyDataSetChanged();
-                                    }
-                                });
-                mListAdapter = new SimpleListWorkerAdapter(mListWorker);
-                orderRightLv.setAdapter(mListAdapter);
-                // ListView的 ItemClick 由 ListWorker 转发
-                orderRightLv.setOnItemClickListener(mListWorker);
-            } else {
-                mListWorker.setData(orderMenuList);
-                mListAdapter.notifyDataSetChanged();
-            }
-        }
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }*/
 
     /**
      * 回调接口，传递数据到activity，用来刷新左边的fragment
@@ -162,6 +110,17 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
             return NUM_ITEMS;
         }
 
+        /**
+         * 刷新本viewpager的页面事件一定要调用的方法
+         * 
+         * @param object
+         * @return
+         */
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return titleList.get(position);
@@ -181,53 +140,6 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         }
 
         @Override
-        public void onActivityCreated(Bundle savedInstanceState) {
-            // TODO Auto-generated method stub
-            super.onActivityCreated(savedInstanceState);
-            /*setListAdapter(new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_list_item_1, getData()));*/
-            mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
-            if (mOrder != null) {
-                orderMenuList = mOrder.getMenuList();
-                if (mListWorker == null) {
-                    mListWorker =
-                            new OrderRightListWorker(getActivity(), orderMenuList,
-                                    new OrderRightListWorker.OnListWorkerListener() {
-                                        @Override
-                                        public void onItemClick(int index) {
-
-                                        }
-
-                                        @Override
-                                        public void onAddMenuClicked(Object itemData) {
-                                            Menu menu = (Menu) itemData;
-                                            mOrder.addMenu(menu);
-                                            mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                                            mListAdapter.notifyDataSetChanged();
-
-                                        }
-
-                                        @Override
-                                        public void onSubMenuClicked(Object itemData) {
-                                            Menu menu = (Menu) itemData;
-                                            mOrder.delMenu(menu);
-                                            mRefreshLeftFragListener.changeDataToLeft(mOrder);
-                                            mListAdapter.notifyDataSetChanged();
-                                        }
-                                    });
-                    mListAdapter = new SimpleListWorkerAdapter(mListWorker);
-                    orderRightLv.setAdapter(mListAdapter);
-                    // ListView的 ItemClick 由 ListWorker 转发
-                    orderRightLv.setOnItemClickListener(mListWorker);
-                } else {
-                    mListWorker.setData(orderMenuList);
-                    mListAdapter.notifyDataSetChanged();
-                }
-            }
-        }
-
-
-        @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             num = (getArguments() != null ? getArguments().getInt("num") : 1);
@@ -239,6 +151,10 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
 
             View view = inflater.inflate(R.layout.order_right_frag_pager_list, null);
             orderRightLv = (ListView) view.findViewById(R.id.order_right_lv);
+            mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
+            mAdapter = new OrderRightFragAdapter(getActivity(), new AdapterCallBack());
+            mAdapter.setData(mOrder.getMenuList());
+            orderRightLv.setAdapter(mAdapter);
             return view;
         }
 
@@ -248,4 +164,33 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         }
 
     }
+
+    public static class AdapterCallBack implements OrderRightFragAdapter.OrderRightFragListener {
+
+        @Override
+        public void onItemClicked(int index) {
+
+        }
+
+        @Override
+        public void onAddMenuClicked(Object itemData) {
+            Menu menu = (Menu) itemData;
+            mOrder.addMenu(menu);
+            mRefreshLeftFragListener.changeDataToLeft(mOrder);
+            statePagerAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
+
+        }
+
+        @Override
+        public void onSubMenuClicked(Object itemData) {
+            Menu menu = (Menu) itemData;
+            mOrder.delMenu(menu);
+            mRefreshLeftFragListener.changeDataToLeft(mOrder);
+            statePagerAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
+        }
+
+    }
+
 }
