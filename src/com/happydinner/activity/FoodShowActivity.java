@@ -58,7 +58,7 @@ public class FoodShowActivity extends BaseActivity {
 
     private MenuListWorker mListWorker;
 
-    private SortedMap sortedMap = new TreeMap<Integer, List<Menu>>();
+    private SortedMap<Integer, List<Menu>> sortedMap;
 
     private SimpleListWorkerAdapter mListAdapter;
 
@@ -74,9 +74,22 @@ public class FoodShowActivity extends BaseActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //去除title和状态栏的操作必须在 super.onCreate()方法之前
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
         ButterKnife.inject(this);
+        // 初始化界面
+        initView();
+
+        // 获取菜品数据
+        sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
+        if (sortedMap == null) {
+            sortedMap = new TreeMap<Integer, List<Menu>>();
+            initData();
+        }
+
+        //获取订单数据
         mOrder = (Order) ((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
         if (mOrder == null) {
             mOrder = new Order();
@@ -85,8 +98,17 @@ public class FoodShowActivity extends BaseActivity {
             mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
             ((ApplicationEx) getApplication()).setInternalActivityParam("order", mOrder);
         }
-        initView();
-        initData();
+        // 配置listworker
+        if (mListWorker == null) {
+            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());
+            mListAdapter = new SimpleListWorkerAdapter(mListWorker);
+            mMenuListview.setAdapter(mListAdapter);
+            // ListView的 ItemClick 由 ListWorker 转发
+            mMenuListview.setOnItemClickListener(mListWorker);
+        } else {
+            mListWorker.setData(sortedMap);
+            mListAdapter.notifyDataSetChanged();
+        }
 
     }
 
@@ -148,17 +170,6 @@ public class FoodShowActivity extends BaseActivity {
         sortedMap.put(oldKey, tmpList); // 处理最后一组数据
 
         ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMap);
-
-        if (mListWorker == null) {
-            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());
-            mListAdapter = new SimpleListWorkerAdapter(mListWorker);
-            mMenuListview.setAdapter(mListAdapter);
-            // ListView的 ItemClick 由 ListWorker 转发
-            mMenuListview.setOnItemClickListener(mListWorker);
-        } else {
-            mListWorker.setData(sortedMap);
-            mListAdapter.notifyDataSetChanged();
-        }
     }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener(){

@@ -1,10 +1,5 @@
 package com.happydinner.ui.Order;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedMap;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,13 +12,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.OrderRightFragAdapter;
 import com.happydinner.ui.listworker.MenuListWorker;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.SortedMap;
 
 /**
  * Created by lihb on 15/5/21.
@@ -38,7 +37,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
 
     private static List<Menu> orderMenuList;
 
-    private static SortedMap sortedMap;
+    private static SortedMap<Integer, List<Menu>> sortedMap;
 
     private static RefreshLeftFragListener mRefreshLeftFragListener;
 
@@ -55,7 +54,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sortedMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allMenuList");
+        sortedMap = (SortedMap<Integer, List<Menu>>) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allMenuList");
         //构造viewpager的标题
         Iterator it = sortedMap.keySet().iterator();
         titleList = new ArrayList<String>();
@@ -168,7 +167,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
             View view = inflater.inflate(R.layout.order_right_frag_pager_list, null);
             orderRightLv = (ListView) view.findViewById(R.id.order_right_lv);
             mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
-            List<Menu> tmpList = (List<Menu>) sortedMap.get(num + 1);
+            List<Menu> tmpList = sortedMap.get(num + 1);
 
             mAdapter = new OrderRightFragAdapter(getActivity(), new AdapterCallBack());
 //            mAdapter.setData(mOrder.getMenuList());
