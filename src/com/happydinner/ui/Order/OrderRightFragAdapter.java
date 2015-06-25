@@ -1,7 +1,4 @@
-package com.happydinner.ui;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.happydinner.ui.Order;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 import com.happydinner.activity.R;
 import com.happydinner.entitiy.Menu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderRightFragAdapter extends BaseAdapter {
 

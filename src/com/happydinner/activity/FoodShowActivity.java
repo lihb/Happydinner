@@ -2,6 +2,9 @@ package com.happydinner.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -9,21 +12,20 @@ import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.base.ApplicationEx;
-import com.happydinner.base.BaseActivity;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
+import com.happydinner.ui.VideoPlayerFragment;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
 
-import java.io.*;
 import java.util.*;
 
 /**
  * Created by lihb on 15/5/16.
  */
-public class FoodShowActivity extends BaseActivity {
+public class FoodShowActivity extends FragmentActivity {
     @InjectView(R.id.menu_listview)
     ListView mMenuListview;
 
@@ -53,6 +55,7 @@ public class FoodShowActivity extends BaseActivity {
 
     @InjectView(R.id.desc_menu_count_ll)
     LinearLayout descMenuCountLl;
+
     @InjectView(R.id.video_info_tv)
     TextView videoInfoTv;
 
@@ -68,6 +71,10 @@ public class FoodShowActivity extends BaseActivity {
 
     private View mExpandedView;
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    VideoPlayerFragment videoPlayerFragment;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 去除title
@@ -79,6 +86,7 @@ public class FoodShowActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
         ButterKnife.inject(this);
+        fragmentManager = getSupportFragmentManager();
         // 初始化界面
         initView();
 
@@ -205,6 +213,7 @@ public class FoodShowActivity extends BaseActivity {
         if (mExpandedView != null) {
             mExpandedView.setVisibility(View.GONE);
             mExpandedView = null;
+            videoPlayerFragment = null;
         } else {
             super.onBackPressed();
         }
@@ -224,6 +233,9 @@ public class FoodShowActivity extends BaseActivity {
         menuImageIv.setImageResource(R.drawable.image_2);
         descMenuCountConfirmTv.setText("" + (menu.count));
         menuDescTv.setText("菜品简介:" + menu.getInfo());
+
+        menu.setVideoUrl("http://download.cloud.189.cn/v5/downloadFile.action?downloadRequest=1_266BEB5F2F53474145C6EBE33E9A75D592251F2581CFE66ED934BC80674F070BA6790DA91C37DD2867779B6A435B6E040ED7928D6EFEB456A463C8E6238E8DA431473E7443FCC8025B64223A6700BF64EDD9FFDFEEA7447A59FC024F4CE7979319CFCCF6F79641E0E10945F7D23B60F7557901BF94E0BF88DFACD44EF40A4A4D0E77B882");
+
         descMenuCountAddTv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -250,12 +262,23 @@ public class FoodShowActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FoodShowActivity.this, VideoPlayer2Activity.class);
                 intent.putExtra("fileName", menu.getName());
-                menu.setVideoUrl("http://download.cloud.189.cn/v5/downloadFile.action?downloadRequest=1_266BEB5F2F53474145C6EBE33E9A75D592251F2581CFE66ED934BC80674F070BA6790DA91C37DD2867779B6A435B6E040ED7928D6EFEB456A463C8E6238E8DA431473E7443FCC8025B64223A6700BF64EDD9FFDFEEA7447A59FC024F4CE7979319CFCCF6F79641E0E10945F7D23B60F7557901BF94E0BF88DFACD44EF40A4A4D0E77B882");
                 intent.putExtra("videoUrl", menu.getVideoUrl());
                 startActivity(intent);
 
             }
         });
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        videoPlayerFragment = (VideoPlayerFragment) fragmentManager.findFragmentByTag("videoPlayerFragment");
+        if (videoPlayerFragment == null) {
+            videoPlayerFragment = new VideoPlayerFragment();
+            Bundle args = new Bundle();
+            args.putString("videoUrl", menu.getVideoUrl());
+            videoPlayerFragment.setArguments(args);
+        }
+
+        fragmentTransaction.replace(R.id.menu_video_frag_ll, videoPlayerFragment, "videoPlayerFragment");
+        fragmentTransaction.commit();
 
         // thumbView.setAlpha(0f); //不透明消失
         // 显示详情菜单，右侧确认按钮隐藏，只显示返回按钮
@@ -306,31 +329,6 @@ public class FoodShowActivity extends BaseActivity {
             zoomViewFromMain(menu);
 
         }
-    }
-
-    /**
-     * //执行序列化和反序列化 进行深度拷贝
-     * 
-     * @param src
-     * @return
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    public Order deepCopy(Order src) {
-        ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-        ObjectOutputStream out = null;
-        ObjectInputStream in = null;
-        Order dest = null;
-        try {
-            out = new ObjectOutputStream(byteOut);
-            out.writeObject(src);
-            ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
-            in = new ObjectInputStream(byteIn);
-            dest = (Order) in.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return dest;
     }
 
 }

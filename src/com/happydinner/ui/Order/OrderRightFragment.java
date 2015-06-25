@@ -16,7 +16,6 @@ import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
-import com.happydinner.ui.OrderRightFragAdapter;
 import com.happydinner.ui.listworker.MenuListWorker;
 
 import java.util.ArrayList;

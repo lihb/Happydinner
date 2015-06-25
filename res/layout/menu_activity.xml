@@ -131,12 +131,15 @@
 
 
             </RelativeLayout>
-            <VideoView
-                    android:id="@+id/menu_video_info_vv"
+            <LinearLayout
+                    android:id="@+id/menu_video_frag_ll"
                     android:layout_below="@id/menu_info_rl"
                     android:gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"/>
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    >
+            </LinearLayout>
 
     </RelativeLayout>
 
