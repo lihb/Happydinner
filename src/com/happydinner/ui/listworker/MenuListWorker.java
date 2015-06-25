@@ -199,6 +199,7 @@ public class MenuListWorker extends AbstractListWorker {
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuMateriasTxt(i).setText("原料：" + menu.getInfo());
                 menuViewHolder.getMenuPriceTxt(i).setText("售价：¥" + menu.getPrice());
+                // 添加到订单
                 menuViewHolder.getMenuToOrderTxt(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -207,7 +208,17 @@ public class MenuListWorker extends AbstractListWorker {
                         }
                     }
                 });
+                // 点击详情按钮查看详情
                 menuViewHolder.getMenuToDescTxt(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onGotoLookDesc(v, menu);
+                        }
+                    }
+                });
+                // 点击菜品图片查看详情
+                menuViewHolder.getMenuNameIv(i).setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
