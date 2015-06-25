@@ -1,5 +1,10 @@
 package com.happydinner.ui.Order;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.SortedMap;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,17 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.OrderRightFragAdapter;
 import com.happydinner.ui.listworker.MenuListWorker;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.SortedMap;
 
 /**
  * Created by lihb on 15/5/21.
@@ -194,6 +195,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         public void onAddMenuClicked(Object itemData) {
             Menu menu = (Menu) itemData;
             mOrder.addMenu(menu);
+            statePagerAdapter.notifyDataSetChanged();
             mRefreshLeftFragListener.changeDataToLeft(mOrder);
             mAdapter.notifyDataSetChanged();
 
@@ -203,6 +205,7 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         public void onSubMenuClicked(Object itemData) {
             Menu menu = (Menu) itemData;
             mOrder.delMenu(menu);
+            statePagerAdapter.notifyDataSetChanged();
             mRefreshLeftFragListener.changeDataToLeft(mOrder);
             mAdapter.notifyDataSetChanged();
         }
