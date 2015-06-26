@@ -171,22 +171,35 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         public void onClick(View v) {
             switch (v.getId()) {
             /* case R.id.video_playorpause: // 开始、暂停 doPauseResume(); break; */
-                case R.id.icon_video_play_iv:
-                    iconVideoPlayIv.setVisibility(View.GONE);
-                    mSurface.setVisibility(View.VISIBLE);
-                    mVideoPlayer.start();
-                    break;
-                case R.id.surfaceviewPlayer:
-                    iconVideoPlayIv.setVisibility(View.VISIBLE);
-                    mSurface.setVisibility(View.GONE);
-                    mVideoPlayer.stop();
-                    break;
+            /* case R.id.icon_video_play_iv: iconVideoPlayIv.setVisibility(View.GONE);
+             * mSurface.setVisibility(View.VISIBLE); mVideoPlayer.start(); break; case R.id.surfaceviewPlayer:
+             * iconVideoPlayIv.setVisibility(View.VISIBLE); mSurface.setVisibility(View.GONE); mVideoPlayer.stop();
+             * break; */
                 default:
                     break;
             }
 
         }
     };
+
+    /**
+     * 关闭视频，恢复到初始状态
+     * 
+     * @param showImg
+     */
+    public void toggeleUIShow(boolean showImg) {
+        if (showImg) {
+            iconVideoPlayIv.setVisibility(View.VISIBLE);
+            mSurface.setVisibility(View.GONE);
+            mVideoPlayer.stop();
+        } else {
+            iconVideoPlayIv.setVisibility(View.GONE);
+            mSurface.setVisibility(View.VISIBLE);
+            requestAudioFocus();
+            mVideoPlayer.start();
+        }
+
+    }
 
     private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
         @Override
@@ -517,7 +530,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         ButterKnife.reset(this);
         if (mVideoPlayer != null) {
             mVideoPlayer.stop();
-            mVideoPlayer.release();
         }
     }
 
@@ -641,15 +653,9 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             if (iconVideoPlayIv.getVisibility() == View.VISIBLE) {
-                iconVideoPlayIv.setVisibility(View.GONE);
-                mSurface.setVisibility(View.VISIBLE);
-                mSurface.requestFocus();
-                mVideoPlayer.start();
+                toggeleUIShow(false);
             } else {
-                iconVideoPlayIv.setVisibility(View.VISIBLE);
-                mSurface.setVisibility(View.GONE);
-                mVideoPlayer.stop();
-
+                toggeleUIShow(true);
             }
             return super.onSingleTapConfirmed(e);
         }

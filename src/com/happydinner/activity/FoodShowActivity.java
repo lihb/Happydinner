@@ -213,6 +213,7 @@ public class FoodShowActivity extends FragmentActivity {
     public void onBackPressed() {
         if (mExpandedView != null) {
             mExpandedView.setVisibility(View.GONE);
+            videoPlayerFragment.toggeleUIShow(true);
             videoPlayerFragment = null;
             mExpandedView = null;
         } else {
