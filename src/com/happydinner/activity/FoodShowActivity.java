@@ -1,5 +1,7 @@
 package com.happydinner.activity;
 
+import java.util.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
@@ -19,8 +22,6 @@ import com.happydinner.ui.VideoPlayerFragment;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
-
-import java.util.*;
 
 /**
  * Created by lihb on 15/5/16.
@@ -212,14 +213,13 @@ public class FoodShowActivity extends FragmentActivity {
     public void onBackPressed() {
         if (mExpandedView != null) {
             mExpandedView.setVisibility(View.GONE);
-            mExpandedView = null;
             videoPlayerFragment = null;
+            mExpandedView = null;
         } else {
             super.onBackPressed();
         }
 
     }
-
     /**
      * 详情菜单页面
      *

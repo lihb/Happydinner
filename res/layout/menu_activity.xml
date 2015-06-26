@@ -43,14 +43,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                 android:layout_below="@id/menu_title_tv"
-                    android:background="@color/background"
-                    android:gravity="center"
+                android:background="@color/background"
                 >
-                    <ImageView
-                            android:id="@+id/menu_image_iv"
-                            android:layout_width="@dimen/cover_width"
-                            android:layout_height="@dimen/cover_height"
-                            android:src="@drawable/image_2"
+                <ImageView
+                        android:id="@+id/menu_image_iv"
+                        android:layout_width="@dimen/cover_width"
+                        android:layout_height="@dimen/cover_height"
+                        android:src="@drawable/image_2"
                     />
 
             <TextView
@@ -75,47 +74,47 @@
                     android:textColor="@color/white"
                     android:text="加入订单："
                     />
-                    <LinearLayout
-                            android:id="@+id/desc_menu_count_ll"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_below="@id/menu_add_to_order_tv_desc"
-                            android:layout_toRightOf="@id/menu_image_iv"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginLeft="20dp"
-                            >
-                            <TextView
-                                    android:id="@+id/desc_menu_count_sub_tv"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:gravity="center"
-                                    android:textSize="15dp"
-                                    android:background="@drawable/icon_button"
-                                    android:textColor="@color/blue_light"
-                                    android:text=" － "
-                                    />
-                            <TextView
-                                    android:id="@+id/desc_menu_count_confirm_tv"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:gravity="center"
-                                    android:textSize="13dp"
-                                    android:textColor="@color/blue_light"
-                                    android:text="  0 "
-                                    />
-                            <TextView
-                                    android:id="@+id/desc_menu_count_add_tv"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:gravity="center"
-                                    android:textSize="15dp"
-                                    android:background="@drawable/icon_button"
-                                    android:textColor="@color/blue_light"
-                                    android:text=" ＋ "
-                                    />
+                <LinearLayout
+                        android:id="@+id/desc_menu_count_ll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@id/menu_add_to_order_tv_desc"
+                        android:layout_toRightOf="@id/menu_image_iv"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        >
+                        <TextView
+                                android:id="@+id/desc_menu_count_sub_tv"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:textSize="15dp"
+                                android:background="@drawable/icon_button"
+                                android:textColor="@color/blue_light"
+                                android:text=" － "
+                                />
+                        <TextView
+                                android:id="@+id/desc_menu_count_confirm_tv"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:textSize="13dp"
+                                android:textColor="@color/blue_light"
+                                android:text="  0 "
+                                />
+                        <TextView
+                                android:id="@+id/desc_menu_count_add_tv"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:textSize="15dp"
+                                android:background="@drawable/icon_button"
+                                android:textColor="@color/blue_light"
+                                android:text=" ＋ "
+                                />
 
-                    </LinearLayout>
+            </LinearLayout>
             <TextView
                     android:id="@+id/video_info_tv"
                     android:layout_width="wrap_content"
@@ -130,11 +129,11 @@
                     android:text="视频介绍"/>
 
 
-            </RelativeLayout>
+        </RelativeLayout>
             <LinearLayout
                     android:id="@+id/menu_video_frag_ll"
                     android:layout_below="@id/menu_info_rl"
-                    android:gravity="center"
+                    android:layout_marginTop="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:orientation="vertical"

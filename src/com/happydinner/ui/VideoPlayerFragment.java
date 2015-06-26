@@ -1,5 +1,9 @@
 package com.happydinner.ui;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,16 +18,13 @@ import android.view.*;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.services.IVideoPlayer;
 import com.happydinner.services.SystemMediaPlayer;
 import com.happydinner.util.CommonUtils;
 import com.happydinner.util.DLog;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
 
 /**
  * Created by lihb on 15/6/25.
@@ -44,9 +45,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
 
     private static final int GESTURE_MODIFY_VOLUME = 2;
 
-    @InjectView(R.id.tv_video_close)
-    TextView mTvVideoClose;
-
     @InjectView(R.id.video_playorpause)
     ImageView mPlayorPause;
 
@@ -59,9 +57,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
     @InjectView(R.id.surfaceFramePlayer)
     FrameLayout mSurfaceFrame;
 
-   /* @InjectView(R.id.video_file_txt)
-    TextView mFileNameTv;*/
-
     @InjectView(R.id.vodeo_hasplayedtime_txt)
     TextView mCurrentTime;
 
@@ -69,10 +64,13 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
     TextView mEndTime;
 
     @InjectView(R.id.video_top_control)
-    RelativeLayout mTopControl;
+    RelativeLayout mTopController;
 
     @InjectView(R.id.video_bottom_control)
     LinearLayout mBottomControl;
+
+    @InjectView(R.id.icon_video_play_iv)
+    ImageView iconVideoPlayIv;
 
     private AudioManager mAudioMgr;
 
@@ -103,10 +101,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
 
     private String mVideoUrl; //播放地址
 
-    /**
-     * 视频名字
-     */
-    private String mFileNameStr = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -135,23 +129,13 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
+
 
     private void initView() {
-/*
-        mFileNameStr = getArguments().getString("fileName");
-        mFileNameTv.setText(mFileNameStr);*/
 
-        mTvVideoClose.setOnClickListener(mOnClickListener);
         mPlayorPause.setOnClickListener(mOnClickListener);
 
         mSurfaceHolder = mSurface.getHolder();
-
-
         mSurfaceFrame.setDrawingCacheEnabled(false);
 
         // video player
@@ -164,12 +148,15 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         mVideoPlayer.setOnCompletionListener(this);
         mVideoPlayer.setOnErrorListener(this);
 
-        mSurface.setOnClickListener(mOnClickListener);
-        mSurfaceFrame.setOnClickListener(mOnClickListener);
+        // mSurface.setOnClickListener(mOnClickListener);
+        // mSurfaceFrame.setOnClickListener(mOnClickListener);
 
         mSurfaceFrame.setOnTouchListener(mOnTouchListener);
         mSurface.setLongClickable(true);
         mSurfaceFrame.setLongClickable(true);
+
+        mTopController.setVisibility(View.GONE);
+        mBottomControl.setVisibility(View.GONE);
 
         mCurrenctSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 
@@ -183,11 +170,16 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.tv_video_close: // 关闭
-                    mVideoPlayer.stop();
+            /* case R.id.video_playorpause: // 开始、暂停 doPauseResume(); break; */
+                case R.id.icon_video_play_iv:
+                    iconVideoPlayIv.setVisibility(View.GONE);
+                    mSurface.setVisibility(View.VISIBLE);
+                    mVideoPlayer.start();
                     break;
-                case R.id.video_playorpause: // 开始、暂停
-                    doPauseResume();
+                case R.id.surfaceviewPlayer:
+                    iconVideoPlayIv.setVisibility(View.VISIBLE);
+                    mSurface.setVisibility(View.GONE);
+                    mVideoPlayer.stop();
                     break;
                 default:
                     break;
@@ -306,7 +298,7 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
         int videoWidth = videoPlayer.getVideoWidth();
         int videoHeight = videoPlayer.getVideoHeight();
         if (videoHeight != 0 && videoWidth != 0) {
-            videoPlayer.start();
+            // videoPlayer.start();
         }
     }
 
@@ -358,8 +350,8 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
     @Override
     public void onResume() {
         super.onResume();
-        mSurface.requestFocus();
-        start();
+        /*
+         * mSurface.requestFocus(); start(); */
         showControllerView(sDefaultTimeout);
     }
 
@@ -393,12 +385,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
             if (mPlayorPause != null) {
                 mPlayorPause.requestFocus();
             }
-            if (mTopControl != null) {
-                mTopControl.setVisibility(View.VISIBLE);
-            }
-            if (mBottomControl != null) {
-                mBottomControl.setVisibility(View.VISIBLE);
-            }
             mShowing = true;
         }
         updatePausePlay(isPlaying());
@@ -421,10 +407,6 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
      */
     private void hideControllerView() {
         if (mShowing) {
-            if (mTopControl != null || mBottomControl != null) {
-                mTopControl.setVisibility(View.GONE);
-                mBottomControl.setVisibility(View.GONE);
-            }
             mHandler.removeMessages(SHOW_PROGRESS);
             mShowing = false;
         }
@@ -530,12 +512,19 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
         if (mVideoPlayer != null) {
+            mVideoPlayer.stop();
             mVideoPlayer.release();
-            mVideoPlayer = null;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+
+        super.onDestroy();
         dialog = null;
     }
 
@@ -625,9 +614,7 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
                     DLog.i(TAG, "focusChange------>>" + focusChange);
                     if (focusChange == AudioManager.AUDIOFOCUS_LOSS || focusChange == AudioManager.AUDIOFOCUS_LOSS) {
                         DLog.i(TAG, "audio focus loss");
-                        if (isPlaying()) {
-                            pause();
-                        }
+                        /* if (isPlaying()) { pause(); } */
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                         DLog.i(TAG, "audio focus gain");
                     }
@@ -653,7 +640,17 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
          */
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
-            toggleControlsVisiblity();
+            if (iconVideoPlayIv.getVisibility() == View.VISIBLE) {
+                iconVideoPlayIv.setVisibility(View.GONE);
+                mSurface.setVisibility(View.VISIBLE);
+                mSurface.requestFocus();
+                mVideoPlayer.start();
+            } else {
+                iconVideoPlayIv.setVisibility(View.VISIBLE);
+                mSurface.setVisibility(View.GONE);
+                mVideoPlayer.stop();
+
+            }
             return super.onSingleTapConfirmed(e);
         }
 
