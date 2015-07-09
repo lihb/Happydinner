@@ -1,7 +1,5 @@
 package com.happydinner.activity;
 
-import java.util.*;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -13,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
@@ -22,6 +19,11 @@ import com.happydinner.ui.VideoPlayerFragment;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.util.CommonUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.UUID;
 
 /**
  * Created by lihb on 15/5/16.
@@ -93,10 +95,10 @@ public class FoodShowActivity extends FragmentActivity {
 
         // 获取菜品数据
         sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
-        if (sortedMap == null) {
+       /* if (sortedMap == null) {
             sortedMap = new TreeMap<Integer, List<Menu>>();
             initData();
-        }
+        }*/
 
         //获取订单数据
         mOrder = (Order) ((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
@@ -133,53 +135,6 @@ public class FoodShowActivity extends FragmentActivity {
 
     }
 
-    private void initData() {
-        Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1);
-        Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1);
-        Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
-        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
-        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2);
-        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, 3);
-        List<Menu> menuList = new ArrayList<Menu>();
-        menuList.add(meatMenu);
-        menuList.add(lurouMenu);
-        menuList.add(luosiMenu);
-        menuList.add(fishMenu);
-        menuList.add(chickMenu);
-        menuList.add(duckMenu);
-
-        /**
-         * 比较器：给menu按照type排序用
-         */
-        Comparator<Menu> comparator = new Comparator<Menu>(){
-            @Override
-            public int compare(Menu lhs, Menu rhs) {
-
-                return lhs.getType() - rhs.getType();
-            }
-        };
-        Collections.sort(menuList, comparator);
-
-        List<Menu> tmpList = new ArrayList<Menu>();
-
-        int oldKey = menuList.get(0).getType();
-
-        for (int i = 0; i < menuList.size(); i++) {
-            Menu menuItemData = menuList.get(i);
-            int newKey = menuItemData.getType();
-            if (newKey == oldKey) {
-                tmpList.add(menuItemData);
-            } else {
-                sortedMap.put(oldKey, tmpList);
-                tmpList = new ArrayList<Menu>();
-                tmpList.add(menuItemData);
-                oldKey = newKey;
-            }
-        }
-        sortedMap.put(oldKey, tmpList); // 处理最后一组数据
-
-        ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMap);
-    }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener(){
         @Override

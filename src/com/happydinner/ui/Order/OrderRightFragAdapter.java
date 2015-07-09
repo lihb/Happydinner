@@ -8,6 +8,7 @@ import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.activity.R;
+import com.happydinner.activity.VideoListActivity;
 import com.happydinner.entitiy.Menu;
 
 import java.util.ArrayList;
@@ -21,9 +22,12 @@ public class OrderRightFragAdapter extends BaseAdapter {
 
     private OrderRightFragListener mOrderRightFragListener;
 
-    public OrderRightFragAdapter(Context context, OrderRightFragListener onOrderRightFragListener){
+    private int fromWhichActivity;
+
+    public OrderRightFragAdapter(Context context, OrderRightFragListener onOrderRightFragListener, int flag) {
         mContext = context;
         mOrderRightFragListener = onOrderRightFragListener;
+        fromWhichActivity = flag;
     }
 
     public void setData(List<Menu> data) {
@@ -60,10 +64,25 @@ public class OrderRightFragAdapter extends BaseAdapter {
         final ViewHolder holder = (ViewHolder) rowView.getTag();
         final Menu menu = mData.get(position);
 
+        rowView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOrderRightFragListener != null) {
+                    mOrderRightFragListener.onItemClicked(menu);
+                }
+            }
+        });
+
         holder.orderMenuNameTv.setText(menu.getName());
         // todo 设置菜品图片
         holder.orderMenuMateriasTv.setText(menu.getInfo());
         holder.orderMenuPriceTv1.setText("" + menu.getPrice());
+
+        // 视频界面则隐藏加减数字按钮
+        if (fromWhichActivity == VideoListActivity.VIDEOLISTACTIVITY) {
+            holder.orderMenuCountLl.setVisibility(View.GONE);
+        }
+
         holder.menuCountConfirmTv1.setText("" + menu.count);
 
         holder.menuCountSubTv1.setOnClickListener(new View.OnClickListener(){
@@ -92,7 +111,7 @@ public class OrderRightFragAdapter extends BaseAdapter {
         /**
          * 当条目选中状态改变时调用
          */
-        void onItemClicked(int index);
+        void onItemClicked(Object itemData);
 
         /**
          * 加菜

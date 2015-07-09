@@ -8,36 +8,21 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.happydinner.entitiy.Order;
-import com.happydinner.ui.Order.OrderLeftFragment;
 import com.happydinner.ui.Order.OrderRightFragment;
 import com.happydinner.ui.widget.HeadView;
 
 /**
- * 类说明：
- *
- * @author Administrator
- * @version 1.0
- * @date 2015/5/20
+ * Created by lihb on 15/7/9.
  */
+public class VideoListActivity extends FragmentActivity implements OrderRightFragment.RefreshLeftFragListener {
 
-public class OrderShowActivity extends FragmentActivity implements OrderRightFragment.RefreshLeftFragListener {
+    private HeadView headView;
 
-    /**
-     * 左侧结算fragment
-     */
-    private OrderLeftFragment mOrderLeftFragment;
-
-    /**
-     * 右侧展示菜品fragment
-     */
     private OrderRightFragment mOrderRightFragment;
 
     private FragmentManager fragmentManager;
 
-    private HeadView headView;
-
-    public static final int ORDERSHOWACTIVITY = 2000;
-
+    public static final int VIDEOLISTACTIVITY = 1000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,24 +31,32 @@ public class OrderShowActivity extends FragmentActivity implements OrderRightFra
         // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
-        headView = new HeadView(this);
+        setContentView(R.layout.activity_videolist);
+        initView();
         fragmentManager = getSupportFragmentManager();
         initFragment();
 
+    }
+
+    private void initView() {
+        headView = new HeadView(this);
         headView.h_left_tv.setText("返回");
-        headView.h_title.setText("自助下单");
+        headView.h_title.setText("菜品视频列表");
+        headView.h_right_tv_llyt.setVisibility(View.VISIBLE);
+        headView.h_right_tv.setText("");
+        headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
                 case R.id.head_left_rlyt:
-                    OrderShowActivity.this.finish();
+                    finish();
                     break;
+
                 default:
                     break;
             }
@@ -73,33 +66,23 @@ public class OrderShowActivity extends FragmentActivity implements OrderRightFra
     private void initFragment() {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        boolean leftneedAdd = false;
         boolean rightneedAdd = false;
 
-        String rightTag = createFragmentTag(R.id.order_right_frg);
+        String rightTag = createFragmentTag(R.id.video_list_frag);
         mOrderRightFragment = (OrderRightFragment) fragmentManager.findFragmentByTag(rightTag);
         if (mOrderRightFragment == null) {
             rightneedAdd = true;
             mOrderRightFragment = new OrderRightFragment();
             Bundle args = new Bundle();
-            args.putInt(OrderRightFragment.ORDERRIGHTFRAGMENT, ORDERSHOWACTIVITY);
+            args.putInt(OrderRightFragment.ORDERRIGHTFRAGMENT, VIDEOLISTACTIVITY);
             mOrderRightFragment.setArguments(args);
         }
 
-        String leftTag = createFragmentTag(R.id.order_left_frg);
-        mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentByTag(leftTag);
-        if (mOrderLeftFragment == null) {
-            leftneedAdd = true;
-            mOrderLeftFragment = new OrderLeftFragment();
+        if (rightneedAdd) {
+            fragmentTransaction.replace(R.id.video_list_frag, mOrderRightFragment, rightTag);
         }
 
         if (rightneedAdd) {
-            fragmentTransaction.replace(R.id.order_right_frg, mOrderRightFragment, rightTag);
-        }
-        if (leftneedAdd) {
-            fragmentTransaction.replace(R.id.order_left_frg, mOrderLeftFragment, leftTag);
-        }
-        if (rightneedAdd || leftneedAdd) {
             fragmentTransaction.commit();
         }
 
@@ -111,7 +94,6 @@ public class OrderShowActivity extends FragmentActivity implements OrderRightFra
 
     @Override
     public void changeDataToLeft(Order order) {
-        mOrderLeftFragment = (OrderLeftFragment) fragmentManager.findFragmentById(R.id.order_left_frg);
-        mOrderLeftFragment.refresh(order);
+
     }
 }

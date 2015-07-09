@@ -1,6 +1,8 @@
 package com.happydinner.ui.Order;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import com.happydinner.activity.R;
+import com.happydinner.activity.VideoListActivity;
+import com.happydinner.activity.VideoPlayer2Activity;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
@@ -50,6 +54,12 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
 
     private List<String> titleList;
 
+    private static int flagToAdapter;
+
+    public static final String ORDERRIGHTFRAGMENT = "OrderRightFragment";
+
+    private static Context mContext;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +80,8 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
             }
         }
         NUM_ITEMS = titleList.size();
+        mContext = getActivity();
+        flagToAdapter = getArguments().getInt(ORDERRIGHTFRAGMENT);
     }
 
     @Nullable
@@ -168,7 +180,8 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
             mOrder = (Order) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("order");
             List<Menu> tmpList = sortedMap.get(num + 1);
 
-            mAdapter = new OrderRightFragAdapter(getActivity(), new AdapterCallBack());
+
+            mAdapter = new OrderRightFragAdapter(getActivity(), new AdapterCallBack(), flagToAdapter);
 //            mAdapter.setData(mOrder.getMenuList());
             mAdapter.setData(tmpList);
             orderRightLv.setAdapter(mAdapter);
@@ -185,7 +198,15 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
     public static class AdapterCallBack implements OrderRightFragAdapter.OrderRightFragListener {
 
         @Override
-        public void onItemClicked(int index) {
+        public void onItemClicked(Object itemData) {
+            if (flagToAdapter == VideoListActivity.VIDEOLISTACTIVITY) {
+                Menu menu = (Menu) itemData;
+                Intent intent = new Intent(mContext, VideoPlayer2Activity.class);
+                menu.setVideoUrl("http://download.cloud.189.cn/v5/downloadFile.action?downloadRequest=1_266BEB5F2F53474145C6EBE33E9A75D592251F2581CFE66ED934BC80674F070BA6790DA91C37DD2867779B6A435B6E040ED7928D6EFEB456A463C8E6238E8DA431473E7443FCC8025B64223A6700BF64EDD9FFDFEEA7447A59FC024F4CE7979319CFCCF6F79641E0E10945F7D23B60F7557901BF94E0BF88DFACD44EF40A4A4D0E77B882");
+                intent.putExtra("videoUrl", menu.getVideoUrl());
+                intent.putExtra("fileName", menu.getName());
+                mContext.startActivity(intent);
+            }
 
         }
 

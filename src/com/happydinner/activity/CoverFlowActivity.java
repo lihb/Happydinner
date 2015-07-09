@@ -16,10 +16,11 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.entitiy.GameEntity;
+import com.happydinner.entitiy.Menu;
 import com.happydinner.ui.CoverFlowAdapter;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
-import java.util.ArrayList;
+import java.util.*;
 
 
 public class CoverFlowActivity extends ActionBarActivity {
@@ -28,7 +29,7 @@ public class CoverFlowActivity extends ActionBarActivity {
     private CoverFlowAdapter mAdapter;
     private ArrayList<GameEntity> mData = new ArrayList<GameEntity>(0);
     private TextSwitcher mTitle;
-
+    private SortedMap<Integer, List<Menu>> sortedMap;
 
 
     @Override
@@ -72,6 +73,9 @@ public class CoverFlowActivity extends ActionBarActivity {
                 if (index == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, FoodShowActivity.class);
                     startActivity(intent);
+                } else if (index == 0) {
+                    Intent intent = new Intent(CoverFlowActivity.this, VideoListActivity.class);
+                    startActivity(intent);
                 }
 
             }
@@ -89,7 +93,60 @@ public class CoverFlowActivity extends ActionBarActivity {
             }
         });
 
+        // 获取菜品数据
+        sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
+        if (sortedMap == null) {
+            sortedMap = new TreeMap<Integer, List<Menu>>();
+            initData();
+        }
+    }
 
+    private void initData() {
+        Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1);
+        Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1);
+        Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
+        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
+        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2);
+        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, 3);
+        List<Menu> menuList = new ArrayList<Menu>();
+        menuList.add(meatMenu);
+        menuList.add(lurouMenu);
+        menuList.add(luosiMenu);
+        menuList.add(fishMenu);
+        menuList.add(chickMenu);
+        menuList.add(duckMenu);
+
+        /**
+         * 比较器：给menu按照type排序用
+         */
+        Comparator<Menu> comparator = new Comparator<Menu>() {
+            @Override
+            public int compare(Menu lhs, Menu rhs) {
+
+                return lhs.getType() - rhs.getType();
+            }
+        };
+        Collections.sort(menuList, comparator);
+
+        List<Menu> tmpList = new ArrayList<Menu>();
+
+        int oldKey = menuList.get(0).getType();
+
+        for (int i = 0; i < menuList.size(); i++) {
+            Menu menuItemData = menuList.get(i);
+            int newKey = menuItemData.getType();
+            if (newKey == oldKey) {
+                tmpList.add(menuItemData);
+            } else {
+                sortedMap.put(oldKey, tmpList);
+                tmpList = new ArrayList<Menu>();
+                tmpList.add(menuItemData);
+                oldKey = newKey;
+            }
+        }
+        sortedMap.put(oldKey, tmpList); // 处理最后一组数据
+
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMap);
     }
 
     @Override

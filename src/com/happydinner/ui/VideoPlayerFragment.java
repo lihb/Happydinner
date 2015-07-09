@@ -1,9 +1,5 @@
 package com.happydinner.ui;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
@@ -18,13 +14,16 @@ import android.view.*;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.services.IVideoPlayer;
 import com.happydinner.services.SystemMediaPlayer;
 import com.happydinner.util.CommonUtils;
 import com.happydinner.util.DLog;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by lihb on 15/6/25.
@@ -157,6 +156,8 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
 
         mTopController.setVisibility(View.GONE);
         mBottomControl.setVisibility(View.GONE);
+
+        iconVideoPlayIv.setVisibility(View.VISIBLE);
 
         mCurrenctSeekBar.setOnSeekBarChangeListener(mOnSeekBarChangeListener);
 

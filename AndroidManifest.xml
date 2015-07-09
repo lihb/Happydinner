@@ -31,6 +31,8 @@
                   android:screenOrientation="landscape"/>
         <activity android:name="com.happydinner.activity.VideoPlayer2Activity"
                   android:screenOrientation="landscape"/>
+        <activity android:name="com.happydinner.activity.VideoListActivity"
+                  android:screenOrientation="landscape"/>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
