@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:id="@+id/linearlayout_drink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            >
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/drink_selector"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textSize="25dp"
+                android:text="饮料"
+                android:textColor="#FFFFFF"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/linearlayout_snack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearlayout_drink"
+            android:gravity="center"
+            >
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/snack_selector"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textSize="25dp"
+                android:text="小吃"
+                android:textColor="#FFFFFF"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/linearlayout_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearlayout_snack"
+            android:gravity="center"
+            >
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/pri_food_selector"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textSize="25dp"
+                android:text="主食"
+                android:textColor="#FFFFFF"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/linearlayout_setmeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearlayout_food"
+            >
+
+        <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/set_meal_selector"
+                />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textSize="25dp"
+                android:text="套餐"
+                android:textColor="#FFFFFF"
+                />
+    </LinearLayout>
+
+
+</RelativeLayout>

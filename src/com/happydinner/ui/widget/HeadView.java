@@ -42,7 +42,7 @@ public class HeadView {
 
     public TextView h_left_tv;
 
-    public ImageView arrowImgv;
+    public ImageView h_title_img;
 
     public HeadView(Activity act){
         init(act);
@@ -58,6 +58,7 @@ public class HeadView {
         h_header = (LinearLayout) act.findViewById(R.id.cloud_head);
         h_left_rlyt = (RelativeLayout) act.findViewById(R.id.head_left_rlyt);
         h_left = (ImageView) act.findViewById(R.id.head_left);
+        h_title_img = (ImageView) act.findViewById(R.id.head_title_img);
 //        h_tab_llyt = (LinearLayout) act.findViewById(R.id.head_tab_llyt);
 //        h_right = (ImageView) act.findViewById(R.id.head_right);
 //        h_right_bg = (ImageView) act.findViewById(R.id.head_right_bg);
@@ -73,9 +74,7 @@ public class HeadView {
 //        h_more_rlyt = (FrameLayout) act.findViewById(R.id.head_right_flyt);
         h_right_tv_llyt = (LinearLayout) act.findViewById(R.id.head_right_tv_layout);
         h_right_tv = (TextView) act.findViewById(R.id.head_right_tv);
-        
-//        arrowImgv = (ImageView) act.findViewById(R.id.head_title_arrow);
-                        
+
     }
 
     private void init(View contentView) {
@@ -84,6 +83,7 @@ public class HeadView {
         h_header = (LinearLayout) contentView.findViewById(R.id.cloud_head);
         h_left_rlyt = (RelativeLayout) contentView.findViewById(R.id.head_left_rlyt);
         h_left = (ImageView) contentView.findViewById(R.id.head_left);
+        h_title_img = (ImageView) contentView.findViewById(R.id.head_title_img);
 //        h_tab_llyt = (LinearLayout) contentView.findViewById(R.id.head_tab_llyt);
 //        h_right = (ImageView) contentView.findViewById(R.id.head_right);
 //        h_right_bg = (ImageView) contentView.findViewById(R.id.head_right_bg);
@@ -100,7 +100,6 @@ public class HeadView {
         h_right_tv_llyt = (LinearLayout) contentView.findViewById(R.id.head_right_tv_layout);
         h_right_tv = (TextView) contentView.findViewById(R.id.head_right_tv);
         
-//        arrowImgv = (ImageView) contentView.findViewById(R.id.head_title_arrow);
     }
 
     public void setHeadBgColor(int color) {

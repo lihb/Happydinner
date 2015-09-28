@@ -36,6 +36,8 @@ public class Menu implements Parcelable, Cloneable{
     // 该菜品被点了几份
     public int count = 0 ;
 
+    public String restaurantName;
+
     public Menu(String name) {
         this.name = name;
     }
@@ -86,7 +88,7 @@ public class Menu implements Parcelable, Cloneable{
         return result;
     }
 
-    public Menu(String name, String imgUrl, String videoUrl, float price, String info, float discount, int cooked, int type) {
+    public Menu(String name, String imgUrl, String videoUrl, float price, String info, float discount, int cooked, int type, String restaurantName) {
         this.name = name;
         this.imgUrl = imgUrl;
         this.videoUrl = videoUrl;
@@ -95,6 +97,7 @@ public class Menu implements Parcelable, Cloneable{
         this.discount = discount;
         this.cooked = cooked;
         this.type = type;
+        this.restaurantName = restaurantName;
     }
 
     /**
@@ -176,6 +179,14 @@ public class Menu implements Parcelable, Cloneable{
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     @Override

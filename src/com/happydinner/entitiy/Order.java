@@ -187,7 +187,7 @@ public class Order implements Parcelable {
         }
     };
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         ArrayList<Menu> dataList = new ArrayList<Menu>();
         Order order = new Order();
         order.setOrderId(UUID.randomUUID().toString());
@@ -200,5 +200,5 @@ public class Order implements Parcelable {
         order.addMenu(lurouMenu2);
         order.delMenu(lurouMenu);
         order.delMenu(lurouMenu2);
-    }
+    }*/
 }

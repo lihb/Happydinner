@@ -102,12 +102,12 @@ public class CoverFlowActivity extends ActionBarActivity {
     }
 
     private void initData() {
-        Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1);
-        Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1);
-        Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2);
-        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1);
-        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2);
-        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, 3);
+        Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, 1, "九毛九");
+        Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, 1, "土菜馆");
+        Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, 2, "九毛九");
+        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, 1,"黄鹤天厨");
+        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, 2, "老知青");
+        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, 3, "大丰收");
         List<Menu> menuList = new ArrayList<Menu>();
         menuList.add(meatMenu);
         menuList.add(lurouMenu);

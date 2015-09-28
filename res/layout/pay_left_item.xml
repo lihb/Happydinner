@@ -5,7 +5,6 @@
               android:layout_height="wrap_content"
               android:paddingLeft="12dp"
               android:paddingRight="12dp"
-              android:background="@color/background"
         >
     <ImageView
             android:id="@+id/pay_icon_iv"

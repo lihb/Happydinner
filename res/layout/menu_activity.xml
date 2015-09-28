@@ -3,7 +3,7 @@
                 android:id="@+id/menu_activity"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background"
+                android:background="@drawable/food_bg"
         >
     <include
             android:id="@+id/top_layout"
@@ -39,9 +39,9 @@
                 android:text="卤肉"
                 />
             <RelativeLayout
-                    android:id="@+id/menu_info_rl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                android:id="@+id/menu_info_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/menu_title_tv"
                 android:background="@color/background"
                 >

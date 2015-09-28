@@ -36,7 +36,7 @@ public class PayLeftFragment extends Fragment {
     private final int WECHAT = 1;
     private final int UNIONPAY = 2;
 
-    @InjectView(R.id.pay_left_lv)
+    @InjectView(R.id.left_lv)
     ListView mListView;
 
     private SimpleAdapter mAdapter;
@@ -58,17 +58,16 @@ public class PayLeftFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.pay_left_fragment, null);
+        View view = inflater.inflate(R.layout.left_fragment, null);
         ButterKnife.inject(this, view);
         initContentView(view);
-        initList();
         return view;
     }
 
 
     private void initContentView(View contentView) {
 
-        mListView = (ListView) contentView.findViewById(R.id.pay_left_lv);
+        mListView = (ListView) contentView.findViewById(R.id.left_lv);
         mListView.setHeaderDividersEnabled(false);
         mListView.setFooterDividersEnabled(false);
         mListView.setOnItemClickListener(mOnItemClickListener);
@@ -80,7 +79,7 @@ public class PayLeftFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             mTransaction = mFragmentManager.beginTransaction();
             payLeftFragment = new PayLeftFragment();
-            mTransaction.replace(R.id.pay_left_frag, payLeftFragment, "pay_left_frag");
+            mTransaction.replace(R.id.left_frag, payLeftFragment, "pay_left_frag");
             Intent intent = getActivity().getIntent();
             float price = intent.getFloatExtra("totalPrice", 0f);
             Bundle bundle = new Bundle();
@@ -89,16 +88,16 @@ public class PayLeftFragment extends Fragment {
 
                 payRightZhiFuBaoFragment = new PayRightZhiFuBaoFragment();
                 payRightZhiFuBaoFragment.setArguments(bundle);
-                mTransaction.replace(R.id.pay_right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
+                mTransaction.replace(R.id.right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
             } else if (id == WECHAT) {
                 payRightWeChatFragment = new PayRightWeChatFragment();
                 payRightWeChatFragment.setArguments(bundle);
-                mTransaction.replace(R.id.pay_right_frag, payRightWeChatFragment, "pay_right_wechat_frag");
+                mTransaction.replace(R.id.right_frag, payRightWeChatFragment, "pay_right_wechat_frag");
 
             } else if (id == UNIONPAY) {
                 payRightUnionPayFragment = new PayRightUnionPayFragment();
                 payRightUnionPayFragment.setArguments(bundle);
-                mTransaction.replace(R.id.pay_right_frag, payRightUnionPayFragment, "pay_right_unionpay_frag");
+                mTransaction.replace(R.id.right_frag, payRightUnionPayFragment, "pay_right_unionpay_frag");
             }
             mTransaction.commit();
 
@@ -106,36 +105,8 @@ public class PayLeftFragment extends Fragment {
         }
     };
 
-    private void initList() {
-        String[] strings = {"icon", "txt"};// image
-        int[] ids = {R.id.pay_icon_iv, R.id.pay_desc_tv};// 对应布局文件的id
-        mAdapter = new SimpleAdapter(getActivity(), getData(),
-                R.layout.pay_left_item, strings, ids);
-        mListView.setAdapter(mAdapter);// 绑定适配器
 
-    }
 
-    private List<HashMap<String, Object>> getData() {
-        // 新建一个集合类，用于存放多条数据
-        ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-        HashMap<String, Object> map = null;
-        map = new HashMap<String, Object>();
-        map.put("icon", R.drawable.icon_zhifubao_selector);
-        map.put("txt", "支付宝");
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("icon", R.drawable.icon_wechat_selector);
-        map.put("txt", "微信");
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("icon", R.drawable.icon_unionpay_selector);
-        map.put("txt", "银联快捷支付");
-        list.add(map);
-
-        return list;
-    }
 
     @Override
     public void onPause() {

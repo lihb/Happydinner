@@ -40,7 +40,7 @@ public class PayActivity extends BaseActivity {
         // 去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
+        setContentView(R.layout.activity_food_pay);
         initView();
         mFragmentManager = getFragmentManager();
         initFragment();
@@ -64,7 +64,7 @@ public class PayActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
-                case R.id.head_left_rlyt: // 如果详情页面打开，则按返回按钮是关闭详情页面
+                case R.id.head_left_rlyt:
                     finish();
                     break;
 
@@ -79,7 +79,7 @@ public class PayActivity extends BaseActivity {
 
         if (payLeftFragment == null) {
             payLeftFragment = new PayLeftFragment();
-            mTransaction.replace(R.id.pay_left_frag, payLeftFragment, "pay_left_frag");
+            mTransaction.replace(R.id.left_frag, payLeftFragment, "pay_left_frag");
         }
 
         if (payRightZhiFuBaoFragment == null) {
@@ -89,7 +89,7 @@ public class PayActivity extends BaseActivity {
             Bundle bundle = new Bundle();
             bundle.putFloat("price", price);
             payRightZhiFuBaoFragment.setArguments(bundle);
-            mTransaction.replace(R.id.pay_right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
+            mTransaction.replace(R.id.right_frag, payRightZhiFuBaoFragment, "pay_right_zhifubao_frag");
         }
         mTransaction.commit();
 
