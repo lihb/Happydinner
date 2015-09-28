@@ -283,7 +283,6 @@ public class FoodShowActivity extends FragmentActivity {
         public void onGotoLookDesc(View view, Object itemData) {
             Menu menu = (Menu) itemData;
             zoomViewFromMain(menu);
-
         }
     }
 
