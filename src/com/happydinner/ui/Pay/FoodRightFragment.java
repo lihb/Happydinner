@@ -7,13 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
+import com.happydinner.ui.widget.OrderShowView;
 import com.happydinner.ui.widget.ShoppingCartView;
 import com.happydinner.util.CommonUtils;
 
@@ -35,6 +36,10 @@ public class FoodRightFragment extends Fragment {
 
     private ShoppingCartView mShoppingCardView;
 
+    private OrderShowView mOrderShowView;
+
+    private RelativeLayout mOrderShowViewRelativeLayout;
+
     private ArrayList<Menu> mDataList;
 
     private MenuListWorker mListWorker;
@@ -55,6 +60,22 @@ public class FoodRightFragment extends Fragment {
         View view = inflater.inflate(R.layout.food_right_fragment, null);
         mListView = (ListView) view.findViewById(R.id.food_right_lv);
         mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
+        mOrderShowView = (OrderShowView) view.findViewById(R.id.order_show_view);
+        mOrderShowView.setActivity(getActivity());
+        mOrderShowView.initData();
+        mOrderShowViewRelativeLayout = (RelativeLayout) view.findViewById(R.id.order_show_view_relativeLayout);
+        mShoppingCardView.setOnClickListener(mOnClickListener);
+        mOrderShowView.setOnOrderViewListener(new OrderShowView.OnOrderViewListener() {
+            @Override
+            public void onBackToFoodFrag(Order order) {
+                if (mListWorker != null) {
+                    mListWorker.setData(mDataList);
+                    mListAdapter.notifyDataSetChanged();
+                }
+                mShoppingCardView.setTextCount(order.getSize());
+                mShoppingCardView.setTextPrice(CommonUtils.round(order.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+            }
+        });
         return view;
     }
 
@@ -86,13 +107,24 @@ public class FoodRightFragment extends Fragment {
         }
         mShoppingCardView.setTextCount(mOrder.getSize());
         mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+        mOrderShowView.setTextOrderCount(mOrder.getSize());
+        mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
     }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
+   private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           if (v == mShoppingCardView) {
+               if (mOrder.getSize() <= 0) {
+                   CommonUtils.toastText(getActivity(), "请至少选择一个菜品");
+               }else {
+                   mOrderShowViewRelativeLayout.setVisibility(View.VISIBLE);
+                   mOrderShowView.setData(mOrder.getMenuList());
+               }
+           }
+       }
+   };
     /**
      * MenuListWorker回调类
      */
@@ -100,8 +132,7 @@ public class FoodRightFragment extends Fragment {
 
         @Override
         public void onItemClicked(Object itemData, int index) {
-            Menu menu = (Menu) itemData;
-            Toast.makeText(getActivity(), "你点击了：" + menu.getName(), Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
@@ -110,6 +141,8 @@ public class FoodRightFragment extends Fragment {
             mOrder.addMenu(menu);
             mShoppingCardView.setTextCount(mOrder.getSize());
             mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+            mOrderShowView.setTextOrderCount(mOrder.getSize());
+            mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
         }
 
         @Override
@@ -118,6 +151,8 @@ public class FoodRightFragment extends Fragment {
             mOrder.delMenu(menu);
             mShoppingCardView.setTextCount(mOrder.getSize());
             mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+            mOrderShowView.setTextOrderCount(mOrder.getSize());
+            mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
         }
 
         @Override

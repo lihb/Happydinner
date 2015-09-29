@@ -5,11 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.happydinner.activity.R;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
@@ -27,14 +23,14 @@ import java.util.Map;
  * @date 2015/3/19
  */
 
-public class OrderRightListWorker extends AbstractListWorker {
+public class OrderListWorker extends AbstractListWorker {
 
     private Context mContext;
 
     private List<Menu> mDataList;
     private OnListWorkerListener mOnListWorkerListener;
 
-    public OrderRightListWorker(Context mContext, List<Menu> dataList, OnListWorkerListener mOnListWorkerListener) {
+    public OrderListWorker(Context mContext, List<Menu> dataList, OnListWorkerListener mOnListWorkerListener) {
         this.mContext = mContext;
         this.mDataList = dataList;
         this.mOnListWorkerListener = mOnListWorkerListener;
@@ -74,7 +70,7 @@ public class OrderRightListWorker extends AbstractListWorker {
         MENU
     }
 
-    public static interface OnListWorkerListener {
+    public interface OnListWorkerListener {
 
         void onItemClick(int index);
 
@@ -99,7 +95,7 @@ public class OrderRightListWorker extends AbstractListWorker {
         @Override
         public View newView(int position, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(mContext);
-            View convertView = inflater.inflate(R.layout.order_right_item, null, false);
+            View convertView = inflater.inflate(R.layout.order_show_item, null, false);
             ViewHolder holder = new ViewHolder(convertView);
             convertView.setTag(holder);
             return convertView;
@@ -108,31 +104,32 @@ public class OrderRightListWorker extends AbstractListWorker {
         @Override
         public void updateItem(View convertView, Object itemData, ViewGroup parent, int position) {
             final Menu menu = (Menu) itemData;
-            ViewHolder holder = (ViewHolder) convertView.getTag();
-            holder.orderMenuNameTv.setText(menu.getName());
-            //todo 设置菜品图片
-            holder.orderMenuMateriasTv.setText(menu.getInfo());
-            holder.orderMenuPriceTv1.setText("" + menu.getPrice());
-            holder.menuCountConfirmTv1.setText("" + menu.count);
+            final ViewHolder holder = (ViewHolder) convertView.getTag();
 
-            holder.menuCountSubTv1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mOnListWorkerListener != null) {
-                        mOnListWorkerListener.onSubMenuClicked(menu);
-                    }
+            holder.order_item_name.setText(menu.getName());
+            holder.order_item_price.setText("¥" + menu.getPrice());
+            holder.order_item_count.setText("" + menu.getCount());
 
-                }
-            });
-
-            holder.menuCountAddTv1.setOnClickListener(new View.OnClickListener() {
+            holder.order_item_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mOnListWorkerListener != null) {
                         mOnListWorkerListener.onAddMenuClicked(menu);
+                        holder.order_item_count.setText("" + menu.getCount());
                     }
                 }
             });
+
+            holder.order_item_sub.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnListWorkerListener != null) {
+                        mOnListWorkerListener.onSubMenuClicked(menu);
+                        holder.order_item_count.setText("" + menu.getCount());
+                    }
+                }
+            });
+
         }
 
         @Override
@@ -143,34 +140,19 @@ public class OrderRightListWorker extends AbstractListWorker {
 
         }
 
-        /**
-         * This class contains all butterknife-injected Views & Layouts from layout file 'order_right_item.xml'
-         * for easy to all layout elements.
-         *
-         * @author ButterKnifeZelezny, plugin for Android Studio by Avast Developers (http://github.com/avast)
-         */
         class ViewHolder {
-            @InjectView(R.id.order_menu_name_iv)
-            ImageView orderMenuNameIv;
-            @InjectView(R.id.order_menu_name_tv)
-            TextView orderMenuNameTv;
-            @InjectView(R.id.order_menu_materias_tv)
-            TextView orderMenuMateriasTv;
-            @InjectView(R.id.order_menu_price_tv1)
-            TextView orderMenuPriceTv1;
-            @InjectView(R.id.order_right_rl)
-            RelativeLayout orderRightRl;
-            @InjectView(R.id.menu_count_sub_tv1)
-            TextView menuCountSubTv1;
-            @InjectView(R.id.menu_count_confirm_tv1)
-            TextView menuCountConfirmTv1;
-            @InjectView(R.id.menu_count_add_tv1)
-            TextView menuCountAddTv1;
-            @InjectView(R.id.order_menu_count_ll)
-            LinearLayout orderMenuCountLl;
+            TextView order_item_name;
+            TextView order_item_price;
+            TextView order_item_count;
+            ImageView order_item_add;
+            ImageView order_item_sub;
 
             ViewHolder(View view) {
-                ButterKnife.inject(this, view);
+                order_item_name = (TextView) view.findViewById(R.id.order_item_name);
+                order_item_price = (TextView) view.findViewById(R.id.order_item_price);
+                order_item_count = (TextView) view.findViewById(R.id.order_item_count);
+                order_item_add = (ImageView) view.findViewById(R.id.order_item_add);
+                order_item_sub = (ImageView) view.findViewById(R.id.order_item_sub);
             }
         }
     }

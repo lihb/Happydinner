@@ -143,6 +143,19 @@ public class Order implements Parcelable {
     }
 
 
+    /**
+     * 清空所以菜品
+     *
+     * @return
+     */
+    public void clear() {
+        for (Menu menu : menuList) {
+            menu.setCount(0);
+        }
+        menuList.clear();
+        totalPrice = 0.0f;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
