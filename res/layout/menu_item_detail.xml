@@ -62,17 +62,43 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 />
-       <!-- <com.happydinner.ui.widget.MenuCountView
-                android:id="@+id/menu_count_view1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+        <RelativeLayout
+                android:id="@+id/relative_operation1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
-                />-->
+                android:background="@drawable/menu_count_view_bg"
+                >
+            <ImageView
+                    android:id="@+id/imagview_sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/button_add"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    />
 
+            <TextView
+                    android:id="@+id/text_count1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="10"
+                    />
 
+            <ImageView
+                    android:id="@+id/imagview_add1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/button_add"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+
+                    />
+        </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/loc_menu_rl2"
@@ -90,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/image_3"
+                android:src="@drawable/image_4"
                 />
 
         <TextView
@@ -129,15 +155,43 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 />
-           <!-- <com.happydinner.ui.widget.MenuCountView
-                    android:id="@+id/menu_count_view2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <RelativeLayout
+                    android:id="@+id/relative_operation2"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
-                    />-->
+                    android:background="@drawable/menu_count_view_bg"
+                    >
+                    <ImageView
+                            android:id="@+id/imagview_sub2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_add"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            />
+
+                    <TextView
+                            android:id="@+id/text_count2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="10"
+                            />
+
+                    <ImageView
+                            android:id="@+id/imagview_add2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_add"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+
+                            />
+            </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -194,15 +248,43 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 />
-           <!-- <com.happydinner.ui.widget.MenuCountView
-                    android:id="@+id/menu_count_view3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            <RelativeLayout
+                    android:id="@+id/relative_operation3"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
-                    />-->
+                    android:background="@drawable/menu_count_view_bg"
+                    >
+                    <ImageView
+                            android:id="@+id/imagview_sub3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_add"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            />
+
+                    <TextView
+                            android:id="@+id/text_count3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="10"
+                            />
+
+                    <ImageView
+                            android:id="@+id/imagview_add3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/button_add"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+
+                            />
+            </RelativeLayout>
     </RelativeLayout>
 
 

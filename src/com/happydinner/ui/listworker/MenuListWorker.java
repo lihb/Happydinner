@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.happydinner.activity.R;
 import com.happydinner.base.MyAppContext;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
-import com.happydinner.ui.widget.MenuCountView;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lihb on 15/5/17.
@@ -71,7 +71,7 @@ public class MenuListWorker extends AbstractListWorker {
         return datas;
     }
 
-    public static interface OnListWorkerListener {
+    public interface OnListWorkerListener {
         /**
          * 当条目选中状态改变时调用
          */
@@ -126,76 +126,125 @@ public class MenuListWorker extends AbstractListWorker {
         }
 
         @Override
-        public void updateItem(View convertView, final Object itemData, ViewGroup parent, int positon) {
+        public void updateItem(final View convertView, final Object itemData, ViewGroup parent, int positon) {
             List<Menu> menuList = (List<Menu>) itemData;
-            MenuViewHolder menuViewHolder = (MenuViewHolder) convertView.getTag();
+            final MenuViewHolder menuViewHolder = (MenuViewHolder) convertView.getTag();
             for (int i = 0; i < MAX_MENUS_COUNT_PER_LINE; i++) {
                 menuViewHolder.getRlLocMenu(i).setVisibility(View.INVISIBLE);
             }
             for (int i = 0; i < menuList.size(); i++) {
                 menuViewHolder.getRlLocMenu(i).setVisibility(View.VISIBLE);
                 final Menu menu = menuList.get(i);
+                //是否显示减号操作按钮和背景
+                showSubOper(menuViewHolder, menu.getCount(), i);
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuPriceTxt(i).setText("¥" + menu.getPrice());
                 menuViewHolder.getMenuRestaurantName(i).setText(menu.getRestaurantName());
+                menuViewHolder.getMenuCount(i).setText("" + menu.getCount());
+                final int temp = i;
+                menuViewHolder.getImageViewAdd(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        menu.count++;
+                        showSubOper(menuViewHolder, menu.getCount(), temp);
+                    }
+                });
 
+                menuViewHolder.getImageViewSub(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        menu.count--;
+                        showSubOper(menuViewHolder, menu.getCount(), temp);
+                    }
+                });
 
             }
 
         }
 
+        private void showSubOper(MenuViewHolder holder, int count, int index) {
+            if (count > 0) {
+                holder.getImageViewSub(index).setVisibility(View.VISIBLE);
+                holder.getRelativeLayoutOperation(index).setBackgroundResource(R.drawable.menu_count_view_bg);
+                holder.getMenuCount(index).setVisibility(View.VISIBLE);
+                holder.getMenuCount(index).setText("" + count);
+            }else {
+                holder.getImageViewSub(index).setVisibility(View.GONE);
+                holder.getRelativeLayoutOperation(index).setBackground(null);
+                holder.getMenuCount(index).setVisibility(View.GONE);
+
+
+            }
+        }
+
         @Override
         public void onItemClicked(int position, View itemView, ViewGroup parent, Object itemData) {
-
+           /* if (mOnListWorkerListener != null) {
+                mOnListWorkerListener.onItemClicked(((List<Menu>) itemData).get(position), position);
+            }*/
         }
 
 
-        /**
-         * This class contains all butterknife-injected Views & Layouts from layout file 'menu_item_detail.xml'
-         * for easy to all layout elements.
-         *
-         * @author ButterKnifeZelezny, plugin for Android Studio by Avast Developers (http://github.com/avast)
-         */
         class MenuViewHolder {
-            @InjectView(R.id.menu_name_iv1)
             ImageView menuNameIv1;
-            @InjectView(R.id.menu_name_title1)
             TextView menuNameTitle1;
-            @InjectView(R.id.menu_name_price1)
             TextView menuNamePrice1;
-            @InjectView(R.id.menu_name_restaurant1)
             TextView menuNameRestaurant1;
-//            @InjectView(R.id.menu_count_view1)
-//            MenuCountView menuCountView1;
-            @InjectView(R.id.loc_menu_rl1)
+            RelativeLayout relativeLayoutOperation1;
             RelativeLayout locMenuRl1;
-            @InjectView(R.id.menu_name_iv2)
             ImageView menuNameIv2;
-            @InjectView(R.id.menu_name_title2)
             TextView menuNameTitle2;
-            @InjectView(R.id.menu_name_price2)
             TextView menuNamePrice2;
-            @InjectView(R.id.menu_name_restaurant2)
             TextView menuNameRestaurant2;
-//            @InjectView(R.id.menu_count_view2)
-//            MenuCountView menuCountView2;
-            @InjectView(R.id.loc_menu_rl2)
+            RelativeLayout relativeLayoutOperation2;
             RelativeLayout locMenuRl2;
-            @InjectView(R.id.menu_name_iv3)
             ImageView menuNameIv3;
-            @InjectView(R.id.menu_name_title3)
             TextView menuNameTitle3;
-            @InjectView(R.id.menu_name_price3)
             TextView menuNamePrice3;
-            @InjectView(R.id.menu_name_restaurant3)
             TextView menuNameRestaurant3;
-//            @InjectView(R.id.menu_count_view3)
-//            MenuCountView menuCountView3;
-            @InjectView(R.id.loc_menu_rl3)
+            RelativeLayout relativeLayoutOperation3;
             RelativeLayout locMenuRl3;
 
+            ImageView imageViewAdd1;
+            ImageView imageViewAdd2;
+            ImageView imageViewAdd3;
+
+            ImageView imageViewSub1;
+            ImageView imageViewSub2;
+            ImageView imageViewSub3;
+
+            TextView menuCount1;
+            TextView menuCount2;
+            TextView menuCount3;
+
             MenuViewHolder(View view) {
-                ButterKnife.inject(this, view);
+                menuNameIv1 = (ImageView) view.findViewById(R.id.menu_name_iv1);
+                menuNameIv2 = (ImageView) view.findViewById(R.id.menu_name_iv2);
+                menuNameIv3 = (ImageView) view.findViewById(R.id.menu_name_iv3);
+                menuNameTitle1 = (TextView) view.findViewById(R.id.menu_name_title1);
+                menuNameTitle2 = (TextView) view.findViewById(R.id.menu_name_title2);
+                menuNameTitle3 = (TextView) view.findViewById(R.id.menu_name_title3);
+                menuNamePrice1 = (TextView) view.findViewById(R.id.menu_name_price1);
+                menuNamePrice2 = (TextView) view.findViewById(R.id.menu_name_price2);
+                menuNamePrice3 = (TextView) view.findViewById(R.id.menu_name_price3);
+                menuNameRestaurant1 = (TextView) view.findViewById(R.id.menu_name_restaurant1);
+                menuNameRestaurant2 = (TextView) view.findViewById(R.id.menu_name_restaurant2);
+                menuNameRestaurant3 = (TextView) view.findViewById(R.id.menu_name_restaurant3);
+                relativeLayoutOperation1 = (RelativeLayout) view.findViewById(R.id.relative_operation1);
+                relativeLayoutOperation2 = (RelativeLayout) view.findViewById(R.id.relative_operation2);
+                relativeLayoutOperation3 = (RelativeLayout) view.findViewById(R.id.relative_operation3);
+                locMenuRl1 = (RelativeLayout) view.findViewById(R.id.loc_menu_rl1);
+                locMenuRl2 = (RelativeLayout) view.findViewById(R.id.loc_menu_rl2);
+                locMenuRl3 = (RelativeLayout) view.findViewById(R.id.loc_menu_rl3);
+                imageViewAdd1 = (ImageView) view.findViewById(R.id.imagview_add1);
+                imageViewAdd2 = (ImageView) view.findViewById(R.id.imagview_add2);
+                imageViewAdd3 = (ImageView) view.findViewById(R.id.imagview_add3);
+                imageViewSub1 = (ImageView) view.findViewById(R.id.imagview_sub1);
+                imageViewSub2 = (ImageView) view.findViewById(R.id.imagview_sub2);
+                imageViewSub3 = (ImageView) view.findViewById(R.id.imagview_sub3);
+                menuCount1 = (TextView) view.findViewById(R.id.text_count1);
+                menuCount2 = (TextView) view.findViewById(R.id.text_count2);
+                menuCount3 = (TextView) view.findViewById(R.id.text_count3);
             }
 
             public RelativeLayout getRlLocMenu(int index) {
@@ -245,6 +294,55 @@ public class MenuListWorker extends AbstractListWorker {
                 }
                 return null;
             }
+
+            public TextView getMenuCount(int index) {
+                switch (index) {
+                    case 0:
+                        return menuCount1;
+                    case 1:
+                        return menuCount2;
+                    case 2:
+                        return menuCount3;
+                }
+                return null;
+            }
+
+            public ImageView getImageViewAdd(int index) {
+                switch (index) {
+                    case 0:
+                        return imageViewAdd1;
+                    case 1:
+                        return imageViewAdd2;
+                    case 2:
+                        return imageViewAdd3;
+                }
+                return null;
+            }
+
+            public ImageView getImageViewSub(int index) {
+                switch (index) {
+                    case 0:
+                        return imageViewSub1;
+                    case 1:
+                        return imageViewSub2;
+                    case 2:
+                        return imageViewSub3;
+                }
+                return null;
+            }
+
+            public RelativeLayout getRelativeLayoutOperation(int index) {
+                switch (index) {
+                    case 0:
+                        return relativeLayoutOperation1;
+                    case 1:
+                        return relativeLayoutOperation2;
+                    case 2:
+                        return relativeLayoutOperation3;
+                }
+                return null;
+            }
         }
     }
+
 }

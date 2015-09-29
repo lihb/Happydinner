@@ -3,20 +3,16 @@ package com.happydinner.ui.Pay;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.happydinner.activity.R;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.ui.listworker.MenuListWorker;
-import com.happydinner.util.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -30,7 +26,6 @@ import java.util.ArrayList;
 
 public class FoodRightFragment extends Fragment {
 
-    @InjectView(R.id.food_right_lv)
     ListView mListView;
 
     private ArrayList<Menu> mDataList;
@@ -49,7 +44,7 @@ public class FoodRightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.food_right_fragment, null);
-        ButterKnife.inject(this, view);
+        mListView = (ListView) view.findViewById(R.id.food_right_lv);
         return view;
     }
 
@@ -96,6 +91,7 @@ public class FoodRightFragment extends Fragment {
 
         @Override
         public void onSubMenuClicked(Object itemData) {
+
             mListAdapter.notifyDataSetChanged();
         }
 
