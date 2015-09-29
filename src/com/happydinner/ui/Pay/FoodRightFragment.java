@@ -8,13 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
-import butterknife.ButterKnife;
 import com.happydinner.activity.R;
+import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
+import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
+import com.happydinner.ui.widget.ShoppingCartView;
+import com.happydinner.util.CommonUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * 类说明：
@@ -26,13 +31,17 @@ import java.util.ArrayList;
 
 public class FoodRightFragment extends Fragment {
 
-    ListView mListView;
+    private ListView mListView;
+
+    private ShoppingCartView mShoppingCardView;
 
     private ArrayList<Menu> mDataList;
 
     private MenuListWorker mListWorker;
 
     private SimpleListWorkerAdapter mListAdapter;
+
+    private Order mOrder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class FoodRightFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.food_right_fragment, null);
         mListView = (ListView) view.findViewById(R.id.food_right_lv);
+        mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
         return view;
     }
 
@@ -64,13 +74,24 @@ public class FoodRightFragment extends Fragment {
             mListWorker.setData(mDataList);
             mListAdapter.notifyDataSetChanged();
         }
+
+        //获取订单数据
+        mOrder = (Order) ((ApplicationEx)(getActivity()).getApplication()).receiveInternalActivityParam("order");
+        if (mOrder == null) {
+            mOrder = new Order();
+            mOrder.setOrderId(UUID.randomUUID().toString());
+            mOrder.setMenuList(new ArrayList<Menu>());
+            mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
+            ((ApplicationEx) (getActivity()).getApplication()).setInternalActivityParam("order", mOrder);
+        }
+        mShoppingCardView.setTextCount(mOrder.getSize());
+        mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
     /**
      * MenuListWorker回调类
@@ -85,22 +106,22 @@ public class FoodRightFragment extends Fragment {
 
         @Override
         public void onAddMenuClicked(Object itemData) {
-            mListAdapter.notifyDataSetChanged();
-
+            Menu menu = (Menu) itemData;
+            mOrder.addMenu(menu);
+            mShoppingCardView.setTextCount(mOrder.getSize());
+            mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
         }
 
         @Override
         public void onSubMenuClicked(Object itemData) {
-
-            mListAdapter.notifyDataSetChanged();
+            Menu menu = (Menu) itemData;
+            mOrder.delMenu(menu);
+            mShoppingCardView.setTextCount(mOrder.getSize());
+            mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
         }
 
         @Override
         public void onAddToOrderClicked(Object itemData) {
-            Menu menu = (Menu) itemData;
-           /* mOrder.addMenu(menu);
-            CommonUtils.toastText(getActivity(), "总价:" + mOrder.getTotalPrice());
-            mListAdapter.notifyDataSetChanged();*/
 
         }
 

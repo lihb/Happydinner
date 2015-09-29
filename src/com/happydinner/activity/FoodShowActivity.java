@@ -13,7 +13,6 @@ import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.TypeEnum;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
-import com.happydinner.entitiy.Order;
 import com.happydinner.ui.Pay.FoodLeftFragment;
 import com.happydinner.ui.Pay.FoodRightFragment;
 import com.happydinner.ui.VideoPlayerFragment;
@@ -23,7 +22,6 @@ import com.happydinner.ui.widget.HeadView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
-import java.util.UUID;
 
 /**
  * Created by lihb on 15/5/16.
@@ -37,8 +35,6 @@ public class FoodShowActivity extends FragmentActivity {
     private SimpleListWorkerAdapter mListAdapter;
 
     private HeadView headView;
-
-    private Order mOrder;
 
     private View mExpandedView;
 
@@ -70,15 +66,7 @@ public class FoodShowActivity extends FragmentActivity {
 
         initFragment();
 
-        //获取订单数据
-        mOrder = (Order) ((ApplicationEx) getApplication()).receiveInternalActivityParam("order");
-        if (mOrder == null) {
-            mOrder = new Order();
-            mOrder.setOrderId(UUID.randomUUID().toString());
-            mOrder.setMenuList(new ArrayList<Menu>());
-            mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
-            ((ApplicationEx) getApplication()).setInternalActivityParam("order", mOrder);
-        }
+
        /* // 配置listworker
         if (mListWorker == null) {
             mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());

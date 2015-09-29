@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * 订单类
@@ -89,7 +88,11 @@ public class Order implements Parcelable {
      * @return
      */
     public int getSize() {
-        return menuList.size();
+        int count = 0;
+        for (Menu menu : menuList) {
+            count += menu.getCount();
+        }
+        return count;
     }
 
     /**

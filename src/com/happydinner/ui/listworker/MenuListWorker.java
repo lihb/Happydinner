@@ -142,19 +142,24 @@ public class MenuListWorker extends AbstractListWorker {
                 menuViewHolder.getMenuRestaurantName(i).setText(menu.getRestaurantName());
                 menuViewHolder.getMenuCount(i).setText("" + menu.getCount());
                 final int temp = i;
+                //增加数目
                 menuViewHolder.getImageViewAdd(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        menu.count++;
-                        showSubOper(menuViewHolder, menu.getCount(), temp);
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onAddMenuClicked(menu);
+                            showSubOper(menuViewHolder, menu.getCount(), temp);
+                        }
                     }
                 });
-
+                // 减少数目
                 menuViewHolder.getImageViewSub(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        menu.count--;
-                        showSubOper(menuViewHolder, menu.getCount(), temp);
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onSubMenuClicked(menu);
+                            showSubOper(menuViewHolder, menu.getCount(), temp);
+                        }
                     }
                 });
 
