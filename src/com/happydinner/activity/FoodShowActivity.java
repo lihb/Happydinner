@@ -112,7 +112,7 @@ public class FoodShowActivity extends FragmentActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
-                case R.id.head_left_rlyt: // 如果详情页面打开，则按返回按钮是关闭详情页面
+                case R.id.head_left_rlyt: // 如果订单页面打开，则按返回按钮是关闭详情页面
                    if (mOrderShowView.isVisible()) {
                         mOrderShowView.exitView();
                     } else {
