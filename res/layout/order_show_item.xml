@@ -4,6 +4,7 @@
                 android:layout_height="80dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:minHeight="?android:attr/listPreferredItemHeight"
         >
     <TextView
             android:id="@+id/order_item_name"

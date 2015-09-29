@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -48,6 +49,27 @@ public class FoodRightFragment extends Fragment {
 
     private Order mOrder;
 
+    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                int[] location = new int[2];
+                View subView = ((ViewGroup) v).getChildAt(0);
+                subView.getLocationInWindow(location);
+                int x = (int) event.getX();
+                int y = (int) event.getY();
+                if (x < location[0] || x > location[0] + subView.getWidth() ||
+                        y < location[1] || y > location[1] + subView.getHeight()) {
+                    if (subView instanceof OrderShowView) {
+                        ((OrderShowView)subView).exitView();
+                    }
+                }
+            }
+            return true;
+        }
+    };
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +82,12 @@ public class FoodRightFragment extends Fragment {
         View view = inflater.inflate(R.layout.food_right_fragment, null);
         mListView = (ListView) view.findViewById(R.id.food_right_lv);
         mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
-        mOrderShowView = (OrderShowView) view.findViewById(R.id.order_show_view);
+        mOrderShowView = (OrderShowView) getActivity().findViewById(R.id.order_show_view);
         mOrderShowView.setActivity(getActivity());
         mOrderShowView.initData();
-        mOrderShowViewRelativeLayout = (RelativeLayout) view.findViewById(R.id.order_show_view_relativeLayout);
+        mOrderShowViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.order_show_view_relativeLayout);
         mShoppingCardView.setOnClickListener(mOnClickListener);
+        mOrderShowViewRelativeLayout.setOnTouchListener(mOnTouchListener);
         mOrderShowView.setOnOrderViewListener(new OrderShowView.OnOrderViewListener() {
             @Override
             public void onBackToFoodFrag(Order order) {

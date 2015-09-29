@@ -128,10 +128,7 @@ public class OrderShowView extends RelativeLayout {
                 setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
                 setData(mOrder.getMenuList());
             }else  if (v == mTextCancel) {
-                ((ViewGroup)getParent()).setVisibility(GONE);
-                if (mOnOrderViewListener != null) {
-                    mOnOrderViewListener.onBackToFoodFrag(mOrder);
-                }
+                exitView();
             }else {
                 Intent intent = new Intent(mActivity, OrderShowActivity.class);
                 mActivity.startActivity(intent);
@@ -145,6 +142,17 @@ public class OrderShowView extends RelativeLayout {
 
     public void setTextOrderPrice(float price) {
         mTextOrderPrice.setText("总计¥" + price);
+    }
+
+    public void exitView() {
+        ((ViewGroup)getParent()).setVisibility(GONE);
+        if (mOnOrderViewListener != null) {
+            mOnOrderViewListener.onBackToFoodFrag(mOrder);
+        }
+    }
+
+    public boolean isVisible() {
+        return (((ViewGroup)getParent()).getVisibility() == VISIBLE);
     }
 
     /**
