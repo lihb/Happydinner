@@ -2,29 +2,28 @@ package com.happydinner.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.*;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.happydinner.base.ApplicationEx;
+import com.happydinner.base.TypeEnum;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.Pay.FoodLeftFragment;
 import com.happydinner.ui.Pay.FoodRightFragment;
-import com.happydinner.ui.Pay.PayLeftFragment;
 import com.happydinner.ui.VideoPlayerFragment;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
-import com.happydinner.util.CommonUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.UUID;
 
 /**
  * Created by lihb on 15/5/16.
@@ -117,10 +116,8 @@ public class FoodShowActivity extends FragmentActivity {
 
         if (foodRightFragment == null) {
             Bundle bundle = new Bundle();
-            ArrayList<Menu> dataList = null;
-            for (Map.Entry<Integer, List<Menu>> entry : sortedMap.entrySet()) {
-                dataList = (ArrayList<Menu>) entry.getValue();
-            }
+            ArrayList<Menu> dataList = new ArrayList<Menu>();
+            dataList.addAll(sortedMap.get(TypeEnum.DRINK.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
             foodRightFragment = new FoodRightFragment();
             foodRightFragment.setArguments(bundle);

@@ -1,6 +1,5 @@
 package com.happydinner.ui.Pay;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
+import com.happydinner.base.TypeEnum;
 import com.happydinner.entitiy.Menu;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public class FoodLeftFragment extends Fragment {
             ArrayList<Menu> dataList = new ArrayList<>();
             if (v == linearlayoutDrink) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(0);
+                List<Menu> collection = sortedMap.get(TypeEnum.DRINK.ordinal());
                 dataList.addAll(collection);
                 linearlayoutDrink.setBackgroundResource(R.drawable.focus);
                 linearlayoutSnack.setBackground(null);
@@ -85,7 +85,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutSetmeal.setBackground(null);
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(1);
+                List<Menu> collection = sortedMap.get(TypeEnum.SNACK.ordinal());
                 dataList.addAll(collection);
                 linearlayoutSnack.setBackgroundResource(R.drawable.focus);
                 linearlayoutDrink.setBackground(null);
@@ -93,7 +93,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutSetmeal.setBackground(null);
             } else if (v == linearlayoutFood) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(2);
+                List<Menu> collection = sortedMap.get(TypeEnum.PRI_FOOD.ordinal());
                 dataList.addAll(collection);
                 linearlayoutFood.setBackgroundResource(R.drawable.focus);
                 linearlayoutSnack.setBackground(null);
@@ -101,7 +101,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutSetmeal.setBackground(null);
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(3);
+                List<Menu> collection = sortedMap.get(TypeEnum.MEALSET.ordinal());
                 dataList.addAll(collection);
                 linearlayoutSetmeal.setBackgroundResource(R.drawable.focus);
                 linearlayoutSnack.setBackground(null);
