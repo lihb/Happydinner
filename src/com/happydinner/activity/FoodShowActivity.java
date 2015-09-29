@@ -66,19 +66,6 @@ public class FoodShowActivity extends FragmentActivity {
 
         initFragment();
 
-
-       /* // 配置listworker
-        if (mListWorker == null) {
-            mListWorker = new MenuListWorker(FoodShowActivity.this, sortedMap, new MenuListWorkerCallBack());
-            mListAdapter = new SimpleListWorkerAdapter(mListWorker);
-            mMenuListview.setAdapter(mListAdapter);
-            // ListView的 ItemClick 由 ListWorker 转发
-            mMenuListview.setOnItemClickListener(mListWorker);
-        } else {
-            mListWorker.setData(sortedMap);
-            mListAdapter.notifyDataSetChanged();
-        }*/
-
     }
 
     private void initView() {

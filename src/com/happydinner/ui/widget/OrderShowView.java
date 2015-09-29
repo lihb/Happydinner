@@ -2,12 +2,14 @@ package com.happydinner.ui.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.happydinner.activity.OrderShowActivity;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
@@ -131,7 +133,8 @@ public class OrderShowView extends RelativeLayout {
                     mOnOrderViewListener.onBackToFoodFrag(mOrder);
                 }
             }else {
-                // todo 跳转到结算activity
+                Intent intent = new Intent(mActivity, OrderShowActivity.class);
+                mActivity.startActivity(intent);
             }
         }
     };
