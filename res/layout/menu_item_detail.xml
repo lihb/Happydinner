@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="10"
+                    android:textColor="#ffffff"
                     android:enabled="false"
                     />
 
@@ -187,6 +188,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="10"
+                            android:textColor="#ffffff"
                             android:enabled="false"
                             />
 
@@ -284,6 +286,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="10"
+                            android:textColor="#ffffff"
                             android:enabled="false"
                             />
 

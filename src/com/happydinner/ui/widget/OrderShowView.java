@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.happydinner.activity.OrderShowActivity;
+import com.happydinner.activity.PayActivity;
 import com.happydinner.activity.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
@@ -130,7 +130,8 @@ public class OrderShowView extends RelativeLayout {
             }else  if (v == mTextCancel) {
                 exitView();
             }else {
-                Intent intent = new Intent(mActivity, OrderShowActivity.class);
+                Intent intent = new Intent(mActivity, PayActivity.class);
+                intent.putExtra("totalPrice", mOrder.getTotalPrice());
                 mActivity.startActivity(intent);
             }
         }

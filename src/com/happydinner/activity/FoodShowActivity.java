@@ -71,11 +71,11 @@ public class FoodShowActivity extends FragmentActivity {
         headView.h_left_tv.setText("返回");
         headView.h_title.setVisibility(View.GONE);
         headView.h_title_img.setVisibility(View.VISIBLE);
-        headView.h_right_tv_llyt.setVisibility(View.VISIBLE);
-        headView.h_right_tv.setText("确认");
+       /* headView.h_right_tv_llyt.setVisibility(View.VISIBLE);
+        headView.h_right_tv.setText("确认");*/
         headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
-        headView.h_right_tv.setOnClickListener(mOnClickListener);
+//        headView.h_right_tv.setOnClickListener(mOnClickListener);
 
         mOrderShowView = (OrderShowView) findViewById(R.id.order_show_view);
         mPopupMenuDetailView = (PopupMenuDetailView) findViewById(R.id.popup_detail_view);
