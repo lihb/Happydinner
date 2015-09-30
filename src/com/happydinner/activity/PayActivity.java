@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.happydinner.base.BaseActivity;
 import com.happydinner.ui.Pay.PayLeftFragment;
 import com.happydinner.ui.Pay.PayRightZhiFuBaoFragment;
@@ -50,12 +49,11 @@ public class PayActivity extends BaseActivity {
     private void initView() {
         headView = new HeadView(this);
         headView.h_left_tv.setText("返回");
-        headView.h_title.setText("付款");
+        headView.h_title.setText("选择支付方式付款");
         headView.h_right_tv_llyt.setVisibility(View.VISIBLE);
         headView.h_right_tv.setText("");
         headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
-        // headView.h_right_tv.setOnClickListener(mOnClickListener);
 
     }
 

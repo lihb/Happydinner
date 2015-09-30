@@ -62,7 +62,7 @@
                     android:id="@+id/pay_info_step1_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/image_1"
+                    android:src="@drawable/pay_instruction"
                     />
             <TextView
                     android:id="@+id/pay_info_step1_tv"
@@ -86,7 +86,7 @@
                     android:id="@+id/pay_info_step2_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/image_1"
+                    android:src="@drawable/qr_icon"
                     />
             <TextView
                     android:id="@+id/pay_info_step2_tv"

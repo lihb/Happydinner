@@ -3,8 +3,8 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:paddingLeft="12dp"
               android:paddingRight="12dp"
+              android:background="@drawable/pay_selector"
         >
     <ImageView
             android:id="@+id/pay_icon_iv"
@@ -12,7 +12,7 @@
             android:layout_height="@dimen/pay_icon_height"
             android:duplicateParentState="true"
             android:scaleType="fitXY"
-            android:src="@drawable/icon_wechat_selector"
+            android:src="@drawable/icon_wechat"
             />
     <TextView
             android:id="@+id/pay_desc_tv"
