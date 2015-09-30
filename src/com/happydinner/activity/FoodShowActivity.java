@@ -10,14 +10,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.TypeEnum;
-import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.ui.Pay.FoodLeftFragment;
 import com.happydinner.ui.Pay.FoodRightFragment;
 import com.happydinner.ui.VideoPlayerFragment;
-import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.HeadView;
 import com.happydinner.ui.widget.OrderShowView;
+import com.happydinner.ui.widget.PopupMenuDetailView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +27,9 @@ import java.util.SortedMap;
  */
 public class FoodShowActivity extends FragmentActivity {
 
-    private MenuListWorker mListWorker;
-
     private SortedMap<Integer, List<Menu>> sortedMap;
 
-    private SimpleListWorkerAdapter mListAdapter;
-
     private HeadView headView;
-
-    private View mExpandedView;
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
@@ -48,6 +41,8 @@ public class FoodShowActivity extends FragmentActivity {
 
     private OrderShowView mOrderShowView = null;
 
+    private PopupMenuDetailView mPopupMenuDetailView = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 去除title
@@ -57,8 +52,9 @@ public class FoodShowActivity extends FragmentActivity {
 
         //去除title和状态栏的操作必须在 super.onCreate()方法之前
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_food_pay);
-//        ButterKnife.inject(this);
+
         mFragmentManager = getSupportFragmentManager();
         // 初始化界面
         initView();
@@ -82,6 +78,7 @@ public class FoodShowActivity extends FragmentActivity {
         headView.h_right_tv.setOnClickListener(mOnClickListener);
 
         mOrderShowView = (OrderShowView) findViewById(R.id.order_show_view);
+        mPopupMenuDetailView = (PopupMenuDetailView) findViewById(R.id.popup_detail_view);
     }
 
     private void initFragment() {
@@ -112,12 +109,8 @@ public class FoodShowActivity extends FragmentActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.head_left:
-                case R.id.head_left_rlyt: // 如果订单页面打开，则按返回按钮是关闭详情页面
-                   if (mOrderShowView.isVisible()) {
-                        mOrderShowView.exitView();
-                    } else {
-                        finish();
-                    }
+                case R.id.head_left_rlyt:
+                    finish();
                     break;
                 case R.id.head_right_tv:
                 case R.id.head_right_tv_layout:
@@ -132,8 +125,9 @@ public class FoodShowActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        if (mOrderShowView.isVisible()) {
+        if (mOrderShowView.isVisible() || mPopupMenuDetailView.isVisible()) {
             mOrderShowView.exitView();
+            mPopupMenuDetailView.exitView();
         } else {
             super.onBackPressed();
         }

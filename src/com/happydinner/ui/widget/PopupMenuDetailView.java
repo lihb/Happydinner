@@ -108,15 +108,29 @@ public class PopupMenuDetailView extends RelativeLayout {
         }
     };
 
+    /**
+     * 退出该View
+     */
     public void exitView() {
         ((ViewGroup)getParent()).setVisibility(GONE);
         if (mOnPopDetailViewListener != null) {
-            mMenuData.setCount(curOpeartion == OPEARTION_ADD ? mNum - 1 : mNum + 1);
+            if (curOpeartion == OPEARTION_ADD) {
+                mNum = mNum - 1;
+            }else if(curOpeartion == OPEARTION_SUB){
+                mNum = mNum + 1;
+            }
+            mMenuData.setCount(mNum);
             mOnPopDetailViewListener.onDataChanged(mMenuData, curOpeartion);
         }
+        mNum = 0;
+        curOpeartion = 0;
     }
 
 
+    /**
+     * 初始化数据
+     * @param menu
+     */
     public void initData(Menu menu) {
         mMenuData = menu;
         mNum = menu.count;
@@ -124,9 +138,12 @@ public class PopupMenuDetailView extends RelativeLayout {
         mMenuPrice.setText("" + menu.getPrice());
         mMenuRestaurant.setText(menu.getRestaurantName());
         mMenuDesc.setText(menu.getInfo());
-        mMenuCount.setText("" + mNum);
+        showSubOper();
     }
 
+    /**
+     * 是否显示减号操作栏
+     */
     private void showSubOper() {
         if (mNum > 0) {
             mPopOperationLayout.setBackgroundResource(R.drawable.menu_count_view_bg);
@@ -140,12 +157,24 @@ public class PopupMenuDetailView extends RelativeLayout {
         }
     }
 
+    /**
+     * 判断该View是否正在显示
+     * @return
+     */
+    public boolean isVisible() {
+        return (((ViewGroup)getParent()).getVisibility() == VISIBLE);
+    }
+
+
     private OnPopDetailViewListener mOnPopDetailViewListener = null;
 
     public void setOnPopDetailViewListener(OnPopDetailViewListener onPopDetailViewListener) {
         this.mOnPopDetailViewListener = onPopDetailViewListener;
     }
 
+    /**
+     * 回调接口
+     */
     public interface OnPopDetailViewListener{
         void onDataChanged(Menu menu, int operation);
     }

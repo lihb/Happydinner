@@ -362,9 +362,9 @@ public class MenuListWorker extends AbstractListWorker {
                     case 0:
                         return menuNameIv1;
                     case 1:
-                        return menuNameIv1;
+                        return menuNameIv2;
                     case 2:
-                        return menuNameIv1;
+                        return menuNameIv3;
                 }
                 return null;
             }

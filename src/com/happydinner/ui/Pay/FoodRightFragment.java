@@ -198,7 +198,7 @@ public class FoodRightFragment extends Fragment {
                 public void onDataChanged(Menu menu, int operation) {
                     if (operation == PopupMenuDetailView.OPEARTION_ADD) {
                         mOrder.addMenu(menu);
-                    }else {
+                    }else if (operation == PopupMenuDetailView.OPEARTION_SUB){
                         mOrder.delMenu(menu);
                     }
                     updateView();
