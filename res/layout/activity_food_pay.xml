@@ -59,4 +59,21 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+            android:id="@+id/popup_view_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:visibility="gone"
+            >
+        <include
+                android:id="@+id/popup_detail_view"
+                android:layout_width="550dp"
+                android:layout_height="660dp"
+                layout="@layout/popup_menu_detail_view"
+                android:layout_centerInParent="true"
+                />
+
+    </RelativeLayout>
+
 </RelativeLayout>

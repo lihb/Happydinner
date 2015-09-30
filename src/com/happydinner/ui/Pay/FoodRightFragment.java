@@ -16,6 +16,7 @@ import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
 import com.happydinner.ui.widget.OrderShowView;
+import com.happydinner.ui.widget.PopupMenuDetailView;
 import com.happydinner.ui.widget.ShoppingCartView;
 import com.happydinner.util.CommonUtils;
 
@@ -41,6 +42,10 @@ public class FoodRightFragment extends Fragment {
 
     private RelativeLayout mOrderShowViewRelativeLayout;
 
+    private PopupMenuDetailView mPopupMenuDetailView;
+
+    private RelativeLayout mPopupMenuDetailViewRelativeLayout;
+
     private ArrayList<Menu> mDataList;
 
     private MenuListWorker mListWorker;
@@ -62,6 +67,8 @@ public class FoodRightFragment extends Fragment {
                         y < location[1] || y > location[1] + subView.getHeight()) {
                     if (subView instanceof OrderShowView) {
                         ((OrderShowView)subView).exitView();
+                    }else if(subView instanceof PopupMenuDetailView){
+                        ((PopupMenuDetailView)subView).exitView();
                     }
                 }
             }
@@ -82,12 +89,19 @@ public class FoodRightFragment extends Fragment {
         View view = inflater.inflate(R.layout.food_right_fragment, null);
         mListView = (ListView) view.findViewById(R.id.food_right_lv);
         mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
+
         mOrderShowView = (OrderShowView) getActivity().findViewById(R.id.order_show_view);
+        mOrderShowViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.order_show_view_relativeLayout);
         mOrderShowView.setActivity(getActivity());
         mOrderShowView.initData();
-        mOrderShowViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.order_show_view_relativeLayout);
+
+        mPopupMenuDetailView = (PopupMenuDetailView) getActivity().findViewById(R.id.popup_detail_view);
+        mPopupMenuDetailViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.popup_view_relativeLayout);
+
         mShoppingCardView.setOnClickListener(mOnClickListener);
         mOrderShowViewRelativeLayout.setOnTouchListener(mOnTouchListener);
+        mPopupMenuDetailViewRelativeLayout.setOnTouchListener(mOnTouchListener);
+
         mOrderShowView.setOnOrderViewListener(new OrderShowView.OnOrderViewListener() {
             @Override
             public void onBackToFoodFrag(Order order) {
@@ -128,10 +142,7 @@ public class FoodRightFragment extends Fragment {
             mOrder.setStatus(Order.OrderStatus.NOTSUBMIT);
             ((ApplicationEx) (getActivity()).getApplication()).setInternalActivityParam("order", mOrder);
         }
-        mShoppingCardView.setTextCount(mOrder.getSize());
-        mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
-        mOrderShowView.setTextOrderCount(mOrder.getSize());
-        mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+        updateView();
     }
 
 
@@ -140,7 +151,7 @@ public class FoodRightFragment extends Fragment {
        public void onClick(View v) {
            if (v == mShoppingCardView) {
                if (mOrder.getSize() <= 0) {
-                   CommonUtils.toastText(getActivity(), "请至少选择一个菜品");
+                   CommonUtils.toastText(getActivity(), "购物车是空的哦~");
                }else {
                    mOrderShowViewRelativeLayout.setVisibility(View.VISIBLE);
                    mOrderShowView.setData(mOrder.getMenuList());
@@ -162,20 +173,14 @@ public class FoodRightFragment extends Fragment {
         public void onAddMenuClicked(Object itemData) {
             Menu menu = (Menu) itemData;
             mOrder.addMenu(menu);
-            mShoppingCardView.setTextCount(mOrder.getSize());
-            mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
-            mOrderShowView.setTextOrderCount(mOrder.getSize());
-            mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+            updateView();
         }
 
         @Override
         public void onSubMenuClicked(Object itemData) {
             Menu menu = (Menu) itemData;
             mOrder.delMenu(menu);
-            mShoppingCardView.setTextCount(mOrder.getSize());
-            mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
-            mOrderShowView.setTextOrderCount(mOrder.getSize());
-            mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+            updateView();
         }
 
         @Override
@@ -185,8 +190,31 @@ public class FoodRightFragment extends Fragment {
 
         @Override
         public void onGotoLookDesc(View view, Object itemData) {
-//            Menu menu = (Menu) itemData;
-//            zoomViewFromMain(menu);
+            mPopupMenuDetailViewRelativeLayout.setVisibility(View.VISIBLE);
+            Menu menu = (Menu) itemData;
+            mPopupMenuDetailView.initData(menu);
+            mPopupMenuDetailView.setOnPopDetailViewListener(new PopupMenuDetailView.OnPopDetailViewListener() {
+                @Override
+                public void onDataChanged(Menu menu, int operation) {
+                    if (operation == PopupMenuDetailView.OPEARTION_ADD) {
+                        mOrder.addMenu(menu);
+                    }else {
+                        mOrder.delMenu(menu);
+                    }
+                    updateView();
+                    mListAdapter.notifyDataSetChanged();
+                }
+            });
         }
+    }
+
+    /**
+     * 更新购物车和订单页面的菜品个数和总价数据
+     */
+    private void updateView() {
+        mShoppingCardView.setTextCount(mOrder.getSize());
+        mShoppingCardView.setTextPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
+        mOrderShowView.setTextOrderCount(mOrder.getSize());
+        mOrderShowView.setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
     }
 }

@@ -80,7 +80,11 @@ public class Order implements Parcelable {
      * @return
      */
     public float getTotalPrice() {
-        return  totalPrice;
+        float res = 0.0f;
+        for (Menu menu : menuList) {
+            res += menu.count * menu.getActualPrice();
+        }
+        return res;
     }
 
     /**

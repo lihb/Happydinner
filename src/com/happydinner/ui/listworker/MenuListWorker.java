@@ -162,6 +162,15 @@ public class MenuListWorker extends AbstractListWorker {
                         }
                     }
                 });
+                // 查看详情
+                menuViewHolder.getMenuImage(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onGotoLookDesc(v, menu);
+                        }
+                    }
+                });
 
             }
 
@@ -344,6 +353,18 @@ public class MenuListWorker extends AbstractListWorker {
                         return relativeLayoutOperation2;
                     case 2:
                         return relativeLayoutOperation3;
+                }
+                return null;
+            }
+
+            public ImageView getMenuImage(int index) {
+                switch (index) {
+                    case 0:
+                        return menuNameIv1;
+                    case 1:
+                        return menuNameIv1;
+                    case 2:
+                        return menuNameIv1;
                 }
                 return null;
             }

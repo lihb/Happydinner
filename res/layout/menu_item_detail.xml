@@ -35,6 +35,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -47,6 +48,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -61,6 +63,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
+                android:enabled="false"
                 />
         <RelativeLayout
                 android:id="@+id/relative_operation1"
@@ -76,7 +79,7 @@
                     android:id="@+id/imagview_sub1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/button_add"
+                    android:src="@drawable/sub_icon_selector"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     />
@@ -87,13 +90,14 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="10"
+                    android:enabled="false"
                     />
 
             <ImageView
                     android:id="@+id/imagview_add1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/button_add"
+                    android:src="@drawable/add_icon_selector"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
 
@@ -128,6 +132,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -140,6 +145,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -154,6 +160,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
+                android:enabled="false"
                 />
             <RelativeLayout
                     android:id="@+id/relative_operation2"
@@ -169,7 +176,7 @@
                             android:id="@+id/imagview_sub2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/button_add"
+                            android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             />
@@ -180,13 +187,14 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="10"
+                            android:enabled="false"
                             />
 
                     <ImageView
                             android:id="@+id/imagview_add2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/button_add"
+                            android:src="@drawable/add_icon_selector"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
 
@@ -221,6 +229,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -233,6 +242,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginRight="10dp"
+                android:enabled="false"
                 />
 
         <TextView
@@ -247,6 +257,7 @@
                 android:layout_marginLeft="10dp"
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
+                android:enabled="false"
                 />
             <RelativeLayout
                     android:id="@+id/relative_operation3"
@@ -262,7 +273,7 @@
                             android:id="@+id/imagview_sub3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/button_add"
+                            android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
                             />
@@ -273,13 +284,14 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:text="10"
+                            android:enabled="false"
                             />
 
                     <ImageView
                             android:id="@+id/imagview_add3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/button_add"
+                            android:src="@drawable/add_icon_selector"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
 

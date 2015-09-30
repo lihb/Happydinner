@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/button_add"
+            android:src="@drawable/add_icon_selector"
             />
 
     <TextView
@@ -55,7 +55,7 @@
             android:layout_toLeftOf="@id/order_item_count"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:src="@drawable/button_add"
+            android:src="@drawable/sub_icon_selector"
             />
 
     <View
