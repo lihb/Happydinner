@@ -1,14 +1,14 @@
 package com.happydinner.ui.widget;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.happydinner.activity.R;
 import com.happydinner.entitiy.Menu;
+import com.happydinner.ui.Controller.VideoController;
 
 /**
  * Created by Administrator on 2015/9/30.
@@ -37,6 +37,14 @@ public class PopupMenuDetailView extends RelativeLayout {
 
     private TextView mMenuDesc = null;
 
+    private VideoView mVideoView = null;
+
+    private FrameLayout mPopupVideoViewFramelayout = null;
+
+    private VideoController mVideoController = null;
+
+    private boolean showPlayIcon = true;
+
     private Menu mMenuData = null;
 
     private int mNum = 0;
@@ -45,6 +53,8 @@ public class PopupMenuDetailView extends RelativeLayout {
     public static final int OPEARTION_SUB = 2;
 
     public int curOpeartion = 0;
+
+    private int mCurrPos = 0;
 
     public PopupMenuDetailView(Context context) {
         super(context);
@@ -79,6 +89,10 @@ public class PopupMenuDetailView extends RelativeLayout {
 
         mPopOperationLayout = (RelativeLayout) findViewById(R.id.popup_relative_operation);
 
+        mVideoView = (VideoView) findViewById(R.id.popup_videoview);
+
+        mPopupVideoViewFramelayout = (FrameLayout) findViewById(R.id.popup_videoview_framelayout);
+
 //        mVideoImage.setImage(BitmapFactory.decodeResource(getResources(), R.drawable.image_4), 8, RoundedImageView.CORNER_BOTTOM_LEFT);
 
         mVideoImage.setOnClickListener(mOnClickListener);
@@ -86,21 +100,68 @@ public class PopupMenuDetailView extends RelativeLayout {
         mPlayImage.setOnClickListener(mOnClickListener);
         mAddImage.setOnClickListener(mOnClickListener);
         mSubImage.setOnClickListener(mOnClickListener);
+        mPopupVideoViewFramelayout.setOnClickListener(mOnClickListener);
     }
 
-    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
+    private VideoController.OnVideoControllerListener mOnVideoControllerListener = new VideoController.OnVideoControllerListener() {
+        @Override
+        public void onCompletion() {
+            showPlayIcon = true;
+            togglePlayVideo();
+        }
+
+        @Override
+        public void onError() {
+            if (mVideoController != null) {
+                mVideoController.stop();
+            }
+            showPlayIcon = true;
+            togglePlayVideo();
+        }
+
+        @Override
+        public void onPause(int pos) {
+            showPlayIcon = true;
+            togglePlayVideo();
+            mCurrPos = pos;
+        }
+
+        @Override
+        public void onStop() {
+            showPlayIcon = true;
+            togglePlayVideo();
+        }
+    };
+
+    private View.OnClickListener mOnClickListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View v) {
             if (v == mPlayImage || v == mVideoImage) {
-
-            }else if (v == mCloseImage) {
+                showPlayIcon = false;
+                togglePlayVideo();
+                if (mVideoController == null) {
+                    mVideoController = new VideoController();
+                    mVideoController.setVideoView(mVideoView);
+                    Uri uri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.produce);
+//                    Uri uri2 = Uri.parse(mMenuData.getVideoUrl());
+                    mVideoController.setUri(uri);
+                    mVideoController.setOnVideoControllerListener(mOnVideoControllerListener);
+                    mVideoController.play(0);
+                } else {
+                    mVideoController.play(mCurrPos);
+                }
+            } else if (v == mCloseImage) {
                 exitView();
-            }else if(v == mSubImage){
+            } else if (v == mPopupVideoViewFramelayout) {
+                if (mVideoController != null) {
+                    mVideoController.pause();
+                }
+            } else if (v == mSubImage) {
                 mNum--;
                 curOpeartion = OPEARTION_SUB;
                 showSubOper();
-            }else {
+            } else {
                 mNum++;
                 curOpeartion = OPEARTION_ADD;
                 showSubOper();
@@ -109,14 +170,22 @@ public class PopupMenuDetailView extends RelativeLayout {
     };
 
     /**
+     * 切换显示视频播放的UI
+     */
+    private void togglePlayVideo() {
+        mPlayImage.setVisibility(showPlayIcon ? VISIBLE : GONE);
+        mVideoImage.setVisibility(showPlayIcon ? VISIBLE : GONE);
+        mPopupVideoViewFramelayout.setVisibility(showPlayIcon ? GONE : VISIBLE);
+    }
+
+    /**
      * 退出该View
      */
     public void exitView() {
-        ((ViewGroup)getParent()).setVisibility(GONE);
         if (mOnPopDetailViewListener != null) {
             if (curOpeartion == OPEARTION_ADD) {
                 mNum = mNum - 1;
-            }else if(curOpeartion == OPEARTION_SUB){
+            } else if (curOpeartion == OPEARTION_SUB) {
                 mNum = mNum + 1;
             }
             mMenuData.setCount(mNum);
@@ -124,11 +193,16 @@ public class PopupMenuDetailView extends RelativeLayout {
         }
         mNum = 0;
         curOpeartion = 0;
+        if (mVideoController != null) {
+            mVideoController.stop();
+        }
+        ((ViewGroup) getParent()).setVisibility(GONE);
     }
 
 
     /**
      * 初始化数据
+     *
      * @param menu
      */
     public void initData(Menu menu) {
@@ -149,8 +223,8 @@ public class PopupMenuDetailView extends RelativeLayout {
             mPopOperationLayout.setBackgroundResource(R.drawable.menu_count_view_bg);
             mSubImage.setVisibility(VISIBLE);
             mMenuCount.setVisibility(VISIBLE);
-            mMenuCount.setText("" +  mNum);
-        }else {
+            mMenuCount.setText("" + mNum);
+        } else {
             mPopOperationLayout.setBackground(null);
             mSubImage.setVisibility(GONE);
             mMenuCount.setVisibility(GONE);
@@ -159,10 +233,11 @@ public class PopupMenuDetailView extends RelativeLayout {
 
     /**
      * 判断该View是否正在显示
+     *
      * @return
      */
     public boolean isVisible() {
-        return (((ViewGroup)getParent()).getVisibility() == VISIBLE);
+        return (((ViewGroup) getParent()).getVisibility() == VISIBLE);
     }
 
 
@@ -175,7 +250,7 @@ public class PopupMenuDetailView extends RelativeLayout {
     /**
      * 回调接口
      */
-    public interface OnPopDetailViewListener{
+    public interface OnPopDetailViewListener {
         void onDataChanged(Menu menu, int operation);
     }
 }

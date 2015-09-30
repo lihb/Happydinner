@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.happydinner.ui.widget.PopupMenuDetailView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+<com.happydinner.ui.widget.PopupMenuDetailView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         >
 
-    <RelativeLayout
+        <RelativeLayout
             android:id="@+id/relative_popup_top"
             android:layout_width="fill_parent"
-            android:layout_height="200dp">
-        <com.happydinner.ui.widget.RoundedImageView
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+                >
+            <FrameLayout
+                    android:id="@+id/popup_videoview_framelayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
+                    android:fitsSystemWindows="false"
+                    android:foregroundGravity="clip_horizontal|clip_vertical">
+
+                <com.happydinner.ui.widget.PopupVideoView
+                        android:id="@+id/popup_videoview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        />
+            </FrameLayout>
+                <com.happydinner.ui.widget.RoundedImageView
                 android:id="@+id/video_pic"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/image_4"
                 />
-        <ImageView
+            <ImageView
                 android:id="@+id/iv_popup_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -76,43 +93,43 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 />
-            <RelativeLayout
-                    android:id="@+id/popup_relative_operation"
-                    android:layout_width="120dp"
+        <RelativeLayout
+                android:id="@+id/popup_relative_operation"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/menu_count_view_bg"
+                >
+            <ImageView
+                    android:id="@+id/popup_imagview_sub"
+                    android:layout_width="40dp"
                     android:layout_height="40dp"
+                    android:src="@drawable/sub_icon_selector"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    />
+
+            <TextView
+                    android:id="@+id/popup_text_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="10"
+                    android:enabled="false"
+                    />
+
+            <ImageView
+                    android:id="@+id/popup_imagview_add"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/add_icon_selector"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/menu_count_view_bg"
-                    >
-                    <ImageView
-                            android:id="@+id/popup_imagview_sub"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/sub_icon_selector"
-                            android:layout_alignParentLeft="true"
-                            android:layout_centerVertical="true"
-                            />
-
-                    <TextView
-                            android:id="@+id/popup_text_count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="10"
-                            android:enabled="false"
-                            />
-
-                    <ImageView
-                            android:id="@+id/popup_imagview_add"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/add_icon_selector"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            />
-            </RelativeLayout>
+                    android:layout_centerVertical="true"
+                    />
+        </RelativeLayout>
     </RelativeLayout>
     <ImageView
             android:id="@+id/iv_popup_close"
