@@ -82,7 +82,7 @@ public class VideoController {
     }
 
     /**
-     * 暂停播放
+     * 停止播放
      */
     public void stop() {
         if (mVideoView != null && mVideoView.isPlaying()) {

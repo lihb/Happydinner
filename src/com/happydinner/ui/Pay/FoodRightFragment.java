@@ -196,9 +196,9 @@ public class FoodRightFragment extends Fragment {
             mPopupMenuDetailView.setOnPopDetailViewListener(new PopupMenuDetailView.OnPopDetailViewListener() {
                 @Override
                 public void onDataChanged(Menu menu, int operation) {
-                    if (operation == PopupMenuDetailView.OPEARTION_ADD) {
+                    if (operation == PopupMenuDetailView.OPERATION_ADD) {
                         mOrder.addMenu(menu);
-                    }else if (operation == PopupMenuDetailView.OPEARTION_SUB){
+                    }else if (operation == PopupMenuDetailView.OPERATION_SUB){
                         mOrder.delMenu(menu);
                     }
                     updateView();

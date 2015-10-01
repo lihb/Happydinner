@@ -49,10 +49,10 @@ public class PopupMenuDetailView extends RelativeLayout {
 
     private int mNum = 0;
 
-    public static final int OPEARTION_ADD = 1;
-    public static final int OPEARTION_SUB = 2;
+    public static final int OPERATION_ADD = 1;
+    public static final int OPERATION_SUB = 2;
 
-    public int curOpeartion = 0;
+    public int curOperation = 0;
 
     private int mCurrPos = 0;
 
@@ -159,11 +159,11 @@ public class PopupMenuDetailView extends RelativeLayout {
                 }
             } else if (v == mSubImage) {
                 mNum--;
-                curOpeartion = OPEARTION_SUB;
+                curOperation = OPERATION_SUB;
                 showSubOper();
             } else {
                 mNum++;
-                curOpeartion = OPEARTION_ADD;
+                curOperation = OPERATION_ADD;
                 showSubOper();
             }
         }
@@ -183,18 +183,21 @@ public class PopupMenuDetailView extends RelativeLayout {
      */
     public void exitView() {
         if (mOnPopDetailViewListener != null) {
-            if (curOpeartion == OPEARTION_ADD) {
+            if (curOperation == OPERATION_ADD) {
                 mNum = mNum - 1;
-            } else if (curOpeartion == OPEARTION_SUB) {
+            } else if (curOperation == OPERATION_SUB) {
                 mNum = mNum + 1;
             }
             mMenuData.setCount(mNum);
-            mOnPopDetailViewListener.onDataChanged(mMenuData, curOpeartion);
+            mOnPopDetailViewListener.onDataChanged(mMenuData, curOperation);
         }
         mNum = 0;
-        curOpeartion = 0;
+        curOperation = 0;
         if (mVideoController != null) {
             mVideoController.stop();
+            // 修复从别的activity返回到该界面的activity时，视频会再次播放的bug
+            mVideoView.setVideoURI(null);
+            mVideoController = null;
         }
         ((ViewGroup) getParent()).setVisibility(GONE);
     }
