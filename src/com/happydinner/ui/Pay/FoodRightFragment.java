@@ -1,5 +1,6 @@
 package com.happydinner.ui.Pay;
 
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.*;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import com.happydinner.activity.R;
@@ -151,14 +153,35 @@ public class FoodRightFragment extends Fragment {
        public void onClick(View v) {
            if (v == mShoppingCardView) {
                if (mOrder.getSize() <= 0) {
+                   ObjectAnimator animator = ObjectAnimator.ofFloat(mShoppingCardView, "translationX", 0, 30, -30, 30, -30,20, -20, 10, -10, 0);
+                   animator.setDuration(600);
+                   animator.start();
                    CommonUtils.toastText(getActivity(), "购物车是空的哦~");
                }else {
                    mOrderShowViewRelativeLayout.setVisibility(View.VISIBLE);
                    mOrderShowView.setData(mOrder.getMenuList());
+                   mOrderShowView.startAnimation(orderShowViewAnimation());
                }
            }
        }
    };
+
+    private Animation orderShowViewAnimation() {
+
+        AnimationSet animationSet = new AnimationSet(false);
+        TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
+                TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f);
+//        translateAnimation.setInterpolator(new OvershootInterpolator(1.5f));
+        animationSet.addAnimation(translateAnimation);
+
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setInterpolator(new DecelerateInterpolator());
+        animationSet.addAnimation(alphaAnimation);
+
+        animationSet.setDuration(600);
+
+        return animationSet;
+    }
     /**
      * MenuListWorker回调类
      */
