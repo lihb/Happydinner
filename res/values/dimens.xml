@@ -4,8 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- 首页显示图片大小-->
-    <dimen name="cover_width">200dp</dimen>
-    <dimen name="cover_height">160dp</dimen>
+    <dimen name="cover_width">320dp</dimen>
+    <dimen name="cover_height">180dp</dimen>
 
     <!-- 头部 -->
     <dimen name="head_height">47dp</dimen>

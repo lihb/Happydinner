@@ -8,7 +8,7 @@
         <RelativeLayout
             android:id="@+id/relative_popup_top"
             android:layout_width="fill_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
                 >
@@ -30,7 +30,7 @@
                 <com.happydinner.ui.widget.RoundedImageView
                 android:id="@+id/video_pic"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:scaleType="fitXY"
                 android:src="@drawable/image_4"
                 />
