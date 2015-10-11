@@ -8,7 +8,7 @@
         <RelativeLayout
             android:id="@+id/relative_popup_top"
             android:layout_width="fill_parent"
-            android:layout_height="300dp"
+            android:layout_height="248dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
                 >
@@ -32,7 +32,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/image_4"
+                android:src="@drawable/image_5"
                 />
             <ImageView
                 android:id="@+id/iv_popup_play"
@@ -46,7 +46,7 @@
     <RelativeLayout
             android:layout_below="@+id/relative_popup_top"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingTop="15dp"
             android:layout_marginRight="20dp"
             android:paddingLeft="15dp"
@@ -93,44 +93,44 @@
                 android:textSize="20dp"
                 android:ellipsize="end"
                 />
-        <RelativeLayout
-                android:id="@+id/popup_relative_operation"
-                android:layout_width="120dp"
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/popup_relative_operation"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/menu_count_view_bg"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="30dp"
+            >
+        <ImageView
+                android:id="@+id/popup_imagview_sub"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/sub_icon_selector"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                />
+
+        <TextView
+                android:id="@+id/popup_text_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="10"
+                android:textColor="#ffffff"
+                android:enabled="false"
+                />
+
+        <ImageView
+                android:id="@+id/popup_imagview_add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/add_icon_selector"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/menu_count_view_bg"
-                >
-            <ImageView
-                    android:id="@+id/popup_imagview_sub"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/sub_icon_selector"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    />
-
-            <TextView
-                    android:id="@+id/popup_text_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="10"
-                    android:textColor="#ffffff"
-                    android:enabled="false"
-                    />
-
-            <ImageView
-                    android:id="@+id/popup_imagview_add"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/add_icon_selector"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    />
-        </RelativeLayout>
+                android:layout_centerVertical="true"
+                />
     </RelativeLayout>
     <ImageView
             android:id="@+id/iv_popup_close"

@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -146,10 +150,42 @@ public class OrderShowView extends RelativeLayout {
     }
 
     public void exitView() {
-        ((ViewGroup)getParent()).setVisibility(GONE);
+        startAnimation(orderShowViewHideAnimation());
         if (mOnOrderViewListener != null) {
             mOnOrderViewListener.onBackToFoodFrag(mOrder);
         }
+    }
+
+    private Animation orderShowViewHideAnimation() {
+
+        AnimationSet animationSet = new AnimationSet(false);
+        TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 0.0f, TranslateAnimation.RELATIVE_TO_PARENT, 1.0f,
+                TranslateAnimation.RELATIVE_TO_PARENT, 0.0f, TranslateAnimation.RELATIVE_TO_PARENT, 1.0f);
+//        translateAnimation.setInterpolator(new OvershootInterpolator(1.5f));
+        animationSet.addAnimation(translateAnimation);
+
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        animationSet.addAnimation(alphaAnimation);
+//        animationSet.setFillAfter(true);
+        animationSet.setDuration(400);
+        animationSet.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                ((ViewGroup) getParent()).setVisibility(GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        return animationSet;
     }
 
     public boolean isVisible() {

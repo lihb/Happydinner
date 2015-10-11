@@ -154,7 +154,7 @@ public class FoodRightFragment extends Fragment {
            if (v == mShoppingCardView) {
                if (mOrder.getSize() <= 0) {
                    ObjectAnimator animator = ObjectAnimator.ofFloat(mShoppingCardView, "translationX", 0, 30, -30, 30, -30,20, -20, 10, -10, 0);
-                   animator.setDuration(600);
+                   animator.setDuration(500);
                    animator.start();
                    CommonUtils.toastText(getActivity(), "购物车是空的哦~");
                }else {
@@ -175,10 +175,9 @@ public class FoodRightFragment extends Fragment {
         animationSet.addAnimation(translateAnimation);
 
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
-        alphaAnimation.setInterpolator(new DecelerateInterpolator());
         animationSet.addAnimation(alphaAnimation);
-
-        animationSet.setDuration(600);
+//        animationSet.setFillAfter(true);
+        animationSet.setDuration(400);
 
         return animationSet;
     }
@@ -213,6 +212,10 @@ public class FoodRightFragment extends Fragment {
 
         @Override
         public void onGotoLookDesc(View view, Object itemData) {
+            ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f,1.0f,0.0f,1.0f,
+                    ScaleAnimation.RELATIVE_TO_SELF, 0.5f,ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+            scaleAnimation.setDuration(400);
+            mPopupMenuDetailView.startAnimation(scaleAnimation);
             mPopupMenuDetailViewRelativeLayout.setVisibility(View.VISIBLE);
             Menu menu = (Menu) itemData;
             mPopupMenuDetailView.initData(menu);

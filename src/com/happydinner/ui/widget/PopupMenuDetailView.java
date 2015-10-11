@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.*;
 import com.happydinner.activity.R;
 import com.happydinner.entitiy.Menu;
@@ -199,7 +201,26 @@ public class PopupMenuDetailView extends RelativeLayout {
             mVideoView.setVideoURI(null);
             mVideoController = null;
         }
-        ((ViewGroup) getParent()).setVisibility(GONE);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f,0.0f,1.0f,0.0f,
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+        scaleAnimation.setDuration(400);
+        startAnimation(scaleAnimation);
+        scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                ((ViewGroup) getParent()).setVisibility(GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
 
