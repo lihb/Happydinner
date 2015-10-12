@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.entitiy.GameEntity;
 
 import java.util.ArrayList;

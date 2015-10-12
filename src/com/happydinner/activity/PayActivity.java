@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import com.happydinner.R;
 import com.happydinner.base.BaseActivity;
 import com.happydinner.ui.Pay.PayLeftFragment;
 import com.happydinner.ui.Pay.PayRightZhiFuBaoFragment;

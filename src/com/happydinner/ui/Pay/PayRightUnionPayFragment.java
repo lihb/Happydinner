@@ -1,7 +1,5 @@
 package com.happydinner.ui.Pay;
 
-import java.math.BigDecimal;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.util.CommonUtils;
+
+import java.math.BigDecimal;
 
 /**
  * 类说明：

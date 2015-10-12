@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
+import com.happydinner.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.TypeEnum;
 import com.happydinner.entitiy.GameEntity;

@@ -3,8 +3,7 @@ package com.happydinner.ui.widget;
 import android.app.Activity;
 import android.view.View;
 import android.widget.*;
-
-import com.happydinner.activity.R;
+import com.happydinner.R;
 
 public class HeadView {
 
@@ -65,7 +64,7 @@ public class HeadView {
 //        h_left_new_msg_iv = (ImageView) act.findViewById(R.id.head_left_new_msg_iv);
 //        h_right_new_msg_iv=(ImageView)act.findViewById(R.id.head_right_new_msg_iv);
         h_title = (TextView) act.findViewById(R.id.head_title);
-        h_bottom_line = (View) act.findViewById(R.id.head_bottom_line);
+        h_bottom_line = act.findViewById(R.id.head_bottom_line);
         h_left_tv = (TextView) act.findViewById(R.id.head_left_tv);
 
 //        h_transfer_rlyt = (RelativeLayout) act.findViewById(R.id.head_transfer_rlyt);
@@ -90,7 +89,7 @@ public class HeadView {
 //        h_left_new_msg_iv = (ImageView) contentView.findViewById(R.id.head_left_new_msg_iv);
 //        h_right_new_msg_iv=(ImageView)contentView.findViewById(R.id.head_right_new_msg_iv);
         h_title = (TextView) contentView.findViewById(R.id.head_title);
-        h_bottom_line = (View) contentView.findViewById(R.id.head_bottom_line);
+        h_bottom_line = contentView.findViewById(R.id.head_bottom_line);
         h_left_tv = (TextView) contentView.findViewById(R.id.head_left_tv);
 
 //        h_transfer_rlyt = (RelativeLayout) contentView.findViewById(R.id.head_transfer_rlyt);

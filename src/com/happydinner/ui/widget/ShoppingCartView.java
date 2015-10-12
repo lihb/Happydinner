@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 
 /**
  * Created by Administrator on 2015/9/29.

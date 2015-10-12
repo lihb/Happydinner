@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.happydinner.activity">
+          package="com.happydinner">
     <uses-sdk
             android:minSdkVersion="16"
             android:targetSdkVersion="21"/>
@@ -13,7 +13,7 @@
             android:theme="@style/AppTheme">
 
         <activity
-                android:name=".CoverFlowActivity"
+                android:name=".activity.CoverFlowActivity"
                 android:label="@string/app_name"
                 android:screenOrientation="landscape"
                 >

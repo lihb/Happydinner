@@ -14,7 +14,7 @@ import android.view.*;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.services.IVideoPlayer;
 import com.happydinner.services.SystemMediaPlayer;

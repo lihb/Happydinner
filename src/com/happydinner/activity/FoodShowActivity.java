@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import com.happydinner.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.TypeEnum;
 import com.happydinner.entitiy.Menu;

@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import com.happydinner.R;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.Order.OrderLeftFragment;
 import com.happydinner.ui.Order.OrderRightFragment;

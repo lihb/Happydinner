@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.util.CommonUtils;
@@ -73,7 +73,7 @@ public class OrderLeftListWorker extends AbstractListWorker {
         MENU
     }
 
-    public static interface OnListWorkerListener {
+    public interface OnListWorkerListener {
 
         void onItemClick(int index);
     }

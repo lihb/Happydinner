@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.activity.VideoListActivity;
 import com.happydinner.entitiy.Menu;
 
@@ -107,7 +107,7 @@ public class OrderRightFragAdapter extends BaseAdapter {
         return rowView;
     }
 
-    public static interface OrderRightFragListener {
+    public interface OrderRightFragListener {
         /**
          * 当条目选中状态改变时调用
          */

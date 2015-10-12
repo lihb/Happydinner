@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

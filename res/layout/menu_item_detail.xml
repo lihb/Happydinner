@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:XCRoundRectImageView="http://schemas.android.com/apk/res/com.happydinner"
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -18,12 +19,16 @@
             android:gravity="center"
             >
 
-        <ImageView
+        <com.happydinner.ui.widget.XCRoundRectImageView
                 android:id="@+id/menu_name_iv1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
                 android:src="@drawable/image_1"
+                XCRoundRectImageView:xcr_border_color="#FFFFFF"
+                XCRoundRectImageView:xcr_border_overlay="false"
+                XCRoundRectImageView:xcr_border_width="0dp"
+                XCRoundRectImageView:xcr_border_radius="0"
+                XCRoundRectImageView:xcr_drawable_radius="10"
                 />
 
         <TextView
@@ -116,12 +121,16 @@
             android:layout_marginRight="10dp"
             >
 
-        <ImageView
+        <com.happydinner.ui.widget.XCRoundRectImageView
                 android:id="@+id/menu_name_iv2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
                 android:src="@drawable/image_4"
+                XCRoundRectImageView:xcr_border_color="#FFFFFF"
+                XCRoundRectImageView:xcr_border_overlay="false"
+                XCRoundRectImageView:xcr_border_width="0dp"
+                XCRoundRectImageView:xcr_border_radius="0"
+                XCRoundRectImageView:xcr_drawable_radius="10"
                 />
 
         <TextView
@@ -214,13 +223,17 @@
             android:layout_marginBottom="15dp"
             >
 
-        <ImageView
+        <com.happydinner.ui.widget.XCRoundRectImageView
                 android:id="@+id/menu_name_iv3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
                 android:src="@drawable/image_5"
                 android:padding="2dp"
+                XCRoundRectImageView:xcr_border_color="#FFFFFF"
+                XCRoundRectImageView:xcr_border_overlay="false"
+                XCRoundRectImageView:xcr_border_width="0dp"
+                XCRoundRectImageView:xcr_border_radius="0"
+                XCRoundRectImageView:xcr_drawable_radius="10"
                 />
         <TextView
                 android:id="@+id/menu_name_title3"

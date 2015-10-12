@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.animation.*;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;

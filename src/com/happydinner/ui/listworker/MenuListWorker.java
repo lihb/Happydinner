@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.base.MyAppContext;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;

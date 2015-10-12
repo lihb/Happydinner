@@ -14,7 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.happydinner.activity.R;
+import com.happydinner.R;
 import com.happydinner.activity.VideoListActivity;
 import com.happydinner.activity.VideoPlayer2Activity;
 import com.happydinner.base.ApplicationEx;
