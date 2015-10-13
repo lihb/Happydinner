@@ -13,11 +13,14 @@
             android:paddingRight="40dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:background="@drawable/food_left_bg_selector"
             >
 
         <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:duplicateParentState="true"
                 android:src="@drawable/drink_selector"
                 />
 
@@ -27,7 +30,8 @@
                 android:layout_marginLeft="12dp"
                 android:textSize="25dp"
                 android:text="饮料"
-                android:textColor="#FFFFFF"
+                android:duplicateParentState="true"
+                android:textColor="@drawable/food_left_text_selector"
                 />
     </LinearLayout>
 
@@ -41,11 +45,13 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/linearlayout_drink"
             android:gravity="center"
+            android:clickable="true"
             >
 
         <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:duplicateParentState="true"
                 android:src="@drawable/snack_selector"
                 />
 
@@ -55,7 +61,8 @@
                 android:layout_marginLeft="12dp"
                 android:textSize="25dp"
                 android:text="小吃"
-                android:textColor="#FFFFFF"
+                android:duplicateParentState="true"
+                android:textColor="@drawable/food_left_text_selector"
                 />
     </LinearLayout>
 
@@ -69,6 +76,7 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/linearlayout_snack"
             android:gravity="center"
+            android:clickable="true"
             >
 
         <ImageView
@@ -83,7 +91,8 @@
                 android:layout_marginLeft="12dp"
                 android:textSize="25dp"
                 android:text="主食"
-                android:textColor="#FFFFFF"
+                android:duplicateParentState="true"
+                android:textColor="@drawable/food_left_text_selector"
                 />
     </LinearLayout>
 
@@ -96,11 +105,13 @@
             android:paddingRight="40dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/linearlayout_food"
+            android:clickable="true"
             >
 
         <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:duplicateParentState="true"
                 android:src="@drawable/set_meal_selector"
                 />
 
@@ -110,7 +121,8 @@
                 android:layout_marginLeft="12dp"
                 android:textSize="25dp"
                 android:text="套餐"
-                android:textColor="#FFFFFF"
+                android:duplicateParentState="true"
+                android:textColor="@drawable/food_left_text_selector"
                 />
     </LinearLayout>
 

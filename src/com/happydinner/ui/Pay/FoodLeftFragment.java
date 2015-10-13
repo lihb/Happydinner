@@ -30,7 +30,6 @@ import java.util.SortedMap;
 
 public class FoodLeftFragment extends Fragment {
 
-
     @InjectView(R.id.linearlayout_drink)
     LinearLayout linearlayoutDrink;
     @InjectView(R.id.linearlayout_snack)
@@ -68,6 +67,7 @@ public class FoodLeftFragment extends Fragment {
         linearlayoutSnack.setOnClickListener(mOnclickListener);
         linearlayoutFood.setOnClickListener(mOnclickListener);
         linearlayoutSetmeal.setOnClickListener(mOnclickListener);
+        linearlayoutDrink.setSelected(true);
     }
 
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
@@ -79,34 +79,34 @@ public class FoodLeftFragment extends Fragment {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.DRINK.ordinal());
                 dataList.addAll(collection);
-                linearlayoutDrink.setBackgroundResource(R.drawable.focus);
-                linearlayoutSnack.setBackground(null);
-                linearlayoutFood.setBackground(null);
-                linearlayoutSetmeal.setBackground(null);
+                linearlayoutSnack.setSelected(false);
+                linearlayoutFood.setSelected(false);
+                linearlayoutSetmeal.setSelected(false);
+                linearlayoutDrink.setSelected(true);
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.SNACK.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setBackgroundResource(R.drawable.focus);
-                linearlayoutDrink.setBackground(null);
-                linearlayoutFood.setBackground(null);
-                linearlayoutSetmeal.setBackground(null);
+                linearlayoutSnack.setSelected(true);
+                linearlayoutFood.setSelected(false);
+                linearlayoutSetmeal.setSelected(false);
+                linearlayoutDrink.setSelected(false);
             } else if (v == linearlayoutFood) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.PRI_FOOD.ordinal());
                 dataList.addAll(collection);
-                linearlayoutFood.setBackgroundResource(R.drawable.focus);
-                linearlayoutSnack.setBackground(null);
-                linearlayoutDrink.setBackground(null);
-                linearlayoutSetmeal.setBackground(null);
+                linearlayoutSnack.setSelected(false);
+                linearlayoutFood.setSelected(true);
+                linearlayoutSetmeal.setSelected(false);
+                linearlayoutDrink.setSelected(false);
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.MEALSET.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSetmeal.setBackgroundResource(R.drawable.focus);
-                linearlayoutSnack.setBackground(null);
-                linearlayoutFood.setBackground(null);
-                linearlayoutDrink.setBackground(null);
+                linearlayoutSnack.setSelected(false);
+                linearlayoutFood.setSelected(false);
+                linearlayoutSetmeal.setSelected(true);
+                linearlayoutDrink.setSelected(false);
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);
