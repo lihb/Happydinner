@@ -145,6 +145,12 @@ public class FoodRightFragment extends Fragment {
             ((ApplicationEx) (getActivity()).getApplication()).setInternalActivityParam("order", mOrder);
         }
         updateView();
+
+        ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 1.0f);
+        scaleAnim.setInterpolator(new OvershootInterpolator());
+        scaleAnim.setDuration(2000);
+        LayoutAnimationController lac = new LayoutAnimationController(scaleAnim, 0.5f);
+        mListView.setLayoutAnimation(lac);
     }
 
 

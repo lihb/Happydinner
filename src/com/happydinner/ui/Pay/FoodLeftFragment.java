@@ -8,7 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LayoutAnimationController;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.happydinner.R;
@@ -38,6 +42,8 @@ public class FoodLeftFragment extends Fragment {
     LinearLayout linearlayoutFood;
     @InjectView(R.id.linearlayout_setmeal)
     LinearLayout linearlayoutSetmeal;
+    @InjectView(R.id.relative_food_left)
+    RelativeLayout relativeFoodLeft;
     private SortedMap<Integer, List<Menu>> sortedMap;
 
     private FragmentManager mFragmentManager;
@@ -68,6 +74,12 @@ public class FoodLeftFragment extends Fragment {
         linearlayoutFood.setOnClickListener(mOnclickListener);
         linearlayoutSetmeal.setOnClickListener(mOnclickListener);
         linearlayoutDrink.setSelected(true);
+
+        ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1);
+        scaleAnim.setInterpolator(new OvershootInterpolator());
+        scaleAnim.setDuration(1000);
+        LayoutAnimationController lac = new LayoutAnimationController(scaleAnim, 0.5f);
+        relativeFoodLeft.setLayoutAnimation(lac);
     }
 
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
