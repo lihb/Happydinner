@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LayoutAnimationController;
-import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,6 +18,7 @@ import com.happydinner.R;
 import com.happydinner.base.ApplicationEx;
 import com.happydinner.base.TypeEnum;
 import com.happydinner.entitiy.Menu;
+import com.happydinner.ui.widget.CustomOvershootInterpolator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public class FoodLeftFragment extends Fragment {
         linearlayoutDrink.setSelected(true);
 
         ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1);
-        scaleAnim.setInterpolator(new OvershootInterpolator());
+        scaleAnim.setInterpolator(new CustomOvershootInterpolator());
         scaleAnim.setDuration(1000);
         LayoutAnimationController lac = new LayoutAnimationController(scaleAnim, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);
