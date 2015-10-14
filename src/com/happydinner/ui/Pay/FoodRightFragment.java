@@ -17,6 +17,7 @@ import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
+import com.happydinner.ui.widget.CustomAnimation;
 import com.happydinner.ui.widget.OrderShowView;
 import com.happydinner.ui.widget.PopupMenuDetailView;
 import com.happydinner.ui.widget.ShoppingCartView;
@@ -148,8 +149,15 @@ public class FoodRightFragment extends Fragment {
 
         ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 1.0f);
         scaleAnim.setInterpolator(new OvershootInterpolator());
-        scaleAnim.setDuration(2000);
-        LayoutAnimationController lac = new LayoutAnimationController(scaleAnim, 0.5f);
+        scaleAnim.setDuration(800);
+        CustomAnimation customAnimation = new CustomAnimation();
+        customAnimation.setDuration(500);
+        customAnimation.setStartOffset(800);
+
+        AnimationSet set = new AnimationSet(false);
+        set.addAnimation(scaleAnim);
+        set.addAnimation(customAnimation);
+        LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         mListView.setLayoutAnimation(lac);
     }
 
