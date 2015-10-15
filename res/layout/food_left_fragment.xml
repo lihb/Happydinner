@@ -48,6 +48,7 @@
             android:layout_below="@+id/linearlayout_drink"
             android:gravity="center"
             android:clickable="true"
+            android:background="@drawable/food_left_bg_selector"
             >
 
         <ImageView
@@ -79,6 +80,7 @@
             android:layout_below="@+id/linearlayout_snack"
             android:gravity="center"
             android:clickable="true"
+            android:background="@drawable/food_left_bg_selector"
             >
 
         <ImageView
@@ -108,6 +110,7 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/linearlayout_food"
             android:clickable="true"
+            android:background="@drawable/food_left_bg_selector"
             >
 
         <ImageView
