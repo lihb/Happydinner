@@ -1,9 +1,13 @@
 package com.happydinner.ui.listworker;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationSet;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +15,7 @@ import com.happydinner.R;
 import com.happydinner.base.MyAppContext;
 import com.happydinner.common.list.AbstractListWorker;
 import com.happydinner.entitiy.Menu;
+import com.happydinner.ui.widget.CustomAnimation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -132,8 +137,15 @@ public class MenuListWorker extends AbstractListWorker {
             for (int i = 0; i < MAX_MENUS_COUNT_PER_LINE; i++) {
                 menuViewHolder.getRlLocMenu(i).setVisibility(View.INVISIBLE);
             }
+            Log.i("WWWWW", "updateItem--------");
             for (int i = 0; i < menuList.size(); i++) {
-                menuViewHolder.getRlLocMenu(i).setVisibility(View.VISIBLE);
+                RelativeLayout rlLocMenu = menuViewHolder.getRlLocMenu(i);
+                rlLocMenu.setVisibility(View.VISIBLE);
+                boolean animatedFlag = menuViewHolder.getAnimatedFlag(i);
+                if (animatedFlag) {
+                    setAnimation(rlLocMenu, i);
+                    menuViewHolder.setAnimatedFlag(i, false);
+                }
                 final Menu menu = menuList.get(i);
                 //是否显示减号操作按钮和背景
                 showSubOper(menuViewHolder, menu.getCount(), i);
@@ -186,9 +198,23 @@ public class MenuListWorker extends AbstractListWorker {
                 holder.getImageViewSub(index).setVisibility(View.GONE);
                 holder.getRelativeLayoutOperation(index).setBackground(null);
                 holder.getMenuCount(index).setVisibility(View.GONE);
-
-
             }
+        }
+
+        private void setAnimation(View view, int index) {
+            Log.i("WWWWWWWWW", "lihongbing test : view -->" + view.getId());
+            ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 1.0f);
+            scaleAnim.setInterpolator(new OvershootInterpolator());
+            scaleAnim.setDuration(800);
+            CustomAnimation customAnimation = new CustomAnimation();
+            customAnimation.setDuration(500);
+            customAnimation.setStartOffset(800);
+
+            AnimationSet set = new AnimationSet(false);
+            set.addAnimation(scaleAnim);
+            set.addAnimation(customAnimation);
+            set.setStartOffset(800 * index);
+            view.startAnimation(set);
         }
 
         @Override
@@ -230,6 +256,10 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuCount1;
             TextView menuCount2;
             TextView menuCount3;
+
+            boolean toAnimed1 = true;
+            boolean toAnimed2 = true;
+            boolean toAnimed3 = true;
 
             MenuViewHolder(View view) {
                 menuNameIv1 = (ImageView) view.findViewById(R.id.menu_name_iv1);
@@ -367,6 +397,32 @@ public class MenuListWorker extends AbstractListWorker {
                         return menuNameIv3;
                 }
                 return null;
+            }
+
+            public boolean getAnimatedFlag(int index) {
+                switch (index) {
+                    case 0:
+                        return toAnimed1;
+                    case 1:
+                        return toAnimed2;
+                    case 2:
+                        return toAnimed3;
+                }
+                return false;
+            }
+
+            public void setAnimatedFlag(int index, boolean flag) {
+                switch (index) {
+                    case 0:
+                        toAnimed1 = flag;
+                        break;
+                    case 1:
+                        toAnimed2 = flag;
+                        break;
+                    case 2:
+                        toAnimed3 = flag;
+                        break;
+                }
             }
         }
     }

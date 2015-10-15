@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +18,6 @@ import com.happydinner.common.list.SimpleListWorkerAdapter;
 import com.happydinner.entitiy.Menu;
 import com.happydinner.entitiy.Order;
 import com.happydinner.ui.listworker.MenuListWorker;
-import com.happydinner.ui.widget.CustomAnimation;
 import com.happydinner.ui.widget.OrderShowView;
 import com.happydinner.ui.widget.PopupMenuDetailView;
 import com.happydinner.ui.widget.ShoppingCartView;
@@ -111,11 +111,13 @@ public class FoodRightFragment extends Fragment {
                 if (mListWorker != null) {
                     mListWorker.setData(mDataList);
                     mListAdapter.notifyDataSetChanged();
+                    Log.i("wwwww", "onBackToFoodFrag");
                 }
                 mShoppingCardView.setTextCount(order.getSize());
                 mShoppingCardView.setTextPrice(CommonUtils.round(order.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
             }
         });
+        Log.i("wwwww", "onCreateView");
         return view;
     }
 
@@ -131,9 +133,11 @@ public class FoodRightFragment extends Fragment {
             mListView.setAdapter(mListAdapter);
             // ListView的 ItemClick 由 ListWorker 转发
             mListView.setOnItemClickListener(mListWorker);
+            Log.i("wwwww", "mListWorker == null");
         } else {
             mListWorker.setData(mDataList);
             mListAdapter.notifyDataSetChanged();
+            Log.i("wwwww", "mListWorker != null");
         }
 
         //获取订单数据
@@ -146,19 +150,6 @@ public class FoodRightFragment extends Fragment {
             ((ApplicationEx) (getActivity()).getApplication()).setInternalActivityParam("order", mOrder);
         }
         updateView();
-
-        ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 1.0f);
-        scaleAnim.setInterpolator(new OvershootInterpolator());
-        scaleAnim.setDuration(800);
-        CustomAnimation customAnimation = new CustomAnimation();
-        customAnimation.setDuration(500);
-        customAnimation.setStartOffset(800);
-
-        AnimationSet set = new AnimationSet(false);
-        set.addAnimation(scaleAnim);
-        set.addAnimation(customAnimation);
-        LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
-        mListView.setLayoutAnimation(lac);
     }
 
 
@@ -243,6 +234,7 @@ public class FoodRightFragment extends Fragment {
                     }
                     updateView();
                     mListAdapter.notifyDataSetChanged();
+                    Log.i("wwwww", "onGotoLookDesc");
                 }
             });
         }

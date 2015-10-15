@@ -81,13 +81,13 @@ public class FoodLeftFragment extends Fragment {
 
         CustomAnimation customAnimation = new CustomAnimation();
         customAnimation.setDuration(500);
-        customAnimation.setStartOffset(500);
+        customAnimation.setStartOffset(600);
 
         AnimationSet set = new AnimationSet(false);
         set.addAnimation(scaleAnim);
         set.addAnimation(customAnimation);
 //        set.setInterpolator(new OvershootInterpolator());
-        LayoutAnimationController lac = new LayoutAnimationController(set, 1.0f);
+        LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);
     }
 

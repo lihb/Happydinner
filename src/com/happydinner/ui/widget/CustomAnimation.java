@@ -11,6 +11,6 @@ public class CustomAnimation extends Animation {
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
 
-        t.getMatrix().setTranslate((float)(Math.sin(interpolatedTime *5)*20),0);
+        t.getMatrix().setTranslate((float)(Math.sin(interpolatedTime *10)*20),0);
     }
 }

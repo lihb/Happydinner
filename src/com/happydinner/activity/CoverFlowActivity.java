@@ -107,8 +107,8 @@ public class CoverFlowActivity extends ActionBarActivity {
         Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, TypeEnum.DRINK.ordinal(), "九毛九");
         Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, TypeEnum.DRINK.ordinal(), "土菜馆");
         Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, TypeEnum.SNACK.ordinal(), "九毛九");
-        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, TypeEnum.DRINK.ordinal(),"黄鹤天厨");
-        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, TypeEnum.DRINK.ordinal(), "老知青");
+        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, TypeEnum.SNACK.ordinal(),"黄鹤天厨");
+        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, TypeEnum.PRI_FOOD.ordinal(), "老知青");
         Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, TypeEnum.PRI_FOOD.ordinal(), "大丰收");
         Menu duckMenu2 = new Menu("血鸭", null, null, 35f, "好吃看的见-duck", 1f, 0, TypeEnum.MEALSET.ordinal(), "大丰收");
         Menu fishMenu2 = new Menu("黄骨鱼", null, null, 30f, "好吃看的见-duck", 1f, 0, TypeEnum.DRINK.ordinal(), "土菜馆");
