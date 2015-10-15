@@ -60,8 +60,9 @@
                 >
             <ImageView
                     android:id="@+id/pay_info_step1_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="290dp"
+                    android:layout_height="220dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/pay_instruction"
                     />
             <TextView
@@ -70,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:layout_marginTop="10dp"
-                    android:textSize="@dimen/pay_text_size"
+                    android:textSize="20dp"
                     android:text="1.打开手机微信\n点击扫一扫功能"
                     />
         </LinearLayout>
@@ -84,8 +85,9 @@
                 >
             <ImageView
                     android:id="@+id/pay_info_step2_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/qr_icon"
                     />
             <TextView
@@ -93,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/pay_text_size"
+                    android:textSize="20dp"
                     android:layout_marginTop="10dp"
                     android:text="2.扫描该二维码，成功后\n按照提示输入密码"
                     />

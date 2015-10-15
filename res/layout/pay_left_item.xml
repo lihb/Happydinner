@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="50dp"
               android:paddingRight="12dp"
-              android:background="@drawable/pay_selector"
+              android:clickable="true"
+              android:background="@drawable/food_left_bg_selector"
+              android:minHeight="?android:attr/listPreferredItemHeight"
         >
     <ImageView
             android:id="@+id/pay_icon_iv"
-            android:layout_width="@dimen/pay_icon_width"
-            android:layout_height="@dimen/pay_icon_height"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:duplicateParentState="true"
             android:scaleType="fitXY"
             android:src="@drawable/icon_wechat"
@@ -19,9 +21,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="12dp"
-            android:textSize="@dimen/pay_title_text_size"
+            android:textSize="25dp"
             android:duplicateParentState="true"
-            android:textColor="@color/text_selector"
+            android:textColor="@drawable/food_left_text_selector"
             android:layout_gravity="center_vertical"
             />
 

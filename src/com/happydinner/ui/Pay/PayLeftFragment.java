@@ -83,7 +83,7 @@ public class PayLeftFragment extends Fragment {
             float price = intent.getFloatExtra("totalPrice", 0f);
             Bundle bundle = new Bundle();
             bundle.putFloat("price", price);
-//            view.setBackgroundResource(R.drawable.focus);
+            view.setSelected(true);
             if (id == ZHIFUBAO) {
                 payRightZhiFuBaoFragment = new PayRightZhiFuBaoFragment();
                 payRightZhiFuBaoFragment.setArguments(bundle);
