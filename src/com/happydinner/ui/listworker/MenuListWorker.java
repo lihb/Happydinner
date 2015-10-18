@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationSet;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -203,17 +202,17 @@ public class MenuListWorker extends AbstractListWorker {
 
         private void setAnimation(View view, int index) {
             Log.i("WWWWWWWWW", "lihongbing test : view -->" + view.getId());
-            ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1, ScaleAnimation.RELATIVE_TO_SELF, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 1.0f);
-            scaleAnim.setInterpolator(new OvershootInterpolator());
-            scaleAnim.setDuration(800);
+            TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
+                    TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
+            transAnim.setDuration(600);
             CustomAnimation customAnimation = new CustomAnimation();
             customAnimation.setDuration(500);
-            customAnimation.setStartOffset(800);
+            customAnimation.setStartOffset(600);
 
             AnimationSet set = new AnimationSet(false);
-            set.addAnimation(scaleAnim);
+            set.addAnimation(transAnim);
             set.addAnimation(customAnimation);
-            set.setStartOffset(800 * index);
+            set.setStartOffset(600 * index);
             view.startAnimation(set);
         }
 

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
-import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import butterknife.ButterKnife;
@@ -76,15 +76,16 @@ public class FoodLeftFragment extends Fragment {
         linearlayoutSetmeal.setOnClickListener(mOnclickListener);
         linearlayoutDrink.setSelected(true);
 
-        ScaleAnimation scaleAnim = new ScaleAnimation(0, 1, 0, 1);
-        scaleAnim.setDuration(500);
+        TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, -1.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f,
+                TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
+        transAnim.setDuration(400);
 
         CustomAnimation customAnimation = new CustomAnimation();
-        customAnimation.setDuration(500);
-        customAnimation.setStartOffset(600);
+        customAnimation.setDuration(400);
+        customAnimation.setStartOffset(400);
 
         AnimationSet set = new AnimationSet(false);
-        set.addAnimation(scaleAnim);
+        set.addAnimation(transAnim);
         set.addAnimation(customAnimation);
 //        set.setInterpolator(new OvershootInterpolator());
         LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);

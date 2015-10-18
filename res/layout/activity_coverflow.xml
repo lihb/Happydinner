@@ -16,10 +16,9 @@
         coverflow:coverWidth="500dp"
         coverflow:maxScaleFactor="1.5"
         coverflow:reflectionGap="0px"
-        coverflow:rotationThreshold="0.5"
+        coverflow:rotationThreshold="0.3"
         coverflow:scalingThreshold="0.5"
-        coverflow:alignAnimationTime="500"
-        coverflow:spacing="0.2" />
+        coverflow:spacing="0.4" />
 
     <TextSwitcher
         android:id="@+id/title"
