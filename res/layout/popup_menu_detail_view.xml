@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.happydinner.ui.widget.PopupMenuDetailView
+<com.handgold.pjdc.ui.widget.PopupMenuDetailView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,13 +21,13 @@
                     android:fitsSystemWindows="false"
                     android:foregroundGravity="clip_horizontal|clip_vertical">
 
-                <com.happydinner.ui.widget.PopupVideoView
+                <com.handgold.pjdc.ui.widget.PopupVideoView
                         android:id="@+id/popup_videoview"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         />
             </FrameLayout>
-                <com.happydinner.ui.widget.RoundedImageView
+                <com.handgold.pjdc.ui.widget.RoundedImageView
                 android:id="@+id/video_pic"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -140,4 +140,4 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             />
-</com.happydinner.ui.widget.PopupMenuDetailView>
+</com.handgold.pjdc.ui.widget.PopupMenuDetailView>

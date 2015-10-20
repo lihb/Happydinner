@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
-             xmlns:XCRoundRectImageView="http://schemas.android.com/apk/res/com.happydinner"
+             xmlns:XCRoundRectImageView="http://schemas.android.com/apk/res/com.handgold.pjdc"
              android:layout_width="match_parent"
              android:layout_height="@dimen/cover_height"
              android:foreground="@drawable/cover_selector"
              android:clickable="true">
 
-    <com.happydinner.ui.widget.XCRoundRectImageView
+    <com.handgold.pjdc.ui.widget.XCRoundRectImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
