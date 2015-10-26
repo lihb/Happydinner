@@ -104,6 +104,7 @@ public class CoverFlowActivity extends ActionBarActivity {
     }
 
     private void initData() {
+        Menu meatMenu1 = new Menu("乌冬面", null, null, 15.67f, "好吃看的见－nuddles", 1, 0, TypeEnum.RECOMMEND.ordinal(), "九毛九");
         Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, TypeEnum.DRINK.ordinal(), "九毛九");
         Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, TypeEnum.DRINK.ordinal(), "土菜馆");
         Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, TypeEnum.SNACK.ordinal(), "九毛九");
@@ -114,6 +115,7 @@ public class CoverFlowActivity extends ActionBarActivity {
         Menu fishMenu2 = new Menu("黄骨鱼", null, null, 30f, "好吃看的见-duck", 1f, 0, TypeEnum.DRINK.ordinal(), "土菜馆");
         List<Menu> menuList = new ArrayList<Menu>();
         menuList.add(meatMenu);
+        menuList.add(meatMenu1);
         menuList.add(lurouMenu);
         menuList.add(luosiMenu);
         menuList.add(fishMenu);

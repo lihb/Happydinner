@@ -45,6 +45,8 @@ public class FoodLeftFragment extends Fragment {
     LinearLayout linearlayoutSetmeal;
     @InjectView(R.id.relative_food_left)
     RelativeLayout relativeFoodLeft;
+    @InjectView(R.id.linearlayout_recommend)
+    LinearLayout linearlayoutRecommend;
     private SortedMap<Integer, List<Menu>> sortedMap;
 
     private FragmentManager mFragmentManager;
@@ -74,7 +76,8 @@ public class FoodLeftFragment extends Fragment {
         linearlayoutSnack.setOnClickListener(mOnclickListener);
         linearlayoutFood.setOnClickListener(mOnclickListener);
         linearlayoutSetmeal.setOnClickListener(mOnclickListener);
-        linearlayoutDrink.setSelected(true);
+        linearlayoutRecommend.setOnClickListener(mOnclickListener);
+        linearlayoutRecommend.setSelected(true);
 
         TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, -1.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f,
                 TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
@@ -104,6 +107,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutSnack.setSelected(false);
                 linearlayoutFood.setSelected(false);
                 linearlayoutSetmeal.setSelected(false);
+                linearlayoutRecommend.setSelected(false);
                 linearlayoutDrink.setSelected(true);
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
@@ -113,6 +117,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutFood.setSelected(false);
                 linearlayoutSetmeal.setSelected(false);
                 linearlayoutDrink.setSelected(false);
+                linearlayoutRecommend.setSelected(false);
             } else if (v == linearlayoutFood) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.PRI_FOOD.ordinal());
@@ -121,6 +126,7 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutFood.setSelected(true);
                 linearlayoutSetmeal.setSelected(false);
                 linearlayoutDrink.setSelected(false);
+                linearlayoutRecommend.setSelected(false);
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.MEALSET.ordinal());
@@ -129,6 +135,17 @@ public class FoodLeftFragment extends Fragment {
                 linearlayoutFood.setSelected(false);
                 linearlayoutSetmeal.setSelected(true);
                 linearlayoutDrink.setSelected(false);
+                linearlayoutRecommend.setSelected(false);
+            }
+            else if (v == linearlayoutRecommend) {
+                dataList.clear();
+                List<Menu> collection = sortedMap.get(TypeEnum.RECOMMEND.ordinal());
+                dataList.addAll(collection);
+                linearlayoutSnack.setSelected(false);
+                linearlayoutFood.setSelected(false);
+                linearlayoutSetmeal.setSelected(false);
+                linearlayoutDrink.setSelected(false);
+                linearlayoutRecommend.setSelected(true);
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);

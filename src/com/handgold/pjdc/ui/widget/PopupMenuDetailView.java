@@ -5,8 +5,7 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.ScaleAnimation;
+import android.view.animation.*;
 import android.widget.*;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.Menu;
@@ -259,13 +258,36 @@ public class PopupMenuDetailView extends RelativeLayout {
      */
     private void showSubOper() {
         if (mNum > 0) {
-            mPopOperationLayout.setBackgroundResource(R.drawable.menu_count_view_bg);
             mSubImage.setVisibility(VISIBLE);
+            mPopOperationLayout.setBackgroundResource(R.drawable.menu_count_view_bg);
+            if (mNum == 1 && curOperation == OPERATION_ADD) { // 减号出现动画
+                RotateAnimation rotateAnimation = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                rotateAnimation.setDuration(300);
+                TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 2.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f,
+                        TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, 0);
+                translateAnimation.setDuration(300);
+                AnimationSet set = new AnimationSet(false);
+                set.addAnimation(rotateAnimation);
+                set.addAnimation(translateAnimation);
+                mSubImage.startAnimation(set);
+            }
             mMenuCount.setVisibility(VISIBLE);
             mMenuCount.setText("" + mNum);
         } else {
+            if (curOperation == OPERATION_SUB) {
+                // 减号消失动画
+                RotateAnimation rotateAnimation = new RotateAnimation(360, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                rotateAnimation.setDuration(300);
+                TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 1.0f,
+                        TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, 0);
+                translateAnimation.setDuration(300);
+                AnimationSet set = new AnimationSet(false);
+                set.addAnimation(rotateAnimation);
+                set.addAnimation(translateAnimation);
+                mSubImage.startAnimation(set);
+            }
+            mSubImage.setVisibility(View.GONE);
             mPopOperationLayout.setBackground(null);
-            mSubImage.setVisibility(GONE);
             mMenuCount.setVisibility(GONE);
         }
     }

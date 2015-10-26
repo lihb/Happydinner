@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
@@ -204,8 +203,8 @@ public class MenuListWorker extends AbstractListWorker {
 
         private void showSubOper(final MenuViewHolder holder, int count, final int index, int oper) {
             if (count > 0) {
+                holder.getImageViewSub(index).setVisibility(View.VISIBLE);
                 if (count == 1 && oper == OPER_ADD) { // 减号出现动画
-                    holder.getImageViewSub(index).setVisibility(View.VISIBLE);
                     RotateAnimation rotateAnimation = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
                     rotateAnimation.setDuration(300);
                     TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 1.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f,
@@ -225,31 +224,15 @@ public class MenuListWorker extends AbstractListWorker {
                     // 减号消失动画
                     RotateAnimation rotateAnimation = new RotateAnimation(360, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
                     rotateAnimation.setDuration(300);
-                    TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 1.0f,
+                    TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 2.0f,
                             TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, 0);
                     translateAnimation.setDuration(300);
                     AnimationSet set = new AnimationSet(false);
                     set.addAnimation(rotateAnimation);
                     set.addAnimation(translateAnimation);
                     holder.getImageViewSub(index).startAnimation(set);
-                    set.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            holder.getImageViewSub(index).setVisibility(View.GONE);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
                 }
-
+                holder.getImageViewSub(index).setVisibility(View.GONE);
                 holder.getRelativeLayoutOperation(index).setBackground(null);
                 holder.getMenuCount(index).setVisibility(View.GONE);
             }

@@ -5,5 +5,5 @@ package com.handgold.pjdc.base;
  * ��Ʒ��������
  */
 public enum TypeEnum {
-    NOTHING,DRINK,SNACK,PRI_FOOD,MEALSET
+    NOTHING,DRINK,SNACK,PRI_FOOD,MEALSET, RECOMMEND
 }
