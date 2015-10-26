@@ -109,7 +109,6 @@ public class FoodShowActivity extends FragmentActivity {
 
     }
 
-
     private View.OnClickListener mOnClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {

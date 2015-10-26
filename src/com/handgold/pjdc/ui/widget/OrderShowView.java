@@ -3,6 +3,7 @@ package com.handgold.pjdc.ui.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -143,6 +144,13 @@ public class OrderShowView extends RelativeLayout {
 
     public void setTextOrderCount(int count) {
         mTextOrderCount.setText("" + count);
+        if (count > 0) {
+            mTextOrderNow.setTextColor(Color.WHITE);
+            mTextOrderNow.setBackgroundResource(R.color.button_settlement);
+        }else{
+            mTextOrderNow.setTextColor(Color.BLACK);
+            mTextOrderNow.setBackgroundResource(R.color.transparent);
+        }
     }
 
     public void setTextOrderPrice(float price) {
@@ -150,6 +158,9 @@ public class OrderShowView extends RelativeLayout {
     }
 
     public void exitView() {
+        if (getAnimation() != null) {
+            return;
+        }
         startAnimation(orderShowViewHideAnimation());
         if (mOnOrderViewListener != null) {
             mOnOrderViewListener.onBackToFoodFrag(mOrder);

@@ -5,7 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -33,6 +35,10 @@ public class MenuListWorker extends AbstractListWorker {
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private Context mContext;
     private OnListWorkerListener mOnListWorkerListener;
+
+    public final static int OPER_ADD = 0;
+    public final static int OPER_SUB = 1;
+    public final static int OPER_NONE = -1;
 
     public enum MenuType {
         RECOMMEND, SPECIAL, NEW
@@ -84,7 +90,7 @@ public class MenuListWorker extends AbstractListWorker {
         /**
          * 加菜
          */
-        void onAddMenuClicked(Object itemData);
+        void onAddMenuClicked(Object itemData, View view);
 
         /**
          * 减菜
@@ -136,7 +142,6 @@ public class MenuListWorker extends AbstractListWorker {
             for (int i = 0; i < MAX_MENUS_COUNT_PER_LINE; i++) {
                 menuViewHolder.getRlLocMenu(i).setVisibility(View.INVISIBLE);
             }
-            Log.i("WWWWW", "updateItem--------");
             for (int i = 0; i < menuList.size(); i++) {
                 RelativeLayout rlLocMenu = menuViewHolder.getRlLocMenu(i);
                 rlLocMenu.setVisibility(View.VISIBLE);
@@ -147,7 +152,7 @@ public class MenuListWorker extends AbstractListWorker {
                 }
                 final Menu menu = menuList.get(i);
                 //是否显示减号操作按钮和背景
-                showSubOper(menuViewHolder, menu.getCount(), i);
+                showSubOper(menuViewHolder, menu.getCount(), i, OPER_NONE);
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuPriceTxt(i).setText("¥" + menu.getPrice());
                 menuViewHolder.getMenuRestaurantName(i).setText(menu.getRestaurantName());
@@ -158,8 +163,8 @@ public class MenuListWorker extends AbstractListWorker {
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
-                            mOnListWorkerListener.onAddMenuClicked(menu);
-                            showSubOper(menuViewHolder, menu.getCount(), temp);
+                            mOnListWorkerListener.onAddMenuClicked(menu, v);
+                            showSubOper(menuViewHolder, menu.getCount(), temp, OPER_ADD);
                         }
                     }
                 });
@@ -169,12 +174,22 @@ public class MenuListWorker extends AbstractListWorker {
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
                             mOnListWorkerListener.onSubMenuClicked(menu);
-                            showSubOper(menuViewHolder, menu.getCount(), temp);
+                            showSubOper(menuViewHolder, menu.getCount(), temp, OPER_SUB);
+                            Log.i("wwwww", " menu.getCount() = " + menu.getCount());
                         }
                     }
                 });
                 // 查看详情
-                menuViewHolder.getMenuImage(i).setOnClickListener(new View.OnClickListener() {
+              /*  menuViewHolder.getMenuImage(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mOnListWorkerListener != null) {
+                            mOnListWorkerListener.onGotoLookDesc(v, menu);
+                        }
+                    }
+                });*/
+
+                menuViewHolder.getMenuDetail(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (mOnListWorkerListener != null) {
@@ -187,23 +202,62 @@ public class MenuListWorker extends AbstractListWorker {
 
         }
 
-        private void showSubOper(MenuViewHolder holder, int count, int index) {
+        private void showSubOper(final MenuViewHolder holder, int count, final int index, int oper) {
             if (count > 0) {
-                holder.getImageViewSub(index).setVisibility(View.VISIBLE);
+                if (count == 1 && oper == OPER_ADD) { // 减号出现动画
+                    holder.getImageViewSub(index).setVisibility(View.VISIBLE);
+                    RotateAnimation rotateAnimation = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                    rotateAnimation.setDuration(300);
+                    TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 1.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f,
+                            TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, 0);
+                    translateAnimation.setDuration(300);
+                    AnimationSet set = new AnimationSet(false);
+                    set.addAnimation(rotateAnimation);
+                    set.addAnimation(translateAnimation);
+                    holder.getImageViewSub(index).startAnimation(set);
+                }
+
                 holder.getRelativeLayoutOperation(index).setBackgroundResource(R.drawable.menu_count_view_bg);
                 holder.getMenuCount(index).setVisibility(View.VISIBLE);
                 holder.getMenuCount(index).setText("" + count);
-            }else {
-                holder.getImageViewSub(index).setVisibility(View.GONE);
+            } else {
+                if (oper == OPER_SUB) {
+                    // 减号消失动画
+                    RotateAnimation rotateAnimation = new RotateAnimation(360, 0, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                    rotateAnimation.setDuration(300);
+                    TranslateAnimation translateAnimation = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 1.0f,
+                            TranslateAnimation.RELATIVE_TO_SELF, 0, TranslateAnimation.RELATIVE_TO_SELF, 0);
+                    translateAnimation.setDuration(300);
+                    AnimationSet set = new AnimationSet(false);
+                    set.addAnimation(rotateAnimation);
+                    set.addAnimation(translateAnimation);
+                    holder.getImageViewSub(index).startAnimation(set);
+                    set.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            holder.getImageViewSub(index).setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                }
+
                 holder.getRelativeLayoutOperation(index).setBackground(null);
                 holder.getMenuCount(index).setVisibility(View.GONE);
             }
         }
 
         private void setAnimation(View view, int index) {
-            Log.i("WWWWWWWWW", "lihongbing test : view -->" + view.getId());
             TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
-                    TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
+                    TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
             transAnim.setDuration(600);
             CustomAnimation customAnimation = new CustomAnimation();
             customAnimation.setDuration(500);
@@ -256,6 +310,10 @@ public class MenuListWorker extends AbstractListWorker {
             TextView menuCount2;
             TextView menuCount3;
 
+            TextView menuDetail1;
+            TextView menuDetail2;
+            TextView menuDetail3;
+
             boolean toAnimed1 = true;
             boolean toAnimed2 = true;
             boolean toAnimed3 = true;
@@ -288,6 +346,9 @@ public class MenuListWorker extends AbstractListWorker {
                 menuCount1 = (TextView) view.findViewById(R.id.text_count1);
                 menuCount2 = (TextView) view.findViewById(R.id.text_count2);
                 menuCount3 = (TextView) view.findViewById(R.id.text_count3);
+                menuDetail1 = (TextView) view.findViewById(R.id.menu_detail_1);
+                menuDetail2 = (TextView) view.findViewById(R.id.menu_detail_2);
+                menuDetail3 = (TextView) view.findViewById(R.id.menu_detail_3);
             }
 
             public RelativeLayout getRlLocMenu(int index) {
@@ -422,6 +483,18 @@ public class MenuListWorker extends AbstractListWorker {
                         toAnimed3 = flag;
                         break;
                 }
+            }
+
+            public TextView getMenuDetail(int index) {
+                switch (index) {
+                    case 0:
+                        return menuDetail1;
+                    case 1:
+                        return menuDetail2;
+                    case 2:
+                        return menuDetail3;
+                }
+                return null;
             }
         }
     }

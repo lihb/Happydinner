@@ -184,6 +184,9 @@ public class PopupMenuDetailView extends RelativeLayout {
      * 退出该View
      */
     public void exitView() {
+        if (getAnimation() != null) {
+            return;
+        }
         if (mOnPopDetailViewListener != null) {
             if (curOperation == OPERATION_ADD) {
                 mNum = mNum - 1;
@@ -201,8 +204,8 @@ public class PopupMenuDetailView extends RelativeLayout {
             mVideoView.setVideoURI(null);
             mVideoController = null;
         }
-        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f,0.0f,1.0f,0.0f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+        ScaleAnimation scaleAnimation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 0.0f,
+                ScaleAnimation.RELATIVE_TO_SELF, 0.5f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(400);
         startAnimation(scaleAnimation);
         scaleAnimation.setAnimationListener(new Animation.AnimationListener() {
@@ -237,6 +240,18 @@ public class PopupMenuDetailView extends RelativeLayout {
         mMenuRestaurant.setText(menu.getRestaurantName());
         mMenuDesc.setText(menu.getInfo());
         showSubOper();
+
+        showPlayIcon = false;
+        togglePlayVideo();
+        if (mVideoController == null) {
+            mVideoController = new VideoController();
+            mVideoController.setVideoView(mVideoView);
+            Uri uri = Uri.parse("android.resource://" + getContext().getPackageName() + "/" + R.raw.produce);
+//                    Uri uri2 = Uri.parse(mMenuData.getVideoUrl());
+            mVideoController.setUri(uri);
+            mVideoController.setOnVideoControllerListener(mOnVideoControllerListener);
+            mVideoController.play(0);
+        }
     }
 
     /**

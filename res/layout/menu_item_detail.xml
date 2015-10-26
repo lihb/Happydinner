@@ -78,7 +78,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/menu_count_view_bg"
                 >
             <ImageView
                     android:id="@+id/imagview_sub1"
@@ -87,6 +86,7 @@
                     android:src="@drawable/sub_icon_selector"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
+                    android:visibility="gone"
                     />
 
             <TextView
@@ -109,6 +109,20 @@
 
                     />
         </RelativeLayout>
+            <TextView
+                    android:id="@+id/menu_detail_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:text="菜品介绍"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/info"
+                    />
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/loc_menu_rl2"
@@ -180,7 +194,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/menu_count_view_bg"
                     >
                     <ImageView
                             android:id="@+id/imagview_sub2"
@@ -189,6 +202,7 @@
                             android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:visibility="gone"
                             />
 
                     <TextView
@@ -211,6 +225,20 @@
 
                             />
             </RelativeLayout>
+            <TextView
+                    android:id="@+id/menu_detail_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:text="菜品介绍"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/info"
+                    />
     </RelativeLayout>
 
     <RelativeLayout
@@ -282,7 +310,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/menu_count_view_bg"
                     >
                     <ImageView
                             android:id="@+id/imagview_sub3"
@@ -291,6 +318,7 @@
                             android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:visibility="gone"
                             />
 
                     <TextView
@@ -313,6 +341,20 @@
 
                             />
             </RelativeLayout>
+            <TextView
+                    android:id="@+id/menu_detail_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:text="菜品介绍"
+                    android:textColor="#ffffff"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/info"
+                    />
     </RelativeLayout>
 
 
