@@ -170,7 +170,7 @@
             android:orientation="horizontal"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginLeft="20dp"
             >
             <TextView
@@ -179,7 +179,7 @@
                     android:layout_height="match_parent"
                     android:text="当前位置：68号桌"
                     android:textColor="#ffffff"
-                    android:textSize="30sp"
+                    android:textSize="20sp"
                     />
 
     </LinearLayout>

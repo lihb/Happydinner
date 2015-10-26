@@ -351,25 +351,25 @@ public class FoodRightFragment extends Fragment {
         textView.setTextColor(0xffffffff);
         textView.setTextSize(16);
         textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundResource(R.drawable.order_count_text_bg);
+        textView.setBackgroundResource(R.drawable.addto_cart_text_bg);
         final View view = addViewToAnimLayout(animation_viewGroup, textView,start_location);
         view.setAlpha(0.6f);
 
         int[] end_location = new int[2];
         mShoppingCardView.getLocationOnScreen(end_location);
-        int endX = end_location[0]-start_location[0] + mShoppingCardView.getWidth() / 2;
-        int endY = end_location[1]-start_location[1] + mShoppingCardView.getHeight() / 2;
+        int endX = end_location[0]-start_location[0]/* + mShoppingCardView.getWidth() / 2*/;
+        int endY = end_location[1]-start_location[1]/* + mShoppingCardView.getHeight() / 2*/;
 
         Animation mTranslateAnimationX = new TranslateAnimation(0,endX,0,0);
         mTranslateAnimationX.setInterpolator(new LinearInterpolator());
         Animation mTranslateAnimationY = new TranslateAnimation(0,0,0,endY);
         mTranslateAnimationX.setInterpolator(new BounceInterpolator());
-        Animation mRotateAnimation = new RotateAnimation(0, 180, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        Animation mRotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         AnimationSet mAnimationSet = new AnimationSet(true);
 
         mAnimationSet.setFillAfter(true);
         mAnimationSet.addAnimation(mRotateAnimation);
-        mAnimationSet.addAnimation(mScaleAnimation);
+//        mAnimationSet.addAnimation(mScaleAnimation);
         mAnimationSet.addAnimation(mTranslateAnimationX);
         mAnimationSet.addAnimation(mTranslateAnimationY);
         mAnimationSet.setDuration(400);

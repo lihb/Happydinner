@@ -98,7 +98,8 @@ public class FoodShowActivity extends FragmentActivity {
         if (foodRightFragment == null) {
             Bundle bundle = new Bundle();
             ArrayList<Menu> dataList = new ArrayList<Menu>();
-            dataList.addAll(sortedMap.get(TypeEnum.DRINK.ordinal()));
+            //初始化右边fragment的数据
+            dataList.addAll(sortedMap.get(TypeEnum.RECOMMEND.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
             foodRightFragment = new FoodRightFragment();
             foodRightFragment.setArguments(bundle);
