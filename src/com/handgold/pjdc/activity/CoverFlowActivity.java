@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.base.TypeEnum;
 import com.handgold.pjdc.entitiy.GameEntity;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.ui.CoverFlowAdapter;
@@ -104,7 +103,7 @@ public class CoverFlowActivity extends ActionBarActivity {
     }
 
     private void initData() {
-        Menu meatMenu1 = new Menu("乌冬面", null, null, 15.67f, "好吃看的见－nuddles", 1, 0, TypeEnum.RECOMMEND.ordinal(), "九毛九");
+       /* Menu meatMenu1 = new Menu("乌冬面", null, null, 15.67f, "好吃看的见－nuddles", 1, 0, TypeEnum.RECOMMEND.ordinal(), "九毛九");
         Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, TypeEnum.DRINK.ordinal(), "九毛九");
         Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, TypeEnum.DRINK.ordinal(), "土菜馆");
         Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, TypeEnum.SNACK.ordinal(), "九毛九");
@@ -122,7 +121,14 @@ public class CoverFlowActivity extends ActionBarActivity {
         menuList.add(chickMenu);
         menuList.add(duckMenu);
         menuList.add(duckMenu2);
-        menuList.add(fishMenu2);
+        menuList.add(fishMenu2);*/
+        List<Menu> menuList = new ArrayList<Menu>();
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= 6; j++) {
+                Menu menu = new Menu("菜品" + i*j, null, null, 15.0f +i*j, "菜品简介"+i*j, 1, 0, i, "大丰收");
+                menuList.add(menu);
+            }
+        }
 
         /**
          * 比较器：给menu按照type排序用
