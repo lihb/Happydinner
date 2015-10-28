@@ -35,7 +35,7 @@ public class ShoppingCartView extends RelativeLayout {
     }
 
     public void setTextCount(int count) {
-        mTextCount.setText("" + count);
+        mTextCount.setText("" + count + "份");
     }
 
     public void setTextPrice(float price) {
