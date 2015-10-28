@@ -34,8 +34,6 @@ public class PopupMenuDetailView extends RelativeLayout {
 
     private TextView mMenuPrice = null;
 
-    private TextView mMenuRestaurant = null;
-
     private TextView mMenuDesc = null;
 
     private VideoView mVideoView = null;
@@ -85,7 +83,7 @@ public class PopupMenuDetailView extends RelativeLayout {
         mMenuName = (TextView) findViewById(R.id.popup_menu_name);
         mMenuCount = (TextView) findViewById(R.id.popup_text_count);
         mMenuPrice = (TextView) findViewById(R.id.popup_menu_price);
-        mMenuRestaurant = (TextView) findViewById(R.id.popup_menu_restaurant);
+//        mMenuRestaurant = (TextView) findViewById(R.id.popup_menu_restaurant);
         mMenuDesc = (TextView) findViewById(R.id.popup_menu_desc);
 
         mPopOperationLayout = (RelativeLayout) findViewById(R.id.popup_relative_operation);
@@ -236,7 +234,6 @@ public class PopupMenuDetailView extends RelativeLayout {
         mNum = menu.count;
         mMenuName.setText(menu.getName());
         mMenuPrice.setText("" + menu.getPrice());
-        mMenuRestaurant.setText(menu.getRestaurantName());
         mMenuDesc.setText(menu.getInfo());
         showSubOper();
 
@@ -259,7 +256,7 @@ public class PopupMenuDetailView extends RelativeLayout {
     private void showSubOper() {
         if (mNum > 0) {
             mSubImage.setVisibility(VISIBLE);
-            mPopOperationLayout.setBackgroundResource(R.drawable.menu_count_view_bg);
+            mPopOperationLayout.setBackgroundResource(R.drawable.button_exclude_bg);
             if (mNum == 1 && curOperation == OPERATION_ADD) { // 减号出现动画
                 RotateAnimation rotateAnimation = new RotateAnimation(0, 360, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
                 rotateAnimation.setDuration(300);

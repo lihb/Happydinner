@@ -7,9 +7,9 @@
         >
     <ImageView
             android:id="@+id/iv_cart_bg"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/oder"
             />
         <RelativeLayout
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                                 android:id="@+id/iv_cart_icon"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/order_icon"
+                                android:src="@drawable/oder_icon"
                                 />
                         <TextView
                                 android:id="@+id/text_cart_count"

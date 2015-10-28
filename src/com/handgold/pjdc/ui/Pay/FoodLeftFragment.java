@@ -19,7 +19,6 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.TypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.widget.CustomAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,13 +82,14 @@ public class FoodLeftFragment extends Fragment {
                 TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
         transAnim.setDuration(400);
 
-        CustomAnimation customAnimation = new CustomAnimation();
+        // 去掉弹回动画
+       /* CustomAnimation customAnimation = new CustomAnimation();
         customAnimation.setDuration(400);
-        customAnimation.setStartOffset(400);
+        customAnimation.setStartOffset(400);*/
 
         AnimationSet set = new AnimationSet(false);
         set.addAnimation(transAnim);
-        set.addAnimation(customAnimation);
+//        set.addAnimation(customAnimation);
 //        set.setInterpolator(new OvershootInterpolator());
         LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);

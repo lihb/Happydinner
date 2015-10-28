@@ -10,8 +10,8 @@
     <RelativeLayout
             android:id="@+id/loc_menu_rl1"
             android:layout_weight="1"
-            android:layout_width="400dp"
-            android:layout_height="426.6dp"
+            android:layout_width="300dp"
+            android:layout_height="320dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="15dp"
@@ -39,7 +39,7 @@
                 android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:enabled="false"
                 />
 
@@ -49,14 +49,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="20"
-                android:textColor="#ee9b2d"
+                android:textColor="#ffd818"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:enabled="false"
                 />
 
-        <TextView
+       <!-- <TextView
                 android:id="@+id/menu_name_restaurant1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,20 +69,20 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 android:enabled="false"
-                />
+                />-->
         <RelativeLayout
                 android:id="@+id/relative_operation1"
-                android:layout_width="110dp"
-                android:layout_height="40dp"
+                android:layout_width="150dp"
+                android:layout_height="58dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="15dp"
                 >
             <ImageView
                     android:id="@+id/imagview_sub1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/sub_icon_selector"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
@@ -102,8 +102,8 @@
 
             <ImageView
                     android:id="@+id/imagview_add1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/add_icon_selector"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
@@ -115,11 +115,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:text="菜品介绍"
                     android:textColor="#ffffff"
                     android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:padding="10dp"
                     android:gravity="center"
                     android:background="@drawable/info"
@@ -128,8 +128,8 @@
     <RelativeLayout
             android:id="@+id/loc_menu_rl2"
             android:layout_weight="1"
-            android:layout_width="400dp"
-            android:layout_height="426.6dp"
+            android:layout_width="300dp"
+            android:layout_height="320dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
@@ -156,7 +156,7 @@
                 android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:enabled="false"
                 />
 
@@ -166,14 +166,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="20"
-                android:textColor="#ee9b2d"
+                android:textColor="#ffd818"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:enabled="false"
                 />
 
-        <TextView
+       <!-- <TextView
                 android:id="@+id/menu_name_restaurant2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,20 +186,20 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 android:enabled="false"
-                />
+                />-->
             <RelativeLayout
                     android:id="@+id/relative_operation2"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:layout_height="58dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
                     >
                     <ImageView
                             android:id="@+id/imagview_sub2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
@@ -219,8 +219,8 @@
 
                     <ImageView
                             android:id="@+id/imagview_add2"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/add_icon_selector"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
@@ -232,12 +232,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:padding="10dp"
                     android:text="菜品介绍"
                     android:textColor="#ffffff"
                     android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center"
                     android:background="@drawable/info"
                     />
@@ -246,8 +246,8 @@
     <RelativeLayout
             android:id="@+id/loc_menu_rl3"
             android:layout_weight="1"
-            android:layout_width="400dp"
-            android:layout_height="426.6dp"
+            android:layout_width="300dp"
+            android:layout_height="320dp"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
@@ -273,7 +273,7 @@
                 android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:enabled="false"
                 />
 
@@ -283,14 +283,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="20"
-                android:textColor="#ee9b2d"
+                android:textColor="#ffd818"
                 android:textSize="18dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:enabled="false"
                 />
 
-        <TextView
+       <!-- <TextView
                 android:id="@+id/menu_name_restaurant3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -303,20 +303,20 @@
                 android:gravity="center_horizontal"
                 android:background="@drawable/icon_restaurant_name"
                 android:enabled="false"
-                />
+                />-->
             <RelativeLayout
                     android:id="@+id/relative_operation3"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
+                    android:layout_width="150dp"
+                    android:layout_height="58dp"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginRight="15dp"
                     >
                     <ImageView
                             android:id="@+id/imagview_sub3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/sub_icon_selector"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
@@ -336,8 +336,8 @@
 
                     <ImageView
                             android:id="@+id/imagview_add3"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/add_icon_selector"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
@@ -349,12 +349,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     android:padding="10dp"
                     android:text="菜品介绍"
                     android:textColor="#ffffff"
                     android:textSize="20dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:gravity="center"
                     android:background="@drawable/info"
                     />

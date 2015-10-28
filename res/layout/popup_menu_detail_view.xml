@@ -47,10 +47,10 @@
             android:layout_below="@+id/relative_popup_top"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:paddingTop="15dp"
+            android:paddingTop="30dp"
             android:layout_marginRight="20dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="20dp"
             android:background="@drawable/pop_view_bg"
             >
 
@@ -71,7 +71,7 @@
                 android:textSize="30dp"
                 android:text="20"
                 />
-        <TextView
+       <!-- <TextView
                 android:id="@+id/popup_menu_restaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,14 +81,13 @@
                 android:textSize="16dp"
                 android:text="老知青"
                 android:background="@drawable/icon_restaurant_name"
-                />
+                />-->
         <TextView
                 android:id="@+id/popup_menu_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/popup_menu_restaurant"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="36dp"
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:ellipsize="end"
@@ -96,21 +95,19 @@
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/popup_relative_operation"
-            android:layout_width="110dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
             android:layout_marginRight="30dp"
             >
         <ImageView
                 android:id="@+id/popup_imagview_sub"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/sub_icon_selector"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:visibility="gone"
                 />
 
         <TextView
@@ -126,8 +123,8 @@
 
         <ImageView
                 android:id="@+id/popup_imagview_add"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/add_icon_selector"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -135,8 +132,8 @@
     </RelativeLayout>
     <ImageView
             android:id="@+id/iv_popup_close"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/close_icon_selector"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"

@@ -2,25 +2,24 @@ package com.handgold.pjdc.ui.Pay;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.*;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.*;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.common.list.SimpleListWorkerAdapter;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.Order;
 import com.handgold.pjdc.ui.listworker.MenuListWorker;
-import com.handgold.pjdc.ui.widget.OrderShowView;
-import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
-import com.handgold.pjdc.ui.widget.ShoppingCartView;
+import com.handgold.pjdc.ui.widget.*;
 import com.handgold.pjdc.util.CommonUtils;
 
 import java.math.BigDecimal;
@@ -79,10 +78,10 @@ public class FoodRightFragment extends Fragment {
         }
     };
 
-    private int number = 0;
+    private FrameLayout animation_viewGroup;
+   /* private int number = 0;
     //是否完成清理
     private boolean isClean = false;
-    private FrameLayout animation_viewGroup;
     private Handler myHandler = new Handler(){
         public void handleMessage(Message msg){
             switch(msg.what){
@@ -101,7 +100,7 @@ public class FoodRightFragment extends Fragment {
                     break;
             }
         }
-    };
+    };*/
 
 
     @Override
@@ -276,20 +275,8 @@ public class FoodRightFragment extends Fragment {
     /************************添加到购物车动画*******************************************/
 
     private void doAnim(int[] start_location){
-        if(!isClean){
-            setAnim(start_location);
-        }else{
-            try{
-                animation_viewGroup.removeAllViews();
-                isClean = false;
-                setAnim(start_location);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            finally{
-                isClean = true;
-            }
-        }
+//        animation_viewGroup.removeAllViews();
+        setAnim(start_location);
     }
 
     /**
@@ -323,10 +310,11 @@ public class FoodRightFragment extends Fragment {
         int x = location[0];
         int y = location[1];
         vg.addView(view);
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.leftMargin = x;
-        lp.topMargin = y;
-        view.setPadding(5, 5, 5, 5);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        int padding = CommonUtils.dip2px(getActivity(), 20);
+        lp.leftMargin = x + 20;
+        lp.topMargin = y + 20;
+        view.setPadding(padding, padding, padding, padding);
         view.setLayoutParams(lp);
 
         return view;
@@ -341,66 +329,20 @@ public class FoodRightFragment extends Fragment {
      */
     private void setAnim(int[] start_location){
 
-
-        Animation mScaleAnimation = new ScaleAnimation(1.5f,0.0f,1.5f,0.0f,Animation.RELATIVE_TO_SELF,0.1f,Animation.RELATIVE_TO_SELF,0.1f);
-        mScaleAnimation.setFillAfter(true);
-
-
-        final TextView textView = new TextView(getActivity());
-        textView.setText("1");
-        textView.setTextColor(0xffffffff);
-        textView.setTextSize(16);
-        textView.setGravity(Gravity.CENTER);
-        textView.setBackgroundResource(R.drawable.addto_cart_text_bg);
-        final View view = addViewToAnimLayout(animation_viewGroup, textView,start_location);
-        view.setAlpha(0.6f);
-
         int[] end_location = new int[2];
         mShoppingCardView.getLocationOnScreen(end_location);
-        int endX = end_location[0]-start_location[0]/* + mShoppingCardView.getWidth() / 2*/;
-        int endY = end_location[1]-start_location[1]/* + mShoppingCardView.getHeight() / 2*/;
 
-        Animation mTranslateAnimationX = new TranslateAnimation(0,endX,0,0);
-        mTranslateAnimationX.setInterpolator(new LinearInterpolator());
-        Animation mTranslateAnimationY = new TranslateAnimation(0,0,0,endY);
-        mTranslateAnimationX.setInterpolator(new BounceInterpolator());
-        Animation mRotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        AnimationSet mAnimationSet = new AnimationSet(true);
+        MyPoint point1 = new MyPoint(0, 0);
 
-        mAnimationSet.setFillAfter(true);
-        mAnimationSet.addAnimation(mRotateAnimation);
-//        mAnimationSet.addAnimation(mScaleAnimation);
-        mAnimationSet.addAnimation(mTranslateAnimationX);
-        mAnimationSet.addAnimation(mTranslateAnimationY);
-        mAnimationSet.setDuration(400);
 
-        mAnimationSet.setAnimationListener(new Animation.AnimationListener(){
+        float endX = end_location[0]-start_location[0] + mShoppingCardView.getWidth() / 2.0f;
+        float endY = end_location[1]-start_location[1] + mShoppingCardView.getHeight() / 2.0f;
 
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // TODO Auto-generated method stub
-                number++;
-            }
+        MyPoint point2 = new MyPoint(endX, endY);
+        Log.i("wwww", "endx = " + point2.getX()+", endy = " + point2.getY());
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                // TODO Auto-generated method stub
+        AnimateView view = new AnimateView(getActivity(), point1, point2);
+        addViewToAnimLayout(animation_viewGroup, view,start_location);
 
-                number--;
-                if(number==0){
-                    isClean = true;
-                    myHandler.sendEmptyMessage(0);
-                }
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-        view.startAnimation(mAnimationSet);
     }
 }

@@ -15,7 +15,6 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.MyAppContext;
 import com.handgold.pjdc.common.list.AbstractListWorker;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.widget.CustomAnimation;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -154,7 +153,7 @@ public class MenuListWorker extends AbstractListWorker {
                 showSubOper(menuViewHolder, menu.getCount(), i, OPER_NONE);
                 menuViewHolder.getMenuNameTxt(i).setText(menu.getName());
                 menuViewHolder.getMenuPriceTxt(i).setText("¥" + menu.getPrice());
-                menuViewHolder.getMenuRestaurantName(i).setText(menu.getRestaurantName());
+//                menuViewHolder.getMenuRestaurantName(i).setText(menu.getRestaurantName());
                 menuViewHolder.getMenuCount(i).setText("" + menu.getCount());
                 final int temp = i;
                 //增加数目
@@ -216,7 +215,7 @@ public class MenuListWorker extends AbstractListWorker {
                     holder.getImageViewSub(index).startAnimation(set);
                 }
 
-                holder.getRelativeLayoutOperation(index).setBackgroundResource(R.drawable.menu_count_view_bg);
+                holder.getRelativeLayoutOperation(index).setBackgroundResource(R.drawable.button_exclude_bg);
                 holder.getMenuCount(index).setVisibility(View.VISIBLE);
                 holder.getMenuCount(index).setText("" + count);
             } else {
@@ -245,13 +244,14 @@ public class MenuListWorker extends AbstractListWorker {
             TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
                     TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
             transAnim.setDuration(600);
-            CustomAnimation customAnimation = new CustomAnimation();
+            //去掉弹回动画
+         /*   CustomAnimation customAnimation = new CustomAnimation();
             customAnimation.setDuration(500);
-            customAnimation.setStartOffset(600);
+            customAnimation.setStartOffset(600);*/
 
             AnimationSet set = new AnimationSet(false);
             set.addAnimation(transAnim);
-            set.addAnimation(customAnimation);
+//            set.addAnimation(customAnimation);
             set.setStartOffset(600 * index);
             view.startAnimation(set);
         }
@@ -268,19 +268,19 @@ public class MenuListWorker extends AbstractListWorker {
             ImageView menuNameIv1;
             TextView menuNameTitle1;
             TextView menuNamePrice1;
-            TextView menuNameRestaurant1;
+//            TextView menuNameRestaurant1;
             RelativeLayout relativeLayoutOperation1;
             RelativeLayout locMenuRl1;
             ImageView menuNameIv2;
             TextView menuNameTitle2;
             TextView menuNamePrice2;
-            TextView menuNameRestaurant2;
+//            TextView menuNameRestaurant2;
             RelativeLayout relativeLayoutOperation2;
             RelativeLayout locMenuRl2;
             ImageView menuNameIv3;
             TextView menuNameTitle3;
             TextView menuNamePrice3;
-            TextView menuNameRestaurant3;
+//            TextView menuNameRestaurant3;
             RelativeLayout relativeLayoutOperation3;
             RelativeLayout locMenuRl3;
 
@@ -314,9 +314,9 @@ public class MenuListWorker extends AbstractListWorker {
                 menuNamePrice1 = (TextView) view.findViewById(R.id.menu_name_price1);
                 menuNamePrice2 = (TextView) view.findViewById(R.id.menu_name_price2);
                 menuNamePrice3 = (TextView) view.findViewById(R.id.menu_name_price3);
-                menuNameRestaurant1 = (TextView) view.findViewById(R.id.menu_name_restaurant1);
+             /*   menuNameRestaurant1 = (TextView) view.findViewById(R.id.menu_name_restaurant1);
                 menuNameRestaurant2 = (TextView) view.findViewById(R.id.menu_name_restaurant2);
-                menuNameRestaurant3 = (TextView) view.findViewById(R.id.menu_name_restaurant3);
+                menuNameRestaurant3 = (TextView) view.findViewById(R.id.menu_name_restaurant3);*/
                 relativeLayoutOperation1 = (RelativeLayout) view.findViewById(R.id.relative_operation1);
                 relativeLayoutOperation2 = (RelativeLayout) view.findViewById(R.id.relative_operation2);
                 relativeLayoutOperation3 = (RelativeLayout) view.findViewById(R.id.relative_operation3);
@@ -373,7 +373,7 @@ public class MenuListWorker extends AbstractListWorker {
                 return null;
             }
 
-            public TextView getMenuRestaurantName(int index) {
+           /* public TextView getMenuRestaurantName(int index) {
                 switch (index) {
                     case 0:
                         return menuNameRestaurant1;
@@ -383,7 +383,7 @@ public class MenuListWorker extends AbstractListWorker {
                         return menuNameRestaurant3;
                 }
                 return null;
-            }
+            }*/
 
             public TextView getMenuCount(int index) {
                 switch (index) {

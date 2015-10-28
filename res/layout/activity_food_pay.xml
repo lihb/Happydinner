@@ -31,7 +31,7 @@
         </LinearLayout>
         <LinearLayout
                 android:id="@+id/right_frag"
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
@@ -66,7 +66,7 @@
             >
         <include
                 android:id="@+id/popup_detail_view"
-                android:layout_width="440dp"
+                android:layout_width="450dp"
                 android:layout_height="550dp"
                 layout="@layout/popup_menu_detail_view"
                 android:layout_centerInParent="true"

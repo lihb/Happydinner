@@ -68,7 +68,7 @@ public class FoodShowActivity extends FragmentActivity {
         initFragment();
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Log.i("displayMetrics------>", displayMetrics.toString());
+        Log.i("wwww displayMetrics----", displayMetrics.toString());
 
     }
 
