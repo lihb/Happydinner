@@ -5,7 +5,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:paddingRight="45dp"
+              android:paddingRight="100dp"
         >
     <RelativeLayout
             android:id="@+id/loc_menu_rl1"
