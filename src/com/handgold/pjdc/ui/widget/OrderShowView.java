@@ -132,6 +132,7 @@ public class OrderShowView extends RelativeLayout {
                 setTextOrderCount(mOrder.getSize());
                 setTextOrderPrice(CommonUtils.round(mOrder.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
                 setData(mOrder.getMenuList());
+                exitView();
             }else  if (v == mTextCancel) {
                 exitView();
             }else {
