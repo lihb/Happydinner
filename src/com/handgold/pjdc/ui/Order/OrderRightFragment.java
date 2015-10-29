@@ -18,9 +18,9 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.activity.VideoListActivity;
 import com.handgold.pjdc.activity.VideoPlayer2Activity;
 import com.handgold.pjdc.base.ApplicationEx;
+import com.handgold.pjdc.base.TypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.Order;
-import com.handgold.pjdc.ui.listworker.MenuListWorker;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -69,12 +69,12 @@ public class OrderRightFragment extends android.support.v4.app.Fragment {
         titleList = new ArrayList<String>();
         while (it.hasNext()) {
             int type = (Integer) it.next() - 1;
-            if (type == MenuListWorker.MenuType.RECOMMEND.ordinal()) {
+            if (type == TypeEnum.RECOMMEND.ordinal()) {
                 titleList.add("主厨推荐");
-            } else if (type == MenuListWorker.MenuType.SPECIAL.ordinal()) {
-                titleList.add("特色菜");
-            } else if (type == MenuListWorker.MenuType.NEW.ordinal()) {
-                titleList.add("本月新菜");
+            } else if (type == TypeEnum.MEALSET.ordinal()) {
+                titleList.add("套餐");
+            } else if (type == TypeEnum.DRINK.ordinal()) {
+                titleList.add("小吃");
             } else {
                 titleList.add("其他");
             }

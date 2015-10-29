@@ -1,4 +1,4 @@
-package com.handgold.pjdc.ui.Pay;
+package com.handgold.pjdc.ui.Menu;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
@@ -11,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.*;
 import android.widget.FrameLayout;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.common.list.SimpleListWorkerAdapter;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.Order;
-import com.handgold.pjdc.ui.listworker.MenuListWorker;
 import com.handgold.pjdc.ui.widget.*;
 import com.handgold.pjdc.util.CommonUtils;
 
@@ -36,7 +34,7 @@ import java.util.UUID;
 
 public class FoodRightFragment extends Fragment {
 
-    private ListView mListView;
+    private GridView mGridView;
 
     private ShoppingCartView mShoppingCardView;
 
@@ -50,9 +48,7 @@ public class FoodRightFragment extends Fragment {
 
     private ArrayList<Menu> mDataList;
 
-    private MenuListWorker mListWorker;
-
-    private SimpleListWorkerAdapter mListAdapter;
+    private FoodRightAdapter mAdapter;
 
     private Order mOrder;
 
@@ -79,28 +75,6 @@ public class FoodRightFragment extends Fragment {
     };
 
     private FrameLayout animation_viewGroup;
-   /* private int number = 0;
-    //是否完成清理
-    private boolean isClean = false;
-    private Handler myHandler = new Handler(){
-        public void handleMessage(Message msg){
-            switch(msg.what){
-                case 0:
-                    //用来清除动画后留下的垃圾
-                    try{
-                        animation_viewGroup.removeAllViews();
-                    }catch(Exception e){
-
-                    }
-
-                    isClean = false;
-
-                    break;
-                default:
-                    break;
-            }
-        }
-    };*/
 
 
     @Override
@@ -113,9 +87,9 @@ public class FoodRightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.food_right_fragment, null);
-        mListView = (ListView) view.findViewById(R.id.food_right_lv);
+        mGridView = (GridView) view.findViewById(R.id.food_right_lv);
+        setGridViewAnimation(mGridView);
         mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
-
         mOrderShowView = (OrderShowView) getActivity().findViewById(R.id.order_show_view);
         mOrderShowViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.order_show_view_relativeLayout);
         mOrderShowView.setActivity(getActivity());
@@ -131,9 +105,9 @@ public class FoodRightFragment extends Fragment {
         mOrderShowView.setOnOrderViewListener(new OrderShowView.OnOrderViewListener() {
             @Override
             public void onBackToFoodFrag(Order order) {
-                if (mListWorker != null) {
-                    mListWorker.setData(mDataList);
-                    mListAdapter.notifyDataSetChanged();
+                if (mAdapter != null) {
+                    mAdapter.setData(mDataList);
+                    mAdapter.notifyDataSetChanged();
                 }
                 mShoppingCardView.setTextCount(order.getSize());
                 mShoppingCardView.setTextPrice(CommonUtils.round(order.getTotalPrice(), 1, BigDecimal.ROUND_HALF_UP));
@@ -143,21 +117,30 @@ public class FoodRightFragment extends Fragment {
         return view;
     }
 
+    /**
+     * 设置菜品进入动画
+     * @param gridView
+     */
+    private void setGridViewAnimation(GridView gridView) {
+        TranslateAnimation transAnim = new TranslateAnimation(TranslateAnimation.RELATIVE_TO_PARENT, 1.0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.0f,
+                TranslateAnimation.RELATIVE_TO_SELF, 0.0f, TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
+        transAnim.setDuration(600);
+        LayoutAnimationController lac = new LayoutAnimationController(transAnim, 0.5f);
+        gridView.setLayoutAnimation(lac);
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         mDataList = bundle.getParcelableArrayList("dataList");
         // 配置listworker
-        if (mListWorker == null) {
-            mListWorker = new MenuListWorker(getActivity(), mDataList, new MenuListWorkerCallBack());
-            mListAdapter = new SimpleListWorkerAdapter(mListWorker);
-            mListView.setAdapter(mListAdapter);
-            // ListView的 ItemClick 由 ListWorker 转发
-            mListView.setOnItemClickListener(mListWorker);
+        if (mAdapter == null) {
+            mAdapter = new FoodRightAdapter(mDataList, getActivity(), new FoodRightAdapterCallBack());
+            mGridView.setAdapter(mAdapter);
         } else {
-            mListWorker.setData(mDataList);
-            mListAdapter.notifyDataSetChanged();
+            mAdapter.setData(mDataList);
+            mAdapter.notifyDataSetChanged();
         }
 
         //获取订单数据
@@ -207,9 +190,9 @@ public class FoodRightFragment extends Fragment {
         return animationSet;
     }
     /**
-     * MenuListWorker回调类
+     * FoodRightAdapter回调类
      */
-    class MenuListWorkerCallBack implements MenuListWorker.OnListWorkerListener {
+    class FoodRightAdapterCallBack implements FoodRightAdapter.OnFoodRightAdapterListener {
 
         @Override
         public void onItemClicked(Object itemData, int index) {
@@ -256,7 +239,7 @@ public class FoodRightFragment extends Fragment {
                         mOrder.delMenu(menu);
                     }
                     updateView();
-                    mListAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
                 }
             });
         }

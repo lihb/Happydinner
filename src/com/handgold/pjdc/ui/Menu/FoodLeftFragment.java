@@ -1,4 +1,4 @@
-package com.handgold.pjdc.ui.Pay;
+package com.handgold.pjdc.ui.Menu;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

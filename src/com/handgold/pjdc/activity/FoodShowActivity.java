@@ -1,6 +1,5 @@
 package com.handgold.pjdc.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -14,8 +13,8 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.TypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.Pay.FoodLeftFragment;
-import com.handgold.pjdc.ui.Pay.FoodRightFragment;
+import com.handgold.pjdc.ui.Menu.FoodLeftFragment;
+import com.handgold.pjdc.ui.Menu.FoodRightFragment;
 import com.handgold.pjdc.ui.VideoPlayerFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.OrderShowView;
@@ -117,11 +116,6 @@ public class FoodShowActivity extends FragmentActivity {
                 case R.id.head_left:
                 case R.id.head_left_rlyt:
                     finish();
-                    break;
-                case R.id.head_right_tv:
-                case R.id.head_right_tv_layout:
-                    Intent intent = new Intent(FoodShowActivity.this, OrderShowActivity.class);
-                    startActivity(intent);
                     break;
                 default:
                     break;

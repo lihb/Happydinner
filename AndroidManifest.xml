@@ -25,8 +25,6 @@
 
         <activity android:name="com.handgold.pjdc.activity.FoodShowActivity"
                   android:screenOrientation="landscape"/>
-        <activity android:name="com.handgold.pjdc.activity.OrderShowActivity"
-                  android:screenOrientation="landscape"/>
         <activity android:name="com.handgold.pjdc.activity.PayActivity"
                   android:screenOrientation="landscape"/>
         <activity android:name="com.handgold.pjdc.activity.VideoPlayer2Activity"
