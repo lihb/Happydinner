@@ -1,7 +1,6 @@
 package com.handgold.pjdc.ui.widget;
 
 import android.animation.TypeEvaluator;
-import android.util.Log;
 
 /**
  * Created by lihb on 15/10/26.
@@ -14,6 +13,7 @@ public class AddToCartIntEvaluator implements TypeEvaluator<Object> {
         MyPoint myPoint = null;
         MyPoint startPoint = (MyPoint) startValue;
         MyPoint endPoint = (MyPoint) endValue;
+
         float x, y;
 
 //        x = 200 * fraction * 3;
@@ -27,12 +27,13 @@ public class AddToCartIntEvaluator implements TypeEvaluator<Object> {
 
         y = (int)(a * Math.pow(x, 2) + b * x + c);*/
 
-        float t = fraction * 5;
+      /*  float t = fraction * 5;
         float a = (float)Math.sqrt(2 * (endPoint.getY() - startPoint.getY() / t));
 
         x = (startPoint.getX() + fraction * (endPoint.getX() - startPoint.getX()));
-        Log.i("wwww", "fraction = " + fraction);
-        y = 0.5f * a * t * t;
+        y = 0.5f * a * t * t;*/
+        x = (startPoint.getX() - endPoint.getX()) * fraction;
+        y = endPoint.getY() * fraction * fraction;
 
         myPoint = new MyPoint(x, y);
 

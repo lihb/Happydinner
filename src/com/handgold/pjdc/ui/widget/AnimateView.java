@@ -46,7 +46,7 @@ public class AnimateView extends TextView {
         if (currentPoint == null) {
             currentPoint = new MyPoint(RADIUS, RADIUS);
             drawCircle(canvas);
-            startAnimation();
+//            startAnimation();
         } else {
             drawCircle(canvas);
         }
@@ -76,7 +76,7 @@ public class AnimateView extends TextView {
                 super.onAnimationEnd(animation);
                     ViewGroup group = (ViewGroup) getParent();
                     if (group != null) {
-                        group.removeView(AnimateView.this);
+//                        group.removeView(AnimateView.this);
                     }
             }
 

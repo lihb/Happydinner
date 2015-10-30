@@ -74,4 +74,31 @@
 
     </RelativeLayout>
 
+    <include
+            android:id="@+id/shopping_cart_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/shopping_cart_view"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="30dp"
+            android:visibility="gone"
+            />
+    <RelativeLayout
+            android:id="@+id/popup_pay_info_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:visibility="gone"
+            >
+        <include
+                android:id="@+id/popup_pay_info_view"
+                android:layout_width="400dp"
+                android:layout_height="300dp"
+                layout="@layout/popup_pay_info_view"
+                android:layout_centerInParent="true"
+                />
+
+    </RelativeLayout>
+
 </RelativeLayout>

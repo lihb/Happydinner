@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:XCRoundRectImageView="http://schemas.android.com/apk/res/com.handgold.pjdc"
@@ -11,14 +10,81 @@
             android:id="@+id/menu_name_iv"
             android:layout_width="300dp"
             android:layout_height="320dp"
-            android:src="@drawable/meishi"
+            android:src="@drawable/meishi1"
             XCRoundRectImageView:xcr_border_color="#FFFFFF"
             XCRoundRectImageView:xcr_border_overlay="false"
             XCRoundRectImageView:xcr_border_width="0dp"
             XCRoundRectImageView:xcr_border_radius="0"
             XCRoundRectImageView:xcr_drawable_radius="10"
             />
+    <LinearLayout
+            android:id="@+id/linearLayout_operation_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            >
 
+        <RelativeLayout
+                android:id="@+id/relative_operation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_exclude_bg"
+                android:padding="2dp"
+                >
+            <ImageView
+                    android:id="@+id/imagview_sub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sub_icon_selector"
+                    />
+
+            <TextView
+                    android:id="@+id/text_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/imagview_sub"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="10"
+                    android:textColor="#ffffff"
+                    android:enabled="false"
+
+                    />
+
+            <ImageView
+                    android:id="@+id/imagview_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_icon_selector"
+                    android:layout_toRightOf="@+id/text_count"
+
+                    />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/menu_detail_linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            >
+        <TextView
+                android:id="@+id/menu_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="菜品介绍"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:background="@drawable/info"
+                />
+    </LinearLayout>
     <TextView
             android:id="@+id/menu_name_title"
             android:layout_width="wrap_content"
@@ -42,75 +108,5 @@
             android:layout_marginTop="12dp"
             android:layout_marginRight="20dp"
             android:enabled="false"
-            />
-
-    <!-- <TextView
-             android:id="@+id/menu_name_restaurant1"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/menu_name_title1"
-             android:text="黄鹤天厨"
-             android:textColor="#ffffff"
-             android:textSize="10dp"
-             android:layout_marginTop="10dp"
-             android:layout_marginLeft="10dp"
-             android:gravity="center_horizontal"
-             android:background="@drawable/icon_restaurant_name"
-             android:enabled="false"
-             />-->
-    <RelativeLayout
-            android:id="@+id/relative_operation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/button_exclude_bg"
-            android:padding="2dp"
-            >
-        <ImageView
-                android:id="@+id/imagview_sub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/sub_icon_selector"
-                />
-
-        <TextView
-                android:id="@+id/text_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imagview_sub"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="10"
-                android:textColor="#ffffff"
-                android:enabled="false"
-
-                />
-
-        <ImageView
-                android:id="@+id/imagview_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/add_icon_selector"
-                android:layout_toRightOf="@+id/text_count"
-
-                />
-    </RelativeLayout>
-    <TextView
-            android:id="@+id/menu_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:text="菜品介绍"
-            android:textColor="#ffffff"
-            android:textSize="20dp"
-            android:layout_marginLeft="20dp"
-            android:padding="10dp"
-            android:gravity="center"
-            android:background="@drawable/info"
             />
 </RelativeLayout>

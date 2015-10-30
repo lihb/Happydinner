@@ -4,20 +4,19 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.*;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.Order;
-import com.handgold.pjdc.ui.widget.*;
+import com.handgold.pjdc.ui.widget.OrderShowView;
+import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
+import com.handgold.pjdc.ui.widget.ShoppingCartView;
 import com.handgold.pjdc.util.CommonUtils;
 
 import java.math.BigDecimal;
@@ -89,7 +88,8 @@ public class FoodRightFragment extends Fragment {
         View view = inflater.inflate(R.layout.food_right_fragment, null);
         mGridView = (GridView) view.findViewById(R.id.food_right_lv);
         setGridViewAnimation(mGridView);
-        mShoppingCardView = (ShoppingCartView) view.findViewById(R.id.shopping_cart_view);
+        mShoppingCardView = (ShoppingCartView) getActivity().findViewById(R.id.shopping_cart_view);
+        mShoppingCardView.setVisibility(View.VISIBLE);
         mOrderShowView = (OrderShowView) getActivity().findViewById(R.id.order_show_view);
         mOrderShowViewRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.order_show_view_relativeLayout);
         mOrderShowView.setActivity(getActivity());
@@ -258,15 +258,12 @@ public class FoodRightFragment extends Fragment {
     /************************添加到购物车动画*******************************************/
 
     private void doAnim(int[] start_location){
-//        animation_viewGroup.removeAllViews();
         setAnim(start_location);
     }
 
     /**
      * @Description: 创建动画层
      * @param
-     * @return void
-     * @throws
      */
     private FrameLayout createAnimLayout(){
         ViewGroup rootView = (ViewGroup)getActivity().getWindow().getDecorView();
@@ -293,11 +290,9 @@ public class FoodRightFragment extends Fragment {
         int x = location[0];
         int y = location[1];
         vg.addView(view);
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-        int padding = CommonUtils.dip2px(getActivity(), 20);
-        lp.leftMargin = x + 20;
-        lp.topMargin = y + 20;
-        view.setPadding(padding, padding, padding, padding);
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+        lp.leftMargin = x;
+        lp.topMargin = y;
         view.setLayoutParams(lp);
 
         return view;
@@ -312,20 +307,66 @@ public class FoodRightFragment extends Fragment {
      */
     private void setAnim(int[] start_location){
 
+        final TextView textView = new TextView(getActivity());
+        textView.setText("1");
+        textView.setTextColor(0xffffffff);
+        textView.setTextSize(16);
+        textView.setGravity(Gravity.CENTER);
+        textView.setBackgroundResource(R.drawable.addto_cart_text_bg);
+        final View view = addViewToAnimLayout(animation_viewGroup, textView,start_location);
+        view.setAlpha(0.6f);
+
         int[] end_location = new int[2];
-        mShoppingCardView.getLocationOnScreen(end_location);
+        mShoppingCardView.getLocationInWindow(end_location);
+        int endX = -start_location[0] + mShoppingCardView.getWidth() / 2 + 40;
+        int endY = end_location[1]-start_location[1];
 
-        MyPoint point1 = new MyPoint(0, 0);
+        Animation mTranslateAnimationX = new TranslateAnimation(0, endX, 0, 0);
+        mTranslateAnimationX.setInterpolator(new LinearInterpolator());
 
+        Animation mTranslateAnimationY = new TranslateAnimation(0, 0, 0, endY);
+        mTranslateAnimationY.setInterpolator(new AccelerateInterpolator(2));
 
-        float endX = end_location[0]-start_location[0] + mShoppingCardView.getWidth() / 2.0f;
-        float endY = end_location[1]-start_location[1] + mShoppingCardView.getHeight() / 2.0f;
+        AnimationSet mAnimationSet = new AnimationSet(false);
 
-        MyPoint point2 = new MyPoint(endX, endY);
-        Log.i("wwww", "endx = " + point2.getX()+", endy = " + point2.getY());
+        mAnimationSet.setFillAfter(true);
+        mAnimationSet.addAnimation(mTranslateAnimationX);
+        mAnimationSet.addAnimation(mTranslateAnimationY);
+        mAnimationSet.setDuration(400);
+        mAnimationSet.setAnimationListener(new MyAnimationListener(view));
+        view.startAnimation(mAnimationSet);
+    }
 
-        AnimateView view = new AnimateView(getActivity(), point1, point2);
-        addViewToAnimLayout(animation_viewGroup, view,start_location);
+    private class MyAnimationListener implements Animation.AnimationListener{
 
+        View mAnimateView;
+
+        public MyAnimationListener(View view) {
+            this.mAnimateView = view;
+        }
+
+        @Override
+        public void onAnimationStart(Animation animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+
+            final ViewGroup group = (ViewGroup) mAnimateView.getParent();
+            if (group != null) {
+                group.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        group.removeView(mAnimateView);
+                    }
+                });
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
     }
 }

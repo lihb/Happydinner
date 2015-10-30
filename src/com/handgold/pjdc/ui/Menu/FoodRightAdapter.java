@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.Menu;
+import com.handgold.pjdc.util.CommonUtils;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2015/10/29.
@@ -75,6 +75,11 @@ public class FoodRightAdapter  extends BaseAdapter {
             viewholder.imageViewSub = (ImageView) convertView.findViewById(R.id.imagview_sub);
             viewholder.menuCount = (TextView) convertView.findViewById(R.id.text_count);
             viewholder.menuDetail = (TextView) convertView.findViewById(R.id.menu_detail);
+            viewholder.linearLayoutMenuDetail = (LinearLayout) convertView.findViewById(R.id.menu_detail_linearLayout);
+            viewholder.linearLayoutOperationBg = (LinearLayout) convertView.findViewById(R.id.linearLayout_operation_bg);
+            //为了解决在xml中设置layout_marginBottom失效，而在代码中设置padding
+            viewholder.linearLayoutMenuDetail.setPadding(0,0,0,CommonUtils.dip2px(mContext, 15));
+            viewholder.linearLayoutOperationBg.setPadding(0,0,0,CommonUtils.dip2px(mContext, 15));
             convertView.setTag(viewholder);
         } else {
             viewholder = (ViewHolder) convertView.getTag();
@@ -83,6 +88,11 @@ public class FoodRightAdapter  extends BaseAdapter {
         final Menu menu = (Menu) getItem(position);
 
         showSubOper(viewholder, menu.getCount(), OPER_NONE);
+
+        int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
+                R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
+        int id = new Random().nextInt(7);
+        viewholder.menuNameIv.setImageResource(picIds[id]);
 
         viewholder.menuNameTitle.setText(menu.getName());
         viewholder.menuNamePrice.setText("¥" + menu.getPrice());
@@ -105,7 +115,7 @@ public class FoodRightAdapter  extends BaseAdapter {
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onSubMenuClicked(menu);
-                    showSubOper(tempViewholder, menu.getCount(), OPER_ADD);
+                    showSubOper(tempViewholder, menu.getCount(), OPER_SUB);
                 }
             }
         });
@@ -154,11 +164,30 @@ public class FoodRightAdapter  extends BaseAdapter {
                 AnimationSet set = new AnimationSet(false);
                 set.addAnimation(rotateAnimation);
                 set.addAnimation(translateAnimation);
+                set.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        holder.imageViewSub.setVisibility(View.GONE);
+                        holder.relativeLayoutOperation.setBackground(null);
+                        holder.menuCount.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
                 holder.imageViewSub.startAnimation(set);
+            }else {
+                holder.imageViewSub.setVisibility(View.GONE);
+                holder.relativeLayoutOperation.setBackground(null);
+                holder.menuCount.setVisibility(View.GONE);
             }
-            holder.imageViewSub.setVisibility(View.GONE);
-            holder.relativeLayoutOperation.setBackground(null);
-            holder.menuCount.setVisibility(View.GONE);
         }
     }
 
@@ -171,6 +200,8 @@ public class FoodRightAdapter  extends BaseAdapter {
         ImageView imageViewSub;
         TextView menuCount;
         TextView menuDetail;
+        LinearLayout linearLayoutMenuDetail;
+        LinearLayout linearLayoutOperationBg;
     }
 
     public interface OnFoodRightAdapterListener {

@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.BaseActivity;
 import com.handgold.pjdc.ui.Pay.PayLeftFragment;
 import com.handgold.pjdc.ui.Pay.PayRightZhiFuBaoFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
+import com.handgold.pjdc.ui.widget.PopupPayInfoView;
 
 /**
  * 类说明：
@@ -32,6 +34,10 @@ public class PayActivity extends BaseActivity {
     private PayRightZhiFuBaoFragment payRightZhiFuBaoFragment;
 
     private PayLeftFragment payLeftFragment;
+
+    private RelativeLayout mPayInfoRelativeLayout;
+
+    private PopupPayInfoView mPopupPayInfoView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,9 @@ public class PayActivity extends BaseActivity {
         headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
 
+        mPayInfoRelativeLayout = (RelativeLayout) findViewById(R.id.popup_pay_info_relativeLayout);
+        mPopupPayInfoView = (PopupPayInfoView) findViewById(R.id.popup_pay_info_view);
+
     }
 
     private View.OnClickListener mOnClickListener = new View.OnClickListener(){
@@ -65,6 +74,8 @@ public class PayActivity extends BaseActivity {
                 case R.id.head_left:
                 case R.id.head_left_rlyt:
                     finish();
+//                    mPayInfoRelativeLayout.setVisibility(View.VISIBLE);
+//                    mPopupPayInfoView.updateUI(true);
                     break;
 
                 default:

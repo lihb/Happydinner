@@ -32,7 +32,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/image_5"
+                android:src="@drawable/meishi2"
                 />
             <ImageView
                 android:id="@+id/iv_popup_play"
@@ -96,31 +96,33 @@
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/popup_relative_operation"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_exclude_bg"
+            android:padding="2dp"
             >
         <ImageView
                 android:id="@+id/popup_imagview_sub"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/sub_icon_selector"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 />
 
         <TextView
                 android:id="@+id/popup_text_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/popup_imagview_sub"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:text="10"
                 android:textColor="#ffffff"
                 android:enabled="false"
-                android:visibility="gone"
                 />
 
         <ImageView
@@ -128,8 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/add_icon_selector"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/popup_text_count"
                 />
     </RelativeLayout>
     <ImageView

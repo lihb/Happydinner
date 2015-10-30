@@ -17,7 +17,7 @@
                 android:layout_width="160dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/image_1"
+                android:src="@drawable/meishi1"
                 android:padding="2dp"
                 />
         <TextView

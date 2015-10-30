@@ -14,8 +14,8 @@
         <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
                 >
                 <TextView
                         android:id="@+id/text_cart_price"
@@ -23,6 +23,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:textColor="#ff6000"
+                        android:text="220"
                         android:textSize="20dp"
                         />
                 <LinearLayout

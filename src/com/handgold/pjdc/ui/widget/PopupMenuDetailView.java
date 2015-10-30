@@ -284,11 +284,31 @@ public class PopupMenuDetailView extends RelativeLayout {
                 AnimationSet set = new AnimationSet(false);
                 set.addAnimation(rotateAnimation);
                 set.addAnimation(translateAnimation);
+                set.setAnimationListener(new Animation.AnimationListener() {
+
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        mSubImage.setVisibility(View.GONE);
+                        mPopOperationLayout.setBackground(null);
+                        mMenuCount.setVisibility(GONE);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
                 mSubImage.startAnimation(set);
+            }else {
+                mSubImage.setVisibility(View.GONE);
+                mPopOperationLayout.setBackground(null);
+                mMenuCount.setVisibility(GONE);
             }
-            mSubImage.setVisibility(View.GONE);
-            mPopOperationLayout.setBackground(null);
-            mMenuCount.setVisibility(GONE);
         }
     }
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.handgold.pjdc.ui.widget.PopupPayInfoView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/pop_bg"
         >
 
     <ImageView
-            android:id="@+id/imageview_pay_ok"
+            android:id="@+id/imageview_pay_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_success"
@@ -14,10 +14,10 @@
             android:layout_centerHorizontal="true"
             />
     <TextView
-            android:id="@+id/text_pay_ok"
+            android:id="@+id/text_pay_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageview_pay_ok"
+            android:layout_below="@id/imageview_pay_status"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:text="付款成功！"
@@ -29,11 +29,11 @@
             android:id="@+id/text_pay_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_pay_ok"
+            android:layout_below="@id/text_pay_status"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:text="请耐心等候您的餐点\n     5S后自动返回"
             android:textColor="#80000000"
             android:textSize="16sp"
             />
-</RelativeLayout>
+</com.handgold.pjdc.ui.widget.PopupPayInfoView>
