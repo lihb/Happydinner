@@ -88,7 +88,7 @@
             android:id="@+id/popup_pay_info_relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#80000000"
+            android:background="#c0000000"
             android:visibility="gone"
             >
         <include
