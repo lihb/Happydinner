@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.entitiy.GameEntity;
+import com.handgold.pjdc.entitiy.CoverFlowEntity;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.ui.CoverFlowAdapter;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
@@ -28,7 +28,7 @@ public class CoverFlowActivity extends ActionBarActivity {
 
     private FeatureCoverFlow mCoverFlow;
     private CoverFlowAdapter mAdapter;
-    private ArrayList<GameEntity> mData = new ArrayList<GameEntity>(0);
+    private ArrayList<CoverFlowEntity> mData = new ArrayList<CoverFlowEntity>(0);
     private TextSwitcher mTitle;
     private SortedMap<Integer, List<Menu>> sortedMap;
 
@@ -42,10 +42,10 @@ public class CoverFlowActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coverflow);
 
-        mData.add(new GameEntity(R.drawable.image_2, R.string.title2));
-        mData.add(new GameEntity(R.drawable.image_3, R.string.title3));
-        mData.add(new GameEntity(R.drawable.image_4, R.string.title4));
-        mData.add(new GameEntity(R.drawable.menu, R.string.title1));
+        mData.add(new CoverFlowEntity(R.drawable.image_2, R.string.title2));
+        mData.add(new CoverFlowEntity(R.drawable.image_3, R.string.title3));
+        mData.add(new CoverFlowEntity(R.drawable.image_4, R.string.title4));
+        mData.add(new CoverFlowEntity(R.drawable.menu, R.string.title1));
 
         mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
@@ -69,7 +69,7 @@ public class CoverFlowActivity extends ActionBarActivity {
         mCoverFlow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("position===" , position+"");
+                Log.i("position===", position + "");
                 int index = position % mAdapter.getCount();
                 if (index == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
@@ -123,11 +123,10 @@ public class CoverFlowActivity extends ActionBarActivity {
         menuList.add(duckMenu2);
         menuList.add(fishMenu2);*/
         List<Menu> menuList = new ArrayList<Menu>();
-        for (int i = 1; i <= 5; i++) {
-            for (int j = 1; j <= 6; j++) {
-                Menu menu = new Menu("菜品" + i*j, null, null, 15.0f +i*j, "菜品简介"+i*j, 1, 0, i, "大丰收");
-                menuList.add(menu);
-            }
+        for (int i = 0; i < 30; i++) {
+            Menu menu = new Menu("菜品" + (i+1), null, null, 15.0f + i, "菜品简介" + (i+1), 1, 0, (i / 6) + 1, "大丰收");
+            menuList.add(menu);
+
         }
 
         /**

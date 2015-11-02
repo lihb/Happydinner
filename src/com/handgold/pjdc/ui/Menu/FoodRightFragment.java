@@ -14,6 +14,7 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.Order;
+import com.handgold.pjdc.ui.widget.AddToShopCartAnimation;
 import com.handgold.pjdc.ui.widget.OrderShowView;
 import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
 import com.handgold.pjdc.ui.widget.ShoppingCartView;
@@ -325,13 +326,14 @@ public class FoodRightFragment extends Fragment {
         mTranslateAnimationX.setInterpolator(new LinearInterpolator());
 
         Animation mTranslateAnimationY = new TranslateAnimation(0, 0, 0, endY);
-        mTranslateAnimationY.setInterpolator(new AccelerateInterpolator(2));
-
+        mTranslateAnimationY.setInterpolator(new BounceInterpolator());
+        AddToShopCartAnimation customAnimation = new AddToShopCartAnimation(0, endX, 0, endY);
         AnimationSet mAnimationSet = new AnimationSet(false);
 
         mAnimationSet.setFillAfter(true);
-        mAnimationSet.addAnimation(mTranslateAnimationX);
-        mAnimationSet.addAnimation(mTranslateAnimationY);
+//        mAnimationSet.addAnimation(mTranslateAnimationX);
+//        mAnimationSet.addAnimation(mTranslateAnimationY);
+        mAnimationSet.addAnimation(customAnimation);
         mAnimationSet.setDuration(400);
         mAnimationSet.setAnimationListener(new MyAnimationListener(view));
         view.startAnimation(mAnimationSet);

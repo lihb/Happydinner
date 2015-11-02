@@ -8,20 +8,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.handgold.pjdc.R;
-import com.handgold.pjdc.entitiy.GameEntity;
+import com.handgold.pjdc.entitiy.CoverFlowEntity;
 
 import java.util.ArrayList;
 
 public class CoverFlowAdapter extends BaseAdapter {
 	
-	private ArrayList<GameEntity> mData = new ArrayList<GameEntity>(0);
+	private ArrayList<CoverFlowEntity> mData = new ArrayList<CoverFlowEntity>(0);
 	private Context mContext;
 
 	public CoverFlowAdapter(Context context) {
 		mContext = context;
 	}
 	
-	public void setData(ArrayList<GameEntity> data) {
+	public void setData(ArrayList<CoverFlowEntity> data) {
 		mData = data;
 	}
 	

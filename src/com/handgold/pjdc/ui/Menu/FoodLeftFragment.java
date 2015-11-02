@@ -51,6 +51,7 @@ public class FoodLeftFragment extends Fragment {
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
     private FoodRightFragment mFoodRightFragment;
+    private LinearLayout[] mLinearLayoutArray;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class FoodLeftFragment extends Fragment {
         transAnim.setDuration(400);
 
         // 去掉弹回动画
-       /* CustomAnimation customAnimation = new CustomAnimation();
+       /* AddToShopCartAnimation customAnimation = new AddToShopCartAnimation();
         customAnimation.setDuration(400);
         customAnimation.setStartOffset(400);*/
 
@@ -93,6 +94,8 @@ public class FoodLeftFragment extends Fragment {
 //        set.setInterpolator(new OvershootInterpolator());
         LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);
+        //需和TypeEnum的顺序保持一致
+        mLinearLayoutArray = new LinearLayout[]{null, linearlayoutDrink,linearlayoutSnack, linearlayoutFood, linearlayoutSetmeal,linearlayoutRecommend,};
     }
 
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
@@ -104,48 +107,29 @@ public class FoodLeftFragment extends Fragment {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.DRINK.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setSelected(false);
-                linearlayoutFood.setSelected(false);
-                linearlayoutSetmeal.setSelected(false);
-                linearlayoutRecommend.setSelected(false);
-                linearlayoutDrink.setSelected(true);
+                setSelectType(TypeEnum.DRINK.ordinal());
+
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.SNACK.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setSelected(true);
-                linearlayoutFood.setSelected(false);
-                linearlayoutSetmeal.setSelected(false);
-                linearlayoutDrink.setSelected(false);
-                linearlayoutRecommend.setSelected(false);
+                setSelectType(TypeEnum.SNACK.ordinal());
             } else if (v == linearlayoutFood) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.PRI_FOOD.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setSelected(false);
-                linearlayoutFood.setSelected(true);
-                linearlayoutSetmeal.setSelected(false);
-                linearlayoutDrink.setSelected(false);
-                linearlayoutRecommend.setSelected(false);
+                setSelectType(TypeEnum.PRI_FOOD.ordinal());
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.MEALSET.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setSelected(false);
-                linearlayoutFood.setSelected(false);
-                linearlayoutSetmeal.setSelected(true);
-                linearlayoutDrink.setSelected(false);
-                linearlayoutRecommend.setSelected(false);
+                setSelectType(TypeEnum.MEALSET.ordinal());
             }
             else if (v == linearlayoutRecommend) {
                 dataList.clear();
                 List<Menu> collection = sortedMap.get(TypeEnum.RECOMMEND.ordinal());
                 dataList.addAll(collection);
-                linearlayoutSnack.setSelected(false);
-                linearlayoutFood.setSelected(false);
-                linearlayoutSetmeal.setSelected(false);
-                linearlayoutDrink.setSelected(false);
-                linearlayoutRecommend.setSelected(true);
+                setSelectType(TypeEnum.RECOMMEND.ordinal());
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);
@@ -157,6 +141,19 @@ public class FoodLeftFragment extends Fragment {
         }
     };
 
+    /**
+     * 设置选择的菜品类别
+     * @param whichType
+     */
+    private void setSelectType(int whichType) {
+        for (int i = 1; i < mLinearLayoutArray.length; i++) {
+            if (whichType == i) {
+                mLinearLayoutArray[i].setSelected(true);
+            }else {
+                mLinearLayoutArray[i].setSelected(false);
+            }
+        }
+    }
 
     @Override
     public void onDestroyView() {
