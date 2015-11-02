@@ -334,7 +334,7 @@ public class FoodRightFragment extends Fragment {
 //        mAnimationSet.addAnimation(mTranslateAnimationX);
 //        mAnimationSet.addAnimation(mTranslateAnimationY);
         mAnimationSet.addAnimation(customAnimation);
-        mAnimationSet.setDuration(400);
+        mAnimationSet.setDuration(600);
         mAnimationSet.setAnimationListener(new MyAnimationListener(view));
         view.startAnimation(mAnimationSet);
     }

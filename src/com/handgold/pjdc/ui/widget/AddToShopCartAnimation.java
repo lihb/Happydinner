@@ -1,5 +1,6 @@
 package com.handgold.pjdc.ui.widget;
 
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
@@ -22,22 +23,34 @@ public class AddToShopCartAnimation extends Animation {
     }
 
     @Override
+    public void initialize(int width, int height, int parentWidth, int parentHeight) {
+        super.initialize(width, height, parentWidth, parentHeight);
+        setFillAfter(true);
+        Log.i("AddToShopCartAnimation", "mToXValue = " + mToXValue + ", topHeight = " + mToYValue+
+                "mFromXValue = " + mFromXValue + ", mFromYValue = " + mFromYValue);
+    }
+
+    @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
         float tempXValue = mToXValue * 0.6f;
-        int topHeight = 150;
+        int topHeight = -110;
         if (interpolatedTime < 0.6) {
-            t.getMatrix().setTranslate(tempXValue * interpolatedTime, (float) (-Math.sin(interpolatedTime * Math.PI * 5 / 6) * topHeight));
+            float dx = tempXValue * interpolatedTime * 5 / 3;
+            float dy = (float) (Math.sin(interpolatedTime * Math.PI * 5 / 6) * topHeight);
+            t.getMatrix().setTranslate(dx, dy);
         }else {
-            float dx = mToXValue - tempXValue;
-            float dy = -topHeight -  mToYValue;
+            float dx = tempXValue;
+            float dy = topHeight;
             if (mToXValue != tempXValue) {
-                dx = tempXValue + ((mToXValue - tempXValue) * interpolatedTime);
+                dx = tempXValue + ((mToXValue - tempXValue) * (interpolatedTime - 0.6f) *2.5f);
             }
-            if (mFromYValue != mToYValue) {
-                dy = -topHeight + ((mToYValue + topHeight) * interpolatedTime);
+            if (topHeight != mToYValue) {
+//                dy = topHeight + ((mToYValue - topHeight) * (interpolatedTime - 0.6f)*2.5f);
+                dy = (float)(Math.cos(Math.PI / 2 * ((interpolatedTime - 0.6f)*2.5f))) * (topHeight - mToYValue) +mToYValue ;
             }
             t.getMatrix().setTranslate(dx, dy);
         }
+        setFillAfter(true);
 
     }
 }
