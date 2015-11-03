@@ -1,5 +1,7 @@
 package com.handgold.pjdc.entitiy;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,7 +9,7 @@ import org.json.JSONObject;
 /**
  * Created by Administrator on 2015/11/2.
  */
-public class GameInfo {
+public class GameInfo implements Parcelable {
     private final String TAG = "GameInfo";
     /**
      * 游戏名字
@@ -23,6 +25,30 @@ public class GameInfo {
      * 游戏所属分类
      */
     private int type;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
 
     public GameInfo(String name, String picUrl, int type) {
         this.name = name;
@@ -70,4 +96,33 @@ public class GameInfo {
         }
         return str;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(picUrl);
+        dest.writeInt(type);
+
+    }
+    public static final Parcelable.Creator<GameInfo> CREATOR = new Creator<GameInfo>() {
+        @Override
+        public GameInfo createFromParcel(Parcel source) {
+            GameInfo gameInfo = new GameInfo(source.readString());
+            gameInfo.setName(source.readString());
+            gameInfo.setPicUrl(source.readString());
+            gameInfo.setType(source.readInt());
+
+            return gameInfo;
+        }
+
+        @Override
+        public GameInfo[] newArray(int size) {
+            return new GameInfo[size];
+        }
+    };
 }

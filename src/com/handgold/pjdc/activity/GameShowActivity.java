@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.handgold.pjdc.R;
-import com.handgold.pjdc.entitiy.Menu;
+import com.handgold.pjdc.base.ApplicationEx;
+import com.handgold.pjdc.base.GameTypeEnum;
+import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.ui.Game.GameLeftFragment;
 import com.handgold.pjdc.ui.Game.GameRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Administrator on 2015/11/3.
@@ -28,6 +30,8 @@ public class GameShowActivity extends FragmentActivity {
     private GameLeftFragment gameLeftFragment = null;
 
     private GameRightFragment gameRightFragment = null;
+
+    private SortedMap<Integer, List<GameInfo>> sortedDataMap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,18 @@ public class GameShowActivity extends FragmentActivity {
         // 初始化界面
         initView();
 
+        // 获取游戏数据
+        sortedDataMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allGameList");
+        if (sortedDataMap == null) {
+            sortedDataMap = new TreeMap<Integer, List<GameInfo>>();
+            initData();
+        }
         initFragment();
 
+
     }
+
+
 
     private void initView() {
         headView = new HeadView(this);
@@ -63,6 +76,46 @@ public class GameShowActivity extends FragmentActivity {
 
     }
 
+    private void initData() {
+        List<GameInfo> gameInfoList = new ArrayList<GameInfo>();
+        for (int i = 0; i < 30; i++) {
+            GameInfo gameInfo = new GameInfo("游戏" + (i+1), "http://www.dddd.com", (i / 6 + 1));
+            gameInfoList.add(gameInfo);
+
+        }
+        /**
+         * 比较器：给menu按照type排序用
+         */
+        Comparator<GameInfo> comparator = new Comparator<GameInfo>() {
+            @Override
+            public int compare(GameInfo lhs, GameInfo rhs) {
+
+                return lhs.getType() - rhs.getType();
+            }
+        };
+        Collections.sort(gameInfoList, comparator);
+
+        List<GameInfo> tmpList = new ArrayList<GameInfo>();
+
+        int oldKey = gameInfoList.get(0).getType();
+
+        for (int i = 0; i < gameInfoList.size(); i++) {
+            GameInfo gameItemData = gameInfoList.get(i);
+            int newKey = gameItemData.getType();
+            if (newKey == oldKey) {
+                tmpList.add(gameItemData);
+            } else {
+                sortedDataMap.put(oldKey, tmpList);
+                tmpList = new ArrayList<GameInfo>();
+                tmpList.add(gameItemData);
+                oldKey = newKey;
+            }
+        }
+        sortedDataMap.put(oldKey, tmpList); // 处理最后一组数据
+
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allGameList", sortedDataMap);
+    }
+
     private void initFragment() {
         mTransaction = mFragmentManager.beginTransaction();
         if (gameLeftFragment == null) {
@@ -73,9 +126,9 @@ public class GameShowActivity extends FragmentActivity {
 
         if (gameRightFragment == null) {
             Bundle bundle = new Bundle();
-            ArrayList<Menu> dataList = new ArrayList<Menu>();
+            ArrayList<GameInfo> dataList = new ArrayList<GameInfo>();
             //初始化右边fragment的数据
-//            dataList.addAll(sortedMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
+            dataList.addAll(sortedDataMap.get(GameTypeEnum.COOLRUN.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
             gameRightFragment = new GameRightFragment();
             gameRightFragment.setArguments(bundle);

@@ -78,6 +78,10 @@ public class CoverFlowActivity extends ActionBarActivity {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.VideoListActivity.class);
                     startActivity(intent);
                 }
+                else if (index == 2) {
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
+                    startActivity(intent);
+                }
 
             }
         });

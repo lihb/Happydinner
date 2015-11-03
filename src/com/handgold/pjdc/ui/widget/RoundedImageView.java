@@ -43,6 +43,12 @@ public class RoundedImageView extends ImageView {
         setImage(mCornerRadius, mCornerLoc);
     }
 
+    @Override
+    public void setImageResource(int resId) {
+        super.setImageResource(resId);
+        setImage(mCornerRadius,mCornerLoc);
+    }
+
     public void setImage(int radius, int corners) {
         Drawable drawable = getDrawable();
         Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();

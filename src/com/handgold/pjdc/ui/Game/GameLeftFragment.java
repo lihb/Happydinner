@@ -19,9 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.base.MenuTypeEnum;
-import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.Menu.FoodRightFragment;
+import com.handgold.pjdc.base.GameTypeEnum;
+import com.handgold.pjdc.entitiy.GameInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,11 +74,11 @@ public class GameLeftFragment extends Fragment {
     @InjectView(R.id.text_recommend)
     TextView text_recommend;
 
-    private SortedMap<Integer, List<Menu>> sortedMap;
+    private SortedMap<Integer, List<GameInfo>> sortedMap;
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
-    private FoodRightFragment mFoodRightFragment;
+    private GameRightFragment mGameRightFragment;
     private LinearLayout[] mLinearLayoutArray;
 
     @Override
@@ -99,13 +98,13 @@ public class GameLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        text_drink.setText("休闲益智");
-        text_setmeal.setText("塔防");
-        text_snack.setText("酷跑");
-        text_food.setText("射击");
-        text_recommend.setText("推荐");
+        text_drink.setText("酷跑类");
+        text_setmeal.setText("消除类");
+        text_snack.setText("射击类");
+        text_food.setText("休闲益智类");
+        text_recommend.setText("纸牌类");
         mFragmentManager = getFragmentManager();
-        sortedMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allMenuList");
+        sortedMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allGameList");
         linearlayoutDrink.setOnClickListener(mOnclickListener);
         linearlayoutSnack.setOnClickListener(mOnclickListener);
         linearlayoutFood.setOnClickListener(mOnclickListener);
@@ -130,40 +129,40 @@ public class GameLeftFragment extends Fragment {
         @Override
         public void onClick(View v) {
             mTransaction = mFragmentManager.beginTransaction();
-            ArrayList<Menu> dataList = new ArrayList<>();
+            ArrayList<GameInfo> dataList = new ArrayList<>();
             if (v == linearlayoutDrink) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(MenuTypeEnum.DRINK.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.COOLRUN.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MenuTypeEnum.DRINK.ordinal());
+                setSelectType(GameTypeEnum.COOLRUN.ordinal());
 
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(MenuTypeEnum.SNACK.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.ERASE.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MenuTypeEnum.SNACK.ordinal());
+                setSelectType(GameTypeEnum.ERASE.ordinal());
             } else if (v == linearlayoutFood) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(MenuTypeEnum.PRI_FOOD.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.SHOOT.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MenuTypeEnum.PRI_FOOD.ordinal());
+                setSelectType(GameTypeEnum.SHOOT.ordinal());
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(MenuTypeEnum.MEALSET.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RELAX_PUZZLE.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MenuTypeEnum.MEALSET.ordinal());
+                setSelectType(GameTypeEnum.RELAX_PUZZLE.ordinal());
             }
             else if (v == linearlayoutRecommend) {
                 dataList.clear();
-                List<Menu> collection = sortedMap.get(MenuTypeEnum.RECOMMEND.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.CARD.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MenuTypeEnum.RECOMMEND.ordinal());
+                setSelectType(GameTypeEnum.CARD.ordinal());
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);
-            mFoodRightFragment = new FoodRightFragment();
-            mFoodRightFragment.setArguments(bundle);
-            mTransaction.replace(R.id.right_frag, mFoodRightFragment, "food_right_frag");
+            mGameRightFragment = new GameRightFragment();
+            mGameRightFragment.setArguments(bundle);
+            mTransaction.replace(R.id.right_frag, mGameRightFragment, "game_right_frag");
             mTransaction.commit();
 
         }

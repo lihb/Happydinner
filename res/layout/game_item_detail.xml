@@ -8,6 +8,7 @@
             android:id="@+id/game_iv"
             android:layout_width="300dp"
             android:layout_height="420dp"
+            android:scaleType="fitXY"
             RoundedImageView:corner_loc="3"
             RoundedImageView:corner_radius="16"
             android:src="@drawable/meishi1"
@@ -17,8 +18,10 @@
             android:layout_width="300dp"
             android:layout_height="120dp"
             android:gravity="center"
-            android:layout_below="@+id/game_iv"
+            android:layout_below="@id/game_iv"
             android:text="开心消消乐"
+            android:textSize="25dp"
+            android:textColor="#ccffffff"
             android:background="@drawable/game_name_even_view_bg"
             />
 </RelativeLayout>
