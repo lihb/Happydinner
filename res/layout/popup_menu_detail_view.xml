@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.handgold.pjdc.ui.widget.PopupMenuDetailView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:RoundedImageView="http://schemas.android.com/apk/res/com.handgold.pjdc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -32,6 +33,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:scaleType="fitXY"
+                RoundedImageView:corner_radius="16"
+                RoundedImageView:corner_loc="3"
                 android:src="@drawable/meishi2"
                 />
             <ImageView

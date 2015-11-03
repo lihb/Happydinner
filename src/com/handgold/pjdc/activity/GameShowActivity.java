@@ -4,46 +4,30 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import com.handgold.pjdc.R;
-import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.base.MenuTypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.Menu.FoodLeftFragment;
-import com.handgold.pjdc.ui.Menu.FoodRightFragment;
-import com.handgold.pjdc.ui.VideoPlayerFragment;
+import com.handgold.pjdc.ui.Game.GameLeftFragment;
+import com.handgold.pjdc.ui.Game.GameRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
-import com.handgold.pjdc.ui.widget.OrderShowView;
-import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
 
 /**
- * Created by lihb on 15/5/16.
+ * Created by Administrator on 2015/11/3.
  */
-public class FoodShowActivity extends FragmentActivity {
-
-    private SortedMap<Integer, List<Menu>> sortedMap;
+public class GameShowActivity extends FragmentActivity {
 
     private HeadView headView;
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
-    private VideoPlayerFragment videoPlayerFragment;
 
-    private FoodLeftFragment foodLeftFragment = null;
+    private GameLeftFragment gameLeftFragment = null;
 
-    private FoodRightFragment foodRightFragment = null;
-
-    private OrderShowView mOrderShowView = null;
-
-    private PopupMenuDetailView mPopupMenuDetailView = null;
+    private GameRightFragment gameRightFragment = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,13 +45,7 @@ public class FoodShowActivity extends FragmentActivity {
         // 初始化界面
         initView();
 
-        // 获取菜品数据
-        sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
-
         initFragment();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Log.i("wwww displayMetrics----", displayMetrics.toString());
 
     }
 
@@ -76,34 +54,32 @@ public class FoodShowActivity extends FragmentActivity {
         headView.h_left_tv.setText("返回");
         headView.h_title.setVisibility(View.GONE);
         headView.h_title_img.setVisibility(View.VISIBLE);
-        headView.h_right_tv_llyt.setVisibility(View.VISIBLE);
-        headView.h_right_tv.setText("当前位置：68桌");
+        headView.h_right_tv_llyt.setVisibility(View.GONE);
+        headView.h_right_tv.setText("");
         headView.h_right_tv.setTextColor(0x33ffffff);
         headView.h_left.setOnClickListener(mOnClickListener);
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
 //        headView.h_right_tv.setOnClickListener(mOnClickListener);
 
-        mOrderShowView = (OrderShowView) findViewById(R.id.order_show_view);
-        mPopupMenuDetailView = (PopupMenuDetailView) findViewById(R.id.popup_detail_view);
     }
 
     private void initFragment() {
         mTransaction = mFragmentManager.beginTransaction();
-        if (foodLeftFragment == null) {
-            foodLeftFragment = new FoodLeftFragment();
-            mTransaction.replace(R.id.left_frag, foodLeftFragment, "food_left_fragment");
+        if (gameLeftFragment == null) {
+            gameLeftFragment = new GameLeftFragment();
+            mTransaction.replace(R.id.left_frag, gameLeftFragment, "game_left_fragment");
 
         }
 
-        if (foodRightFragment == null) {
+        if (gameRightFragment == null) {
             Bundle bundle = new Bundle();
             ArrayList<Menu> dataList = new ArrayList<Menu>();
             //初始化右边fragment的数据
-            dataList.addAll(sortedMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
+//            dataList.addAll(sortedMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
-            foodRightFragment = new FoodRightFragment();
-            foodRightFragment.setArguments(bundle);
-            mTransaction.replace(R.id.right_frag, foodRightFragment, "food_right_fragment");
+            gameRightFragment = new GameRightFragment();
+            gameRightFragment.setArguments(bundle);
+            mTransaction.replace(R.id.right_frag, gameRightFragment, "game_right_fragment");
         }
 
         mTransaction.commit();
@@ -123,14 +99,4 @@ public class FoodShowActivity extends FragmentActivity {
             }
         }
     };
-
-    @Override
-    public void onBackPressed() {
-        if (mOrderShowView.isVisible() || mPopupMenuDetailView.isVisible()) {
-            mOrderShowView.exitView();
-            mPopupMenuDetailView.exitView();
-        } else {
-            super.onBackPressed();
-        }
-    }
 }

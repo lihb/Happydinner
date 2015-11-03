@@ -20,6 +20,7 @@
             >
 
         <ImageView
+                android:id="@+id/image_recommend"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:duplicateParentState="true"
@@ -27,6 +28,7 @@
                 />
 
         <TextView
+                android:id="@+id/text_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -52,6 +54,7 @@
             >
 
         <ImageView
+                android:id="@+id/image_drink"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:duplicateParentState="true"
@@ -59,6 +62,7 @@
                 />
 
         <TextView
+                android:id="@+id/text_drink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -84,6 +88,7 @@
             >
 
         <ImageView
+                android:id="@+id/image_snack"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:duplicateParentState="true"
@@ -91,6 +96,7 @@
                 />
 
         <TextView
+                android:id="@+id/text_snack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -116,12 +122,14 @@
             >
 
         <ImageView
+                android:id="@+id/image_food"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/pri_food_selector"
                 />
 
         <TextView
+                android:id="@+id/text_food"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
@@ -146,6 +154,7 @@
             >
 
         <ImageView
+                android:id="@+id/image_setmeal"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:duplicateParentState="true"
@@ -153,6 +162,7 @@
                 />
 
         <TextView
+                android:id="@+id/text_setmeal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"

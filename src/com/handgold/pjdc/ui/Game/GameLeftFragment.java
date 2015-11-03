@@ -1,4 +1,4 @@
-package com.handgold.pjdc.ui.Menu;
+package com.handgold.pjdc.ui.Game;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,14 +11,17 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationSet;
 import android.view.animation.LayoutAnimationController;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.MenuTypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
+import com.handgold.pjdc.ui.Menu.FoodRightFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,7 @@ import java.util.SortedMap;
  * @date 2015/6/16
  */
 
-public class FoodLeftFragment extends Fragment {
+public class GameLeftFragment extends Fragment {
 
     @InjectView(R.id.linearlayout_drink)
     LinearLayout linearlayoutDrink;
@@ -46,6 +49,32 @@ public class FoodLeftFragment extends Fragment {
     RelativeLayout relativeFoodLeft;
     @InjectView(R.id.linearlayout_recommend)
     LinearLayout linearlayoutRecommend;
+
+    @InjectView(R.id.image_drink)
+    ImageView image_drink;
+    @InjectView(R.id.text_drink)
+    TextView text_drink;
+
+    @InjectView(R.id.image_snack)
+    ImageView image_snack;
+    @InjectView(R.id.text_snack)
+    TextView text_snack;
+
+    @InjectView(R.id.image_food)
+    ImageView image_food;
+    @InjectView(R.id.text_food)
+    TextView text_food;
+
+    @InjectView(R.id.image_setmeal)
+    ImageView image_setmeal;
+    @InjectView(R.id.text_setmeal)
+    TextView text_setmeal;
+
+    @InjectView(R.id.image_recommend)
+    ImageView image_recommend;
+    @InjectView(R.id.text_recommend)
+    TextView text_recommend;
+
     private SortedMap<Integer, List<Menu>> sortedMap;
 
     private FragmentManager mFragmentManager;
@@ -70,6 +99,11 @@ public class FoodLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        text_drink.setText("休闲益智");
+        text_setmeal.setText("塔防");
+        text_snack.setText("酷跑");
+        text_food.setText("射击");
+        text_recommend.setText("推荐");
         mFragmentManager = getFragmentManager();
         sortedMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allMenuList");
         linearlayoutDrink.setOnClickListener(mOnclickListener);
@@ -83,15 +117,9 @@ public class FoodLeftFragment extends Fragment {
                 TranslateAnimation.RELATIVE_TO_SELF, 0.0f,TranslateAnimation.RELATIVE_TO_SELF, 0.0f);
         transAnim.setDuration(400);
 
-        // 去掉弹回动画
-       /* AddToShopCartAnimation customAnimation = new AddToShopCartAnimation();
-        customAnimation.setDuration(400);
-        customAnimation.setStartOffset(400);*/
 
         AnimationSet set = new AnimationSet(false);
         set.addAnimation(transAnim);
-//        set.addAnimation(customAnimation);
-//        set.setInterpolator(new OvershootInterpolator());
         LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);
         //需和TypeEnum的顺序保持一致

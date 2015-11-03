@@ -19,9 +19,15 @@ public class GameInfo {
      */
     private String picUrl;
 
-    public GameInfo(String name, String picUrl) {
+    /**
+     * 游戏所属分类
+     */
+    private int type;
+
+    public GameInfo(String name, String picUrl, int type) {
         this.name = name;
         this.picUrl = picUrl;
+        this.type = type;
     }
 
 
@@ -30,6 +36,7 @@ public class GameInfo {
         try {
             name = jobj.optString("name");
             picUrl = jobj.optString("picUrl");
+            type = jobj.optInt("type");
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "LiveSessionInfo json init exception!");
@@ -42,6 +49,7 @@ public class GameInfo {
             JSONObject jobj = new JSONObject(jsonInfo);
             name = jobj.optString("name");
             picUrl = jobj.optString("picUrl");
+            type = jobj.optInt("type");
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, "LiveSessionInfo json init exception!");
@@ -54,6 +62,7 @@ public class GameInfo {
             JSONObject jobj = new JSONObject();
             jobj.put("name", name);
             jobj.put("picUrl", picUrl);
+            jobj.put("type", type);
             str = jobj.toString();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
