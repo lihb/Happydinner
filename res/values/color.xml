@@ -38,7 +38,7 @@
     <color name="left_menu_list_item_normal">#0035363e</color>
     <color name="left_menu_list_item_press">#803e3f48</color>
     <color name="msg_item_press_clr">#dee1e4</color>
-    <color name="list_divider">#dee1e4</color>
+    <color name="list_divider">#50dee1e4</color>
     <color name="group_list_divider">#dee1e4</color>
 
     <!-- 首页区域 -->

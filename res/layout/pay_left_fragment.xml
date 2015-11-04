@@ -3,29 +3,27 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingLeft="12dp"
+              android:paddingLeft="40dp"
         >
 
     <TextView
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="60dp"
             android:text="付款方式："
             android:textSize="@dimen/pay_title_text_size"
             android:textColor="#ffffff"
             />
-    <ListView
-            android:id="@+id/pay_left_lv"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cacheColorHint="#00000000"
-            android:divider="@null"
-            android:listSelector="@android:color/transparent"
-            >
-    </ListView>
+    <include
+            android:id="@+id/layout_zhifubao"
+            layout="@layout/pay_left_item"
+            />
+
+    <include
+            android:id="@+id/layout_wechat"
+            layout="@layout/pay_left_item"
+            />
 
 
 </LinearLayout>

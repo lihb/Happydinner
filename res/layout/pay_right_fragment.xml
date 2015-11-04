@@ -9,6 +9,7 @@
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:paddingLeft="12dp"
+            android:layout_marginTop="60dp"
             android:layout_gravity="center"
             >
         <TextView
@@ -31,7 +32,7 @@
                 android:textSize="@dimen/pay_text_size"
                 android:paddingRight="12dp"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/white"
+                android:textColor="#ff6000"
                 />
         <View
                 style="@style/list_line"
@@ -49,13 +50,15 @@
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="115dp"
+            android:layout_marginLeft="100dp"
             >
         <LinearLayout
                 android:id="@+id/pay_info_step1"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
+
                 android:layout_weight="1"
                 >
             <ImageView
@@ -70,9 +73,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="45dp"
                     android:textSize="20dp"
-                    android:text="1.打开手机微信\n点击扫一扫功能"
+                    android:text="1.打开手机微信\n  点击扫一扫功能"
                     />
         </LinearLayout>
 
@@ -96,8 +100,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="2.扫描该二维码，成功后\n按照提示输入密码"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="2.扫描该二维码，成功后\n      按照提示输入密码"
                     />
 
         </LinearLayout>

@@ -73,7 +73,7 @@
         <RelativeLayout
                 android:id="@+id/linearlayout_order_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="105dp"
+                android:layout_height="95dp"
                 android:layout_alignParentBottom="true"
                 android:gravity="center_vertical"
                 >
@@ -109,8 +109,6 @@
                         android:layout_alignParentRight="true"
                         android:paddingRight="36dp"
                         android:paddingLeft="36dp"
-                        android:paddingTop="39.5dp"
-                        android:paddingBottom="39.5dp"
                         android:gravity="center"
                         android:text="立刻下单"
                         android:textSize="16dp"

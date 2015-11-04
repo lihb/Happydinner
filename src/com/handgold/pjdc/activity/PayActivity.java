@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.BaseActivity;
 import com.handgold.pjdc.ui.Pay.PayLeftFragment;
+import com.handgold.pjdc.ui.Pay.PayRightWeChatFragment;
 import com.handgold.pjdc.ui.Pay.PayRightZhiFuBaoFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.PopupPayInfoView;
@@ -27,11 +29,15 @@ public class PayActivity extends BaseActivity {
 
     private HeadView headView;
 
+    private LinearLayout mLeftFragLayout;
+    private LinearLayout mRightFragLayout;
+
     private FragmentManager mFragmentManager;
 
     private FragmentTransaction mTransaction;
 
     private PayRightZhiFuBaoFragment payRightZhiFuBaoFragment;
+    private PayRightWeChatFragment payRightWeChatFragment;
 
     private PayLeftFragment payLeftFragment;
 
@@ -64,6 +70,12 @@ public class PayActivity extends BaseActivity {
 
         mPayInfoRelativeLayout = (RelativeLayout) findViewById(R.id.popup_pay_info_relativeLayout);
         mPopupPayInfoView = (PopupPayInfoView) findViewById(R.id.popup_pay_info_view);
+
+        mLeftFragLayout = (LinearLayout) findViewById(R.id.left_frag);
+        mRightFragLayout = (LinearLayout) findViewById(R.id.right_frag);
+
+        mLeftFragLayout.setBackgroundResource(R.drawable.paying_left);
+        mRightFragLayout.setBackgroundResource(R.drawable.paying_right);
 
     }
 
