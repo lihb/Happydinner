@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.handgold.pjdc">
+          package="com.handgold.pjdc"
+          android:versionCode="1"
+          android:versionName="1.0-SNAPSHOT"
+        >
     <uses-sdk
             android:minSdkVersion="16"
             android:targetSdkVersion="21"/>
