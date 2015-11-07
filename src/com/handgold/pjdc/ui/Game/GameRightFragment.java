@@ -1,8 +1,16 @@
 package com.handgold.pjdc.ui.Game;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +23,7 @@ import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.util.CommonUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 类说明：
@@ -34,7 +43,20 @@ public class GameRightFragment extends Fragment {
     private AdapterView.OnItemClickListener mOnItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            CommonUtils.toastText(getActivity(), "你点击了" + position);
+            switch (position) {
+                case 0:
+                    startGameApp("com.carrot.iceworld", getActivity());
+                    break;
+                case 1:
+                    startGameApp("com.happyelements.AndroidAnimal", getActivity());
+                    break;
+                case 2:
+                    startGameApp("com.cnvcs.gomoku", getActivity());
+                    break;
+                default:
+                    CommonUtils.toastText(getActivity(), "您没有安装该游戏！");
+            }
+
         }
     };
 
@@ -58,6 +80,7 @@ public class GameRightFragment extends Fragment {
 
     /**
      * 设置菜品进入动画
+     *
      * @param gridView
      */
     private void setGridViewAnimation(GridView gridView) {
@@ -84,5 +107,41 @@ public class GameRightFragment extends Fragment {
 
     }
 
+    /**
+     * 打开游戏app
+     */
+    private void startGameApp(String packageName, Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        List<ApplicationInfo> list = packageManager.getInstalledApplications(0);
+        for (ApplicationInfo info : list) {
+            Log.i("wwwww-----------", info.toString());
+        }
+        PackageInfo pi = null;
+
+        try {
+            pi = packageManager.getPackageInfo(packageName, 0);
+
+            Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
+            resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+            resolveIntent.setPackage(pi.packageName);
+
+            List<ResolveInfo> apps = packageManager.queryIntentActivities(resolveIntent, 0);
+
+            ResolveInfo ri = apps.iterator().next();
+            if (ri != null) {
+                String className = ri.activityInfo.name;
+
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+                ComponentName cn = new ComponentName(packageName, className);
+
+                intent.setComponent(cn);
+                context.startActivity(intent);
+            }
+        } catch (Exception e) {
+            CommonUtils.toastText(getActivity(), "您没有安装该游戏！");
+        }
+    }
 
 }

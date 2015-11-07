@@ -3,7 +3,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="50dp"
-              android:paddingRight="12dp"
+              android:paddingLeft="40dp"
               android:layout_marginTop="20dp"
               android:clickable="true"
               android:background="@drawable/food_left_bg_selector"

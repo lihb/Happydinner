@@ -74,9 +74,18 @@ public class GameRightAdapter extends BaseAdapter {
         }else {
             viewholder.gameName.setBackgroundResource(R.drawable.game_name_odd_view_bg);
         }
-        viewholder.gameName.setText(gameInfo.getName());
-
-
+        if (position == 0) {
+            viewholder.gameName.setText("保卫萝卜");
+        }
+        else if (position == 1) {
+            viewholder.gameName.setText("开心消消乐");
+        }
+        else if (position == 2) {
+            viewholder.gameName.setText("五子棋大师");
+        }
+        else {
+            viewholder.gameName.setText(gameInfo.getName());
+        }
         return convertView;
     }
 

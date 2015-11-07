@@ -9,7 +9,7 @@
     <LinearLayout
             android:id="@+id/linearlayout_recommend"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="40dp"
@@ -42,7 +42,7 @@
     <LinearLayout
             android:id="@+id/linearlayout_drink"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_below="@+id/linearlayout_recommend"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
@@ -76,11 +76,11 @@
     <LinearLayout
             android:id="@+id/linearlayout_snack"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_drink"
             android:gravity="center"
             android:clickable="true"
@@ -110,11 +110,11 @@
     <LinearLayout
             android:id="@+id/linearlayout_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_snack"
             android:gravity="center"
             android:clickable="true"
@@ -143,13 +143,14 @@
     <LinearLayout
             android:id="@+id/linearlayout_setmeal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="horizontal"
             android:paddingLeft="20dp"
             android:paddingRight="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_food"
             android:clickable="true"
+            android:gravity="center"
             android:background="@drawable/food_left_bg_selector"
             >
 
