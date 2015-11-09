@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.GameTypeEnum;
@@ -14,6 +16,8 @@ import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.ui.Game.GameLeftFragment;
 import com.handgold.pjdc.ui.Game.GameRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
+import com.handgold.pjdc.ui.widget.PopupGameVideoView;
+import com.handgold.pjdc.util.DeviceUtils;
 
 import java.util.*;
 
@@ -32,6 +36,11 @@ public class GameShowActivity extends FragmentActivity {
     private GameRightFragment gameRightFragment = null;
 
     private SortedMap<Integer, List<GameInfo>> sortedDataMap;
+
+
+    private RelativeLayout mPopupGameVideoRelativeLayout;
+
+    private PopupGameVideoView mPopupGameVideoView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +83,26 @@ public class GameShowActivity extends FragmentActivity {
         headView.h_left_rlyt.setOnClickListener(mOnClickListener);
 //        headView.h_right_tv.setOnClickListener(mOnClickListener);
 
+        mPopupGameVideoRelativeLayout = (RelativeLayout) findViewById(R.id.popup_game_video_relativeLayout);
+        mPopupGameVideoRelativeLayout.setOnTouchListener(mOnTouchListener);
+
+        mPopupGameVideoView = (PopupGameVideoView) findViewById(R.id.popup_game_video_view);
+        int width = DeviceUtils.getScreenWidth(this) / 2;
+        int height = DeviceUtils.getScreenHeight(this) / 2;
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mPopupGameVideoView.setLayoutParams(params);
+        mPopupGameVideoRelativeLayout.setVisibility(View.VISIBLE);
+
     }
+
+    private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            // 屏蔽在该页面之下的页面的点击事件
+            return true;
+        }
+    };
 
     private void initData() {
         List<GameInfo> gameInfoList = new ArrayList<GameInfo>();

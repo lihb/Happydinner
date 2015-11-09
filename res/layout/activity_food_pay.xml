@@ -101,4 +101,21 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+            android:id="@+id/popup_game_video_relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#c0000000"
+            android:visibility="gone"
+            >
+        <include
+                android:id="@+id/popup_game_video_view"
+                android:layout_width="550dp"
+                android:layout_height="550dp"
+                layout="@layout/popup_game_video_view"
+                android:layout_centerInParent="true"
+                />
+
+    </RelativeLayout>
+
 </RelativeLayout>

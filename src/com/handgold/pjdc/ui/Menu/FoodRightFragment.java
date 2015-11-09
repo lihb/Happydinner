@@ -65,9 +65,9 @@ public class FoodRightFragment extends Fragment {
                         y < location[1] || y > location[1] + subView.getHeight()) {
                     if (subView instanceof OrderShowView) {
                         ((OrderShowView)subView).exitView();
-                    }else if(subView instanceof PopupMenuDetailView){
+                    }/*else if(subView instanceof PopupMenuDetailView){//菜品介绍页面，点击遮罩不关闭页面
                         ((PopupMenuDetailView)subView).exitView();
-                    }
+                    }*/
                 }
             }
             return true;
