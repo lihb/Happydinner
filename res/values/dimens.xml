@@ -8,7 +8,7 @@
     <dimen name="cover_height">180dp</dimen>
 
     <!-- 头部 -->
-    <dimen name="head_height">47dp</dimen>
+    <dimen name="head_height">60dp</dimen>
 
     <!-- 头部左边边距-->
     <dimen name="header_left_margin">12dip</dimen>

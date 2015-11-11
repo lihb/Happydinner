@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         coverflow:coverHeight="400dp"
-        coverflow:coverWidth="800dp"
+        coverflow:coverWidth="700dp"
         coverflow:maxScaleFactor="1.5"
         coverflow:reflectionGap="0px"
         coverflow:rotationThreshold="0.9"
