@@ -33,16 +33,16 @@
                 android:src="@drawable/icon_highlight"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="30dp"
                 />
         <TextView
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/image_type"
-                android:layout_marginTop="40dp"
-                android:text="主厨推荐"
-                android:textSize="50sp"
+                android:layout_marginTop="35dp"
+                android:text=""
+                android:textSize="30dp"
                 android:textColor="#ffffff"
                 />
         <TextView
@@ -51,8 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/image_type"
                 android:layout_below="@+id/text_title"
-                android:text="最近新增8个才菜式"
-                android:textSize="27sp"
+                android:text=""
+                android:textSize="25dp"
                 android:textColor="#c0ffffff"
                 />
 
@@ -67,8 +67,8 @@
                 >
             <ImageView
                     android:id="@+id/image_show_more"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/default_button_more"
                     android:layout_alignParentTop="true"
 
@@ -78,8 +78,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="查看\n更多"
-                    android:textSize="27sp"
+                    android:text=""
+                    android:textSize="25dp"
                     android:textColor="#ffffff"
                     />
         </RelativeLayout>
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="30dp"
                 >
             <RelativeLayout
@@ -98,19 +98,19 @@
                 <com.handgold.pjdc.ui.widget.RoundedImageView
                         android:id="@+id/game_iv1"
                         android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_height="180dp"
                         android:scaleType="fitXY"
                         RoundedImageView:corner_loc="3"
-                        RoundedImageView:corner_radius="16"
+                        RoundedImageView:corner_radius="10"
                         android:src="@drawable/meishi1"
                         />
                 <TextView
                         android:id="@+id/game_name_text1"
                         android:layout_width="200dp"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center"
                         android:layout_below="@id/game_iv1"
-                        android:text="开心消消乐"
+                        android:text=""
                         android:textSize="25dp"
                         android:textColor="#ccffffff"
                         android:background="@drawable/game_name_even_view_bg"
@@ -126,19 +126,19 @@
                 <com.handgold.pjdc.ui.widget.RoundedImageView
                         android:id="@+id/game_iv2"
                         android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_height="180dp"
                         android:scaleType="fitXY"
                         RoundedImageView:corner_loc="3"
-                        RoundedImageView:corner_radius="16"
+                        RoundedImageView:corner_radius="10"
                         android:src="@drawable/meishi1"
                         />
                 <TextView
                         android:id="@+id/game_name_text2"
                         android:layout_width="200dp"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center"
                         android:layout_below="@id/game_iv2"
-                        android:text="开心消消乐"
+                        android:text=""
                         android:textSize="25dp"
                         android:textColor="#ccffffff"
                         android:background="@drawable/game_name_even_view_bg"
@@ -154,19 +154,19 @@
                 <com.handgold.pjdc.ui.widget.RoundedImageView
                         android:id="@+id/game_iv3"
                         android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_height="180dp"
                         android:scaleType="fitXY"
                         RoundedImageView:corner_loc="3"
-                        RoundedImageView:corner_radius="16"
+                        RoundedImageView:corner_radius="10"
                         android:src="@drawable/meishi1"
                         />
                 <TextView
                         android:id="@+id/game_name_text3"
                         android:layout_width="200dp"
-                        android:layout_height="20dp"
+                        android:layout_height="40dp"
                         android:gravity="center"
                         android:layout_below="@id/game_iv3"
-                        android:text="开心消消乐"
+                        android:text=""
                         android:textSize="25dp"
                         android:textColor="#ccffffff"
                         android:background="@drawable/game_name_even_view_bg"

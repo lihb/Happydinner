@@ -196,7 +196,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 		viewHolder.menu_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.menu_text_title.setText("主厨推荐");
 		viewHolder.menu_text_desc.setText("最近新增6个菜式");
-		viewHolder.menu_text_show_more.setText("查看\n更多");
+		viewHolder.menu_text_show_more.setText(" 查看\n 更多");
 
 		int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
 				R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
@@ -205,7 +205,11 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 			int id = new Random().nextInt(7);
 			viewHolder.menu_iv_Arr[i].setImageResource(picIds[id]);
 			viewHolder.menu_title_Arr[i].setText(menu.getName());
-			viewHolder.menu_price_Arr[i].setText(menu.getPrice()+"");
+			viewHolder.menu_title_Arr[i].setTextColor(0xffffffff);
+			viewHolder.menu_title_Arr[i].setTextSize(15);
+			viewHolder.menu_price_Arr[i].setText("¥" + menu.getPrice());
+			viewHolder.menu_price_Arr[i].setTextColor(0xffffffff);
+			viewHolder.menu_price_Arr[i].setTextSize(15);
 		}
 
 	}
@@ -227,7 +231,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 		viewHolder.other_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.other_text_title.setText("热门游戏");
 		viewHolder.other_text_desc.setText("最近新增6个游戏");
-		viewHolder.other_text_show_more.setText("查看\n更多");
+		viewHolder.other_text_show_more.setText(" 查看\n 更多");
 
 		int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
 				R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
@@ -247,7 +251,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 		viewHolder.other_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.other_text_title.setText("最新影片");
 		viewHolder.other_text_desc.setText("新增6部新高清影片");
-		viewHolder.other_text_show_more.setText("查看\n更多");
+		viewHolder.other_text_show_more.setText(" 查看\n 更多");
 
 		int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
 				R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
@@ -267,7 +271,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 		viewHolder.other_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.other_text_title.setText("记录瞬间");
 		viewHolder.other_text_desc.setText("拍摄并分享最美的自己");
-		viewHolder.other_text_show_more.setText("点击\n开始");
+		viewHolder.other_text_show_more.setText(" 点击\n 开始");
 
 		int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
 				R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};

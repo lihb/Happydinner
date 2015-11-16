@@ -63,13 +63,13 @@ public class CoverFlowActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("position===", position + "");
                 int index = position % mAdapter.getCount();
-                if (index == 3) {
+                if (index == 2) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
                     startActivity(intent);
-                } else if (index == 0) {
+                } else if (index == 4) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.VideoListActivity.class);
                     startActivity(intent);
-                } else if (index == 2) {
+                } else if (index == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
                     startActivity(intent);
                 }
