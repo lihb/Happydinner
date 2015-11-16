@@ -4,21 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.TextSwitcher;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.entitiy.CoverFlowEntity;
+import com.handgold.pjdc.base.GameTypeEnum;
+import com.handgold.pjdc.base.MenuTypeEnum;
+import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.ui.CoverFlowAdapter;
+import com.handgold.pjdc.ui.CoverFlowAdapterNew;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 import java.util.*;
@@ -27,10 +23,11 @@ import java.util.*;
 public class CoverFlowActivity extends ActionBarActivity {
 
     private FeatureCoverFlow mCoverFlow;
-    private CoverFlowAdapter mAdapter;
-    private ArrayList<CoverFlowEntity> mData = new ArrayList<CoverFlowEntity>(0);
-    private TextSwitcher mTitle;
-    private SortedMap<Integer, List<Menu>> sortedMap;
+    private CoverFlowAdapterNew mAdapter;
+    private HashMap<String, ArrayList> mData = new HashMap<>();
+//    private TextSwitcher mTitle;
+    private SortedMap<Integer, List<Menu>> sortedMenuMap;
+    private SortedMap<Integer, List<GameInfo>> sortedGameMap;
 
 
     @Override
@@ -42,12 +39,7 @@ public class CoverFlowActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coverflow);
 
-        mData.add(new CoverFlowEntity(R.drawable.image_2, R.string.title2));
-        mData.add(new CoverFlowEntity(R.drawable.image_3, R.string.title3));
-        mData.add(new CoverFlowEntity(R.drawable.image_4, R.string.title4));
-        mData.add(new CoverFlowEntity(R.drawable.menu, R.string.title1));
-
-        mTitle = (TextSwitcher) findViewById(R.id.title);
+       /* mTitle = (TextSwitcher) findViewById(R.id.title);
         mTitle.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
@@ -59,9 +51,9 @@ public class CoverFlowActivity extends ActionBarActivity {
         Animation in = AnimationUtils.loadAnimation(this, R.anim.slide_in_top);
         Animation out = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
         mTitle.setInAnimation(in);
-        mTitle.setOutAnimation(out);
+        mTitle.setOutAnimation(out);*/
 
-        mAdapter = new CoverFlowAdapter(this);
+        mAdapter = new CoverFlowAdapterNew(this);
         mAdapter.setData(mData);
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         mCoverFlow.setAdapter(mAdapter);
@@ -77,8 +69,7 @@ public class CoverFlowActivity extends ActionBarActivity {
                 } else if (index == 0) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.VideoListActivity.class);
                     startActivity(intent);
-                }
-                else if (index == 2) {
+                } else if (index == 2) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
                     startActivity(intent);
                 }
@@ -89,24 +80,36 @@ public class CoverFlowActivity extends ActionBarActivity {
         mCoverFlow.setOnScrollPositionListener(new FeatureCoverFlow.OnScrollPositionListener() {
             @Override
             public void onScrolledToPosition(int position) {
-                mTitle.setText(getResources().getString(mData.get(position).titleResId));
+//                mTitle.setText(getResources().getString(mData.get(position).titleResId));
             }
 
             @Override
             public void onScrolling() {
-                mTitle.setText("");
+//                mTitle.setText("");
             }
         });
 
         // 获取菜品数据
-        sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
-        if (sortedMap == null) {
-            sortedMap = new TreeMap<Integer, List<Menu>>();
-            initData();
+        sortedMenuMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
+        if (sortedMenuMap == null) {
+            sortedMenuMap = new TreeMap<Integer, List<Menu>>();
+            initMenuData();
         }
+        // 获取游戏数据
+        sortedGameMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allGameList");
+        if (sortedGameMap == null) {
+            sortedGameMap = new TreeMap<Integer, List<GameInfo>>();
+            initGameData();
+        }
+
+        mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
+        mData.put("GameData", (ArrayList) sortedGameMap.get(GameTypeEnum.COOLRUN.ordinal()));
+        mData.put("PhotoData", (ArrayList) sortedGameMap.get(GameTypeEnum.SHOOT.ordinal()));
+        mData.put("MovieData", (ArrayList) sortedGameMap.get(GameTypeEnum.RELAX_PUZZLE.ordinal()));
+        mAdapter.setData(mData);
     }
 
-    private void initData() {
+    private void initMenuData() {
        /* Menu meatMenu1 = new Menu("乌冬面", null, null, 15.67f, "好吃看的见－nuddles", 1, 0, MenuTypeEnum.RECOMMEND.ordinal(), "九毛九");
         Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, MenuTypeEnum.DRINK.ordinal(), "九毛九");
         Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, MenuTypeEnum.DRINK.ordinal(), "土菜馆");
@@ -155,15 +158,55 @@ public class CoverFlowActivity extends ActionBarActivity {
             if (newKey == oldKey) {
                 tmpList.add(menuItemData);
             } else {
-                sortedMap.put(oldKey, tmpList);
+                sortedMenuMap.put(oldKey, tmpList);
                 tmpList = new ArrayList<Menu>();
                 tmpList.add(menuItemData);
                 oldKey = newKey;
             }
         }
-        sortedMap.put(oldKey, tmpList); // 处理最后一组数据
+        sortedMenuMap.put(oldKey, tmpList); // 处理最后一组数据
 
-        ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMap);
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allMenuList", sortedMenuMap);
+    }
+
+    private void initGameData() {
+        List<GameInfo> gameInfoList = new ArrayList<GameInfo>();
+        for (int i = 0; i < 30; i++) {
+            GameInfo gameInfo = new GameInfo("游戏" + (i+1), "http://www.dddd.com", (i / 6 + 1));
+            gameInfoList.add(gameInfo);
+
+        }
+        /**
+         * 比较器：给menu按照type排序用
+         */
+        Comparator<GameInfo> comparator = new Comparator<GameInfo>() {
+            @Override
+            public int compare(GameInfo lhs, GameInfo rhs) {
+
+                return lhs.getType() - rhs.getType();
+            }
+        };
+        Collections.sort(gameInfoList, comparator);
+
+        List<GameInfo> tmpList = new ArrayList<GameInfo>();
+
+        int oldKey = gameInfoList.get(0).getType();
+
+        for (int i = 0; i < gameInfoList.size(); i++) {
+            GameInfo gameItemData = gameInfoList.get(i);
+            int newKey = gameItemData.getType();
+            if (newKey == oldKey) {
+                tmpList.add(gameItemData);
+            } else {
+                sortedGameMap.put(oldKey, tmpList);
+                tmpList = new ArrayList<GameInfo>();
+                tmpList.add(gameItemData);
+                oldKey = newKey;
+            }
+        }
+        sortedGameMap.put(oldKey, tmpList); // 处理最后一组数据
+
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allGameList", sortedGameMap);
     }
 
     @Override

@@ -120,11 +120,11 @@ public class PopupGameVideoView extends RelativeLayout {
                 }
             } else if (v == mCloseImage) {
                 exitView();
-            } else if (v == mPopupVideoViewFramelayout) {
+            }/* else if (v == mPopupVideoViewFramelayout) {
                 if (mVideoController != null) {
                     mVideoController.pause();
                 }
-            }
+            }*/
         }
     };
 
