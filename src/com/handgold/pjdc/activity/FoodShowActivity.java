@@ -19,6 +19,7 @@ import com.handgold.pjdc.ui.VideoPlayerFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.OrderShowView;
 import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,5 +133,17 @@ public class FoodShowActivity extends FragmentActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

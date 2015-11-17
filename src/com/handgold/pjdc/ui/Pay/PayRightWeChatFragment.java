@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.util.CommonUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.math.BigDecimal;
 
@@ -64,8 +65,12 @@ public class PayRightWeChatFragment extends Fragment {
         return view;
     }
 
-    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("PayRightWeChatFragment"); //统计页面
+    }
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd("PayRightWeChatFragment");
     }
 }

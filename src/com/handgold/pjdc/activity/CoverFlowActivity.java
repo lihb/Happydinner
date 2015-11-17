@@ -2,25 +2,23 @@ package com.handgold.pjdc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import com.handgold.pjdc.R;
-import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.base.GameTypeEnum;
-import com.handgold.pjdc.base.MenuTypeEnum;
+import com.handgold.pjdc.base.*;
 import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.entitiy.Menu;
+import com.handgold.pjdc.entitiy.MovieInfo;
 import com.handgold.pjdc.ui.CoverFlowAdapterNew;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 import java.util.*;
 
 
-public class CoverFlowActivity extends ActionBarActivity {
+public class CoverFlowActivity extends BaseActivity {
 
     private FeatureCoverFlow mCoverFlow;
     private CoverFlowAdapterNew mAdapter;
@@ -28,30 +26,18 @@ public class CoverFlowActivity extends ActionBarActivity {
 //    private TextSwitcher mTitle;
     private SortedMap<Integer, List<Menu>> sortedMenuMap;
     private SortedMap<Integer, List<GameInfo>> sortedGameMap;
+    private SortedMap<Integer, List<MovieInfo>> sortedMovieMap;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         //去除title
-        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         //去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coverflow);
-
-       /* mTitle = (TextSwitcher) findViewById(R.id.title);
-        mTitle.setFactory(new ViewSwitcher.ViewFactory() {
-            @Override
-            public View makeView() {
-                LayoutInflater inflater = LayoutInflater.from(CoverFlowActivity.this);
-                TextView textView = (TextView) inflater.inflate(R.layout.item_title, null);
-                return textView;
-            }
-        });
-        Animation in = AnimationUtils.loadAnimation(this, R.anim.slide_in_top);
-        Animation out = AnimationUtils.loadAnimation(this, R.anim.slide_out_bottom);
-        mTitle.setInAnimation(in);
-        mTitle.setOutAnimation(out);*/
 
         mAdapter = new CoverFlowAdapterNew(this);
         mAdapter.setData(mData);
@@ -67,7 +53,7 @@ public class CoverFlowActivity extends ActionBarActivity {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
                     startActivity(intent);
                 } else if (index == 4) {
-                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.VideoListActivity.class);
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MovieShowActivity.class);
                     startActivity(intent);
                 } else if (index == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
@@ -101,34 +87,21 @@ public class CoverFlowActivity extends ActionBarActivity {
             sortedGameMap = new TreeMap<Integer, List<GameInfo>>();
             initGameData();
         }
+        // 获取电影数据
+        sortedMovieMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMovieList");
+        if (sortedMovieMap == null) {
+            sortedMovieMap = new TreeMap<Integer, List<MovieInfo>>();
+            initMovieData();
+        }
 
         mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
         mData.put("GameData", (ArrayList) sortedGameMap.get(GameTypeEnum.COOLRUN.ordinal()));
         mData.put("PhotoData", (ArrayList) sortedGameMap.get(GameTypeEnum.SHOOT.ordinal()));
-        mData.put("MovieData", (ArrayList) sortedGameMap.get(GameTypeEnum.RELAX_PUZZLE.ordinal()));
+        mData.put("MovieData", (ArrayList) sortedMovieMap.get(MovieTypeEnum.RECOMMEND.ordinal()));
         mAdapter.setData(mData);
     }
 
     private void initMenuData() {
-       /* Menu meatMenu1 = new Menu("乌冬面", null, null, 15.67f, "好吃看的见－nuddles", 1, 0, MenuTypeEnum.RECOMMEND.ordinal(), "九毛九");
-        Menu meatMenu = new Menu("红烧肉", null, null, 15.67f, "好吃看的见－meat", 1, 0, MenuTypeEnum.DRINK.ordinal(), "九毛九");
-        Menu lurouMenu = new Menu("卤肉", null, null, 14.59f, "好吃看的见－lurou", 1, 0, MenuTypeEnum.DRINK.ordinal(), "土菜馆");
-        Menu luosiMenu = new Menu("田螺", null, null, 18.7f, "好吃看的见－tianluo", 1, 0, MenuTypeEnum.SNACK.ordinal(), "九毛九");
-        Menu fishMenu = new Menu("鱼", null, null, 29f, "好吃看的见-fish", 1, 0, MenuTypeEnum.SNACK.ordinal(),"黄鹤天厨");
-        Menu chickMenu = new Menu("鸡", null, null, 20f, "好吃看的见-chick", 1, 0, MenuTypeEnum.PRI_FOOD.ordinal(), "老知青");
-        Menu duckMenu = new Menu("鸭", null, null, 19f, "好吃看的见-duck", 1f, 0, MenuTypeEnum.PRI_FOOD.ordinal(), "大丰收");
-        Menu duckMenu2 = new Menu("血鸭", null, null, 35f, "好吃看的见-duck", 1f, 0, MenuTypeEnum.MEALSET.ordinal(), "大丰收");
-        Menu fishMenu2 = new Menu("黄骨鱼", null, null, 30f, "好吃看的见-duck", 1f, 0, MenuTypeEnum.DRINK.ordinal(), "土菜馆");
-        List<Menu> menuList = new ArrayList<Menu>();
-        menuList.add(meatMenu);
-        menuList.add(meatMenu1);
-        menuList.add(lurouMenu);
-        menuList.add(luosiMenu);
-        menuList.add(fishMenu);
-        menuList.add(chickMenu);
-        menuList.add(duckMenu);
-        menuList.add(duckMenu2);
-        menuList.add(fishMenu2);*/
         List<Menu> menuList = new ArrayList<Menu>();
         for (int i = 0; i < 30; i++) {
             Menu menu = new Menu("菜品" + (i+1), null, null, 15.0f + i, "菜品简介" + (i+1), 1, 0, (i / 6) + 1, "大丰收");
@@ -209,8 +182,50 @@ public class CoverFlowActivity extends ActionBarActivity {
         ((ApplicationEx) getApplication()).setInternalActivityParam("allGameList", sortedGameMap);
     }
 
+
+    private void initMovieData() {
+        List<MovieInfo> movieInfoList = new ArrayList<MovieInfo>();
+        for (int i = 0; i < 30; i++) {
+            MovieInfo movieInfo = new MovieInfo("电影" + (i+1), "http://www.dddd.com", (i / 6 + 1));
+            movieInfoList.add(movieInfo);
+
+        }
+        /**
+         * 比较器：给menu按照type排序用
+         */
+        Comparator<MovieInfo> comparator = new Comparator<MovieInfo>() {
+            @Override
+            public int compare(MovieInfo lhs, MovieInfo rhs) {
+
+                return lhs.getType() - rhs.getType();
+            }
+        };
+        Collections.sort(movieInfoList, comparator);
+
+        List<MovieInfo> tmpList = new ArrayList<MovieInfo>();
+
+        int oldKey = movieInfoList.get(0).getType();
+
+        for (int i = 0; i < movieInfoList.size(); i++) {
+            MovieInfo movieItemData = movieInfoList.get(i);
+            int newKey = movieItemData.getType();
+            if (newKey == oldKey) {
+                tmpList.add(movieItemData);
+            } else {
+                sortedMovieMap.put(oldKey, tmpList);
+                tmpList = new ArrayList<MovieInfo>();
+                tmpList.add(movieItemData);
+                oldKey = newKey;
+            }
+        }
+        sortedMovieMap.put(oldKey, tmpList); // 处理最后一组数据
+
+        ((ApplicationEx) getApplication()).setInternalActivityParam("allMovieList", sortedMovieMap);
+    }
+
+
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         // 销毁首页时，清除全局变量
         ((ApplicationEx) getApplication()).clearInternalActivityParam();

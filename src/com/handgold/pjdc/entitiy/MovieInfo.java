@@ -7,22 +7,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by Administrator on 2015/11/2.
+ * Created by Administrator on 2015/11/17.
  */
-public class GameInfo implements Parcelable {
-    private final String TAG = "GameInfo";
+public class MovieInfo implements Parcelable {
+    private final String TAG = "MovieInfo";
     /**
-     * 游戏名字
+     * 影片名字
      */
     private String name;
 
     /**
-     * 游戏图片url
+     * 影片url
      */
-    private String picUrl;
+    private String movieUrl;
 
     /**
-     * 游戏所属分类
+     * 影片所属分类
      */
     private int type;
 
@@ -30,8 +30,8 @@ public class GameInfo implements Parcelable {
         this.name = name;
     }
 
-    public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+    public void setMovieUrl(String movieUrl) {
+        this.movieUrl = movieUrl;
     }
 
     public void setType(int type) {
@@ -46,39 +46,39 @@ public class GameInfo implements Parcelable {
         return name;
     }
 
-    public String getPicUrl() {
-        return picUrl;
+    public String getMovieUrl() {
+        return movieUrl;
     }
 
-    public GameInfo(String name, String picUrl, int type) {
+    public MovieInfo(String name, String picUrl, int type) {
         this.name = name;
-        this.picUrl = picUrl;
+        this.movieUrl = picUrl;
         this.type = type;
     }
 
 
-    public GameInfo(JSONObject jobj) {
+    public MovieInfo(JSONObject jobj) {
         // TODO Auto-generated constructor stub
         try {
             name = jobj.optString("name");
-            picUrl = jobj.optString("picUrl");
+            movieUrl = jobj.optString("movieUrl");
             type = jobj.optInt("type");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(TAG, "GameInfo json init exception!");
+            Log.e(TAG, "MovieInfo json init exception!");
         }
     }
 
-    public GameInfo(String jsonInfo) {
+    public MovieInfo(String jsonInfo) {
         // TODO Auto-generated constructor stub
         try {
             JSONObject jobj = new JSONObject(jsonInfo);
             name = jobj.optString("name");
-            picUrl = jobj.optString("picUrl");
+            movieUrl = jobj.optString("movieUrl");
             type = jobj.optInt("type");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(TAG, "GameInfo json init exception!");
+            Log.e(TAG, "MovieInfo json init exception!");
         }
     }
 
@@ -87,7 +87,7 @@ public class GameInfo implements Parcelable {
         try {
             JSONObject jobj = new JSONObject();
             jobj.put("name", name);
-            jobj.put("picUrl", picUrl);
+            jobj.put("movieUrl", movieUrl);
             jobj.put("type", type);
             str = jobj.toString();
         } catch (JSONException e) {
@@ -105,24 +105,24 @@ public class GameInfo implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(picUrl);
+        dest.writeString(movieUrl);
         dest.writeInt(type);
 
     }
-    public static final Parcelable.Creator<GameInfo> CREATOR = new Creator<GameInfo>() {
+    public static final Creator<MovieInfo> CREATOR = new Creator<MovieInfo>() {
         @Override
-        public GameInfo createFromParcel(Parcel source) {
-            GameInfo gameInfo = new GameInfo(source.readString());
+        public MovieInfo createFromParcel(Parcel source) {
+            MovieInfo gameInfo = new MovieInfo(source.readString());
             gameInfo.setName(source.readString());
-            gameInfo.setPicUrl(source.readString());
+            gameInfo.setMovieUrl(source.readString());
             gameInfo.setType(source.readInt());
 
             return gameInfo;
         }
 
         @Override
-        public GameInfo[] newArray(int size) {
-            return new GameInfo[size];
+        public MovieInfo[] newArray(int size) {
+            return new MovieInfo[size];
         }
     };
 }

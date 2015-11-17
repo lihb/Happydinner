@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.handgold.pjdc.R;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 类说明：
@@ -111,4 +112,13 @@ public class PayLeftFragment extends Fragment {
             }
         }
     };
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("PayLeftFragment"); //统计页面
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("PayLeftFragment");
+    }
 }

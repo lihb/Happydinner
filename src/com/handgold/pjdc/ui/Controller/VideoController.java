@@ -93,11 +93,34 @@ public class VideoController {
         }
     }
 
+    /**
+     * 获取当前播放位置
+     */
+    public int getCurrPos() {
+        int curPos = 0;
+        if (mVideoView != null) {
+            curPos = mVideoView.getCurrentPosition();
+        }
+        return curPos;
+    }
+
+    /**
+     * 获取视频总时长
+     */
+    public String getTotalLength() {
+        int length = 0;
+        if (mVideoView != null) {
+            length = mVideoView.getDuration();
+        }
+        return String.valueOf(length);
+    }
+
     private OnVideoControllerListener mOnVideoControllerListener = null;
 
     public void setOnVideoControllerListener(OnVideoControllerListener listener) {
         mOnVideoControllerListener = listener;
     }
+
 
     public interface OnVideoControllerListener{
         void onCompletion();

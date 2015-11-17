@@ -6,6 +6,7 @@ import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 import com.handgold.pjdc.R;
 
@@ -89,6 +90,7 @@ public class RoundedImageView extends ImageView {
 
         @Override
         public void draw(Canvas canvas) {
+            Log.i("RoundedImageView", "lihongbing test in RoundedImageView-->draw()");
             canvas.drawRoundRect(mRect, cornerRadius, cornerRadius, paint);
             int notRoundedCorners = corners ^ CORNER_ALL;
             if ((notRoundedCorners & CORNER_TOP_LEFT) != 0) {

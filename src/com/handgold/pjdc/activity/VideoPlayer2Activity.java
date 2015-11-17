@@ -21,6 +21,7 @@ import com.handgold.pjdc.services.IVideoPlayer;
 import com.handgold.pjdc.services.SystemMediaPlayer;
 import com.handgold.pjdc.util.CommonUtils;
 import com.handgold.pjdc.util.DLog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -368,6 +369,7 @@ public class VideoPlayer2Activity extends BaseActivity implements IVideoPlayer.O
         mSurface.requestFocus();
         start();
         showControllerView(sDefaultTimeout);
+        MobclickAgent.onResume(this);
     }
 
     /**
@@ -532,6 +534,7 @@ public class VideoPlayer2Activity extends BaseActivity implements IVideoPlayer.O
         if (mVideoPlayer != null) {
             mVideoPlayer.stop();
         }
+        MobclickAgent.onPause(this);
     }
 
     @Override

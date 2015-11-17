@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.entitiy.Menu;
+import com.handgold.pjdc.entitiy.MovieInfo;
 import com.handgold.pjdc.ui.widget.RoundedImageView;
 import com.handgold.pjdc.ui.widget.XCRoundRectImageView;
 
@@ -245,7 +246,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 
 	private void showMovieItem(ViewHolder viewHolder) {
 
-		ArrayList<GameInfo> gameData = mData.get("MovieData");
+		ArrayList<MovieInfo> movieData = mData.get("MovieData");
 		viewHolder.other_item_bg.setImageResource(R.drawable.moive_bg);
 		viewHolder.other_item_icon.setImageResource(R.drawable.icon_movie);
 		viewHolder.other_image_show_more.setImageResource(R.drawable.default_button_more);
@@ -256,10 +257,12 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 		int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
 				R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
 		for (int i = 0; i < 3; i++) {
-			GameInfo gameInfo = gameData.get(i);
+			MovieInfo movieInfo = movieData.get(i);
 			int id = new Random().nextInt(7);
 			viewHolder.other_iv_Arr[i].setImageResource(picIds[id]);
-			viewHolder.other_name_Arr[i].setText(gameInfo.getName());
+			viewHolder.other_name_Arr[i].setText(movieInfo.getName());
+			viewHolder.other_name_Arr[i].setBackgroundResource(R.drawable.movie_name1);
+
 		}
 	}
 

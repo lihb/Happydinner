@@ -18,6 +18,7 @@ import com.handgold.pjdc.ui.Game.GameRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.PopupGameVideoView;
 import com.handgold.pjdc.util.DeviceUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.*;
 
@@ -41,6 +42,8 @@ public class GameShowActivity extends FragmentActivity {
     private RelativeLayout mPopupGameVideoRelativeLayout;
 
     private PopupGameVideoView mPopupGameVideoView;
+
+    private RelativeLayout rootView = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,9 @@ public class GameShowActivity extends FragmentActivity {
         mPopupGameVideoView.setLayoutParams(params);
         mPopupGameVideoRelativeLayout.setVisibility(View.VISIBLE);
 
+        //换背景图片
+        rootView = (RelativeLayout) findViewById(R.id.root_view);
+        rootView.setBackgroundResource(R.drawable.game_bg);
     }
 
     private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {
@@ -180,4 +186,16 @@ public class GameShowActivity extends FragmentActivity {
             }
         }
     };
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
 }

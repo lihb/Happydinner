@@ -66,8 +66,8 @@
 
                 <ImageView
                         android:id="@+id/head_title_img"
-                        android:layout_width="110dp"
-                        android:layout_height="35dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/shopmall"
                         />
             </RelativeLayout>

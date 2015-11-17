@@ -19,6 +19,7 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.MenuTypeEnum;
 import com.handgold.pjdc.entitiy.Menu;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,5 +160,14 @@ public class FoodLeftFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("FoodLeftFragment"); //统计页面
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("FoodLeftFragment");
     }
 }

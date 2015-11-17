@@ -13,6 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.VideoView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.ui.Controller.VideoController;
+import com.umeng.analytics.MobclickAgent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2015/9/30.
@@ -75,6 +79,13 @@ public class PopupGameVideoView extends RelativeLayout {
             showPlayIcon = true;
             togglePlayVideo();
             exitView();
+            // 视频播放完毕，统计完毕的次数
+            HashMap<String,String> map = new HashMap<String, String>();
+            if (mVideoController != null) {
+                map.put("video_uri", mVideoController.getUri().toString());
+                map.put("total_length", mVideoController.getTotalLength());
+                MobclickAgent.onEvent(getContext(), "game_video_completion_event", map);
+            }
         }
 
         @Override
@@ -120,6 +131,13 @@ public class PopupGameVideoView extends RelativeLayout {
                 }
             } else if (v == mCloseImage) {
                 exitView();
+                // 点击关闭按钮，统计出用户的播放时长
+                Map<String, String> map_value = new HashMap<String, String>();
+                if (mVideoController != null) {
+                    map_value.put("video_uri", mVideoController.getUri().toString());
+                    map_value.put("total_length", mVideoController.getTotalLength());
+                    MobclickAgent.onEventValue(getContext(), "game_video_close_event", map_value, mVideoController.getCurrPos());
+                }
             }/* else if (v == mPopupVideoViewFramelayout) {
                 if (mVideoController != null) {
                     mVideoController.pause();

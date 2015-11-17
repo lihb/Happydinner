@@ -16,6 +16,7 @@ import com.handgold.pjdc.ui.Pay.PayRightWeChatFragment;
 import com.handgold.pjdc.ui.Pay.PayRightZhiFuBaoFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.PopupPayInfoView;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * 类说明：
@@ -115,6 +116,18 @@ public class PayActivity extends BaseActivity {
         }
         mTransaction.commit();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.Window;
 import com.handgold.pjdc.util.DLog;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.concurrent.Executor;
 
@@ -120,6 +121,7 @@ public class BaseActivity extends Activity{
 		if (isFinishing()) {
 			mAutoCancelController.clean();
 		}*/
+		MobclickAgent.onPause(this);
 	}
 
 	@Override
@@ -134,6 +136,7 @@ public class BaseActivity extends Activity{
 			SetGesturePasswordActivity.isLockScreen = false;
 			
 		}*/
+		MobclickAgent.onResume(this);
 	}
 
 	public Executor getMainExecutor() {

@@ -11,6 +11,7 @@ import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.Order;
 import com.handgold.pjdc.ui.Order.OrderRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by lihb on 15/7/9.
@@ -96,5 +97,17 @@ public class VideoListActivity extends FragmentActivity implements OrderRightFra
     @Override
     public void changeDataToLeft(Order order) {
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 }

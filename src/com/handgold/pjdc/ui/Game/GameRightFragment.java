@@ -21,6 +21,7 @@ import android.widget.GridView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.util.CommonUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class GameRightFragment extends Fragment {
     }
 
     /**
-     * 设置菜品进入动画
+     * 设置游戏进入动画
      *
      * @param gridView
      */
@@ -142,6 +143,15 @@ public class GameRightFragment extends Fragment {
         } catch (Exception e) {
             CommonUtils.toastText(getActivity(), "您没有安装该游戏！");
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("GameRightFragment"); //统计页面
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("GameRightFragment");
     }
 
 }

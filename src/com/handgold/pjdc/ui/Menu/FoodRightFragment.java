@@ -19,6 +19,7 @@ import com.handgold.pjdc.ui.widget.OrderShowView;
 import com.handgold.pjdc.ui.widget.PopupMenuDetailView;
 import com.handgold.pjdc.ui.widget.ShoppingCartView;
 import com.handgold.pjdc.util.CommonUtils;
+import com.umeng.analytics.MobclickAgent;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -370,5 +371,14 @@ public class FoodRightFragment extends Fragment {
         public void onAnimationRepeat(Animation animation) {
 
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("FoodRightFragment"); //统计页面
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("FoodRightFragment");
     }
 }

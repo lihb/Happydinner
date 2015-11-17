@@ -1,4 +1,4 @@
-package com.handgold.pjdc.ui.Game;
+package com.handgold.pjdc.ui.Movie;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,8 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
-import com.handgold.pjdc.base.GameTypeEnum;
-import com.handgold.pjdc.entitiy.GameInfo;
+import com.handgold.pjdc.base.MovieTypeEnum;
+import com.handgold.pjdc.entitiy.MovieInfo;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ import java.util.SortedMap;
  * @date 2015/6/16
  */
 
-public class GameLeftFragment extends Fragment {
+public class MovieLeftFragment extends Fragment {
 
     @InjectView(R.id.linearlayout_drink)
     LinearLayout linearlayoutDrink;
@@ -75,11 +75,11 @@ public class GameLeftFragment extends Fragment {
     @InjectView(R.id.text_recommend)
     TextView text_recommend;
 
-    private SortedMap<Integer, List<GameInfo>> sortedMap;
+    private SortedMap<Integer, List<MovieInfo>> sortedMovieMap;
 
     private FragmentManager mFragmentManager;
     private FragmentTransaction mTransaction;
-    private GameRightFragment mGameRightFragment;
+    private MovieRightFragmentNew movieRightFragment;
     private LinearLayout[] mLinearLayoutArray;
 
     @Override
@@ -99,13 +99,13 @@ public class GameLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        text_drink.setText("酷跑类");
-        text_setmeal.setText("消除类");
-        text_snack.setText("射击类");
-        text_food.setText("休闲益智类");
-        text_recommend.setText("纸牌类");
+        text_drink.setText("恐怖电影");
+        text_setmeal.setText("动作电影");
+        text_snack.setText("喜剧电影");
+        text_food.setText("科幻电影");
+        text_recommend.setText("推荐电影");
         mFragmentManager = getFragmentManager();
-        sortedMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allGameList");
+        sortedMovieMap = (SortedMap) ((ApplicationEx) getActivity().getApplication()).receiveInternalActivityParam("allMovieList");
         linearlayoutDrink.setOnClickListener(mOnclickListener);
         linearlayoutSnack.setOnClickListener(mOnclickListener);
         linearlayoutFood.setOnClickListener(mOnclickListener);
@@ -123,47 +123,47 @@ public class GameLeftFragment extends Fragment {
         LayoutAnimationController lac = new LayoutAnimationController(set, 0.5f);
         relativeFoodLeft.setLayoutAnimation(lac);
         //需和TypeEnum的顺序保持一致
-        mLinearLayoutArray = new LinearLayout[]{null, linearlayoutDrink,linearlayoutSnack, linearlayoutFood, linearlayoutSetmeal,linearlayoutRecommend,};
+        mLinearLayoutArray = new LinearLayout[]{null, linearlayoutRecommend, linearlayoutDrink,linearlayoutSnack, linearlayoutFood, linearlayoutSetmeal};
     }
 
     private View.OnClickListener mOnclickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             mTransaction = mFragmentManager.beginTransaction();
-            ArrayList<GameInfo> dataList = new ArrayList<>();
+            ArrayList<MovieInfo> dataList = new ArrayList<>();
             if (v == linearlayoutDrink) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.COOLRUN.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.HORROR.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.COOLRUN.ordinal());
+                setSelectType(MovieTypeEnum.HORROR.ordinal());
 
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.ERASE.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.COMEDY.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.ERASE.ordinal());
+                setSelectType(MovieTypeEnum.COMEDY.ordinal());
             } else if (v == linearlayoutFood) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.SHOOT.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.ACTION.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.SHOOT.ordinal());
+                setSelectType(MovieTypeEnum.ACTION.ordinal());
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RELAX_PUZZLE.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.SCIENCE_FICTION.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.RELAX_PUZZLE.ordinal());
+                setSelectType(MovieTypeEnum.SCIENCE_FICTION.ordinal());
             }
             else if (v == linearlayoutRecommend) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.CARD.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.RECOMMEND.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.CARD.ordinal());
+                setSelectType(MovieTypeEnum.RECOMMEND.ordinal());
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);
-            mGameRightFragment = new GameRightFragment();
-            mGameRightFragment.setArguments(bundle);
-            mTransaction.replace(R.id.right_frag, mGameRightFragment, "game_right_frag");
+            movieRightFragment = new MovieRightFragmentNew();
+            movieRightFragment.setArguments(bundle);
+            mTransaction.replace(R.id.right_frag, movieRightFragment, "movie_right_frag");
             mTransaction.commit();
 
         }
@@ -189,13 +189,12 @@ public class GameLeftFragment extends Fragment {
         ButterKnife.reset(this);
     }
 
-
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("GameLeftFragment"); //统计页面
+        MobclickAgent.onPageStart("MovieLeftFragment"); //统计页面
     }
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("GameLeftFragment");
+        MobclickAgent.onPageEnd("MovieLeftFragment");
     }
 }
