@@ -70,9 +70,9 @@ public class GameRightAdapter extends BaseAdapter {
         int id = new Random().nextInt(7);
         viewholder.gameImg.setImageResource(picIds[id]);
         if (position % 2 == 0) {
-            viewholder.gameName.setBackgroundResource(R.drawable.game_name_even_view_bg);
+            viewholder.gameName.setBackgroundResource(R.drawable.home_game_name1);
         }else {
-            viewholder.gameName.setBackgroundResource(R.drawable.game_name_odd_view_bg);
+            viewholder.gameName.setBackgroundResource(R.drawable.home_game_name2);
         }
         if (position == 0) {
             viewholder.gameName.setText("保卫萝卜");

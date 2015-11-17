@@ -22,7 +22,6 @@
                 XCRoundRectImageView:xcr_border_width="0dp"
                 XCRoundRectImageView:xcr_border_radius="0"
                 XCRoundRectImageView:xcr_drawable_radius="10"
-                android:src="@drawable/food_bg"
                 />
 
         <ImageView

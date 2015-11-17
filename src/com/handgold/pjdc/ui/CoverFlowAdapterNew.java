@@ -192,7 +192,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 
 	private void showFoodItem(ViewHolder viewHolder) {
 		ArrayList<Menu> menuData = mData.get("FoodData");
-		viewHolder.menu_item_bg.setImageResource(R.drawable.food_bg);
+		viewHolder.menu_item_bg.setImageResource(R.drawable.home_food_bg);
 		viewHolder.menu_item_icon.setImageResource(R.drawable.icon_highlight);
 		viewHolder.menu_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.menu_text_title.setText("主厨推荐");
@@ -227,7 +227,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 	private void showGameItem(ViewHolder viewHolder) {
 
 		ArrayList<GameInfo> gameData = mData.get("GameData");
-		viewHolder.other_item_bg.setImageResource(R.drawable.game_bg);
+		viewHolder.other_item_bg.setImageResource(R.drawable.home_game_bg);
 		viewHolder.other_item_icon.setImageResource(R.drawable.icon_game);
 		viewHolder.other_image_show_more.setImageResource(R.drawable.default_button_more);
 		viewHolder.other_text_title.setText("热门游戏");
@@ -261,7 +261,7 @@ public class CoverFlowAdapterNew extends BaseAdapter {
 			int id = new Random().nextInt(7);
 			viewHolder.other_iv_Arr[i].setImageResource(picIds[id]);
 			viewHolder.other_name_Arr[i].setText(movieInfo.getName());
-			viewHolder.other_name_Arr[i].setBackgroundResource(R.drawable.movie_name1);
+			viewHolder.other_name_Arr[i].setBackgroundResource(R.drawable.home_movie_name1);
 
 		}
 	}
