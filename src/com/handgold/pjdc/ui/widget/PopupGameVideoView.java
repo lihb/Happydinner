@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.VideoView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.ui.Controller.VideoController;
-import com.umeng.analytics.MobclickAgent;
+import com.handgold.pjdc.util.CommonUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,14 +78,17 @@ public class PopupGameVideoView extends RelativeLayout {
         public void onCompletion() {
             showPlayIcon = true;
             togglePlayVideo();
-            exitView();
+
             // 视频播放完毕，统计完毕的次数
             HashMap<String,String> map = new HashMap<String, String>();
             if (mVideoController != null) {
                 map.put("video_uri", mVideoController.getUri().toString());
-                map.put("total_length", mVideoController.getTotalLength());
-                MobclickAgent.onEvent(getContext(), "game_video_completion_event", map);
+                map.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength()));
+                if (mListener != null) {
+                    mListener.onVideoCompletion(map);
+                }
             }
+            exitView();
         }
 
         @Override
@@ -130,14 +133,18 @@ public class PopupGameVideoView extends RelativeLayout {
                     mVideoController.play(mCurrPos);
                 }
             } else if (v == mCloseImage) {
-                exitView();
+
                 // 点击关闭按钮，统计出用户的播放时长
                 Map<String, String> map_value = new HashMap<String, String>();
                 if (mVideoController != null) {
                     map_value.put("video_uri", mVideoController.getUri().toString());
-                    map_value.put("total_length", mVideoController.getTotalLength());
-                    MobclickAgent.onEventValue(getContext(), "game_video_close_event", map_value, mVideoController.getCurrPos());
+                    map_value.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength()));
+                    map_value.put("curr_position", CommonUtils.formatTimeLength(mVideoController.getCurrPos()));
+                    if (mListener != null) {
+                        mListener.onCloseBtnEvent(map_value, mVideoController.getCurrPos());
+                    }
                 }
+                exitView();
             }/* else if (v == mPopupVideoViewFramelayout) {
                 if (mVideoController != null) {
                     mVideoController.pause();
@@ -221,5 +228,15 @@ public class PopupGameVideoView extends RelativeLayout {
         return (((ViewGroup) getParent()).getVisibility() == VISIBLE);
     }
 
+    private OnPopGameVideoViewListener mListener = null;
 
+    public void setOnPopGameVideoViewListener(OnPopGameVideoViewListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnPopGameVideoViewListener{
+        void onCloseBtnEvent(Map<String, String> map_value, int curPos);
+
+        void onVideoCompletion(Map<String, String> map);
+    }
 }

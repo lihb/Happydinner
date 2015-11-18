@@ -38,8 +38,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-;
-
 public class CommonUtils {
 
     public static boolean isShortCutAdded(Activity act, String shortcutName) {
@@ -558,10 +556,7 @@ public class CommonUtils {
      * @return true :存在 false: 不存在
      */
     public static boolean isSDCard() {
-        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
-            return true;
-        }
-        return false;
+        return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
     }
 
     public static String getRootSDCard() {
@@ -928,11 +923,7 @@ public class CommonUtils {
         PackageManager pm = context.getPackageManager();
         Intent intent = pm.getLaunchIntentForPackage(pkgName);
 
-        if (null != intent) {
-            return true;
-        } else {
-            return false;
-        }
+        return null != intent;
     }
 
     /**
@@ -1149,11 +1140,7 @@ public class CommonUtils {
             packageInfo = null;
             e.printStackTrace();
         }
-        if (packageInfo == null) {
-            return false;
-        } else {
-            return true;
-        }
+        return packageInfo != null;
     }
 
     /**
@@ -1171,6 +1158,30 @@ public class CommonUtils {
         bd = null;
         return f;
 
+    }
+
+    public static String formatTimeLength(int timeLength) {
+        int minutes = timeLength / 60;
+        int seconds = timeLength % 60;
+        int hours = minutes / 60;
+        if (hours > 0) {
+            minutes = minutes % 60;
+        }
+        int days = hours / 24;
+        if (days > 0) {
+            hours = hours % 24;
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        if (days > 0) {
+            stringBuffer.append(String.format("%02d", days) + "天");
+        }
+        if (hours > 0 || stringBuffer.length() > 0) {
+            stringBuffer.append(String.format("%02d", hours) + "小时");
+        }
+        stringBuffer.append(String.format("%02d", minutes) + "分");
+        stringBuffer.append(String.format("%02d", seconds) + "秒");
+        return stringBuffer.toString();
     }
 
 }

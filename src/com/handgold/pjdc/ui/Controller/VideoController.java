@@ -107,12 +107,12 @@ public class VideoController {
     /**
      * 获取视频总时长
      */
-    public String getTotalLength() {
+    public int getTotalLength() {
         int length = 0;
         if (mVideoView != null) {
             length = mVideoView.getDuration();
         }
-        return String.valueOf(length);
+        return length;
     }
 
     private OnVideoControllerListener mOnVideoControllerListener = null;

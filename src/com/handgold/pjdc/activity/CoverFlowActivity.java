@@ -2,17 +2,18 @@ package com.handgold.pjdc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import com.handgold.pjdc.R;
-import com.handgold.pjdc.base.*;
+import com.handgold.pjdc.base.ApplicationEx;
+import com.handgold.pjdc.base.BaseActivity;
+import com.handgold.pjdc.entitiy.CoverFlowEntity;
 import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.entitiy.Menu;
 import com.handgold.pjdc.entitiy.MovieInfo;
-import com.handgold.pjdc.ui.CoverFlowAdapterNew;
+import com.handgold.pjdc.ui.CoverFlowAdapter;
 import it.moondroid.coverflow.components.ui.containers.FeatureCoverFlow;
 
 import java.util.*;
@@ -21,9 +22,10 @@ import java.util.*;
 public class CoverFlowActivity extends BaseActivity {
 
     private FeatureCoverFlow mCoverFlow;
-    private CoverFlowAdapterNew mAdapter;
-    private HashMap<String, ArrayList> mData = new HashMap<>();
-//    private TextSwitcher mTitle;
+//    private CoverFlowAdapterNew mAdapter;
+    private CoverFlowAdapter mAdapter;
+//    private HashMap<String, ArrayList> mData = new HashMap<>();
+    private ArrayList<CoverFlowEntity> mData = new ArrayList<CoverFlowEntity>(0);
     private SortedMap<Integer, List<Menu>> sortedMenuMap;
     private SortedMap<Integer, List<GameInfo>> sortedGameMap;
     private SortedMap<Integer, List<MovieInfo>> sortedMovieMap;
@@ -33,13 +35,18 @@ public class CoverFlowActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         //去除title
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         //去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coverflow);
 
-        mAdapter = new CoverFlowAdapterNew(this);
+        mData.add(new CoverFlowEntity(R.drawable.cover_location, R.string.title2));
+        mData.add(new CoverFlowEntity(R.drawable.cover_menu, R.string.title3));
+        mData.add(new CoverFlowEntity(R.drawable.cover_game, R.string.title4));
+        mData.add(new CoverFlowEntity(R.drawable.cover_movie, R.string.title1));
+
+//        mAdapter = new CoverFlowAdapterNew(this);
+        mAdapter = new CoverFlowAdapter(this);
         mAdapter.setData(mData);
         mCoverFlow = (FeatureCoverFlow) findViewById(R.id.coverflow);
         mCoverFlow.setAdapter(mAdapter);
@@ -47,15 +54,13 @@ public class CoverFlowActivity extends BaseActivity {
         mCoverFlow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("position===", position + "");
-                int index = position % mAdapter.getCount();
-                if (index == 2) {
+                if (position == 1) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
                     startActivity(intent);
-                } else if (index == 4) {
+                } else if (position == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MovieShowActivity.class);
                     startActivity(intent);
-                } else if (index == 3) {
+                } else if (position == 2) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
                     startActivity(intent);
                 }
@@ -74,7 +79,7 @@ public class CoverFlowActivity extends BaseActivity {
 //                mTitle.setText("");
             }
         });
-
+        /*
         // 获取菜品数据
         sortedMenuMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
         if (sortedMenuMap == null) {
@@ -94,11 +99,11 @@ public class CoverFlowActivity extends BaseActivity {
             initMovieData();
         }
 
-        mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
+       mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
         mData.put("GameData", (ArrayList) sortedGameMap.get(GameTypeEnum.COOLRUN.ordinal()));
         mData.put("PhotoData", (ArrayList) sortedGameMap.get(GameTypeEnum.SHOOT.ordinal()));
         mData.put("MovieData", (ArrayList) sortedMovieMap.get(MovieTypeEnum.RECOMMEND.ordinal()));
-        mAdapter.setData(mData);
+        mAdapter.setData(mData);*/
     }
 
     private void initMenuData() {

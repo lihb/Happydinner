@@ -24,7 +24,7 @@
             >
         <LinearLayout
                 android:id="@+id/left_frag"
-                android:layout_width="250dp"
+                android:layout_width="@dimen/left_fragment_width"
                 android:layout_height="fill_parent"
                 android:orientation="vertical"
                 >
@@ -49,8 +49,8 @@
             >
         <include
                 android:id="@+id/order_show_view"
-                android:layout_width="620dp"
-                android:layout_height="620dp"
+                android:layout_width="@dimen/order_view_width"
+                android:layout_height="@dimen/order_view_height"
                 layout="@layout/order_show_view"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
@@ -67,8 +67,8 @@
             >
         <include
                 android:id="@+id/popup_detail_view"
-                android:layout_width="450dp"
-                android:layout_height="550dp"
+                android:layout_width="@dimen/detail_view_width"
+                android:layout_height="@dimen/detail_view_height"
                 layout="@layout/popup_menu_detail_view"
                 android:layout_centerInParent="true"
                 />
@@ -94,8 +94,8 @@
             >
         <include
                 android:id="@+id/popup_pay_info_view"
-                android:layout_width="400dp"
-                android:layout_height="300dp"
+                android:layout_width="@dimen/pay_view_width"
+                android:layout_height="@dimen/pay_view_height"
                 layout="@layout/popup_pay_info_view"
                 android:layout_centerInParent="true"
                 />
@@ -111,8 +111,8 @@
             >
         <include
                 android:id="@+id/popup_game_video_view"
-                android:layout_width="550dp"
-                android:layout_height="550dp"
+                android:layout_width="@dimen/game_view_width"
+                android:layout_height="@dimen/game_view_height"
                 layout="@layout/popup_game_video_view"
                 android:layout_centerInParent="true"
                 />

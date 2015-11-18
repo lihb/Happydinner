@@ -26,8 +26,8 @@
 
         <ImageView
                 android:id="@+id/image_type"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="@dimen/cover_icon_width"
+                android:layout_height="@dimen/cover_icon_height"
                 android:src="@drawable/icon_highlight"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="30dp"
@@ -65,8 +65,8 @@
                 >
             <ImageView
                     android:id="@+id/image_show_more"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="@dimen/cover_icon_width"
+                    android:layout_height="@dimen/cover_icon_height"
                     android:src="@drawable/default_button_more"
                     android:layout_alignParentTop="true"
 
@@ -91,13 +91,13 @@
                 >
             <RelativeLayout
                     android:id="@+id/item1"
-                    android:layout_width="200dp"
-                    android:layout_height="220dp">
+                    android:layout_width="@dimen/sample_item_width"
+                    android:layout_height="@dimen/sample_item_height">
 
                 <com.handgold.pjdc.ui.widget.XCRoundRectImageView
                         android:id="@+id/menu_name_iv1"
-                        android:layout_width="200dp"
-                        android:layout_height="220dp"
+                        android:layout_width="@dimen/sample_item_width"
+                        android:layout_height="@dimen/sample_item_height"
                         android:src="@drawable/meishi1"
                         XCRoundRectImageView:xcr_border_color="#FFFFFF"
                         XCRoundRectImageView:xcr_border_overlay="false"
@@ -152,16 +152,16 @@
             </RelativeLayout>
             <RelativeLayout
                     android:id="@+id/item2"
-                    android:layout_width="200dp"
-                    android:layout_height="220dp"
+                    android:layout_width="@dimen/sample_item_width"
+                    android:layout_height="@dimen/sample_item_height"
                     android:layout_toRightOf="@+id/item1"
                     android:layout_marginLeft="20dp"
                     >
 
                 <com.handgold.pjdc.ui.widget.XCRoundRectImageView
                         android:id="@+id/menu_name_iv2"
-                        android:layout_width="200dp"
-                        android:layout_height="220dp"
+                        android:layout_width="@dimen/sample_item_width"
+                        android:layout_height="@dimen/sample_item_height"
                         android:src="@drawable/meishi2"
                         XCRoundRectImageView:xcr_border_color="#FFFFFF"
                         XCRoundRectImageView:xcr_border_overlay="false"
@@ -216,16 +216,16 @@
             </RelativeLayout>
             <RelativeLayout
                     android:id="@+id/item3"
-                    android:layout_width="200dp"
-                    android:layout_height="220dp"
+                    android:layout_width="@dimen/sample_item_width"
+                    android:layout_height="@dimen/sample_item_height"
                     android:layout_toRightOf="@+id/item2"
                     android:layout_marginLeft="20dp"
                     >
 
                 <com.handgold.pjdc.ui.widget.XCRoundRectImageView
                         android:id="@+id/menu_name_iv3"
-                        android:layout_width="300dp"
-                        android:layout_height="320dp"
+                        android:layout_width="@dimen/sample_item_width"
+                        android:layout_height="@dimen/sample_item_height"
                         android:src="@drawable/meishi3"
                         XCRoundRectImageView:xcr_border_color="#FFFFFF"
                         XCRoundRectImageView:xcr_border_overlay="false"

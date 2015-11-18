@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +18,7 @@ import com.handgold.pjdc.ui.Game.GameLeftFragment;
 import com.handgold.pjdc.ui.Game.GameRightFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.PopupGameVideoView;
+import com.handgold.pjdc.ui.widget.PopupGameVideoView.OnPopGameVideoViewListener;
 import com.handgold.pjdc.util.DeviceUtils;
 import com.umeng.analytics.MobclickAgent;
 
@@ -44,6 +46,21 @@ public class GameShowActivity extends FragmentActivity {
     private PopupGameVideoView mPopupGameVideoView;
 
     private RelativeLayout rootView = null;
+
+    private OnPopGameVideoViewListener mListener = new OnPopGameVideoViewListener(){
+
+        @Override
+        public void onCloseBtnEvent(Map<String, String> map_value, int curPos) {
+            MobclickAgent.onEventValue(GameShowActivity.this, "game_video_close_event", map_value, curPos);
+            Log.i("GameShowActivity", "onCloseBtnEvent");
+        }
+
+        @Override
+        public void onVideoCompletion(Map<String, String> map) {
+            MobclickAgent.onEvent(GameShowActivity.this, "game_video_completion_event", map);
+            Log.i("GameShowActivity", "onVideoCompletion");
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +112,7 @@ public class GameShowActivity extends FragmentActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
         params.addRule(RelativeLayout.CENTER_IN_PARENT);
         mPopupGameVideoView.setLayoutParams(params);
+        mPopupGameVideoView.setOnPopGameVideoViewListener(mListener);
         mPopupGameVideoRelativeLayout.setVisibility(View.VISIBLE);
 
         //换背景图片
