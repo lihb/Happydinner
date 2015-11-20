@@ -83,7 +83,7 @@ public class PopupGameVideoView extends RelativeLayout {
             HashMap<String,String> map = new HashMap<String, String>();
             if (mVideoController != null) {
                 map.put("video_uri", mVideoController.getUri().toString());
-                map.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength()));
+                map.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength() / 1000));
                 if (mListener != null) {
                     mListener.onVideoCompletion(map);
                 }
@@ -138,8 +138,8 @@ public class PopupGameVideoView extends RelativeLayout {
                 Map<String, String> map_value = new HashMap<String, String>();
                 if (mVideoController != null) {
                     map_value.put("video_uri", mVideoController.getUri().toString());
-                    map_value.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength()));
-                    map_value.put("curr_position", CommonUtils.formatTimeLength(mVideoController.getCurrPos()));
+                    map_value.put("total_length", CommonUtils.formatTimeLength(mVideoController.getTotalLength() / 1000));
+                    map_value.put("curr_position", CommonUtils.formatTimeLength(mVideoController.getCurrPos() / 1000));
                     if (mListener != null) {
                         mListener.onCloseBtnEvent(map_value, mVideoController.getCurrPos());
                     }
