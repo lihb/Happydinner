@@ -79,13 +79,14 @@ public class CoverFlowActivity extends BaseActivity {
 //                mTitle.setText("");
             }
         });
-        /*
+
         // 获取菜品数据
         sortedMenuMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
         if (sortedMenuMap == null) {
             sortedMenuMap = new TreeMap<Integer, List<Menu>>();
             initMenuData();
         }
+        /*
         // 获取游戏数据
         sortedGameMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allGameList");
         if (sortedGameMap == null) {

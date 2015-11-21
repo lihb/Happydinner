@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="25dp"
             android:layout_marginLeft="20dp"
             >
         <TextView
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="菜品介绍"
                 android:textColor="#ffffff"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:padding="5dp"
                 android:gravity="center"
                 android:background="@drawable/info"
@@ -91,10 +91,12 @@
             android:layout_height="wrap_content"
             android:text="小炒肉"
             android:textColor="#ffffff"
-            android:textSize="18dp"
+            android:textSize="25dp"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="20dp"
             android:enabled="false"
+            android:padding="5dp"
+            android:background="@drawable/menu_name_price_bg"
             />
 
     <TextView
@@ -104,9 +106,11 @@
             android:layout_alignParentRight="true"
             android:text="20"
             android:textColor="#ffd818"
-            android:textSize="18dp"
+            android:textSize="25dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="20dp"
             android:enabled="false"
+            android:padding="5dp"
+            android:background="@drawable/menu_name_price_bg"
             />
 </RelativeLayout>

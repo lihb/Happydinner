@@ -40,4 +40,7 @@
     <dimen name="game_view_width">550dp</dimen>
     <dimen name="game_view_height">550dp</dimen>
 
+    <!-- 头部 -->
+    <dimen name="head_height">100dp</dimen>
+
 </resources>
