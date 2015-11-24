@@ -63,6 +63,9 @@ public class CoverFlowActivity extends BaseActivity {
                 } else if (position == 2) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
                     startActivity(intent);
+                }else if (position == 0) {
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MapShowActivity.class);
+                    startActivity(intent);
                 }
 
             }
