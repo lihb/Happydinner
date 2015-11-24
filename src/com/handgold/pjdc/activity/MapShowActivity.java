@@ -1,6 +1,8 @@
 package com.handgold.pjdc.activity;
 
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.baidu.location.BDLocation;
@@ -29,6 +31,10 @@ public class MapShowActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        // 去除title
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // 去掉Activity上面的状态栏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
 
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
