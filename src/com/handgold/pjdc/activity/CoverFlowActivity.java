@@ -41,9 +41,9 @@ public class CoverFlowActivity extends BaseActivity {
         setContentView(R.layout.activity_coverflow);
 
         mData.add(new CoverFlowEntity(R.drawable.cover_location, R.string.title2));
-        mData.add(new CoverFlowEntity(R.drawable.cover_menu, R.string.title3));
         mData.add(new CoverFlowEntity(R.drawable.cover_game, R.string.title4));
-        mData.add(new CoverFlowEntity(R.drawable.cover_movie, R.string.title1));
+        mData.add(new CoverFlowEntity(R.drawable.cover_menu, R.string.title1));
+        mData.add(new CoverFlowEntity(R.drawable.cover_movie, R.string.title3));
 
 //        mAdapter = new CoverFlowAdapterNew(this);
         mAdapter = new CoverFlowAdapter(this);

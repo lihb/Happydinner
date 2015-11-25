@@ -99,12 +99,12 @@ public class PopupPayInfoView extends RelativeLayout {
         @Override
         public void run() {
             while (isRuuning) {
-                try {
+              /*  try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }
-                mHandler.sendEmptyMessage(duration > 0 ? duration : -1);
+                }*/
+                mHandler.sendEmptyMessageDelayed(duration > 0 ? duration : -1, 1000);
                 duration--;
             }
 

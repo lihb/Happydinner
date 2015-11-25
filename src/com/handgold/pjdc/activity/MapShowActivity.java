@@ -94,9 +94,19 @@ public class MapShowActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "获取位置信息失败", Toast.LENGTH_LONG).show();
                 return;
             }
-            Toast.makeText(getApplicationContext(), "定位成功：" + location.getAddrStr(), Toast.LENGTH_LONG).show();
-            mTextLocDesc.setText(location.getAddrStr());
-            showMyLocationOnMap(location);
+            if (location.getAddrStr() == null) {
+                Toast.makeText(getApplicationContext(), "获取位置信息失败", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getApplicationContext(), "定位成功：" + location.getAddrStr(), Toast.LENGTH_LONG).show();
+                mTextLocDesc.setText(location.getAddrStr());
+                showMyLocationOnMap(location);
+            }
+
+            //定位完成后关闭定位
+            mLocationClient.stop();
+
+            //取消监听函数。
+            mLocationClient.unRegisterLocationListener(myListener);
 
         }
 
@@ -138,13 +148,7 @@ public class MapShowActivity extends BaseActivity {
         mBaiduMap.addOverlay(option2);
         mBaiduMap.animateMapStatus(u);
 
-        //定位成功后关闭定位
-        mLocationClient.stop();
 
-        //取消监听函数。
-        mLocationClient.unRegisterLocationListener(myListener);
-
-        System.out.println("stop----mLocationClient.isStarted:" + mLocationClient.isStarted());
     }
 
     @Override

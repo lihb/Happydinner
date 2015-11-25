@@ -46,7 +46,7 @@
             android:layout_marginLeft="20dp"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="广州市白云区云城东路505号万达广场"
+            android:text=""
             android:textSize="25dp"
             android:textColor="#c0ffffff"
             />
