@@ -55,13 +55,13 @@ public class CoverFlowActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
-                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
                     startActivity(intent);
                 } else if (position == 3) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MovieShowActivity.class);
                     startActivity(intent);
                 } else if (position == 2) {
-                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
                     startActivity(intent);
                 }else if (position == 0) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MapShowActivity.class);
