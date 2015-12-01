@@ -89,8 +89,8 @@ public class FoodRightAdapter  extends BaseAdapter {
 
         showSubOper(viewholder, menu.getCount(), OPER_NONE);
 
-        int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi3, R.drawable.meishi4,
-                R.drawable.meishi5, R.drawable.meishi6, R.drawable.meishi7};
+        int[] picIds = new int[]{R.drawable.meishi1, R.drawable.meishi2, R.drawable.meishi4,
+                R.drawable.meishi5, R.drawable.meishi6, R.drawable.fijiredflower, R.drawable.fijitribe};
         int id = new Random().nextInt(7);
         viewholder.menuNameIv.setImageResource(picIds[id]);
 
