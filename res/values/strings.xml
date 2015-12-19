@@ -10,5 +10,15 @@
     <string name="title4">游戏</string>
     <string name="title5">Deng Zi Qi</string>
     <string name="title6">Peace of World</string>
+    <string name="hot_moive">正在热映</string>
+    <string name="love_moive">爱情片</string>
+    <string name="comedy_moive">喜剧片</string>
+    <string name="cartoon_movie">动画片</string>
+    <string name="fiction_movie">科幻片</string>
+    <string name="recomend_game">推荐游戏</string>
+    <string name="relax_game">休闲益智</string>
+    <string name="card_game">卡牌游戏</string>
+    <string name="shoot_game">飞行射击</string>
+    <string name="puzzle_game">棋牌天地</string>
 
 </resources>

@@ -5,5 +5,5 @@ package com.handgold.pjdc.base;
  * 菜品类型
  */
 public enum MovieTypeEnum {
-    NOTHING, RECOMMEND, HORROR, COMEDY, ACTION, SCIENCE_FICTION
+    NOTHING, HOT, LOVE, COMEDY, CARTOON, SCIENCE_FICTION
 }

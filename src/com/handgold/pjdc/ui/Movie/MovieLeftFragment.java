@@ -133,9 +133,9 @@ public class MovieLeftFragment extends Fragment {
             ArrayList<MovieInfo> dataList = new ArrayList<>();
             if (v == linearlayoutDrink) {
                 dataList.clear();
-                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.HORROR.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.LOVE.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MovieTypeEnum.HORROR.ordinal());
+                setSelectType(MovieTypeEnum.LOVE.ordinal());
 
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
@@ -144,9 +144,9 @@ public class MovieLeftFragment extends Fragment {
                 setSelectType(MovieTypeEnum.COMEDY.ordinal());
             } else if (v == linearlayoutFood) {
                 dataList.clear();
-                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.ACTION.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.CARTOON.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MovieTypeEnum.ACTION.ordinal());
+                setSelectType(MovieTypeEnum.CARTOON.ordinal());
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
                 List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.SCIENCE_FICTION.ordinal());
@@ -155,9 +155,9 @@ public class MovieLeftFragment extends Fragment {
             }
             else if (v == linearlayoutRecommend) {
                 dataList.clear();
-                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.RECOMMEND.ordinal());
+                List<MovieInfo> collection = sortedMovieMap.get(MovieTypeEnum.HOT.ordinal());
                 dataList.addAll(collection);
-                setSelectType(MovieTypeEnum.RECOMMEND.ordinal());
+                setSelectType(MovieTypeEnum.HOT.ordinal());
             }
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("dataList", dataList);

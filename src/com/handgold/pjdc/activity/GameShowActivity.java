@@ -180,7 +180,7 @@ public class GameShowActivity extends FragmentActivity {
             Bundle bundle = new Bundle();
             ArrayList<GameInfo> dataList = new ArrayList<GameInfo>();
             //初始化右边fragment的数据
-            dataList.addAll(sortedDataMap.get(GameTypeEnum.COOLRUN.ordinal()));
+            dataList.addAll(sortedDataMap.get(GameTypeEnum.RECOMMEND.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
             gameRightFragment = new GameRightFragment();
             gameRightFragment.setArguments(bundle);

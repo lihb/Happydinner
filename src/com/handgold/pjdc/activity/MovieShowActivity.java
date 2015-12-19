@@ -135,7 +135,7 @@ public class MovieShowActivity extends FragmentActivity {
             Bundle bundle = new Bundle();
             ArrayList<MovieInfo> dataList = new ArrayList<MovieInfo>();
             //初始化右边fragment的数据
-            dataList.addAll(sortedMovieDataMap.get(MovieTypeEnum.RECOMMEND.ordinal()));
+            dataList.addAll(sortedMovieDataMap.get(MovieTypeEnum.HOT.ordinal()));
             bundle.putParcelableArrayList("dataList", dataList);
             movieRightFragment = new MovieRightFragmentNew();
             movieRightFragment.setArguments(bundle);

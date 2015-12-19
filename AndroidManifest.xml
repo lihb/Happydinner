@@ -44,11 +44,11 @@
                   android:screenOrientation="landscape"/>
         <activity android:name="com.handgold.pjdc.activity.VideoPlayer2Activity"
                   android:screenOrientation="landscape"/>
-        <activity android:name="com.handgold.pjdc.activity.VideoListActivity"
-                  android:screenOrientation="landscape"/>
-        <activity android:name="com.handgold.pjdc.activity.GameShowActivity"
+        <activity android:name="com.handgold.pjdc.activity.GameShowActivityNew"
                   android:screenOrientation="landscape"/>
         <activity android:name="com.handgold.pjdc.activity.MovieShowActivity"
+                  android:screenOrientation="landscape"/>
+        <activity android:name="com.handgold.pjdc.activity.MovieShowActivityNew"
                   android:screenOrientation="landscape"/>
         <activity android:name="com.handgold.pjdc.activity.MapShowActivity"
                   android:screenOrientation="landscape"/>

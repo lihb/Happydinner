@@ -55,10 +55,10 @@ public class CoverFlowActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
-                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivity.class);
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.GameShowActivityNew.class);
                     startActivity(intent);
                 } else if (position == 3) {
-                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MovieShowActivity.class);
+                    Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.MovieShowActivityNew.class);
                     startActivity(intent);
                 } else if (position == 2) {
                     Intent intent = new Intent(CoverFlowActivity.this, com.handgold.pjdc.activity.FoodShowActivity.class);
@@ -103,10 +103,10 @@ public class CoverFlowActivity extends BaseActivity {
             initMovieData();
         }
 
-       mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.RECOMMEND.ordinal()));
+       mData.put("FoodData", (ArrayList) sortedMenuMap.get(MenuTypeEnum.HOT.ordinal()));
         mData.put("GameData", (ArrayList) sortedGameMap.get(GameTypeEnum.COOLRUN.ordinal()));
         mData.put("PhotoData", (ArrayList) sortedGameMap.get(GameTypeEnum.SHOOT.ordinal()));
-        mData.put("MovieData", (ArrayList) sortedMovieMap.get(MovieTypeEnum.RECOMMEND.ordinal()));
+        mData.put("MovieData", (ArrayList) sortedMovieMap.get(MovieTypeEnum.HOT.ordinal()));
         mAdapter.setData(mData);*/
     }
 

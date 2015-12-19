@@ -133,15 +133,15 @@ public class GameLeftFragment extends Fragment {
             ArrayList<GameInfo> dataList = new ArrayList<>();
             if (v == linearlayoutDrink) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.COOLRUN.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RECOMMEND.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.COOLRUN.ordinal());
+                setSelectType(GameTypeEnum.RECOMMEND.ordinal());
 
             } else if (v == linearlayoutSnack) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.ERASE.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RECOMMEND.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.ERASE.ordinal());
+                setSelectType(GameTypeEnum.RECOMMEND.ordinal());
             } else if (v == linearlayoutFood) {
                 dataList.clear();
                 List<GameInfo> collection = sortedMap.get(GameTypeEnum.SHOOT.ordinal());
@@ -149,9 +149,9 @@ public class GameLeftFragment extends Fragment {
                 setSelectType(GameTypeEnum.SHOOT.ordinal());
             } else if (v == linearlayoutSetmeal) {
                 dataList.clear();
-                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RELAX_PUZZLE.ordinal());
+                List<GameInfo> collection = sortedMap.get(GameTypeEnum.RECOMMEND.ordinal());
                 dataList.addAll(collection);
-                setSelectType(GameTypeEnum.RELAX_PUZZLE.ordinal());
+                setSelectType(GameTypeEnum.RECOMMEND.ordinal());
             }
             else if (v == linearlayoutRecommend) {
                 dataList.clear();
