@@ -1,7 +1,7 @@
 package com.handgold.pjdc.ui.widget;
 
 import android.content.Context;
-import android.os.Message;
+import android.os.CountDownTimer;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -65,7 +65,18 @@ public class PopupPayInfoView extends RelativeLayout {
             mPayStatusText.setTextColor(0xff000000);
             mPayDescText.setText("请耐心等候您的餐点\n\n     5S后自动返回");
             isRuuning = true;
-            new Thread(new MyRunnable()).start();
+//            new Thread(new MyRunnable()).start();
+            new CountDownTimer(6000, 1000){
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    mPayDescText.setText("请耐心等候您的餐点\n\n     "+ millisUntilFinished / 1000 +"S后自动返回");
+                }
+
+                @Override
+                public void onFinish() {
+                    exitView();
+                }
+            }.start();
         } else {
             mPayStatusImg.setImageResource(R.drawable.icon_error);
             mPayStatusText.setTextColor(0xffff0000);
@@ -81,34 +92,34 @@ public class PopupPayInfoView extends RelativeLayout {
         }
     }
 
-    public android.os.Handler mHandler = new android.os.Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (msg.what > 0) {
-                mPayDescText.setText("请耐心等候您的餐点\n\n     " + msg.what + "S后自动返回");
-            } else {
-                isRuuning = false;
-                exitView();
-            }
-        }
-    };
-
-    private class MyRunnable implements Runnable {
-        int duration = 4;
-
-        @Override
-        public void run() {
-            while (isRuuning) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                mHandler.sendEmptyMessage(duration > 0 ? duration : -1);
-                duration--;
-            }
-
-        }
-    }
+//    public android.os.Handler mHandler = new android.os.Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            if (msg.what > 0) {
+//                mPayDescText.setText("请耐心等候您的餐点\n\n     " + msg.what + "S后自动返回");
+//            } else {
+//                isRuuning = false;
+//                exitView();
+//            }
+//        }
+//    };
+//
+//    private class MyRunnable implements Runnable {
+//        int duration = 4;
+//
+//        @Override
+//        public void run() {
+//            while (isRuuning) {
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                mHandler.sendEmptyMessage(duration > 0 ? duration : -1);
+//                duration--;
+//            }
+//
+//        }
+//    }
 }
