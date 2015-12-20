@@ -7,7 +7,7 @@
     <ImageView
             android:id="@+id/item_pic_iv"
             android:layout_width="140dp"
-            android:layout_height="140dip"
+            android:layout_height="140dp"
             android:scaleType="fitXY"
             android:src="@drawable/pic_moive_xiaowangzi"
             />
