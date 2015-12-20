@@ -5,14 +5,11 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.BaseActivity;
 import com.handgold.pjdc.ui.Pay.PayLeftFragment;
-import com.handgold.pjdc.ui.Pay.PayRightWeChatFragment;
 import com.handgold.pjdc.ui.Pay.PayRightZhiFuBaoFragment;
 import com.handgold.pjdc.ui.widget.HeadView;
 import com.handgold.pjdc.ui.widget.PopupPayInfoView;
@@ -38,7 +35,6 @@ public class PayActivity extends BaseActivity {
     private FragmentTransaction mTransaction;
 
     private PayRightZhiFuBaoFragment payRightZhiFuBaoFragment;
-    private PayRightWeChatFragment payRightWeChatFragment;
 
     private PayLeftFragment payLeftFragment;
 
@@ -48,10 +44,7 @@ public class PayActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // 去除title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_pay);
         initView();

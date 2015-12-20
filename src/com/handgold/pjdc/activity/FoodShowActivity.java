@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.MenuTypeEnum;
@@ -49,9 +47,9 @@ public class FoodShowActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 去除title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //去除title和状态栏的操作必须在 super.onCreate()方法之前
         super.onCreate(savedInstanceState);

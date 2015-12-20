@@ -7,7 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.*;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
@@ -75,12 +77,6 @@ public class GameShowActivityNew extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // 去除title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        //去除title和状态栏的操作必须在 super.onCreate()方法之前
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_moive_game);

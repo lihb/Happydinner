@@ -5,8 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
@@ -39,12 +37,7 @@ public class MovieShowActivity extends FragmentActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        // 去除title
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // 去掉Activity上面的状态栏
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //去除title和状态栏的操作必须在 super.onCreate()方法之前
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_food_pay);
