@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_below="@id/item_pic_iv"
-            android:text="开心消消"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textSize="25dp"
             android:textColor="#ccffffff"
             />
