@@ -1,7 +1,7 @@
 package com.handgold.pjdc.ui.widget;
 
 import android.content.Context;
-import android.os.CountDownTimer;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,6 +19,8 @@ public class PopupPayInfoView extends RelativeLayout {
     private TextView mPayStatusText = null;
 
     private TextView mPayDescText = null;
+
+    public static final int DURATION = 5;
 
     /**
      * 付款是否成功标志
@@ -63,20 +65,21 @@ public class PopupPayInfoView extends RelativeLayout {
             mPayStatusImg.setImageResource(R.drawable.icon_success);
             mPayStatusText.setText("付款成功！");
             mPayStatusText.setTextColor(0xff000000);
-            mPayDescText.setText("请耐心等候您的餐点\n\n     5S后自动返回");
+            mPayDescText.setText("请耐心等候您的餐点\n\n     " + DURATION + "S后自动返回");
             isRuuning = true;
-//            new Thread(new MyRunnable()).start();
-            new CountDownTimer(6000, 1000){
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    mPayDescText.setText("请耐心等候您的餐点\n\n     "+ millisUntilFinished / 1000 +"S后自动返回");
-                }
-
-                @Override
-                public void onFinish() {
-                    exitView();
-                }
-            }.start();
+//            new Thread(new MyRunnable()).start(); // 法1：使用线程+handler实现倒计时
+//            new CountDownTimer(6000, 1000){       // 法2：使用CountDownTimer实现倒计时
+//                @Override
+//                public void onTick(long millisUntilFinished) {
+//                    mPayDescText.setText("请耐心等候您的餐点\n\n     "+ millisUntilFinished / 1000 +"S后自动返回");
+//                }
+//
+//                @Override
+//                public void onFinish() {
+//                    exitView();
+//                }
+//            }.start();
+            mHandler.sendEmptyMessageDelayed(DURATION - 1, 1000); // 法3：单独使用handler实现倒计时
         } else {
             mPayStatusImg.setImageResource(R.drawable.icon_error);
             mPayStatusText.setTextColor(0xffff0000);
@@ -92,19 +95,20 @@ public class PopupPayInfoView extends RelativeLayout {
         }
     }
 
-//    public android.os.Handler mHandler = new android.os.Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            if (msg.what > 0) {
-//                mPayDescText.setText("请耐心等候您的餐点\n\n     " + msg.what + "S后自动返回");
-//            } else {
-//                isRuuning = false;
-//                exitView();
-//            }
-//        }
-//    };
-//
+    public android.os.Handler mHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what > 0) {
+                mPayDescText.setText("请耐心等候您的餐点\n\n     " + msg.what + "S后自动返回");
+                sendEmptyMessageDelayed(--msg.what, 1000);
+            } else {
+                isRuuning = false;
+                exitView();
+            }
+        }
+    };
+
 //    private class MyRunnable implements Runnable {
 //        int duration = 4;
 //
@@ -117,7 +121,8 @@ public class PopupPayInfoView extends RelativeLayout {
 //                    e.printStackTrace();
 //                }
 //                mHandler.sendEmptyMessage(duration > 0 ? duration : -1);
-//                duration--;
+//                mHandler.sendEmptyMessageDelayed(duration, 1000);
+////                duration--;
 //            }
 //
 //        }

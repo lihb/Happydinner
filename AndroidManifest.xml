@@ -59,6 +59,9 @@
         <activity android:name="com.handgold.pjdc.activity.MapShowActivity"
                   android:theme="@style/AppTheme"
                   android:screenOrientation="landscape"/>
+        <activity android:name="com.handgold.pjdc.activity.WebViewActivity"
+                  android:theme="@style/AppTheme"
+                  android:screenOrientation="landscape"/>
 
         <!--友盟统计-->
         <meta-data android:value="564a922b67e58e03fd0083dd" android:name="UMENG_APPKEY"/>
