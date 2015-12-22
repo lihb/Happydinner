@@ -24,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="@dimen/menu_item_margin"
             >
 
         <RelativeLayout
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="25dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/menu_item_margin"
             >
         <TextView
                 android:id="@+id/menu_detail"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="菜品介绍"
                 android:textColor="#ffffff"
-                android:textSize="16dp"
+                android:textSize="@dimen/menu_info_text_size"
                 android:padding="5dp"
                 android:gravity="center"
                 android:background="@drawable/info"
@@ -91,9 +91,9 @@
             android:layout_height="wrap_content"
             android:text="小炒肉"
             android:textColor="#ffffff"
-            android:textSize="25dp"
+            android:textSize="@dimen/fragment_food_left_text_size"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/menu_item_margin"
             android:enabled="false"
             android:padding="5dp"
             android:background="@drawable/menu_name_price_bg"
@@ -106,9 +106,9 @@
             android:layout_alignParentRight="true"
             android:text="20"
             android:textColor="#ffd818"
-            android:textSize="25dp"
+            android:textSize="@dimen/fragment_food_left_text_size"
             android:layout_marginTop="12dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/menu_item_margin"
             android:enabled="false"
             android:padding="5dp"
             android:background="@drawable/menu_name_price_bg"

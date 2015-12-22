@@ -30,8 +30,8 @@
 
                 <ImageView
                         android:id="@+id/head_left"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/head_back_icon_size"
+                        android:layout_height="@dimen/head_back_icon_size"
                         android:layout_centerVertical="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/back_selector"/>
@@ -41,7 +41,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/head_left"
-                        android:textSize="30dp"
+                        android:textSize="@dimen/head_text_size"
                         tools:text="返回"
                         android:layout_centerVertical="true"
                         android:textColor="@color/white"/>
