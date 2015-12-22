@@ -20,8 +20,8 @@
 
     <ImageView
             android:id="@+id/image_type"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/loc_img_width"
+            android:layout_height="@dimen/loc_img_height"
             android:src="@drawable/icon_map"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
@@ -34,7 +34,7 @@
             android:layout_toRightOf="@id/image_type"
             android:layout_marginTop="35dp"
             android:text="当前位置"
-            android:textSize="30dp"
+            android:textSize="@dimen/loc_title_text_size"
             android:textColor="#ffffff"
             />
     <TextView
@@ -47,7 +47,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:text=""
-            android:textSize="25dp"
+            android:textSize="@dimen/loc_title_desc_size"
             android:textColor="#c0ffffff"
             />
 

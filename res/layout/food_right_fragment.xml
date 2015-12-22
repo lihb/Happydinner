@@ -8,11 +8,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginRight="@dimen/fragment_food_right_margin"
             android:numColumns="3"
             android:verticalSpacing="15dp"
             android:horizontalSpacing="15dp"
-            android:columnWidth="300dp"
+            android:columnWidth="@dimen/fragment_food_right_item_width"
             android:gravity="center"
             android:scrollbars="none"
             >

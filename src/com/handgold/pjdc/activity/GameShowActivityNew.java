@@ -150,18 +150,18 @@ public class GameShowActivityNew extends FragmentActivity {
         callServiceImg.setImageResource(R.drawable.game_call_service_selector);
         callServiceImg.setOnClickListener(mOnClickListener);
 
-        // 广告视频
-        mPopupGameVideoRelativeLayout = (RelativeLayout) findViewById(R.id.popup_game_video_relativeLayout);
-        mPopupGameVideoRelativeLayout.setOnTouchListener(mOnTouchListener);
-
-        mPopupGameVideoView = (PopupGameVideoView) findViewById(R.id.popup_game_video_view);
-        int width = DeviceUtils.getScreenWidth(this) / 2;
-        int height = DeviceUtils.getScreenHeight(this) / 2;
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
-        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-        mPopupGameVideoView.setLayoutParams(params);
-        mPopupGameVideoView.setOnPopGameVideoViewListener(mListener);
-        mPopupGameVideoRelativeLayout.setVisibility(View.VISIBLE);
+        // 广告视频(暂时屏蔽 2015-12-12)
+//        mPopupGameVideoRelativeLayout = (RelativeLayout) findViewById(R.id.popup_game_video_relativeLayout);
+//        mPopupGameVideoRelativeLayout.setOnTouchListener(mOnTouchListener);
+//
+//        mPopupGameVideoView = (PopupGameVideoView) findViewById(R.id.popup_game_video_view);
+//        int width = DeviceUtils.getScreenWidth(this) / 2;
+//        int height = DeviceUtils.getScreenHeight(this) / 2;
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(width, height);
+//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+//        mPopupGameVideoView.setLayoutParams(params);
+//        mPopupGameVideoView.setOnPopGameVideoViewListener(mListener);
+//        mPopupGameVideoRelativeLayout.setVisibility(View.VISIBLE);
     }
 
     private View.OnTouchListener mOnTouchListener = new View.OnTouchListener() {

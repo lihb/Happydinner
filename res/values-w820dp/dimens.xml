@@ -28,15 +28,19 @@
 
     <dimen name="left_fragment_width">250dp</dimen>
 
+    <!-- 订单弹窗view的宽高 -->
     <dimen name="order_view_width">620dp</dimen>
-    <dimen name="detail_view_height">550dp</dimen>
-
-    <dimen name="detail_view_width">450dp</dimen>
     <dimen name="order_view_height">620dp</dimen>
 
+    <!-- 菜品详情view的宽高 -->
+    <dimen name="detail_view_width">450dp</dimen>
+    <dimen name="detail_view_height">550dp</dimen>
+
+    <!-- 支付完成view的宽高 -->
     <dimen name="pay_view_width">400dp</dimen>
     <dimen name="pay_view_height">300dp</dimen>
 
+    <!-- 游戏页面广告视频的宽高 -->
     <dimen name="game_view_width">550dp</dimen>
     <dimen name="game_view_height">550dp</dimen>
 

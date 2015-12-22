@@ -82,7 +82,7 @@
             layout="@layout/shopping_cart_view"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="@dimen/cartview_left_margin"
             android:visibility="gone"
             />
     <RelativeLayout

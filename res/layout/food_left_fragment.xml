@@ -9,10 +9,10 @@
     <LinearLayout
             android:id="@+id/linearlayout_recommend"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/fragment_food_left_item_height"
             android:orientation="horizontal"
-            android:paddingLeft="40dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/fragment_food_left_item_padding"
+            android:paddingRight="@dimen/fragment_food_left_item_padding"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:clickable="true"
@@ -21,8 +21,8 @@
 
         <ImageView
                 android:id="@+id/image_recommend"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/fragment_food_left_icon_size"
+                android:layout_height="@dimen/fragment_food_left_icon_size"
                 android:duplicateParentState="true"
                 android:src="@drawable/recommend_selector"
                 />
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textSize="25dp"
+                android:textSize="@dimen/fragment_food_left_text_size"
                 android:text="推荐"
                 android:duplicateParentState="true"
                 android:textColor="@drawable/food_left_text_selector"
@@ -42,11 +42,11 @@
     <LinearLayout
             android:id="@+id/linearlayout_drink"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/fragment_food_left_item_height"
             android:layout_below="@+id/linearlayout_recommend"
             android:orientation="horizontal"
-            android:paddingLeft="40dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/fragment_food_left_item_padding"
+            android:paddingRight="@dimen/fragment_food_left_item_padding"
             android:gravity="center"
             android:layout_marginTop="15dp"
             android:clickable="true"
@@ -55,8 +55,8 @@
 
         <ImageView
                 android:id="@+id/image_drink"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/fragment_food_left_icon_size"
+                android:layout_height="@dimen/fragment_food_left_icon_size"
                 android:duplicateParentState="true"
                 android:src="@drawable/drink_selector"
                 />
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textSize="25dp"
+                android:textSize="@dimen/fragment_food_left_text_size"
                 android:text="饮料"
                 android:duplicateParentState="true"
                 android:textColor="@drawable/food_left_text_selector"
@@ -76,10 +76,10 @@
     <LinearLayout
             android:id="@+id/linearlayout_snack"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/fragment_food_left_item_height"
             android:orientation="horizontal"
-            android:paddingLeft="40dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/fragment_food_left_item_padding"
+            android:paddingRight="@dimen/fragment_food_left_item_padding"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_drink"
             android:gravity="center"
@@ -89,8 +89,8 @@
 
         <ImageView
                 android:id="@+id/image_snack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/fragment_food_left_icon_size"
+                android:layout_height="@dimen/fragment_food_left_icon_size"
                 android:duplicateParentState="true"
                 android:src="@drawable/snack_selector"
                 />
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textSize="25dp"
+                android:textSize="@dimen/fragment_food_left_text_size"
                 android:text="小吃"
                 android:duplicateParentState="true"
                 android:textColor="@drawable/food_left_text_selector"
@@ -110,10 +110,10 @@
     <LinearLayout
             android:id="@+id/linearlayout_food"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/fragment_food_left_item_height"
             android:orientation="horizontal"
-            android:paddingLeft="40dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/fragment_food_left_item_padding"
+            android:paddingRight="@dimen/fragment_food_left_item_padding"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_snack"
             android:gravity="center"
@@ -123,8 +123,8 @@
 
         <ImageView
                 android:id="@+id/image_food"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/fragment_food_left_icon_size"
+                android:layout_height="@dimen/fragment_food_left_icon_size"
                 android:src="@drawable/pri_food_selector"
                 />
 
@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textSize="25dp"
+                android:textSize="@dimen/fragment_food_left_text_size"
                 android:text="主食"
                 android:duplicateParentState="true"
                 android:textColor="@drawable/food_left_text_selector"
@@ -143,10 +143,10 @@
     <LinearLayout
             android:id="@+id/linearlayout_setmeal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/fragment_food_left_item_height"
             android:orientation="horizontal"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
+            android:paddingLeft="@dimen/fragment_food_left_item_padding"
+            android:paddingRight="@dimen/fragment_food_left_item_padding"
             android:layout_marginTop="15dp"
             android:layout_below="@+id/linearlayout_food"
             android:clickable="true"
@@ -156,8 +156,8 @@
 
         <ImageView
                 android:id="@+id/image_setmeal"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/fragment_food_left_icon_size"
+                android:layout_height="@dimen/fragment_food_left_icon_size"
                 android:duplicateParentState="true"
                 android:src="@drawable/set_meal_selector"
                 />
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
-                android:textSize="25dp"
+                android:textSize="@dimen/fragment_food_left_text_size"
                 android:text="套餐"
                 android:duplicateParentState="true"
                 android:textColor="@drawable/food_left_text_selector"

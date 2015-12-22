@@ -2,14 +2,14 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:XCRoundRectImageView="http://schemas.android.com/apk/res/com.handgold.pjdc"
-        android:layout_width="300dp"
-        android:layout_height="320dp"
+        android:layout_width="@dimen/fragment_food_right_item_width"
+        android:layout_height="@dimen/fragment_food_right_item_height"
         >
 
     <com.handgold.pjdc.ui.widget.XCRoundRectImageView
             android:id="@+id/menu_name_iv"
-            android:layout_width="300dp"
-            android:layout_height="320dp"
+            android:layout_width="@dimen/fragment_food_right_item_width"
+            android:layout_height="@dimen/fragment_food_right_item_height"
             android:src="@drawable/meishi1"
             XCRoundRectImageView:xcr_border_color="#FFFFFF"
             XCRoundRectImageView:xcr_border_overlay="false"

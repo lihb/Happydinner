@@ -79,7 +79,8 @@ public class PopupPayInfoView extends RelativeLayout {
 //                    exitView();
 //                }
 //            }.start();
-            mHandler.sendEmptyMessageDelayed(DURATION - 1, 1000); // 法3：单独使用handler实现倒计时
+//            mHandler.sendEmptyMessageDelayed(DURATION - 1, 1000); // 法3：单独使用handler实现倒计时
+            postDelayed(mRunnable, 1000); // // 法4：不使用handler，使用view里面的postDelay方法
         } else {
             mPayStatusImg.setImageResource(R.drawable.icon_error);
             mPayStatusText.setTextColor(0xffff0000);
@@ -87,6 +88,19 @@ public class PopupPayInfoView extends RelativeLayout {
             mPayDescText.setText("请重新执行付款操作.");
         }
     }
+
+    private Runnable mRunnable = new Runnable() {
+        private int count = DURATION;
+        @Override
+        public void run() {
+            if (count > 1) {
+                mPayDescText.setText("请耐心等候您的餐点\n\n     " + (--count) + "S后自动返回");
+            }else {
+                exitView();
+            }
+            postDelayed(this, 1000);
+        }
+    };
 
     public void exitView() {
         ViewGroup parent = (ViewGroup) getParent();
