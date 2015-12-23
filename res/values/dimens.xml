@@ -111,4 +111,27 @@
     <dimen name="movie_item_height">200dp</dimen>
     <dimen name="content_title_ll_top_margin">30dp</dimen>
     <dimen name="movie_game_viewpager_top_margin">20dp</dimen>
+    <dimen name="call_service_icon_width">230dp</dimen>
+    <dimen name="call_service_icon_height">110dp</dimen>
+    <dimen name="call_service_bottom_margin">10dp</dimen>
+    <dimen name="dot_ll_bottom_margin">30dp</dimen>
+    <dimen name="menu_gridview_vertical_sapcing">15dp</dimen>
+    <dimen name="menu_gridview_horizontal_sapcing">15dp</dimen>
+    <dimen name="menu_item_text_padding">5dp</dimen>
+    <dimen name="menu_item_text_padding_mini">5dp</dimen>
+    <dimen name="menu_oper_size">50dp</dimen>
+    <dimen name="menu_oper_text_margin">10dp</dimen>
+    <dimen name="menu_oper_bg_width">122dp</dimen>
+    <dimen name="shop_cart_view_size">130dp</dimen>
+    <dimen name="cart_icon_size">30dp</dimen>
+    <dimen name="shopcart_content_top_marging">25dp</dimen>
+    <dimen name="popup_top_height">248dp</dimen>
+    <dimen name="popup_close_icon_size">60dp</dimen>
+    <dimen name="popup_menu_desc_bottom_margin">36dp</dimen>
+    <dimen name="order_item_height">45dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="qr_icon_size">220dp</dimen>
+    <dimen name="pay_step1_pic_width">290dp</dimen>
+    <dimen name="pay_info_ll_left_margin">100dp</dimen>
+    <dimen name="pay_info_ll_top_margin">115dp</dimen>
 </resources>

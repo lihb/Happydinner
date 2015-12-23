@@ -30,14 +30,14 @@
         <RelativeLayout
                 android:id="@+id/relative_operation"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/menu_oper_size"
                 android:background="@drawable/button_exclude_bg"
                 android:padding="2dp"
                 >
             <ImageView
                     android:id="@+id/imagview_sub"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/menu_oper_size"
+                    android:layout_height="@dimen/menu_oper_size"
                     android:src="@drawable/sub_icon_selector"
                     />
 
@@ -46,9 +46,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/imagview_sub"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="@dimen/menu_oper_text_margin"
+                    android:layout_marginLeft="@dimen/menu_oper_text_margin"
+                    android:layout_marginTop="@dimen/menu_oper_text_margin"
                     android:text="10"
                     android:textColor="#ffffff"
                     android:enabled="false"
@@ -57,8 +57,8 @@
 
             <ImageView
                     android:id="@+id/imagview_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/menu_oper_size"
+                    android:layout_height="@dimen/menu_oper_size"
                     android:src="@drawable/add_icon_selector"
                     android:layout_toRightOf="@+id/text_count"
 
@@ -80,7 +80,7 @@
                 android:text="菜品介绍"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/menu_info_text_size"
-                android:padding="5dp"
+                android:padding="@dimen/menu_item_text_padding_mini"
                 android:gravity="center"
                 android:background="@drawable/info"
                 />
@@ -92,10 +92,10 @@
             android:text="小炒肉"
             android:textColor="#ffffff"
             android:textSize="@dimen/fragment_food_left_text_size"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/menu_item_margin"
             android:layout_marginLeft="@dimen/menu_item_margin"
             android:enabled="false"
-            android:padding="5dp"
+            android:padding="@dimen/menu_item_text_padding"
             android:background="@drawable/menu_name_price_bg"
             />
 
@@ -107,10 +107,10 @@
             android:text="20"
             android:textColor="#ffd818"
             android:textSize="@dimen/fragment_food_left_text_size"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/menu_item_margin"
             android:layout_marginRight="@dimen/menu_item_margin"
             android:enabled="false"
-            android:padding="5dp"
+            android:padding="@dimen/menu_item_text_padding"
             android:background="@drawable/menu_name_price_bg"
             />
 </RelativeLayout>

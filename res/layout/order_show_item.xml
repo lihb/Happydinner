@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:paddingLeft="20dp"
+                android:layout_height="@dimen/order_item_height"
+                android:paddingLeft="@dimen/movie_game_viewpager_top_margin"
                 android:minHeight="?android:attr/listPreferredItemHeight"
         >
     <TextView
@@ -13,7 +13,7 @@
             android:layout_centerVertical="true"
             android:text="菜名"
             android:textColor="#000000"
-            android:textSize="16dp"
+            android:textSize="@dimen/menu_info_text_size"
             />
 
     <TextView
@@ -23,16 +23,16 @@
             android:layout_centerInParent="true"
             android:text=""
             android:textColor="#ff6000"
-            android:textSize="16dp"
+            android:textSize="@dimen/menu_info_text_size"
             />
 
     <ImageView
             android:id="@+id/order_item_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/menu_oper_size"
+            android:layout_height="@dimen/menu_oper_size"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
+            android:layout_marginRight="@dimen/margin_18"
             android:src="@drawable/cart_button_add"
             />
 
@@ -42,17 +42,17 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/order_item_add"
             android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="@dimen/food_left_item_marging_top"
+            android:layout_marginLeft="@dimen/food_left_item_marging_top"
             android:text="1"
             android:textColor="#000000"
-            android:textSize="16dp"
+            android:textSize="@dimen/menu_info_text_size"
             />
 
     <ImageView
             android:id="@+id/order_item_sub"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/menu_oper_size"
+            android:layout_height="@dimen/menu_oper_size"
             android:layout_toLeftOf="@id/order_item_count"
             android:layout_centerVertical="true"
             android:src="@drawable/cart_button_exclude"

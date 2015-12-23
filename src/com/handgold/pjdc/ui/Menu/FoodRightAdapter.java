@@ -11,7 +11,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.*;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.Menu;
-import com.handgold.pjdc.util.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -78,8 +77,8 @@ public class FoodRightAdapter  extends BaseAdapter {
             viewholder.linearLayoutMenuDetail = (LinearLayout) convertView.findViewById(R.id.menu_detail_linearLayout);
             viewholder.linearLayoutOperationBg = (LinearLayout) convertView.findViewById(R.id.linearLayout_operation_bg);
             //为了解决在xml中设置layout_marginBottom失效，而在代码中设置padding
-            viewholder.linearLayoutMenuDetail.setPadding(0,0,0,CommonUtils.dip2px(mContext, 15));
-            viewholder.linearLayoutOperationBg.setPadding(0,0,0,CommonUtils.dip2px(mContext, 15));
+            viewholder.linearLayoutMenuDetail.setPadding(0,0,0, mContext.getResources().getDimensionPixelSize(R.dimen.menu_item_margin));
+            viewholder.linearLayoutOperationBg.setPadding(0,0,0,mContext.getResources().getDimensionPixelSize(R.dimen.menu_item_margin));
             convertView.setTag(viewholder);
         } else {
             viewholder = (ViewHolder) convertView.getTag();

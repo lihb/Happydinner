@@ -7,9 +7,9 @@
     <RelativeLayout
             android:id="@+id/pay_price_rl"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
-            android:paddingLeft="12dp"
-            android:layout_marginTop="60dp"
+            android:layout_height="@dimen/pay_icon_width"
+            android:paddingLeft="@dimen/header_left_margin"
+            android:layout_marginTop="@dimen/content_title_height"
             android:layout_gravity="center"
             >
         <TextView
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:text="金额：50元"
                 android:textSize="@dimen/pay_text_size"
-                android:paddingRight="12dp"
+                android:paddingRight="@dimen/header_right_margin"
                 android:layout_alignParentRight="true"
                 android:textColor="#ff6000"
                 />
@@ -47,11 +47,11 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
+            android:paddingLeft="@dimen/header_left_margin"
+            android:paddingRight="@dimen/header_left_margin"
             android:orientation="horizontal"
-            android:layout_marginTop="115dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginTop="@dimen/pay_info_ll_top_margin"
+            android:layout_marginLeft="@dimen/pay_info_ll_left_margin"
             >
         <LinearLayout
                 android:id="@+id/pay_info_step1"
@@ -63,8 +63,8 @@
                 >
             <ImageView
                     android:id="@+id/pay_info_step1_img"
-                    android:layout_width="290dp"
-                    android:layout_height="220dp"
+                    android:layout_width="@dimen/pay_step1_pic_width"
+                    android:layout_height="@dimen/qr_icon_size"
                     android:scaleType="fitXY"
                     android:src="@drawable/pay_instruction"
                     />
@@ -73,9 +73,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="45dp"
-                    android:textSize="20dp"
+                    android:layout_marginTop="@dimen/menu_oper_size"
+                    android:layout_marginLeft="@dimen/order_item_height"
+                    android:textSize="@dimen/movie_game_viewpager_top_margin"
                     android:text="1.打开手机微信\n  点击扫一扫功能"
                     />
         </LinearLayout>
@@ -89,8 +89,8 @@
                 >
             <ImageView
                     android:id="@+id/pay_info_step2_img"
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
+                    android:layout_width="@dimen/qr_icon_size"
+                    android:layout_height="@dimen/qr_icon_size"
                     android:scaleType="fitXY"
                     android:src="@drawable/qr_icon"
                     />
@@ -99,9 +99,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginLeft="10dp"
+                    android:textSize="@dimen/movie_game_viewpager_top_margin"
+                    android:layout_marginTop="@dimen/menu_oper_size"
+                    android:layout_marginLeft="@dimen/call_service_bottom_margin"
                     android:text="2.扫描该二维码，成功后\n      按照提示输入密码"
                     />
 
