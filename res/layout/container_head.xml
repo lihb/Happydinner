@@ -56,10 +56,12 @@
 
                 <TextView
                         android:id="@+id/head_title"
-                        style="@style/header_title_text_large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/head_text_size"
                         android:textColor="@color/white"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         tools:text="自助下单"
                         android:visibility="gone"
                         />
@@ -150,9 +152,11 @@
 
                     <TextView
                             android:id="@+id/head_right_tv"
-                            style="@style/header_title_text_normal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textSize="@dimen/head_text_size"
+                            android:singleLine="true"
+                            android:ellipsize="end"
                             android:gravity="center_vertical"
                             android:textColor="@color/food_text_selector"
                             android:text="完成"/>

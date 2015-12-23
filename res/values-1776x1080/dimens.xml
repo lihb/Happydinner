@@ -53,8 +53,9 @@
     <dimen name="game_view_width">550dp</dimen>
     <dimen name="game_view_height">550dp</dimen>
 
-    <!--购物车左边margin-->
-    <dimen name="cartview_left_margin">20dp</dimen>
+    <!--购物车左边、底部margin-->
+    <dimen name="cartview_left_margin">5dp</dimen>
+    <dimen name="cartview_bottom_margin">5dp</dimen>
 
     <!--地理位置界面，左上角图标宽高-->
     <dimen name="loc_img_width">66dp</dimen>
@@ -65,14 +66,31 @@
     <!--地理位置界面，地址字体大小-->
     <dimen name="loc_title_desc_size">16dp</dimen>
 
-    <!--电影、游戏页面，类别栏距离左右两侧的margin-->
-    <dimen name="movie_game_tab_margin">166dp</dimen>
+
 
     <!--电影、游戏页面，类别的字体大小-->
     <dimen name="content_title_text_size">16dp</dimen>
+
     <!--电影、游戏页面，类别item的宽高-->
-    <dimen name="content_title_width">40dp</dimen>
-    <dimen name="content_title_height">40dp</dimen>
+    <dimen name="content_title_width">30dp</dimen>
+    <dimen name="content_title_height">30dp</dimen>
+
+    <dimen name="horizontal_spacing">12dp</dimen>
+    <dimen name="vertical_spacing">12dp</dimen>
+
+    <!--游戏展示页面，gridview的item的宽高-->
+    <dimen name="game_item_width">90dp</dimen>
+    <dimen name="game_item_height">90dp</dimen>
+
+    <!--电影、游戏页面，类别栏距离左右两侧的margin-->
+    <dimen name="movie_game_tab_margin">120dp</dimen>
+
+    <!--电影、游戏展示页面，gridview的距离左右两侧的margin-->
+    <dimen name="fragment_movie_game_right_margin">100dp</dimen>
+    <dimen name="fragment_movie_game_left_margin">100dp</dimen>
+
+    <!--电影展示页面，gridview的宽度-->
+    <dimen name="fragment_movie_game_right_item_width">60dp</dimen>
 
     <!--菜品页面，左侧item的图标宽高-->
     <dimen name="fragment_food_left_icon_size">26dp</dimen>
@@ -86,23 +104,21 @@
     <dimen name="fragment_food_right_margin">10dp</dimen>
     <!--菜品页面，右侧gridview的item的宽度-->
     <dimen name="fragment_food_right_item_width">200dp</dimen>
-    <!--菜品页面，右侧gridview的item的高度-->
-    <dimen name="fragment_food_right_item_height">214dp</dimen>
+    <!--菜品页面，gridview的item的高度-->
+    <dimen name="fragment_food_right_item_height">200dp</dimen>
 
-    <!--游戏展示页面，gridview的item的宽高-->
-    <dimen name="game_item_width">92dp</dimen>
-    <dimen name="game_item_height">920dp</dimen>
-
-    <!--电影、游戏展示页面，gridview的距离左右两侧的margin-->
-    <dimen name="fragment_movie_game_right_margin">150dp</dimen>
-    <dimen name="fragment_movie_game_left_margin">150dp</dimen>
-    <!--电影展示页面，gridview的宽度-->
-    <dimen name="fragment_movie_game_right_item_width">120dp</dimen>
-
-    <dimen name="head_text_size">20dp</dimen>
-    <dimen name="head_back_icon_size">26dp</dimen>
     <!--菜品页面，左侧top marging-->
     <dimen name="food_left_item_marging_top">10dp</dimen>
     <!--菜品介绍，字体大小-->
     <dimen name="menu_info_text_size">10dp</dimen>
+    <dimen name="cart_view_size">20dp</dimen>
+
+    <dimen name="head_text_size">20dp</dimen>
+    <dimen name="head_back_icon_size">26dp</dimen>
+
+    <dimen name="movie_item_width">50dp</dimen>
+    <dimen name="movie_item_height">65dp</dimen>
+    <dimen name="content_title_ll_top_margin">20dp</dimen>
+    <dimen name="movie_game_viewpager_top_margin">12dp</dimen>
+
 </resources>

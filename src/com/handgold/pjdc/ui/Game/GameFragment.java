@@ -19,7 +19,6 @@ import android.widget.GridView;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.entitiy.GameInfo;
 import com.handgold.pjdc.util.CommonUtils;
-import com.handgold.pjdc.util.DeviceUtils;
 import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
@@ -73,8 +72,8 @@ public class GameFragment extends Fragment {
         View view = inflater.inflate(R.layout.movie_game_fragment, null);
         mGridView = (GridView) view.findViewById(R.id.movie_game_gv);
         mGridView.setOnItemClickListener(mOnItemClickListener);
-        mGridView.setHorizontalSpacing(DeviceUtils.dip2px(getActivity(), 50));
-        mGridView.setVerticalSpacing(DeviceUtils.dip2px(getActivity(), 50));
+//        mGridView.setHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.horizontal_spacing));
+//        mGridView.setVerticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing));
         return view;
     }
 

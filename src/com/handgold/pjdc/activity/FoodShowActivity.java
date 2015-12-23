@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import com.handgold.pjdc.R;
 import com.handgold.pjdc.base.ApplicationEx;
@@ -64,9 +62,7 @@ public class FoodShowActivity extends FragmentActivity {
         sortedMap = (SortedMap) ((ApplicationEx) getApplication()).receiveInternalActivityParam("allMenuList");
 
         initFragment();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Log.i("wwww displayMetrics----", displayMetrics.toString());
+
 
     }
 

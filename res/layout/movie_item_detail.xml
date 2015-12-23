@@ -7,8 +7,9 @@
         >
     <ImageView
             android:id="@+id/item_pic_iv"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
+            android:layout_width="@dimen/movie_item_width"
+            android:layout_height="@dimen/movie_item_height"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
             android:src="@drawable/pic_moive_xiaowangzi"
             />
@@ -21,7 +22,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:text="开心消消"
-            android:textSize="25dp"
+            android:textSize="@dimen/content_title_text_size"
             android:textColor="#ccffffff"
             />
 </RelativeLayout>

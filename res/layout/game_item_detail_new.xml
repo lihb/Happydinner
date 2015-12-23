@@ -19,7 +19,7 @@
             android:layout_below="@id/item_pic_iv"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textSize="25dp"
+            android:textSize="@dimen/content_title_text_size"
             android:textColor="#ccffffff"
             />
 </RelativeLayout>

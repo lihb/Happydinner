@@ -1,7 +1,9 @@
 package com.handgold.pjdc.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import com.handgold.pjdc.R;
@@ -102,6 +104,11 @@ public class CoverFlowActivity extends BaseActivity {
         mData.put("PhotoData", (ArrayList) sortedGameMap.get(GameTypeEnum.SHOOT.ordinal()));
         mData.put("MovieData", (ArrayList) sortedMovieMap.get(MovieTypeEnum.HOT.ordinal()));
         mAdapter.setData(mData);*/
+        Configuration config = getResources().getConfiguration();
+        int smallestScreenWidth = config.smallestScreenWidthDp;
+        int screenWidthDp = config.screenWidthDp;
+        Log.i("smallest width = " ,""+ smallestScreenWidth);
+        Log.i("screenWidthDp width = " ,""+ screenWidthDp);
     }
 
     private void initMenuData() {
