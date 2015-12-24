@@ -87,8 +87,8 @@
     <dimen name="movie_game_tab_margin">130dp</dimen>
 
     <!--电影、游戏展示页面，gridview的距离左右两侧的margin-->
-    <dimen name="fragment_movie_game_right_margin">100dp</dimen>
-    <dimen name="fragment_movie_game_left_margin">100dp</dimen>
+    <dimen name="fragment_movie_game_right_margin">110dp</dimen>
+    <dimen name="fragment_movie_game_left_margin">110dp</dimen>
 
     <!--电影展示页面，gridview的宽度-->
     <dimen name="fragment_movie_game_right_item_width">80dp</dimen>
