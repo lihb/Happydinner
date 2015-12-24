@@ -1,5 +1,5 @@
 <resources>
-    <!-- nexus5 分辨率1080x1920 -->
+    <!-- mx4 pro 屏幕适配 -->
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -104,9 +104,9 @@
     <!--菜品页面，右侧gridview距离页面右侧是margin -->
     <dimen name="fragment_food_right_margin">20dp</dimen>
     <!--菜品页面，右侧gridview的item的宽度-->
-    <dimen name="fragment_food_right_item_width">140dp</dimen>
+    <dimen name="fragment_food_right_item_width">130dp</dimen>
     <!--菜品页面，gridview的item的高度-->
-    <dimen name="fragment_food_right_item_height">150dp</dimen>
+    <dimen name="fragment_food_right_item_height">160dp</dimen>
 
     <!--菜品页面，左侧top marging-->
     <dimen name="food_left_item_marging_top">6dp</dimen>
@@ -160,7 +160,5 @@
     <dimen name="pay_step1_pic_width">150dp</dimen>
     <dimen name="pay_info_ll_left_margin">50dp</dimen>
     <dimen name="pay_info_ll_top_margin">57dp</dimen>
-
-    <!-- nexus5 分辨率1080x1920 -->
-
+    <!-- mx4 pro 屏幕适配 -->
 </resources>

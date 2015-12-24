@@ -8,7 +8,7 @@
             android:id="@+id/iv_cart_bg"
             android:layout_width="@dimen/shop_cart_view_size"
             android:layout_height="@dimen/shop_cart_view_size"
-            android:src="@drawable/oder"
+            android:src="@drawable/shopcart_view_selector"
             android:layout_marginBottom="@dimen/cartview_bottom_margin"
             />
         <RelativeLayout

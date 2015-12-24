@@ -146,7 +146,7 @@ public class FoodRightAdapter  extends BaseAdapter {
                 holder.imageViewSub.startAnimation(set);
             }
 
-            holder.relativeLayoutOperation.setBackgroundResource(R.drawable.button_exclude_bg);
+            holder.relativeLayoutOperation.setBackgroundResource(R.drawable.button_exclude_bg2);
             holder.menuCount.setVisibility(View.VISIBLE);
             holder.menuCount.setText("" + count);
         } else {

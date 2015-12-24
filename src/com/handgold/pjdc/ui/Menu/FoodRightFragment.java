@@ -168,6 +168,9 @@ public class FoodRightFragment extends Fragment {
                    animator.start();
                    CommonUtils.toastText(getActivity(), "购物车是空的哦~");
                }else {
+                   if (mOrderShowViewRelativeLayout.getVisibility() == View.VISIBLE) {
+                       return;
+                   }
                    mOrderShowViewRelativeLayout.setVisibility(View.VISIBLE);
                    mOrderShowView.setData(mOrder.getMenuList());
                    mOrderShowView.startAnimation(orderShowViewAnimation());

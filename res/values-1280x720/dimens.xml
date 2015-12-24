@@ -1,5 +1,5 @@
 <resources>
-    <!-- nexus5 分辨率1080x1920 -->
+    <!-- 红米note 分辨率1280x720 -->
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -161,6 +161,5 @@
     <dimen name="pay_info_ll_left_margin">50dp</dimen>
     <dimen name="pay_info_ll_top_margin">57dp</dimen>
 
-    <!-- nexus5 分辨率1080x1920 -->
-
+    <!-- 红米note 分辨率1280x720 -->
 </resources>
