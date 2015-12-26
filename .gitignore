@@ -2,7 +2,7 @@
 *.idea
 *.class
 .DS_Store
-out/＊
+
 # Built application files
 *.apk
 *.ap_
@@ -35,3 +35,6 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+# Android编译生成out文件夹
+out/
