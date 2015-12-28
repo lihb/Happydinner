@@ -326,11 +326,11 @@ public class FoodRightFragment extends Fragment {
         int endX = -start_location[0] + mShoppingCardView.getWidth() / 2 + 40;
         int endY = end_location[1]-start_location[1];
 
-        Animation mTranslateAnimationX = new TranslateAnimation(0, endX, 0, 0);
-        mTranslateAnimationX.setInterpolator(new LinearInterpolator());
-
-        Animation mTranslateAnimationY = new TranslateAnimation(0, 0, 0, endY);
-        mTranslateAnimationY.setInterpolator(new BounceInterpolator());
+//        Animation mTranslateAnimationX = new TranslateAnimation(0, endX, 0, 0);
+//        mTranslateAnimationX.setInterpolator(new LinearInterpolator());
+//
+//        Animation mTranslateAnimationY = new TranslateAnimation(0, 0, 0, endY);
+//        mTranslateAnimationY.setInterpolator(new BounceInterpolator());
         AddToShopCartAnimation customAnimation = new AddToShopCartAnimation(0, endX, 0, endY);
         AnimationSet mAnimationSet = new AnimationSet(false);
 
