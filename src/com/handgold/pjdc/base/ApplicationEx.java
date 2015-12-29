@@ -2,6 +2,8 @@ package com.handgold.pjdc.base;
 
 import android.app.Application;
 import android.os.Handler;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.concurrent.Executor;
@@ -9,7 +11,9 @@ import java.util.concurrent.Executors;
 
 public class ApplicationEx extends Application {
 
-    public static Application app = null;
+    public static ApplicationEx instance = null;
+
+    public RequestQueue gRequestQueue = null;
 
     public ApplicationEx(){
 
@@ -19,8 +23,9 @@ public class ApplicationEx extends Application {
     public void onCreate() {
         super.onCreate();
 
-        app = this;
-
+        instance = this;
+        //volley
+        gRequestQueue = Volley.newRequestQueue(this);
     }
 
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
-import com.handgold.pjdc.base.Constant;
 
 public class SharePreferencesUtils {
 	
@@ -526,35 +525,7 @@ public class SharePreferencesUtils {
 		editor.putBoolean("NeedSeparateUserData", needed);
 		editor.commit();
 	}
-	/**
-	 * 获取文件排序方式
-	 * @param context
-	 * @return 文件排序方式
-	 */
-	public static int getFileSortType(Context context){
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		return preferences.getInt("FileSortType", Constant.FILE_SORT_BY_TIME);
-	}
-	/**
-	 * 保持文件排序方式
-	 * @param context
-	 * @param type 文件排序方式
-	 */
-	public static void setFileSortType(Context context, int type){
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		Editor editor = preferences.edit();
-		editor.putInt("FileSortType", type);
-		editor.commit();
-	}
-	/**
-	 * 是否降序排序
-	 * @param context 上下文
-	 * @return 1表示升序，-1表示降序，默认返回1
-	 */
-	public static int isDescended(Context context){
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-		return preferences.getInt("FileSortOrder", Constant.FILE_SORT_BY_DESC);
-	}
+
 	/**
 	 * 保持文件升序、降序类型
 	 * @param context 上下文

@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2015/12/28.
  */
-public class WeChatEntity {
+public class WeChatReqData {
     //公众账号ID
     private String appid = "";
     //商户号
@@ -43,9 +43,9 @@ public class WeChatEntity {
     //商品ID
     private String product_id = "";
 
-    public WeChatEntity(String appid, String mch_id, String device_info, String nonce_str, String body,
-                        String detail, String out_trade_no, int total_fee, String spbill_create_ip, String time_start,
-                        String time_expire, String goods_tag, String notify_url, String trade_type, String product_id) {
+    public WeChatReqData(String appid, String mch_id, String device_info, String nonce_str, String body,
+                         String detail, String out_trade_no, int total_fee, String spbill_create_ip, String time_start,
+                         String time_expire, String goods_tag, String notify_url, String trade_type, String product_id) {
         this.appid = appid;
         this.mch_id = mch_id;
         this.device_info = device_info;

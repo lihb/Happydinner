@@ -21,4 +21,18 @@
     <string name="shoot_game">飞行射击</string>
     <string name="puzzle_game">棋牌天地</string>
 
+    <!-- 服务器返回 -->
+    <string name="server_erro">很抱歉，服务不可用，请稍后重试</string>
+    <string name="operation_success">执行成功</string>
+    <string name="param_missed">程序出错了，请稍后重试</string>
+    <string name="param_malform">输入有误，请检查输入</string>
+    <string name="vericode_upper_limit">短信已经下发，请稍后再试</string>
+    <string name="vericode_invalid">验证码不正确</string>
+    <string name="token_invalid">"已超时，请重试"</string>
+    <string name="unknown_fault">未知错误</string>
+    <string name="no_response">连接出错，请检查网络情况</string>
+
+    
+    <string name="get_wechat_link_fail">获取微信支付链接失败，请稍后重试。</string>
+
 </resources>

@@ -67,8 +67,8 @@ public class DinnerPathManager {
 						// 前提是Android4.0以上
 						&& currentapiVersion >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
 					StorageManager storageMan = null;
-					if(ApplicationEx.app != null){
-						storageMan = (StorageManager) ApplicationEx.app
+					if(ApplicationEx.instance != null){
+						storageMan = (StorageManager) ApplicationEx.instance
 								.getSystemService(Context.STORAGE_SERVICE);
 					}
 					if (storageMan == null) {
@@ -139,8 +139,8 @@ public class DinnerPathManager {
 		}
 		//3、externalStorageDirectory如果还是为空，那么将使用内存/data/data/xxx/cache作为根目录;
 		if(TextUtils.isEmpty(rootPath)){
-			if(ApplicationEx.app !=  null){
-				rootPath = ApplicationEx.app.getCacheDir().getAbsolutePath();
+			if(ApplicationEx.instance !=  null){
+				rootPath = ApplicationEx.instance.getCacheDir().getAbsolutePath();
 			}
 			storageVolumeState = Environment.MEDIA_REMOVED;
 			useInternalStore = true;
@@ -173,8 +173,8 @@ public class DinnerPathManager {
 	/**initDiretory()时userName未必有值，因此每次获取是需要判断目录是否有创建*/
 	public String getCollectedPath(){
 		String retVal = getRootPath()+"/ecloud/";
-		if(ApplicationEx.app != null){
-			String userName = SharePreferencesUtils.getLastLoginUserName(ApplicationEx.app);
+		if(ApplicationEx.instance != null){
+			String userName = SharePreferencesUtils.getLastLoginUserName(ApplicationEx.instance);
 			if(!TextUtils.isEmpty(userName)){
 				retVal =  getRootPath()+"/ecloud/"+userName+"/";
 			}
@@ -247,11 +247,8 @@ public class DinnerPathManager {
 	}
 
 	private boolean existExternalStroage() {
-		if (Environment.getExternalStorageState().equals(
-				Environment.MEDIA_MOUNTED)) {
-			return true;
-		}
-		return false;
+		return Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED);
 	}
 	
 	/**

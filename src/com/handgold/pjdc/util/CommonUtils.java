@@ -1,7 +1,5 @@
 package com.handgold.pjdc.util;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.PendingIntent;
@@ -263,15 +261,6 @@ public class CommonUtils {
         return preferences.getLong("LastStarFileList", -1);
     }
 
-    /**
-     * 保存新功能使用信息
-     */
-    public static void saveNewFunction(Context context, String key) {
-        SharedPreferences preferences = context.getSharedPreferences("new_function", Context.MODE_PRIVATE);
-        Editor editor = preferences.edit();
-        editor.putBoolean(key, Constant.NEW_FUNCTION_HAS_USED);
-        editor.commit();
-    }
 
     /**
      * 获取新功能使用信息
@@ -806,29 +795,7 @@ public class CommonUtils {
         return preferences.getLong("LastToastTime", 0);
     }
 
-    /**
-     * 保存提示3G网络的时间
-     *
-     * @param context 上下文
-     * @param time    提示3G网络的时间
-     */
-    public static void setLastToastTime(Context context, long time) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Editor editor = preferences.edit();
-        editor.putLong("LastToastTime", time);
-        editor.commit();
-    }
 
-    /**
-     * 获取上次登录的方式
-     *
-     * @param context 上下文
-     * @return 上次登录方式，“用户名、密码”或“天翼账号CTAccount”，默认返回“用户名、密码”
-     */
-    public static int getLastLoginChannel(Context context) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return preferences.getInt("LastLoginChannel", Constant.LOGIN_CHANNEL_PASSWORD);
-    }
 
     /**
      * 保存上次登录方式
@@ -1048,25 +1015,6 @@ public class CommonUtils {
         Editor editor = mContext.getSharedPreferences(mContext.getPackageName(), 0).edit();
         editor.putString("gesturepassword", password);
         return editor.commit();
-    }
-
-    /**
-     * 判断本机是否有天翼账号
-     *
-     * @return true有，false没有
-     */
-    public static boolean containsCTaccount(Context context) {
-        String ctaccount_type = "cn.com.chinatelecom.account";
-        boolean contains = false;
-        AccountManager accountManager = AccountManager.get(context);
-        Account[] accounts = accountManager.getAccounts();
-        for (Account account : accounts) {
-            if (ctaccount_type.equals(account.type)) {
-                contains = true;
-                break;
-            }
-        }
-        return contains;
     }
 
 

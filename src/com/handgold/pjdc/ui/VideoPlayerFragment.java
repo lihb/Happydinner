@@ -586,7 +586,7 @@ public class VideoPlayerFragment extends Fragment implements IVideoPlayer.OnComp
             return;
         }
         if (mAudioMgr == null)
-            mAudioMgr = (AudioManager) ApplicationEx.app.getSystemService(Context.AUDIO_SERVICE);
+            mAudioMgr = (AudioManager) ApplicationEx.instance.getSystemService(Context.AUDIO_SERVICE);
         mMaxVolume = mAudioMgr.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         if (mAudioMgr != null) {
             DLog.i(TAG, "Request audio focus");
