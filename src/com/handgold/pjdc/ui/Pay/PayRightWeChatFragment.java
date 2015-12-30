@@ -100,18 +100,19 @@ public class PayRightWeChatFragment extends Fragment {
         if (mOrder != null) {
             String appid = Constant.APP_ID;
             String mch_id = Constant.MCH_ID;
-            String device_info = android.os.Build.MODEL + android.os.Build.VERSION.RELEASE;
+            String device_info = "WEB";
             String nonce_str = WeChatUtil.getRandomStringByLength(32);
-            String body = mOrder.toString();
+            String body = "测试！！";
             String detail = "";
-            String out_trade_no = mOrder.getOrderTime();
-            int total_fee = (int) (mOrder.getTotalPrice() * 100);
+            String out_trade_no = WeChatUtil.getRandomStringByLength(32);
+//            int total_fee = (int) (mOrder.getTotalPrice() * 100);
+            int total_fee = (1);
             String spbill_create_ip = WeChatUtil.getLocalIp();
             String time_start = sdf.format(new Date());
             String time_expire = "";
             String goods_tag = "";
             String notify_url = Constant.NOTIFY_URL;
-            String trade_type = "APP";
+            String trade_type = "NATIVE";
             String product_id = "";
             WeChatReqData weChatEntity = new WeChatReqData(appid, mch_id, device_info, nonce_str, body,
                     detail, out_trade_no, total_fee, spbill_create_ip, time_start,
@@ -119,7 +120,8 @@ public class PayRightWeChatFragment extends Fragment {
 
             //解决XStream对出现双下划线的bug
             XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
-
+            Log.i("PayRightWeChatFragment", "路径===" + WeChatReqData.class.getCanonicalName());
+            String path = WeChatReqData.class.getCanonicalName();
             //将要提交给API的数据对象转换成XML格式数据Post给API
             String postDataXML = xStreamForRequestPostData.toXML(weChatEntity);
             // 子线程发送请求
@@ -158,6 +160,7 @@ public class PayRightWeChatFragment extends Fragment {
 
                 //write parameters
                 writer.write(params[0]);
+                Log.e("PayRightWeChatFragment", "params[0] = " + params[0]);
                 writer.flush();
 
                 // Get the response
@@ -172,6 +175,7 @@ public class PayRightWeChatFragment extends Fragment {
 
                 //Output the response
                 result = sb.toString();
+                Log.e("PayRightWeChatFragment", "result = " + result);
             } catch (UnsupportedEncodingException | MalformedURLException e) {
                 e.printStackTrace();
             } catch (Exception e) {

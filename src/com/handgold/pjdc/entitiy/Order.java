@@ -42,6 +42,9 @@ public class Order implements Parcelable {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
+    public String getOrderId() {
+        return orderId;
+    }
 
     /**
      *  增加一个菜品

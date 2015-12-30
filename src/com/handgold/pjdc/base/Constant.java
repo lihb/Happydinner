@@ -29,16 +29,16 @@ public class Constant {
     //——————————————————————————————————————————————————微信支付——————————————————————————————
 
 	// 公众号ID
-	public static final String APP_ID = "";
+	public static final String APP_ID = "wx8b8f5cc4dc48ff84";
 
 	// 商户号
-	public static final  String MCH_ID = "";
+	public static final  String MCH_ID = "1292957201";
 
 	// 用来生成签名的key
-	public static final String WECHAT_KEY = "";
+	public static final String WECHAT_KEY = "d89852607452a741984f28caa4612a49";
 
 	// 回调地址
-	public static final  String NOTIFY_URL = "";
+	public static final  String NOTIFY_URL = "http://www.kamiao.net/pay/wxcallback";
 
 	// 统一下单 api
 	public static String UNIFY_PAY_API = "https://api.mch.weixin.qq.com/pay/unifiedorder";
