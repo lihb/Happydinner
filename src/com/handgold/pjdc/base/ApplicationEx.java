@@ -4,7 +4,13 @@ import android.app.Application;
 import android.os.Handler;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.integration.okhttp.OkHttpUrlLoader;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.facebook.stetho.Stetho;
+import com.handgold.pjdc.action.SingleOkHttpClient;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -26,6 +32,11 @@ public class ApplicationEx extends Application {
         instance = this;
         //volley
         gRequestQueue = Volley.newRequestQueue(this);
+        //Stetho
+        Stetho.initializeWithDefaults(this);
+        //Glide与OkHttpClient集成
+        Glide.get(this)
+                .register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(SingleOkHttpClient.getInstance()));
     }
 
 

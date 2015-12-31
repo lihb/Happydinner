@@ -14,6 +14,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.handgold.pjdc.R;
+import com.handgold.pjdc.action.SingleOkHttpClient;
 import com.handgold.pjdc.activity.PayActivity;
 import com.handgold.pjdc.base.ApplicationEx;
 import com.handgold.pjdc.base.Constant;
@@ -22,10 +23,10 @@ import com.handgold.pjdc.entitiy.WeChatReqData;
 import com.handgold.pjdc.entitiy.WeChatResData;
 import com.handgold.pjdc.util.CommonUtils;
 import com.handgold.pjdc.util.WeChatUtil;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
 import com.umeng.analytics.MobclickAgent;
+import retrofit.*;
+import retrofit.http.Body;
+import retrofit.http.POST;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -72,6 +73,14 @@ public class PayRightWeChatFragment extends Fragment {
 
     private Order mOrder = null;
 
+    /**
+     * 微信的获取二维码链接接口
+     */
+    public interface WeChat {
+        @POST("/pay/unifiedorder")
+        Call<WeChatResData> getQRCode(@Body WeChatReqData weChatEntity);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,43 +102,6 @@ public class PayRightWeChatFragment extends Fragment {
         return view;
     }
 
-    private void generateAndPostData() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        //获取订单数据
-        mOrder = (Order) ((ApplicationEx) (getActivity()).getApplication()).receiveInternalActivityParam("order");
-        if (mOrder != null) {
-            String appid = Constant.APP_ID;
-            String mch_id = Constant.MCH_ID;
-            String device_info = "WEB";
-            String nonce_str = WeChatUtil.getRandomStringByLength(32);
-            String body = "测试！！";
-            String detail = "";
-            String out_trade_no = WeChatUtil.getRandomStringByLength(32);
-//            int total_fee = (int) (mOrder.getTotalPrice() * 100);
-            int total_fee = (1);
-            String spbill_create_ip = WeChatUtil.getLocalIp();
-            String time_start = sdf.format(new Date());
-            String time_expire = "";
-            String goods_tag = "";
-            String notify_url = Constant.NOTIFY_URL;
-            String trade_type = "NATIVE";
-            String product_id = "";
-            WeChatReqData weChatEntity = new WeChatReqData(appid, mch_id, device_info, nonce_str, body,
-                    detail, out_trade_no, total_fee, spbill_create_ip, time_start,
-                    time_expire, goods_tag, notify_url, trade_type, product_id);
-
-            //解决XStream对出现双下划线的bug
-            XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
-            Log.i("PayRightWeChatFragment", "路径===" + WeChatReqData.class.getCanonicalName());
-            String path = WeChatReqData.class.getCanonicalName();
-            //将要提交给API的数据对象转换成XML格式数据Post给API
-            String postDataXML = xStreamForRequestPostData.toXML(weChatEntity);
-            // 子线程发送请求
-            new WeChatAsyncTask().execute(postDataXML);
-        }
-
-    }
-
 
     public void onResume() {
         super.onResume();
@@ -144,6 +116,76 @@ public class PayRightWeChatFragment extends Fragment {
         MobclickAgent.onPageEnd("PayRightWeChatFragment");
     }
 
+    private void generateAndPostData() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        //获取订单数据
+        mOrder = (Order) ((ApplicationEx) (getActivity()).getApplication()).receiveInternalActivityParam("order");
+        if (mOrder != null) {
+            String appid = Constant.APP_ID;
+            String mch_id = Constant.MCH_ID;
+            String device_info = "WEB";
+            String nonce_str = WeChatUtil.getRandomStringByLength(32);
+            String body = "测试！！";
+            String detail = "";
+            String out_trade_no = WeChatUtil.getRandomStringByLength(19) + System.currentTimeMillis();
+//            int total_fee = (int) (mOrder.getTotalPrice() * 100);
+            int total_fee = (1);
+            String spbill_create_ip = WeChatUtil.getLocalIp();
+            String time_start = sdf.format(new Date());
+            String time_expire = "";
+            String goods_tag = "";
+            String notify_url = Constant.NOTIFY_URL;
+            String trade_type = "NATIVE";
+            String product_id = "";
+            WeChatReqData weChatEntity = new WeChatReqData(appid, mch_id, device_info, nonce_str, body,
+                    detail, out_trade_no, total_fee, spbill_create_ip, time_start,
+                    time_expire, goods_tag, notify_url, trade_type, product_id);
+
+            postDataByRetrofit(weChatEntity);
+
+            //解决XStream对出现双下划线的bug
+//            XStream xStreamForRequestPostData = new XStream(new DomDriver("UTF-8", new XmlFriendlyNameCoder("-_", "_")));
+////            Log.i("PayRightWeChatFragment", "路径===" + WeChatReqData.class.getCanonicalName());
+////            String path = WeChatReqData.class.getCanonicalName();
+            //将要提交给API的数据对象转换成XML格式数据Post给API
+//            String postDataXML = xStreamForRequestPostData.toXML(weChatEntity);
+            // 子线程发送请求
+//            new WeChatAsyncTask().execute(postDataXML);
+        }
+
+    }
+
+    /**
+     * 法一 使用Retrofit发送数据到微信接口，获取二维码链接
+     * @param weChatEntity
+     */
+    private void postDataByRetrofit(WeChatReqData weChatEntity) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.mch.weixin.qq.com")
+                .client(SingleOkHttpClient.getInstance())
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build();
+        WeChat weChat = retrofit.create(WeChat.class);
+        Call<WeChatResData> call = weChat.getQRCode(weChatEntity);
+        call.enqueue(new Callback<WeChatResData>() {
+            @Override
+            public void onResponse(Response<WeChatResData> response, Retrofit retrofit) {
+                Log.e("PayRightWeChatFragment", response.body().getAppid());
+                generateQRBitmap(response.body());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                Log.e("PayRightWeChatFragment", "调用获取微信支付二维码接口失败。。。。");
+            }
+        });
+
+    }
+
+    /**
+     * 法二 使用AsyncTask和URLConnection发送数据到微信接口，获取二维码链接
+     */
     private class WeChatAsyncTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -191,40 +233,51 @@ public class PayRightWeChatFragment extends Fragment {
             //将从API返回的XML数据映射到Java对象
             WeChatResData weChatResData = (WeChatResData) WeChatUtil.getObjectFromXML(res, WeChatResData.class);
 
-            if (weChatResData == null || weChatResData.getReturn_code() == null) {
-                Log.e("PayRightWeChatFragment", "【支付失败】支付请求逻辑错误，请仔细检测传过去的每一个参数是否合法，或是看API能否被正常访问");
+            generateQRBitmap(weChatResData);
+
+        }
+    }
+
+    /**
+     * 根据微信返回的结果生成二维码图片，或者提示错误信息。
+     * @param weChatResData
+     */
+    private void generateQRBitmap(WeChatResData weChatResData) {
+        if (weChatResData == null || weChatResData.getReturn_code() == null) {
+            Log.e("PayRightWeChatFragment", "【支付失败】支付请求逻辑错误，请仔细检测传过去的每一个参数是否合法，或是看API能否被正常访问");
+            CommonUtils.toastText(getActivity(), getString(R.string.get_wechat_link_fail));
+            return;
+        }
+
+        if (TextUtils.equals(weChatResData.getReturn_code(), "FAIL")) {
+            Log.e("PayRightWeChatFragment", "【支付失败】支付API系统返回失败，请检测Post给API的数据是否规范合法");
+            CommonUtils.toastText(getActivity(), getString(R.string.get_wechat_link_fail));
+            return;
+        }
+
+        if (TextUtils.equals(weChatResData.getReturn_code(), "SUCCESS")) {
+
+            Log.i("PayRightWeChatFragment", "支付API系统成功返回数据");
+            if (TextUtils.equals(weChatResData.getResult_code(), "SUCCESS")) {
+                String code_url = weChatResData.getCode_url();
+                Log.i("PayRightWeChatFragment", "code_url = "+ code_url);
+                Log.i("PayRightWeChatFragment", "trade_type = "+ weChatResData.getTrade_type());
+                Log.i("PayRightWeChatFragment", "prepay_id = "+ weChatResData.getPrepay_id());
+//                Glide.with(this).load("http://goo.gl/gEgYUd").into(payInfoStep1Img);
+                ((PayActivity) getActivity()).generateQrImg(payInfoStep2Img, code_url);
+
+            }else {
+                //获取错误码
+                String errorCode = weChatResData.getErr_code();
+                //获取错误描述
+                String errorCodeDes = weChatResData.getErr_code_des();
+
+                Log.e("PayRightWeChatFragment", "errorCode = "+ errorCode);
+                Log.e("PayRightWeChatFragment", "errorCodeDes = "+ errorCodeDes);
                 CommonUtils.toastText(getActivity(), getString(R.string.get_wechat_link_fail));
-                return;
-            }
-
-            if (TextUtils.equals(weChatResData.getReturn_code(), "FAIL")) {
-                Log.e("PayRightWeChatFragment", "【支付失败】支付API系统返回失败，请检测Post给API的数据是否规范合法");
-                CommonUtils.toastText(getActivity(), getString(R.string.get_wechat_link_fail));
-                return;
-            }
-
-            if (TextUtils.equals(weChatResData.getReturn_code(), "SUCCESS")) {
-
-                Log.i("PayRightWeChatFragment", "支付API系统成功返回数据");
-                if (TextUtils.equals(weChatResData.getResult_code(), "SUCCESS")) {
-                    String code_url = weChatResData.getCode_url();
-                    Log.i("PayRightWeChatFragment", "code_url = "+ code_url);
-                    Log.i("PayRightWeChatFragment", "trade_type = "+ weChatResData.getTrade_type());
-                    Log.i("PayRightWeChatFragment", "prepay_id = "+ weChatResData.getPrepay_id());
-                    ((PayActivity) getActivity()).generateQrImg(payInfoStep2Img, code_url);
-
-                }else {
-                    //获取错误码
-                    String errorCode = weChatResData.getErr_code();
-                    //获取错误描述
-                    String errorCodeDes = weChatResData.getErr_code_des();
-
-                    Log.e("PayRightWeChatFragment", "errorCode = "+ errorCode);
-                    Log.e("PayRightWeChatFragment", "errorCodeDes = "+ errorCodeDes);
-                    CommonUtils.toastText(getActivity(), getString(R.string.get_wechat_link_fail));
-                }
             }
         }
+
     }
 
 }
