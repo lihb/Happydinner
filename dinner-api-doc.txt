@@ -1,0 +1,93 @@
+一. 公共说明
+
+1. 接口统一前缀为 http://xx.xx.xx/xx
+2. 返回值统一使用json格式
+3. 关于返回码（result_code字段）
+	a. 返回码格式为xyyzz
+	b. x表示错误分类	0-成功 1-系统级错误 2-服务级错误
+	c. yy表示服务模块代码	00-通用模块	01-点餐模块	02-电影模块 03-游戏模块 04-位置
+	d. zz表示具体错误代码
+	e. 如10101表示发送验证码时缺失参数
+	f. 0表示成功
+4. 每个接口都会返回result_code字段，当接口返回失败时（即result_code!=0），还有result_desc字段作为对错误的补充描述
+5. 接口公共字段（作为url参数）
+	platform			int				required		平台 (1-android 2-ios)
+	os_ver				string			required		操作系统版本
+	device				string			required		设备信息
+	app_ver				string			required		应用版本
+	language			string			required		语言
+
+二. 数据模型说明
+1. Menu              菜品
+name							string			菜品名称
+imgUrl						string			菜品图片
+video							string 			菜品介绍视频
+info							string			菜品介绍文字
+type							int					菜品所属分类
+discount					float				折扣信息
+// count							int					被点的数量
+// cooked						int					是否上菜，0 - 已上菜，1 - 未上菜
+restaurantId		string			餐厅名称
+
+2. GameInfo  		游戏
+name 						string			游戏名称
+imgUrl					string			游戏封面
+type						int					游戏所属类型
+launchInfo      string			启动参数
+packageName			string			游戏包名
+downloadUrl			string			下载地址
+
+3. MovieInfo  		电影
+name 						string			电影名称
+imgUrl					string			电影海报
+type						int					电影所属类型
+downloadUrl			string			下载地址
+
+三. 接口说明
+1. 获取微信的支付结果
+Url: /pay/wechat/check
+Method: POST
+Params:
+	prepay_id				string			required		预支付交易会话标识
+	code_url				string			required		二维码链接
+	out_trade_no		string			required		商户订单号
+Return:
+	result_code			int				错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc			string			错误描述
+	prepay_id				string			required		预支付交易会话标识
+	code_url				string			required		二维码链接
+	out_trade_no		string			required		商户订单号
+	state           int              0 支付成功；1 支付失败；-1 其他
+	注：传递过去的3个参数和返回的3个参数一致，才认为是同一次支付操作。
+
+2. 获取菜品数据
+Url: /menu/all
+Method: Get
+Params:
+	restaurantId  string 	   餐厅名称
+Return:
+	result_code					int				  错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc					string			错误描述
+	menu_json_array			jsonarray
+
+3. 获取游戏数据
+Url: /game/all
+Method: Get
+Params:
+	restaurantId  				string 	   餐厅名称
+Return:
+	result_code						int				  错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc						string			错误描述
+	game_json_array				jsonarray
+
+4. 获取电影数据
+Url: /movie/all
+Method: Get
+Params:
+	restaurantId    				string 	   餐厅名称
+Return:
+	result_code							int				  错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc							string			错误描述
+	movie_json_array				jsonarray
+
+
