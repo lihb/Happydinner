@@ -41,26 +41,32 @@ downloadUrl			string			下载地址
 name 						string			电影名称
 imgUrl					string			电影海报
 type						int					电影所属类型
-downloadUrl			string			下载地址
+downloadUrl			string			播放或者下载地址
 
 三. 接口说明
-1. 获取微信的支付结果
-Url: /pay/wechat/check
+1. 上传订单数据，返回订单号。
+Url: /pay/wechat/upload
 Method: POST
 Params:
-	prepay_id				string			required		预支付交易会话标识
-	code_url				string			required		二维码链接
-	out_trade_no		string			required		商户订单号
+	order_id					string			required		订单号
+	menu_json_array   jsonarray   required  	订单的菜品数据
+	timestamp         string      required    订单生成时间
 Return:
-	result_code			int				错误码: 20001-缺失参数 20002-参数格式错误
+	result_code			int					错误码: 20001-缺失参数 20002-参数格式错误
 	result_desc			string			错误描述
-	prepay_id				string			required		预支付交易会话标识
-	code_url				string			required		二维码链接
-	out_trade_no		string			required		商户订单号
-	state           int              0 支付成功；1 支付失败；-1 其他
-	注：传递过去的3个参数和返回的3个参数一致，才认为是同一次支付操作。
+	order_id				string			required		订单号
 
-2. 获取菜品数据
+2. 获取微信的支付结果
+Url: /pay/wechat/check
+Method: GET
+Params:
+	order_id				string			required		订单号
+Return:
+	result_code			int					错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc			string			错误描述
+	state           int         0 支付成功；1 支付失败；-1 其他
+
+3. 获取菜品数据
 Url: /menu/all
 Method: Get
 Params:
@@ -70,17 +76,17 @@ Return:
 	result_desc					string			错误描述
 	menu_json_array			jsonarray
 
-3. 获取游戏数据
+4. 获取游戏数据
 Url: /game/all
 Method: Get
 Params:
-	restaurantId  				string 	   餐厅名称
+	restaurantId  				string 	    餐厅名称
 Return:
 	result_code						int				  错误码: 20001-缺失参数 20002-参数格式错误
 	result_desc						string			错误描述
 	game_json_array				jsonarray
 
-4. 获取电影数据
+5. 获取电影数据
 Url: /movie/all
 Method: Get
 Params:
