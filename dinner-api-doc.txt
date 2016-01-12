@@ -1,6 +1,6 @@
 一. 公共说明
 
-1. 接口统一前缀为 http://xx.xx.xx/xx
+1. 接口统一前缀为http://120.55.162.6/api/
 2. 返回值统一使用json格式
 3. 关于返回码（result_code字段）
 	a. 返回码格式为xyyzz
@@ -18,82 +18,113 @@
 	language			string			required		语言
 
 二. 数据模型说明
-1. Menu              菜品
-name							string			菜品名称
+1. MenuItemInfo              菜品信息
+name						string			菜品名称
 imgUrl						string			菜品图片
-video							string 			菜品介绍视频
-info							string			菜品介绍文字
-type							int					菜品所属分类
-discount					float				折扣信息
-// count							int					被点的数量
-// cooked						int					是否上菜，0 - 已上菜，1 - 未上菜
-restaurantId		string			餐厅名称
+video						string 			菜品介绍视频
+info						string			菜品介绍文字
+discount					float			折扣信息
+// count					int				被点的数量
+// cooked					int				是否上菜，0 - 已上菜，1 - 未上菜
 
-2. GameInfo  		游戏
-name 						string			游戏名称
-imgUrl					string			游戏封面
-type						int					游戏所属类型
-launchInfo      string			启动参数
+2. GameInfo	游戏信息
+name 				string			游戏名称
+imgUrl				string			游戏封面
+launchInfo      	string			启动参数
 packageName			string			游戏包名
 downloadUrl			string			下载地址
 
-3. MovieInfo  		电影
-name 						string			电影名称
+3. MovieInfo	电影信息
+name 					string			电影名称
 imgUrl					string			电影海报
-type						int					电影所属类型
-downloadUrl			string			播放或者下载地址
+playtype				int				播放类型（1：网页，2：播放器）
+downloadUrl				string			播放或者下载地址
+
+4. GameType				游戏分类
+typename				string					类型名称
+items					jsonarray(GameInfo)		游戏列表
+
+5. MovieType			电影分类
+typename				string					类型名称
+items					jsonarray(MovieInfo)	电影列表
+
+6. MenuType				菜品分类
+typename				string					类型名称
+items					jsonarray(MenuItemInfo)		菜品列表
+
 
 三. 接口说明
-1. 上传订单数据，返回订单号。
-Url: /pay/wechat/upload
-Method: POST
-Params:
-	order_id					string			required		订单号
-	menu_json_array   jsonarray   required  	订单的菜品数据
-	timestamp         string      required    订单生成时间
-Return:
-	result_code			int					错误码: 20001-缺失参数 20002-参数格式错误
-	result_desc			string			错误描述
-	order_id				string			required		订单号
 
-2. 获取微信的支付结果
-Url: /pay/wechat/check
+1. 根据设备号读取已下单的清单列表以及其他基本信息。
+Url: /order/getorderinfo
 Method: GET
 Params:
-	order_id				string			required		订单号
+	deviceid			string		required	设备号
 Return:
-	result_code			int					错误码: 20001-缺失参数 20002-参数格式错误
+	result_code			int			错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc			string		错误描述
+	table_number		string		required	桌号
+	xxxxxxx
+
+
+2. 下单或加单，提交点菜数据
+Url: /order/placeorder
+Method: POST
+Params:
+	deviceid			string				required	设备号
+	menus   			jsonarray(MenuItem)	required  	订单的菜品数据
+Return:
+	result_code			int			错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc			string		错误描述
+	timestamp			string      required    下单时间
+
+3. 发起结算，获取支付订单号
+Url: /order/buyorder
+Method: POST
+Params:
+	deviceid			string		required	设备号
+Return:
+	result_code			int			错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc			string		错误描述
+	order_pay_id		string      required    支付单号
+
+4. 获取支付结果
+Url: /pay/checkresult
+Method: GET
+Params:
+	deviceid			string			required	设备号
+Return:
+	result_code			int				错误码: 20001-缺失参数 20002-参数格式错误
 	result_desc			string			错误描述
-	state           int         0 支付成功；1 支付失败；-1 其他
+	state				int         	0 支付成功；1 支付失败；-1 其他
 
-3. 获取菜品数据
-Url: /menu/all
+5. 获取菜品数据
+Url: /menu/list
 Method: Get
 Params:
-	restaurantId  string 	   餐厅名称
 Return:
-	result_code					int				  错误码: 20001-缺失参数 20002-参数格式错误
-	result_desc					string			错误描述
-	menu_json_array			jsonarray
+	result_code					int					错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc					string				错误描述
+	menulist					jsonarray(MenuType)			菜品列表
 
-4. 获取游戏数据
-Url: /game/all
+6. 获取游戏数据
+Url: /game/list
 Method: Get
 Params:
-	restaurantId  				string 	    餐厅名称
+	restaurantId  					string 	    	餐厅ID
 Return:
-	result_code						int				  错误码: 20001-缺失参数 20002-参数格式错误
+	result_code						int				错误码: 20001-缺失参数 20002-参数格式错误
 	result_desc						string			错误描述
-	game_json_array				jsonarray
+	gamelist						jsonarray(GameType)
 
-5. 获取电影数据
-Url: /movie/all
+7. 获取电影数据
+Url: /movie/list
 Method: Get
 Params:
-	restaurantId    				string 	   餐厅名称
+	restaurantId    				string			餐厅ID
 Return:
-	result_code							int				  错误码: 20001-缺失参数 20002-参数格式错误
-	result_desc							string			错误描述
-	movie_json_array				jsonarray
+	result_code						int				错误码: 20001-缺失参数 20002-参数格式错误
+	result_desc						string			错误描述
+	movielist						jsonarray(MovieType)
 
 
